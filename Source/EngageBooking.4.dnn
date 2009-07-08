@@ -1,0 +1,88 @@
+<dotnetnuke version="3.0" type="Module">
+  <folders>
+    <folder>
+      <name>Engage: Booking</name>
+      <friendlyname>Engage: Booking</friendlyname>
+      <foldername>EngageBooking</foldername>
+      <modulename>Engage: Booking</modulename>
+      <description>The DotNetNuke Booking module by Engage Software (www.EngageSoftware.com)</description>
+      <version>REPLACED BY NANT</version>
+      <businesscontrollerclass>Engage.Dnn.Booking.Components.FeaturesController</businesscontrollerclass>
+      <resourcefile>Resources.zip</resourcefile>
+      <modules>
+        <module>
+          <friendlyname>Engage: Booking</friendlyname>
+          <cachetime>0</cachetime>
+          <controls>
+            <control>
+              <src>DesktopModules/EngageBooking/MainContainer.ascx</src>
+              <type>View</type>
+              <supportspartialrendering>true</supportspartialrendering>
+              <helpurl>http://www.EngageSoftware.com/Support.aspx</helpurl>
+            </control>
+            <control>
+              <key>Settings</key>
+              <title>Engage: Booking Settings</title>
+              <src>DesktopModules/EngageBooking/Settings.ascx</src>
+              <type>Edit</type>
+              <helpurl>http://www.EngageSoftware.com/Support.aspx</helpurl>
+            </control>
+          </controls>
+        </module>
+      </modules>
+      <files>
+        <file>
+          <path>Providers\DataProviders\SqlDataProvider</path>
+          <name>00.00.01.SqlDataProvider</name>
+        </file>
+        <file>
+          <path>Providers\DataProviders\SqlDataProvider</path>
+          <name>00.00.04.SqlDataProvider</name>
+        </file>
+        <file>
+          <path>Providers\DataProviders\SqlDataProvider</path>
+          <name>00.00.06.SqlDataProvider</name>
+        </file>
+        <file>
+          <path>Providers\DataProviders\SqlDataProvider</path>
+          <name>01.00.00.SqlDataProvider</name>
+        </file>
+        <file>
+          <path>Providers\DataProviders\SqlDataProvider</path>
+          <name>1.1.0.SqlDataProvider</name>
+        </file>
+        <file>
+          <path>Providers\DataProviders\SqlDataProvider</path>
+          <name>1.2.0.SqlDataProvider</name>
+        </file>
+        <file>
+          <name>01.00.00.txt</name>
+        </file>
+        <file>
+          <name>1.2.0.txt</name>
+        </file>
+        <file>
+          <name>ReadMe.txt</name>
+        </file>
+        <file>
+          <name>Uninstall.SqlDataProvider</name>
+        </file>
+        <file>
+          <name>EngageBooking.dll</name>
+        </file>
+        <file>
+          <name>Engage.Framework.dll</name>
+        </file>
+        <file>
+          <name>Engage.Dnn.Framework.dll</name>
+        </file>
+        <file>
+          <name>Engage.Booking.dll</name>
+        </file>
+        <file>
+          <name>Telerik.Web.UI.dll</name>
+        </file>
+      </files>
+    </folder>
+  </folders>  
+</dotnetnuke> 

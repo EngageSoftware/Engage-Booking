@@ -1,0 +1,2 @@
+<%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Actions.CancelAction" CodeBehind="CancelAction.ascx.cs" %>
+<asp:Button ID="CancelButton" CssClass="Normal" runat="server" />

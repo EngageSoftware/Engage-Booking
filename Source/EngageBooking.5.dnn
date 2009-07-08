@@ -1,0 +1,114 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="Engage: Booking" type="Module" version="REPLACED BY NANT">
+      <friendlyName>Engage: Booking</friendlyName>
+      <description>The DotNetNuke Booking module by Engage Software (www.EngageSoftware.com)</description>
+      <owner>
+        <name>Engage Software</name>
+        <organization>Engage Software</organization>
+        <url><![CDATA[<a href="http://www.engagesoftware.com/">http://www.engagesoftware.com/</a>]]></url>
+        <email><![CDATA[<a href="mailto:support@engagemodules.com">support@engagemodules.com</a>]]></email>
+      </owner>
+      <license src="REPLACED BY NANT"/>
+      <releaseNotes src="REPLACED BY NANT" />
+      <components>
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath>DesktopModules/EngageBooking</basePath>
+            <resourceFile>
+              <name>Resources.zip</name>
+            </resourceFile>
+          </resourceFiles>
+        </component>
+        <component type="Script">
+          <scripts>
+            <basePath>DesktopModules\EngageBooking</basePath>
+            <script type="Install">
+              <name>00.00.01.SqlDataProvider</name>
+              <version>00.00.01</version>
+            </script>
+            <script type="Install">
+              <name>00.00.04.SqlDataProvider</name>
+              <version>00.00.04</version>
+            </script>
+            <script type="Install">
+              <name>00.00.06.SqlDataProvider</name>
+              <version>00.00.06</version>
+            </script>
+            <script type="Install">
+              <name>01.00.00.SqlDataProvider</name>
+              <version>01.00.00</version>
+            </script>
+            <script type="Install">
+              <name>1.1.0.SqlDataProvider</name>
+              <version>1.1.0</version>
+            </script>
+            <script type="Install">
+              <name>1.2.0.SqlDataProvider</name>
+              <version>1.2.0</version>
+            </script>
+            <script type="UnInstall">
+              <name>Uninstall.SqlDataProvider</name>
+              <version>REPLACED BY NANT</version>
+            </script>
+          </scripts>
+        </component>
+        <component type="Cleanup" fileName="01.00.00.txt" version="01.00.00" />
+        <component type="Cleanup" fileName="1.2.0.txt" version="1.2.0" />
+        <component type="Module">
+          <desktopModule>
+            <moduleName>Engage: Booking</moduleName>
+            <foldername>EngageBooking</foldername>
+            <businessControllerClass>Engage.Dnn.Booking.Components.FeaturesController</businessControllerClass>
+            <moduleDefinitions>
+              <moduleDefinition>
+                <friendlyName>Engage: Booking</friendlyName>
+                <defaultCacheTime>0</defaultCacheTime>
+                <moduleControls>
+                  <moduleControl>
+                    <controlKey/>
+                    <controlSrc>DesktopModules/EngageBooking/MainContainer.ascx</controlSrc>
+                    <supportsPartialRendering>True</supportsPartialRendering>
+                    <controlType>View</controlType>
+                    <helpUrl>http://www.EngageSoftware.com/Support.aspx</helpUrl>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Settings</controlKey>
+                    <controlSrc>DesktopModules/EngageBooking/Settings.ascx</controlSrc>
+                    <controlTitle>Engage: Booking Settings</controlTitle>
+                    <controlType>Edit</controlType>
+                    <helpUrl>http://www.EngageSoftware.com/Support.aspx</helpUrl>
+                  </moduleControl>
+                </moduleControls>
+              </moduleDefinition>
+            </moduleDefinitions>
+          </desktopModule>
+        </component>
+        <component type="Assembly">
+          <assemblies>
+            <assembly>
+              <name>EngageBooking.dll</name>
+              <version>REPLACED BY NANT</version>
+            </assembly>
+            <assembly>
+              <name>Engage.Booking.dll</name>
+              <version>3.1.0</version>
+            </assembly>
+            <assembly>
+              <name>Engage.Framework.dll</name>
+              <version>3.1.0</version>
+            </assembly>
+            <assembly>
+              <name>Engage.Dnn.Framework.dll</name>
+              <version>3.1.0</version>
+            </assembly>
+            <assembly>
+              <name>Telerik.Web.UI.dll</name>
+              <version>2008.2.826</version>
+            </assembly>
+          </assemblies>
+        </component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>

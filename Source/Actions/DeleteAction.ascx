@@ -1,0 +1,2 @@
+<%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Actions.DeleteAction" CodeBehind="DeleteAction.ascx.cs" %>
+<asp:Button ID="DeleteEventButton" CssClass="Normal" runat="server" ResourceKey="DeleteEventButton" />

@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F9BEB83D-4945-45DE-BF7D-11FBD4A15080}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Engage.Dnn.Booking</RootNamespace>
+    <AssemblyName>EngageBooking</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DelaySign>true</DelaySign>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>..\..\Bin\</OutputPath>
+    <DocumentationFile>EngageBooking.xml</DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRules>-Microsoft.Design#CA1031;-Microsoft.Design#CA1054;-Microsoft.Design#CA1056;-Microsoft.Design#CA1055</CodeAnalysisRules>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetNuke, Version=4.5.1.28, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Engage.Dnn.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Engage.Framework, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral">
+      <HintPath>..\..\bin\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="Telerik.Web.UI, Version=2008.2.826.20, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="DotNetNuke" />
+    <Import Include="DotNetNuke.Common" />
+    <Import Include="DotNetNuke.Common.Utilities" />
+    <Import Include="DotNetNuke.Data" />
+    <Import Include="DotNetNuke.Entities" />
+    <Import Include="DotNetNuke.Entities.Tabs" />
+    <Import Include="DotNetNuke.Framework" />
+    <Import Include="DotNetNuke.Modules" />
+    <Import Include="DotNetNuke.Security" />
+    <Import Include="DotNetNuke.Services" />
+    <Import Include="DotNetNuke.Services.Exceptions" />
+    <Import Include="DotNetNuke.Services.Localization" />
+    <Import Include="DotNetNuke.UI" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\ActionControlBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Actions\AddToCalendarAction.ascx.cs">
+      <DependentUpon>AddToCalendarAction.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Actions\AddToCalendarAction.ascx.designer.cs">
+      <DependentUpon>AddToCalendarAction.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\ButtonAction.ascx.cs">
+      <DependentUpon>ButtonAction.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Actions\ButtonAction.ascx.designer.cs">
+      <DependentUpon>ButtonAction.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\CancelAction.ascx.cs">
+      <DependentUpon>CancelAction.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Actions\CancelAction.ascx.designer.cs">
+      <DependentUpon>CancelAction.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\RegisterAction.ascx.cs">
+      <DependentUpon>RegisterAction.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Actions\RegisterAction.ascx.designer.cs">
+      <DependentUpon>RegisterAction.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\DeleteAction.ascx.cs">
+      <DependentUpon>DeleteAction.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Actions\DeleteAction.ascx.designer.cs">
+      <DependentUpon>DeleteAction.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\SortAction.ascx.cs">
+      <DependentUpon>SortAction.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Actions\SortAction.ascx.designer.cs">
+      <DependentUpon>SortAction.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\StatusFilterAction.ascx.cs">
+      <DependentUpon>StatusFilterAction.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Actions\StatusFilterAction.ascx.designer.cs">
+      <DependentUpon>StatusFilterAction.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\LicenseError.ascx.cs">
+      <DependentUpon>LicenseError.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\LicenseError.ascx.designer.cs">
+      <DependentUpon>LicenseError.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NotConfigured.ascx.cs">
+      <DependentUpon>NotConfigured.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\NotConfigured.ascx.designer.cs">
+      <DependentUpon>NotConfigured.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Appointments\AppointmentRequest.ascx.cs">
+      <DependentUpon>AppointmentRequest.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Appointments\AppointmentRequest.ascx.designer.cs">
+      <DependentUpon>AppointmentRequest.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TemplatePicker.ascx.cs">
+      <DependentUpon>TemplatePicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\TemplatePicker.ascx.designer.cs">
+      <DependentUpon>TemplatePicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditTypeDialog.aspx.cs">
+      <DependentUpon>EditTypeDialog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\EditTypeDialog.aspx.designer.cs">
+      <DependentUpon>EditTypeDialog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ModuleMessage.ascx.cs">
+      <DependentUpon>ModuleMessage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ModuleMessage.ascx.designer.cs">
+      <DependentUpon>ModuleMessage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ChooseDisplay.ascx.cs">
+      <DependentUpon>ChooseDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChooseDisplay.ascx.designer.cs">
+      <DependentUpon>ChooseDisplay.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display\EventDetail.ascx.cs">
+      <DependentUpon>EventDetail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display\EventDetail.ascx.designer.cs">
+      <DependentUpon>EventDetail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Util\TelerikSkin.cs" />
+    <Compile Include="Display\TemplateDisplayOptions.ascx.cs">
+      <DependentUpon>TemplateDisplayOptions.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display\TemplateDisplayOptions.ascx.designer.cs">
+      <DependentUpon>TemplateDisplayOptions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ModuleBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\Assemblyinfo.cs" />
+    <Compile Include="Components\EmailScheduler.cs" />
+    <Compile Include="Components\FeaturesController.cs" />
+    <Compile Include="Display\EventDisplay.ascx.cs">
+      <DependentUpon>EventDisplay.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display\EventDisplay.ascx.designer.cs">
+      <DependentUpon>EventDisplay.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display\EventListingItem.ascx.cs">
+      <DependentUpon>EventListingItem.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display\EventListingItem.ascx.designer.cs">
+      <DependentUpon>EventListingItem.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display\EventToolTip.ascx.cs">
+      <DependentUpon>EventToolTip.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display\EventToolTip.ascx.designer.cs">
+      <DependentUpon>EventToolTip.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display\CalendarDisplayOptions.ascx.cs">
+      <DependentUpon>CalendarDisplayOptions.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display\CalendarDisplayOptions.ascx.designer.cs">
+      <DependentUpon>CalendarDisplayOptions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Display\EventCalendar.ascx.cs">
+      <DependentUpon>EventCalendar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display\EventCalendar.ascx.designer.cs">
+      <DependentUpon>EventCalendar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RecurrenceEditor.ascx.cs">
+      <DependentUpon>RecurrenceEditor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\RecurrenceEditor.ascx.designer.cs">
+      <DependentUpon>RecurrenceEditor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Register.ascx.cs">
+      <DependentUpon>Register.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.ascx.designer.cs">
+      <DependentUpon>Register.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Navigation\GlobalNavigation.ascx.cs">
+      <DependentUpon>GlobalNavigation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Navigation\GlobalNavigation.ascx.designer.cs">
+      <DependentUpon>GlobalNavigation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EmailAFriend.ascx.cs">
+      <DependentUpon>EmailAFriend.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmailAFriend.ascx.designer.cs">
+      <DependentUpon>EmailAFriend.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Setting.cs" />
+    <Compile Include="Util\Approval.ascx.cs">
+      <DependentUpon>Approval.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Util\Approval.ascx.designer.cs">
+      <DependentUpon>Approval.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MainContainer.ascx.cs">
+      <DependentUpon>MainContainer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainContainer.ascx.designer.cs">
+      <DependentUpon>MainContainer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.ascx.cs">
+      <DependentUpon>Settings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Settings.ascx.designer.cs">
+      <DependentUpon>Settings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Util\Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EngageBooking.4.dnn" />
+    <None Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
+    <None Include="Templates\Engage Events Templates.docx" />
+    <None Include="Templates\Engage Events Templates.pdf" />
+    <None Include="Uninstall.SqlDataProvider" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ItemPreview.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\PrinterFriendly.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\dn.gif" />
+    <Content Include="Images\lt.gif" />
+    <Content Include="Images\rt.gif" />
+    <Content Include="Images\s.gif" />
+    <Content Include="Images\thumbnail.gif" />
+    <Content Include="Images\up.gif" />
+    <Content Include="MainContainer.ascx" />
+    <Content Include="Settings.ascx" />
+    <Content Include="Module.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\EmptyStar.png" />
+    <Content Include="Images\FilledStar.png" />
+    <Content Include="Images\SavedStar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\progressbar_green.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Licenses\EULA-Enterprise.htm" />
+    <Content Include="Licenses\EULA-Professional.htm" />
+    <Content Include="Licenses\EULA-Standard.htm" />
+    <Content Include="Util\App_LocalResources\BreadCrumb.cs.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\calendar.png" />
+    <Content Include="Images\trash.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\NotConfigured.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\App_LocalResources\NotConfigured.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Util\Approval.ascx" />
+    <Content Include="Samples\AttendingReminder.htm" />
+    <Content Include="Samples\NoResponseReminder.htm" />
+    <Content Include="Samples\NotAttendingReminder.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\UserContainer.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Settings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Images\vcalendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Display\App_LocalResources\EventListing.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Respond.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="EmailAFriend.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\EmailAFriend.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Display\App_LocalResources\EventCalendar.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Navigation\GlobalNavigation.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Navigation\App_LocalResources\GlobalNavigation.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Images\bt_create_account.gif" />
+    <Content Include="Images\bt_login.gif" />
+    <Content Include="Register.ascx" />
+    <Content Include="Images\add_event.gif" />
+    <Content Include="Images\add_event_disabled.gif" />
+    <Content Include="Images\approve.gif" />
+    <Content Include="Images\back.gif" />
+    <Content Include="Images\cancel.gif" />
+    <Content Include="Images\comments.gif" />
+    <Content Include="Images\createnew.gif" />
+    <Content Include="Images\CreateNewDisabled.gif" />
+    <Content Include="Images\delete.gif" />
+    <Content Include="Images\edit.gif" />
+    <Content Include="Images\enrollment.gif" />
+    <Content Include="Images\enrollment_disabled.gif" />
+    <Content Include="Images\import.gif" />
+    <Content Include="Images\manage_events.gif" />
+    <Content Include="Images\manage_events_disabled.gif" />
+    <Content Include="Images\responses.gif" />
+    <Content Include="Images\responses_disabled.gif" />
+    <Content Include="Images\settings.gif" />
+    <Content Include="Images\settingsdisabled.gif" />
+    <Content Include="Images\submit.gif" />
+    <Content Include="Images\update.gif" />
+    <Content Include="Images\updatedisabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Display\CalendarDisplayOptions.ascx" />
+    <Content Include="Display\EventCalendar.ascx" />
+    <Content Include="Images\errorSmallIcon.png" />
+    <Content Include="Images\greenBody.gif" />
+    <Content Include="Images\greenBt.gif" />
+    <Content Include="Images\greenTop.gif" />
+    <Content Include="Images\redBody.gif" />
+    <Content Include="Images\redBt.gif" />
+    <Content Include="Images\redTop.gif" />
+    <Content Include="Images\successSmallIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\EventEdit.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Display\EventToolTip.ascx" />
+    <Content Include="Images\cancel_disabled.gif" />
+    <Content Include="Images\manage_RSVPs.gif" />
+    <Content Include="Images\manage_RSVPs_disabled.gif" />
+    <Content Include="Images\save.gif" />
+    <Content Include="Images\save_create_new.gif" />
+    <Content Include="Images\save_create_new_disabled.gif" />
+    <Content Include="Images\save_disabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ResponseSummaryDisplay.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Images\create_another_event.gif" />
+    <Content Include="Images\exit.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Display\App_LocalResources\EventToolTip.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ResponseDetail.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Register.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Images\cancel_go_home.gif" />
+    <Content Include="Images\home.gif" />
+    <Content Include="Images\home_disabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Display\App_LocalResources\RsvpDisplay.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\EmailEdit.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Display\EventDisplay.ascx" />
+    <Content Include="Display\EventListingItem.ascx" />
+    <Content Include="Templates\Default\Item.Listing.html" />
+    <Content Include="Templates\Default\Template.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Display\TemplateDisplayOptions.ascx" />
+    <Content Include="Templates\Default-Single\Detail.Item.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Actions\AddToCalendarAction.ascx" />
+    <Content Include="Actions\ButtonAction.ascx" />
+    <Content Include="Actions\CancelAction.ascx" />
+    <Content Include="Actions\DeleteAction.ascx" />
+    <Content Include="Actions\SortAction.ascx" />
+    <Content Include="Actions\StatusFilterAction.ascx" />
+    <Content Include="Display\App_LocalResources\TemplateDisplayOptions.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Display\EventDetail.ascx" />
+    <Content Include="Controls\RecurrenceEditor.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\ModuleMessage.ascx" />
+    <Content Include="Controls\App_LocalResources\RecurrenceEditor.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\SharedResources.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Controls\EditTypeDialog.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Actions\RegisterAction.ascx" />
+    <Content Include="Admin\LicenseError.ascx" />
+    <Content Include="Controls\App_LocalResources\EditTypeDialog.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ChooseDisplay.ascx" />
+    <Content Include="Controls\TemplatePicker.ascx" />
+    <Content Include="Images\attending_icon.gif" />
+    <Content Include="Images\export_to_csv.gif" />
+    <Content Include="Images\export_to_excel.gif" />
+    <Content Include="Images\info.png" />
+    <Content Include="Images\not_attending_icon.gif" />
+    <Content Include="Images\no_response_icon.gif" />
+    <Content Include="Images\recurring_icon.gif" />
+    <Content Include="Images\rsRecurrence.gif" />
+    <Content Include="Images\fancy_closebox.png" />
+    <Content Include="Images\fancy_left.gif" />
+    <Content Include="Images\fancy_progress.png" />
+    <Content Include="Images\fancy_right.gif" />
+    <Content Include="Images\fancy_shadow_e.png" />
+    <Content Include="Images\fancy_shadow_n.png" />
+    <Content Include="Images\fancy_shadow_ne.png" />
+    <Content Include="Images\fancy_shadow_nw.png" />
+    <Content Include="Images\fancy_shadow_s.png" />
+    <Content Include="Images\fancy_shadow_se.png" />
+    <Content Include="Images\fancy_shadow_sw.png" />
+    <Content Include="Images\fancy_shadow_w.png" />
+    <Content Include="Images\fancy_title_left.png" />
+    <Content Include="Images\fancy_title_main.png" />
+    <Content Include="Images\fancy_title_right.png" />
+    <None Include="JavaScript\jquery-1.2.6.min.debug.js" />
+    <None Include="JavaScript\EngageEvents.EditTypeDialog.js" />
+    <Content Include="App_LocalResources\ChooseDisplay.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Controls\App_LocalResources\TemplatePicker.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Actions\App_LocalResources\AddToCalendarAction.ascx.resx">
+    </Content>
+    <Content Include="Actions\App_LocalResources\ButtonAction.ascx.resx">
+    </Content>
+    <Content Include="Appointments\App_LocalResources\AppointmentRequest.ascx.resx" />
+    <EmbeddedResource Include="JavaScript\jquery.fancybox-1.0.0.js" />
+    <Content Include="Templates\Admin\ManageEvents\App_LocalResources\Template.resx" />
+    <Content Include="Templates\Legacy-ListingAll\App_LocalResources\Template.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\Default\Manifest.xml" />
+    <Content Include="Templates\ListingShort\Manifest.xml" />
+    <Content Include="Templates\ListingShort\Template.css" />
+    <Content Include="Templates\Narrow\App_LocalResources\Template.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\MiniList\App_LocalResources\Template.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\Default-Single\App_LocalResources\Template.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="References\DotNetNuke.dll" />
+    <Content Include="References\DotNetNuke.WebUtility.dll" />
+    <Content Include="References\Engage.Dnn.Framework.dll" />
+    <Content Include="References\Engage.Framework.dll" />
+    <Content Include="References\Microsoft.ApplicationBlocks.Data.dll" />
+    <Content Include="References\Telerik.Web.UI.dll" />
+    <Content Include="Display\App_LocalResources\CalendarDisplayOptions.ascx.resx">
+    </Content>
+    <Content Include="Templates\Default\App_LocalResources\Template.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Admin\App_LocalResources\LicenseError.ascx.resx">
+    </Content>
+    <Content Include="Templates\Default-Single\Manifest.xml" />
+    <Content Include="Templates\Default-Single\Template.css" />
+    <Content Include="Templates\ListingShort\Item.ListingShort.html" />
+    <Content Include="Templates\MiniList\MiniList.htm" />
+    <Content Include="Templates\Narrow\Narrow.htm" />
+    <Content Include="Templates\MiniList\Manifest.xml" />
+    <Content Include="Templates\MiniList\Template.css" />
+    <Content Include="Templates\Narrow\Manifest.xml" />
+    <Content Include="Templates\Narrow\Template.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Actions\App_LocalResources\StatusFilterAction.ascx.resx">
+    </Content>
+    <Content Include="Actions\App_LocalResources\SortAction.ascx.resx">
+    </Content>
+    <Content Include="Actions\App_LocalResources\RegisterAction.ascx.resx">
+    </Content>
+    <Content Include="Actions\App_LocalResources\DeleteAction.ascx.resx">
+    </Content>
+    <Content Include="Actions\App_LocalResources\CancelAction.ascx.resx">
+    </Content>
+    <Content Include="Appointments\AppointmentRequest.ascx" />
+    <Content Include="Images\choose_display.gif" />
+    <Content Include="Templates\Admin\ManageEvents\default.jpg" />
+    <Content Include="Templates\Admin\ManageEvents\Item.Listing.html" />
+    <Content Include="Templates\Admin\ManageEvents\Manifest.xml" />
+    <Content Include="Templates\Admin\ManageEvents\Template.css" />
+    <Content Include="Templates\Default-Single\single-item-default.jpg" />
+    <Content Include="Templates\Default\default.jpg" />
+    <Content Include="Templates\Legacy-ListingAll\Item.Listing.html" />
+    <Content Include="Templates\Legacy-ListingAll\legacy.jpg" />
+    <Content Include="Templates\Legacy-ListingAll\Manifest.xml" />
+    <Content Include="Templates\Legacy-ListingAll\Template.css" />
+    <Content Include="Templates\ListingShort\short-listing.jpg" />
+    <Content Include="Templates\MiniList\minilist.jpg" />
+    <Content Include="Templates\Narrow\narrow.jpg" />
+    <None Include="EngageBooking.5.dnn" />
+    <None Include="EngageBooking.Build" />
+    <None Include="Templates\EngageManifest.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\code\Engage 3.0\Engage.Booking\Engage.Booking.csproj">
+      <Project>{686828D3-793D-4589-B9C3-305CA0A8E36F}</Project>
+      <Name>Engage.Booking</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v8.0\WebApplications\Microsoft.WebApplication.targets" Condition="'$(Solutions.VSVersion)' == '8.0'" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" Condition="'$(Solutions.VSVersion)' == '9.0'" />
+  <Import Project="$(ProgramFiles)\MSBuild\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.Targets" Condition="Exists('$(ProgramFiles)\MSBuild\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.Targets')" />
+  <Import Project="MSBuild\Yui.Compressor.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4825</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/DotNetNuke_2/desktopmodules/EngageBooking</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/DotNetNuke_2</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

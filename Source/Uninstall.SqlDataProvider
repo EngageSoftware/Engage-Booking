@@ -1,0 +1,10 @@
+/****** Object:  Table [dbo].[dnn_Engage_Appointment]    Script Date: 07/08/2009 10:19:52 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_Appointment]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}Engage_Appointment]
+GO
+
+/****** Object:  Table [dbo].[dnn_Engage_AppointmentType]    Script Date: 07/08/2009 10:20:07 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_AppointmentType]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}Engage_AppointmentType]
+GO
+
