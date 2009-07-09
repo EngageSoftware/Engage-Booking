@@ -8,9 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Engage.Dnn.Booking.Display
-{
-    public partial class TemplateDisplayOptions {
+namespace Engage.Dnn.Booking.Display {
+    
+    
+    public partial class WorkflowDisplayOptions {
         
         /// <summary>
         /// DisplayModeLabel control.

@@ -13,4 +13,8 @@
             <NumberFormat AllowRounding="True" DecimalDigits="0"/>
         </telerik:radnumerictextbox>
     </span>
+    <dnn:label ID="AllowAppointmentRequestsLabel" ResourceKey="AllowAppointmentRequestsLabel" runat="server" CssClass="SubHead" ControlName="FeaturedCheckBox" />
+    <span>
+        <asp:CheckBox ID="AllowAppointmentRequestsCheckBox" runat="server" />
+    </span>
 </div>

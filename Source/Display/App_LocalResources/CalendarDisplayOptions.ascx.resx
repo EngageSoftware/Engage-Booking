@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllowAppointmentRequestsLabel.Help" xml:space="preserve">
+    <value>Check this option if you want to allow appointment requests to your calendar.</value>
+  </data>
+  <data name="AllowAppointmentRequestsLabel.Text" xml:space="preserve">
+    <value>Allow users to submit a request for an Appointment.</value>
+  </data>
   <data name="Black.Text" xml:space="preserve">
     <value>Black</value>
   </data>

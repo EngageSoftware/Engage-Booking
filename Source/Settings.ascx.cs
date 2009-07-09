@@ -217,7 +217,7 @@ namespace Engage.Dnn.Booking
             switch (Utility.GetStringSetting(this.Settings, "DisplayType").ToUpperInvariant())
             {
                 case "LIST":
-                    this.LoadSettingsControl("Display/TemplateDisplayOptions.ascx");
+                    this.LoadSettingsControl("Display/WorkflowDisplayOptions.ascx");
                     break;
                 case "CALENDAR":
                     this.LoadSettingsControl("Display/CalendarDisplayOptions.ascx");

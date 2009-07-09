@@ -8,9 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Engage.Dnn.Booking {
-    
-    
-    public partial class EmailAFriend {
+namespace Engage.Dnn.Booking.Workflow
+{
+    public partial class Approval {
     }
 }

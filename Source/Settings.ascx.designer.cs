@@ -8,8 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Engage.Dnn.Booking
-{
+namespace Engage.Dnn.Booking {
+    
+    
     public partial class Settings {
         
         /// <summary>
@@ -56,23 +57,5 @@ namespace Engage.Dnn.Booking
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CustomValidator DetailsDisplayModuleValidator;
-        
-        /// <summary>
-        /// AllowAppointmentRequestsLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DotNetNuke.UI.UserControls.LabelControl AllowAppointmentRequestsLabel;
-        
-        /// <summary>
-        /// AllowAppointmentRequestsCheckBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox AllowAppointmentRequestsCheckBox;
     }
 }

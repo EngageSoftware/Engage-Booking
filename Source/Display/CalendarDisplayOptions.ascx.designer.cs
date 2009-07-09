@@ -39,5 +39,23 @@ namespace Engage.Dnn.Booking.Display {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadNumericTextBox EventsPerDayTextBox;
+        
+        /// <summary>
+        /// AllowAppointmentRequestsLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl AllowAppointmentRequestsLabel;
+        
+        /// <summary>
+        /// AllowAppointmentRequestsCheckBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox AllowAppointmentRequestsCheckBox;
     }
 }

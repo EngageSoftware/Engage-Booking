@@ -39,11 +39,6 @@
             </asp:GridView>
             <asp:CustomValidator ID="DetailsDisplayModuleValidator" runat="server" CssClass="NormalRed" ResourceKey="DetailsDisplayModuleValidator" Display="None" />
         </div>
-        <div class="EventsSetting">
-            <dnn:label ID="AllowAppointmentRequestsLabel" ResourceKey="AllowAppointmentRequestsLabel" runat="server" CssClass="SubHead" ControlName="FeaturedCheckBox" />
-            <asp:CheckBox ID="AllowAppointmentRequestsCheckBox" runat="server" />
-        </div>
-
         <asp:ValidationSummary runat="server" ShowMessageBox="false" ShowSummary="true" CssClass="NormalRed" />
     </ContentTemplate>
 </asp:UpdatePanel>

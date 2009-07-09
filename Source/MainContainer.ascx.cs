@@ -25,7 +25,7 @@ namespace Engage.Dnn.Booking
     /// The main container that is used by the Engage: Events module.  
     /// This control is registered with DNN, and is in charge of loading other requested control.
     /// </summary>
-    public partial class MainContainer : Booking.ModuleBase
+    public partial class MainContainer : ModuleBase
     {
         /// <summary>
         /// The control key for the <see cref="DefaultSubControl"/>
@@ -94,7 +94,8 @@ namespace Engage.Dnn.Booking
             keyDictionary.Add("EventDetail", new SubControlInfo("Display/EventDetail.ascx", false));
             keyDictionary.Add("ChooseDisplay", new SubControlInfo("ChooseDisplay.ascx", true));
             keyDictionary.Add("AllowAppointmentRequest", new SubControlInfo("Appointments/AppointmentRequest.ascx", true));
-
+            keyDictionary.Add("Approval", new SubControlInfo("Workflow/Approval.ascx", true));
+            
             return keyDictionary;
         }
 

@@ -8,8 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Engage.Dnn.Booking.Navigation
-{
+namespace Engage.Dnn.Booking.Navigation {
+    
+    
     public partial class GlobalNavigation {
         
         /// <summary>
@@ -40,15 +41,6 @@ namespace Engage.Dnn.Booking.Navigation
         protected global::System.Web.UI.WebControls.HyperLink ChooseDisplayLink;
         
         /// <summary>
-        /// ManageEventsLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink ManageEventsLink;
-        
-        /// <summary>
         /// AddAnEventLink control.
         /// </summary>
         /// <remarks>
@@ -56,14 +48,5 @@ namespace Engage.Dnn.Booking.Navigation
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink AddAnEventLink;
-        
-        /// <summary>
-        /// ResponsesLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink ResponsesLink;
     }
 }

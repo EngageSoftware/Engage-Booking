@@ -1,4 +1,4 @@
-// <copyright file="TemplateDisplayOptions.ascx.cs" company="Engage Software">
+// <copyright file="WorkflowDisplayOptions.ascx.cs" company="Engage Software">
 // Engage: Booking - http://www.EngageSoftware.com
 // Copyright (c) 2004-2009
 // by Engage Software ( http://www.engagesoftware.com )
@@ -22,7 +22,7 @@ namespace Engage.Dnn.Booking.Display
     /// <summary>
     /// The settings for a template
     /// </summary>
-    public partial class TemplateDisplayOptions : ModuleSettingsBase
+    public partial class WorkflowDisplayOptions : ModuleSettingsBase
     {
         /// <summary>
         /// Gets or sets the <see cref="ListingMode"/> for this listing.
