@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 using System.Web.UI;
 
 [assembly: AssemblyTitle("Engage: Booking")]
-[assembly: AssemblyDescription("The DotNetNuke Events module by Engage Software (www.engagesoftware.com)")]
+[assembly: AssemblyDescription("The DotNetNuke Booking module by Engage Software (www.engagesoftware.com)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Engage Software, Inc.")]
 [assembly: AssemblyProduct("")]

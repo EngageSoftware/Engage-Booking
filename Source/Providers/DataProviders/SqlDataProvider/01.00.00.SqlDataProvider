@@ -48,7 +48,7 @@ CREATE TABLE {databaseOwner}[{objectQualifier}Engage_Appointment]
 	ParticipantGender nvarchar(25) NULL,
 	ParticipantFlag nvarchar(1) NOT NULL,
 	ParticipantInstructions ntext NULL,
-	SpecialParticipants int NOT NULL DEFAULT 0,
+	NumberOfSpecialParticipants int NOT NULL DEFAULT 0,
 	Accepted bit NOT NULL DEFAULT 0,
 	CreationDate DATETIME NOT NULL DEFAULT GETDATE(),
 	RevisionDate DATETIME NOT NULL,
@@ -73,4 +73,16 @@ ALTER TABLE {databaseOwner}[{objectQualifier}Engage_Appointment] ADD CONSTRAINT
 	AppointmentTypeId
 	) 
 GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}Engage_spGetAppointments](
+	@portalId int
+)
+AS
+BEGIN
+	 SELECT *
+	 FROM   {databaseOwner}[{objectQualifier}Engage_Appointment]
+	 WHERE  PortalId = @portalId
+END
+GO
+
 
