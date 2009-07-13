@@ -121,11 +121,11 @@ namespace Engage.Dnn.Booking.Util
         }
 
         /// <summary>
-        /// Gets <c>QueryString</c> parameter(s) that represent an instance of an <see cref="Engage.Booking.Appointment"/>.
+        /// Gets <c>QueryString</c> parameter(s) that represent an instance of an <see cref="Booking.Appointment"/>.
         /// </summary>
-        /// <param name="appointment">The <see cref="Engage.Booking.Appointment"/> to represent.</param>
+        /// <param name="appointment">The <see cref="Booking.Appointment"/> to represent.</param>
         /// <returns>A list of <c>QueryString</c> parameters that represent <paramref name="appointment"/></returns>
-        internal static string[] GetEventParameters(Engage.Booking.Appointment appointment)
+        internal static string[] GetEventParameters(Booking.Appointment appointment)
         {
             return GetEventParameters(appointment.Id, appointment.StartDateTime);
         }

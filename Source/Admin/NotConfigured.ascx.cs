@@ -15,7 +15,6 @@ namespace Engage.Dnn.Booking.Admin
     using System.Globalization;
     using DotNetNuke.Common;
     using DotNetNuke.Entities.Modules;
-    using Engage.Booking;
     using Framework.Templating;
 
     /// <summary>

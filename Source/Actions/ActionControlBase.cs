@@ -13,7 +13,6 @@ namespace Engage.Dnn.Booking.Actions
 {
     using System;
     using System.Globalization;
-    using Engage.Booking;
 
     /// <summary>
     /// The base class for all controls in the Engage: Booking module. Since this module is licensed it 

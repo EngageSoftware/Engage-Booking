@@ -15,7 +15,6 @@ namespace Engage.Dnn.Booking.Display
     using System.Web.UI;
     using System.Web.UI.WebControls;
     using DotNetNuke.Common;
-    using Engage.Booking;
     using Framework.Templating;
     using Templating;
 

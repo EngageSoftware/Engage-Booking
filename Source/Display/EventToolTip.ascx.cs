@@ -15,7 +15,6 @@ namespace Engage.Dnn.Booking.Display
     using System.Diagnostics;
     using System.Web.UI;
     using DotNetNuke.Framework;
-    using Engage.Booking;
 
     /// <summary>
     /// Used to display a "tool tip" for an appointment.

@@ -48,9 +48,6 @@
           <name>Engage.Dnn.Framework.dll</name>
         </file>
         <file>
-          <name>Engage.Booking.dll</name>
-        </file>
-        <file>
           <name>Telerik.Web.UI.dll</name>
         </file>
       </files>

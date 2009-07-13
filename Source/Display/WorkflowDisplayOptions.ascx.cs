@@ -17,7 +17,6 @@ namespace Engage.Dnn.Booking.Display
     using System.Web.UI.WebControls;
     using DotNetNuke.Entities.Modules;
     using DotNetNuke.Services.Exceptions;
-    using Engage.Booking;
 
     /// <summary>
     /// The settings for a template

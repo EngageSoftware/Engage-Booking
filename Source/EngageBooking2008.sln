@@ -16,19 +16,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSBuild", "MSBuild", "{37A6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngageBooking", "EngageBooking.csproj", "{F9BEB83D-4945-45DE-BF7D-11FBD4A15080}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engage.Booking", "..\..\..\..\..\..\Code\Engage 3.0\Engage.Booking\Engage.Booking.csproj", "{686828D3-793D-4589-B9C3-305CA0A8E36F}"
-EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 2
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://tfs2008.etg-inc.net:8080/
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = EngageBooking.csproj
 		SccLocalPath1 = .
-		SccProjectUniqueName2 = ..\\..\\..\\..\\..\\..\\Code\\Engage\u00203.0\\Engage.Booking\\Engage.Booking.csproj
-		SccProjectName2 = ../../Engage\u00203.0/Engage.Booking
-		SccLocalPath2 = ..\\..\\..\\..\\..\\..\\Code\\Engage\u00203.0\\Engage.Booking
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,10 +34,6 @@ Global
 		{F9BEB83D-4945-45DE-BF7D-11FBD4A15080}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9BEB83D-4945-45DE-BF7D-11FBD4A15080}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9BEB83D-4945-45DE-BF7D-11FBD4A15080}.Release|Any CPU.Build.0 = Release|Any CPU
-		{686828D3-793D-4589-B9C3-305CA0A8E36F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{686828D3-793D-4589-B9C3-305CA0A8E36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{686828D3-793D-4589-B9C3-305CA0A8E36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{686828D3-793D-4589-B9C3-305CA0A8E36F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

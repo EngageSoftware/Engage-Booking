@@ -51,7 +51,9 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Engage.Booking, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Engage.Booking, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Engage.Booking.dll</HintPath>
+    </Reference>
     <Reference Include="Engage.Dnn.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
@@ -178,6 +180,8 @@
     <Compile Include="Admin\NotConfigured.ascx.designer.cs">
       <DependentUpon>NotConfigured.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Appointment.cs" />
+    <Compile Include="AppointmentCollection.cs" />
     <Compile Include="Appointments\AppointmentRequest.ascx.cs">
       <DependentUpon>AppointmentRequest.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -220,6 +224,8 @@
     <Compile Include="Display\EventDetail.ascx.designer.cs">
       <DependentUpon>EventDetail.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ListingMode.cs" />
+    <Compile Include="Util\ICalUtil.cs" />
     <Compile Include="Util\TelerikSkin.cs" />
     <Compile Include="Display\WorkflowDisplayOptions.ascx.cs">
       <DependentUpon>WorkflowDisplayOptions.ascx</DependentUpon>
@@ -640,7 +646,6 @@
     </Content>
     <Content Include="Appointments\AppointmentRequest.ascx" />
     <Content Include="Images\choose_display.gif" />
-    <Content Include="References\Engage.Booking.dll" />
     <Content Include="Templates\Admin\ManageEvents\default.jpg" />
     <Content Include="Templates\Admin\ManageEvents\Item.Listing.html" />
     <Content Include="Templates\Admin\ManageEvents\Manifest.xml" />

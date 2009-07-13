@@ -14,7 +14,6 @@ namespace Engage.Dnn.Booking.Actions
     using System;
     using DotNetNuke.Services.Localization;
     using DotNetNuke.UI.Utilities;
-    using Engage.Booking;
 
     /// <summary>
     /// Displays the actions that users can perform on an event instance.

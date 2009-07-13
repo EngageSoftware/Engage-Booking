@@ -17,7 +17,6 @@ namespace Engage.Dnn.Booking.Display
     using Booking;
     using DotNetNuke.Services.Exceptions;
     using DotNetNuke.Services.Localization;
-    using Engage.Booking;
     using Telerik.Web.UI;
     using Setting = Setting;
     using Utility = Utility;
@@ -116,7 +115,7 @@ namespace Engage.Dnn.Booking.Display
             int eventId;
             if (int.TryParse(e.Value.Split('_')[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out eventId))
             {
-                Engage.Booking.Appointment appointment = Engage.Booking.Appointment.Load(eventId);
+                Booking.Appointment appointment = Booking.Appointment.Load(eventId);
                 EventToolTip toolTip = (EventToolTip)this.LoadControl("EventToolTip.ascx");
 
                 toolTip.ModuleConfiguration = this.ModuleConfiguration;
@@ -151,7 +150,7 @@ namespace Engage.Dnn.Booking.Display
         private void BindData()
         {
             this.EventsCalendarDisplay.Culture = CultureInfo.CurrentCulture;
-            this.EventsCalendarDisplay.DataSource = Engage.Booking.AppointmentCollection.Load(this.PortalId, ListingMode.All, false, this.IsFeatured);
+            this.EventsCalendarDisplay.DataSource = Booking.AppointmentCollection.Load(this.PortalId, ListingMode.All, false, this.IsFeatured);
             this.EventsCalendarDisplay.DataEndField = "EventEnd";
             this.EventsCalendarDisplay.DataKeyField = "Id";
             this.EventsCalendarDisplay.DataRecurrenceField = "RecurrenceRule";
