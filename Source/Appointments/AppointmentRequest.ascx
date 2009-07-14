@@ -7,7 +7,7 @@
 
 <engage:ModuleMessage runat="server" ID="SuccessModuleMessage" MessageType="Success" TextResourceKey="AddEventSuccess" CssClass="AddEventSuccessMessage"/>
 
-<div id="AddNewEvent" runat="server" class="AddNewEvent">
+<%--<div id="AddNewEvent" runat="server" class="AddNewEvent">
 
     <h2 class="SubHead">
         <asp:Label ID="AppointmentRequestLabel" runat="server" ResourceKey="AppointmentRequestLabel"/>
@@ -123,12 +123,171 @@
             <ContentTemplate>
                 <asp:Label ID="RecurringEventLabel" runat="server" ResourceKey="RecurringEventLabel" CssClass="NormalBold" AssociatedControlID="RecurringCheckBox"/>
                 <asp:CheckBox ID="RecurringCheckBox" runat="server" AutoPostBack="true" />
-<%--                <engage:RecurrenceEditor ID="RecurrenceEditor" runat="server" Visible="false" DatePickerSkin="WebBlue" />
-                <asp:CustomValidator ID="RecurrenceEditorValidator" runat="server" ResourceKey="InvalidRecurrence" Display="None" />--%>
+                <engage:RecurrenceEditor ID="RecurrenceEditor" runat="server" Visible="false" DatePickerSkin="WebBlue" />
+                <asp:CustomValidator ID="RecurrenceEditorValidator" runat="server" ResourceKey="InvalidRecurrence" Display="None" />
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-</div>
+</div>--%>
+
+<div>
+    <fieldset>
+    	<legend>Service Request Form</legend>
+    	<p class="note"><strong>Note:</strong>Fields with asteriks (*) denote required fields.</p>
+            <fieldset>
+                <legend>Interpreting Event</legend>
+                    <ol class="interpreting-form">
+                        <li class="event-type medium">
+                            <asp:Label ID="EventType" CssClass="event-type-label" runat="server" Text="Type of Event" AssociateControlId="EventType" />
+                            <asp:TextBox ID="EventTypeBox" CssClass="event-type-box" runat="server" />
+                        </li>
+                         <li class="Title long">
+                            <asp:Label ID="Title" CssClass="title-label" runat="server" Text="Title" AssociateControlId="TitleBox" />
+                            <asp:TextBox ID="TitleBox" CssClass="title-box" runat="server" />
+                         </li>
+                         <li class="description full">
+                            <asp:Label ID="Description" CssClass="description-label" runat="server" Text="Description of Event" AssociateControlId="DescriptionBox" />
+                            <asp:TextBox ID="DescriptionBox" CssClass="description-box" runat="server" />
+                        </li>
+                        <li class="considerations full">
+                            <asp:Label ID="Considerations" CssClass="considerations-label" runat="server" Text="Special Considerations" AssociateControlId="ConsiderationsBox" />
+                            <asp:TextBox ID="ConsiderationsBox" CssClass="considerations-box" runat="server" />
+                        </li>
+                    </ol>
+                    <h4>Address</h4>
+                    <ol class="interpreting-form-b">
+                        <li class="street long">
+                            <asp:Label ID="Street" CssClass="street-label" runat="server" Text="Street" AssociateControlId="StreetBox" />
+                            <asp:TextBox ID="StreetBox" CssClass="street-box" Visible="false" runat="server" />
+                        </li>
+                        <li class="room medium">
+                            <asp:TextBox ID="RoomBox" CssClass="room-box" runat="server" />
+                         </li>
+                         <li class="city long">
+                            <asp:Label ID="City" CssClass="city-label" runat="server" Text="City" AssociateControlId="CityBox" />
+                            <asp:TextBox ID="CityBox" CssClass="city-box" runat="server" />
+                         </li>
+                         <li class="state medium">
+                            <asp:TextBox ID="StateBox" CssClass="state-box" runat="server" />
+                         </li>
+                         <li class="zip short">
+                            <asp:TextBox ID="ZipBox" CssClass="zip-box" runat="server" />
+                         </li>
+                         
+                         <li class="nearest long">
+                            <asp:Label ID="Nearest" CssClass="nearest-label" runat="server" Text="If DC/MD/VA, nearest Metro and nearest cross street" AssociateControlId="NearestBox" />
+                            <asp:TextBox ID="NearestBox" CssClass="nearest-box" runat="server" />
+                        </li>
+                    </ol>
+                    <h4>On-site Contact</h4>
+                    <ol class="interpreting-form-c">
+                        <li class="street long">
+                            <asp:Label ID="OnSiteStreet" CssClass="street-label" runat="server" Text="Street" AssociateControlId="StreetBox" />
+                            <asp:TextBox ID="OnSiteStreetBox" CssClass="street-box" Visible="false" runat="server" />
+                        </li>
+                        <li class="phone">
+                                <asp:Label ID="Phone" CssClass="phone-label" Visible = "false" runat="server" Text="Phone" AssociateControlId="PhoneBox" />
+                                <asp:TextBox ID="PhoneBox" CssClass="phone-box" Visible="false" runat="server" />
+                        </li>
+                    </ol>        
+            </fieldset>
+                    
+            <fieldset>
+                <legend>Person Requesting Interpreting Services</legend>
+                    <ol class="requesting-form">
+                        <li class="full-name long">
+                            <asp:Label ID="FullName" CssClass="full-name-label" Visible = "false" runat="server" Text="Full Name" AssociateControlId="FullNameBox" />
+                            <asp:TextBox ID="FullNameBox" CssClass="full-name-box" Visible="false" runat="server" />
+                        </li>
+                         <li class="phone">
+                            <asp:Label ID="RequestorPhone" CssClass="phone-label" Visible = "false" runat="server" Text="Phone" AssociateControlId="PhoneBox" />
+                            <asp:TextBox ID="RequestorPhoneBox" CssClass="phone-box" Visible="false" runat="server" />
+                         </li>
+                         <li class="alt-phone">
+                            <asp:Label ID="AltPhone" CssClass="alt-phone-label" Visible = "false" runat="server" Text="Alternate Phone" AssociateControlId="AltPhoneBox" />
+                            <asp:TextBox ID="AltPhoneBox" CssClass="alt-phone-box" Visible="false" runat="server" />
+                        </li>
+                        <li class="email long">
+                            <asp:Label ID="Email" CssClass="email-label" Visible = "false" runat="server" Text="Email Address" AssociateControlId="EmailBox" />
+                            <asp:TextBox ID="EmailBox" CssClass="email-box" Visible="false" runat="server" />
+                        </li>
+                    </ol>
+            </fieldset>
+        
+            <fieldset>
+                <legend>Date of Assignment</legend>
+                    <ol class="date-assignment-form">
+                        <li class="start medium">
+                            <asp:Label ID="Start" CssClass="start-label" Visible = "false" runat="server" Text="Start" AssociateControlId="StartBox" />
+                            <asp:TextBox ID="StartBox" CssClass="start-box" Visible="false" runat="server" />
+                            <=== insert you calendar img here ===>
+                        </li>
+                         <li class="at-time short">
+                            <asp:Label ID="AtTime" CssClass="at-time-label" Visible = "false" runat="server" Text="at" AssociateControlId="AtTimeBox" />
+                            <asp:TextBox ID="AtTimeBox" CssClass="at-time-box" Visible="false" runat="server" />
+                            <telerik:raddatetimepicker runat="server" id="StartDateTimePicker" skin="WebBlue">
+                                <timeview skin="WebBlue"/>
+                                <calendar skin="WebBlue" ShowRowHeaders="false"/>
+                                <DateInput InvalidStyleDuration="100"/>
+                                <ClientEvents OnDateSelected="StartDateTimePicker_DateSelected" />
+                            </telerik:raddatetimepicker>
+                            
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="StartDateTimePicker" ResourceKey="StartDateTimePickerRequired" Display="None" EnableClientScript="false"/>
+                         </li>
+                         <li class="end medium">
+                            <asp:Label ID="End" CssClass="end-label" Visible = "false" runat="server" Text="End:" AssociateControlId="EndBox" />
+                            <asp:TextBox ID="EndBox" CssClass="end-box" Visible="false" runat="server" />
+                        </li>
+                        <li class="at-time short">
+                            <asp:Label ID="AtTime" CssClass="at-time-label" Visible = "false" runat="server" Text="at" AssociateControlId="AtTimeBox" />
+                            <asp:TextBox ID="AtTimeBox" CssClass="at-time-box" Visible="false" runat="server" />
+                            <telerik:raddatetimepicker runat="server" id="EndDateTimePicker" skin="WebBlue">
+                                <timeview skin="WebBlue"/>
+                                <calendar skin="WebBlue" ShowRowHeaders="false"/>
+                                <DateInput InvalidStyleDuration="100"/>
+                            </telerik:raddatetimepicker>
+                            
+                            <asp:CompareValidator ID="CompareValidator1" 
+                                runat="server" Display="None" EnableClientScript="false"
+                                ControlToCompare="StartDateTimePicker"
+                                ControlToValidate="EndDateTimePicker" 
+                                ResourceKey="EndDateCompareValidator"
+                                Operator="GreaterThan"/>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="EndDateTimePicker" ResourceKey="EndDateTimePickerRequired" Display="None" EnableClientScript="false"/>
+
+                         </li>
+                    </ol>
+            </fieldset>
+        
+            <fieldset>
+                <legend>Participants</legend>
+                    <ol class="participants-form">
+                        <li class="number-deaf short">
+                            <asp:Label ID="NumberDeaf" CssClass="number-deaf-label" Visible = "false" runat="server" Text="Number of Deaf Participants" AssociateControlId="NumberDeafBox" />
+                            <asp:TextBox ID="NumberDeafBox" CssClass="number-deaf-box" Visible="false" runat="server" />
+                            <=== insert you calendar img here ===>
+                        </li>
+                         <li class="total-number short">
+                            <asp:Label ID="TotalNumber" CssClass="total-number-label" Visible = "false" runat="server" Text="Total Number of Participants" AssociateControlId="TotalNumberBox" />
+                            <asp:TextBox ID="TotalNumberBox" CssClass="total-number-box" Visible="false" runat="server" />
+                            <=== insert you calendar img here ===>
+                         </li>
+                         <li class="male short">
+                            <asp:Label ID="Male" CssClass="male-label" Visible = "false" runat="server" Text="Male" AssociateControlId="MaleBox" />
+                            <asp:TextBox ID="MaleBox" CssClass="male-box" Visible="false" runat="server" />
+                        </li>
+                        <li class="female short">
+                            <asp:Label ID="Female" CssClass="female-label" Visible = "false" runat="server" Text="Female" AssociateControlId="FemaleBox" />
+                            <asp:TextBox ID="FemaleBox" CssClass="female-box" Visible="false" runat="server" />
+                        </li>
+                        <li class="instructions full">
+                            <asp:Label ID="Instructions" CssClass="instructions-label" Visible = "false" runat="server" Text="Email Address" AssociateControlId="InstructionsBox" />
+                            <asp:TextBox ID="InstructionsBox" CssClass="instructions-box" Visible="false" runat="server" />
+                        </li>
+                    </ol>
+			</fieldset>
+	</fieldset> 
+</div>	
 
 <engage:ValidationSummary ID="ValidationSummary1" runat="server" />
 

@@ -85,4 +85,185 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}Engage_spDeleteAppointment](
+	@appointmentId int
+)
+AS
+BEGIN
+	 DELETE FROM   {databaseOwner}[{objectQualifier}Engage_Appointment]
+	 WHERE  AppointmentId = @appointmentId
+END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}Engage_spInsertAppointment]
+(
+   @AppointmentTypeId int
+   ,@ModuleId int
+   ,@PortalId int
+   ,@Title nvarchar(50)
+   ,@Description ntext
+   ,@Notes ntext
+   ,@Address1 nvarchar(50)
+   ,@Address2 nvarchar(50)
+   ,@City nvarchar(50)
+   ,@StateId int
+   ,@Zip nvarchar(50)
+   ,@Phone nvarchar(50)
+   ,@AdditionalAddressInfo nvarchar(50)
+   ,@ContactStreet nvarchar(50)
+   ,@ContactPhone nvarchar(50)
+   ,@RequestorName nvarchar(50)
+   ,@RequestorPhoneType nvarchar(50)
+   ,@RequestorPhone nvarchar(13)
+   ,@RequestorEmail nvarchar(100)
+   ,@RequestorAltPhoneType nvarchar(50)
+   ,@RequestorAltPhone nvarchar(13)
+   ,@StartDateTime datetime
+   ,@EndDateTime datetime
+   ,@NumberOfParticipants int
+   ,@ParticipantGender nvarchar(25)
+   ,@ParticipantFlag nvarchar(1)
+   ,@ParticipantInstructions ntext
+   ,@NumberOfSpecialParticipants int
+   ,@Accepted bit
+)
+AS
+BEGIN
+
+INSERT INTO {databaseOwner}[{objectQualifier}Engage_Appointment]
+           ([AppointmentTypeId]
+           ,[ModuleId]
+           ,[PortalId]
+           ,[Title]
+           ,[Description]
+           ,[Notes]
+           ,[Address1]
+           ,[Address2]
+           ,[City]
+           ,[StateId]
+           ,[Zip]
+           ,[Phone]
+           ,[AdditionalAddressInfo]
+           ,[ContactStreet]
+           ,[ContactPhone]
+           ,[RequestorName]
+           ,[RequestorPhoneType]
+           ,[RequestorPhone]
+           ,[RequestorEmail]
+           ,[RequestorAltPhoneType]
+           ,[RequestorAltPhone]
+           ,[StartDateTime]
+           ,[EndDateTime]
+           ,[NumberOfParticipants]
+           ,[ParticipantGender]
+           ,[ParticipantFlag]
+           ,[ParticipantInstructions]
+           ,[NumberOfSpecialParticipants]
+           ,[Accepted]
+           ,[CreationDate]
+           ,[RevisionDate])
+     VALUES
+           (@AppointmentTypeId
+           ,@ModuleId
+           ,@PortalId
+           ,@Title
+           ,@Description
+           ,@Notes
+           ,@Address1
+           ,@Address2
+           ,@City
+           ,@StateId
+           ,@Zip
+           ,@Phone
+           ,@AdditionalAddressInfo
+           ,@ContactStreet
+           ,@ContactPhone
+           ,@RequestorName
+           ,@RequestorPhoneType
+           ,@RequestorPhone
+           ,@RequestorEmail
+           ,@RequestorAltPhoneType
+           ,@RequestorAltPhone
+           ,@StartDateTime
+           ,@EndDateTime
+           ,@NumberOfParticipants
+           ,@ParticipantGender
+           ,@ParticipantFlag
+           ,@ParticipantInstructions
+           ,@NumberOfSpecialParticipants
+           ,@Accepted
+           ,GETDATE()
+           ,GETDATE())
+
+END
+GO
+
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}Engage_spUpdateAppointment]
+(
+   @AppointmentId int
+   ,@AppointmentTypeId int
+   ,@Title nvarchar(50)
+   ,@Description ntext
+   ,@Notes ntext
+   ,@Address1 nvarchar(50)
+   ,@Address2 nvarchar(50)
+   ,@City nvarchar(50)
+   ,@StateId int
+   ,@Zip nvarchar(50)
+   ,@Phone nvarchar(50)
+   ,@AdditionalAddressInfo nvarchar(50)
+   ,@ContactStreet nvarchar(50)
+   ,@ContactPhone nvarchar(50)
+   ,@RequestorName nvarchar(50)
+   ,@RequestorPhoneType nvarchar(50)
+   ,@RequestorPhone nvarchar(13)
+   ,@RequestorEmail nvarchar(100)
+   ,@RequestorAltPhoneType nvarchar(50)
+   ,@RequestorAltPhone nvarchar(13)
+   ,@StartDateTime datetime
+   ,@EndDateTime datetime
+   ,@NumberOfParticipants int
+   ,@ParticipantGender nvarchar(25)
+   ,@ParticipantFlag nvarchar(1)
+   ,@ParticipantInstructions ntext
+   ,@NumberOfSpecialParticipants int
+   ,@Accepted bit
+)
+AS
+BEGIN
+
+UPDATE {databaseOwner}[{objectQualifier}Engage_Appointment]
+SET [AppointmentTypeId] = @AppointmentTypeId
+   ,[Title] = @Title
+   ,[Description] = @Description
+   ,[Notes] = @Notes
+   ,[Address1] = @Address1
+   ,[Address2] = @Address2
+   ,[City] = @City
+   ,[StateId] = @StateId
+   ,[Zip] = @Zip
+   ,[Phone] = @Phone
+   ,[AdditionalAddressInfo] = @AdditionalAddressInfo
+   ,[ContactStreet] = @ContactStreet
+   ,[ContactPhone] = @ContactPhone
+   ,[RequestorName] = @RequestorName
+   ,[RequestorPhoneType] = @RequestorPhoneType
+   ,[RequestorPhone] = @RequestorPhone
+   ,[RequestorEmail] = @RequestorEmail
+   ,[RequestorAltPhoneType] = @RequestorAltPhoneType
+   ,[RequestorAltPhone] = @RequestorAltPhone
+   ,[StartDateTime] = @StartDateTime
+   ,[EndDateTime] = @EndDateTime
+   ,[NumberOfParticipants] = @NumberOfParticipants
+   ,[ParticipantGender] = @ParticipantGender
+   ,[ParticipantFlag] = @ParticipantFlag
+   ,[ParticipantInstructions] = @ParticipantInstructions
+   ,[NumberOfSpecialParticipants] = @NumberOfSpecialParticipants
+   ,[Accepted] = @Accepted
+   ,[RevisionDate] = GETDATE()
+WHERE AppointmentId = @AppointmentId
+
+END
+GO
 

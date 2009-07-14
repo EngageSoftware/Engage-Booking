@@ -18,6 +18,7 @@ namespace Engage.Dnn.Booking
     using System.Globalization;
     using System.Xml.Serialization;
     using Data;
+    using Engage;
     using Framework.Templating;
 
     /// <summary>
@@ -121,7 +122,7 @@ namespace Engage.Dnn.Booking
         {
         }
 
-        private Appointment(int portalId, int moduleId, string organizerEmail, string title, string overview, string description, DateTime eventStart, DateTime eventEnd, TimeSpan timeZoneOffset, string location, bool isFeatured, bool allowRegistrations, bool canceled, int? capacity, bool inDaylightTime, string capacityMetMessage)
+        private Appointment(int portalId, int moduleId, string organizerEmail, string title, string overview, string description, DateTime eventStart, DateTime eventEnd, TimeSpan timeZoneOffset, string location, bool isFeatured, bool allowRegistrations, int? capacity, bool inDaylightTime, string capacityMetMessage)
         {
             this.portalId = portalId;
             this.moduleId = moduleId;
@@ -176,6 +177,11 @@ namespace Engage.Dnn.Booking
 
         #endregion
 
+        /// <summary>
+        /// Loads the specified appointment id.
+        /// </summary>
+        /// <param name="id">The appointment id.</param>
+        /// <returns></returns>
         public static Appointment Load(int id)
         {
             IDataProvider dp = DataProvider.Instance;
@@ -197,6 +203,22 @@ namespace Engage.Dnn.Booking
             }
 
             return e;
+        }
+
+        /// <summary>
+        /// Saves this event.
+        /// </summary>
+        /// <param name="revisingUser">The user who is saving this event.</param>
+        public void Save(int revisingUser)
+        {
+            if (this.id < 0)
+            {
+                this.Insert(revisingUser);
+            }
+            else
+            {
+                this.Update(revisingUser);
+            }
         }
 
         /// <summary>
@@ -266,9 +288,49 @@ namespace Engage.Dnn.Booking
             return string.Empty;
         }
 
+        /// <summary>
+        /// Deletes the specified appointment id.
+        /// </summary>
+        /// <param name="id">The appointment id.</param>
         public static void Delete(int id)
         {
-            
+            IDataProvider dp = DataProvider.Instance;
+
+            try
+            {
+                dp.ExecuteNonQuery(CommandType.StoredProcedure, dp.NamePrefix + "spDeleteAppointment", Engage.Utility.CreateIntegerParam("@Appointment", id));
+            }
+            catch (Exception se)
+            {
+                throw new DBException("spDeleteAppointment", se);
+            }           
+        }
+
+        /// <summary>
+        /// Creates the specified event.
+        /// </summary>
+        /// <param name="portalId">The portal id.</param>
+        /// <param name="moduleId">The module id.</param>
+        /// <param name="organizerEmail">The organizer email.</param>
+        /// <param name="title">The title of the event.</param>
+        /// <param name="overview">The overview or description of the event.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="eventStart">The event's start date and time.</param>
+        /// <param name="eventEnd">The event end.</param>
+        /// <param name="timeZoneOffset">The time zone offset.</param>
+        /// <param name="location">The location of the event.</param>
+        /// <param name="isFeatured">if set to <c>true</c> the event should be listed in featured displays.</param>
+        /// <param name="allowRegistrations">if set to <c>true</c> this event allows users to register for it.</param>
+        /// <param name="recurrenceRule">The recurrence rule.</param>
+        /// <param name="capacity">The maximum number of registrants for this event, or <c>null</c> if there is no maximum.</param>
+        /// <param name="inDaylightTime">if set to <c>true</c> this event occurs in Daylight Time.</param>
+        /// <param name="capacityMetMessage">
+        /// <c>null</c> or <see cref="string.Empty"/> to display a generic message.
+        /// </param>
+        /// <returns>A new event object.</returns>
+        public static Appointment Create(int portalId, int moduleId, string organizerEmail, string title, string overview, string description, DateTime eventStart, DateTime eventEnd, TimeSpan timeZoneOffset, string location, bool isFeatured, bool allowRegistrations, int? capacity, bool inDaylightTime, string capacityMetMessage)
+        {
+            return new Appointment(portalId, moduleId, organizerEmail, title, overview, description, eventStart, eventEnd, timeZoneOffset, location, isFeatured, allowRegistrations, capacity, inDaylightTime, capacityMetMessage);
         }
 
         /// <summary>
@@ -278,21 +340,21 @@ namespace Engage.Dnn.Booking
         /// <returns>An instantiated Appointment object.</returns>
         internal static Appointment Fill(IDataRecord appointmentRecord)
         {
-            Appointment e = new Appointment();
+            Appointment appointment = new Appointment();
 
-            e.id = (int)appointmentRecord["AppointmentId"];
-            e.moduleId = (int)appointmentRecord["ModuleId"];
-            e.appointmentTypeId = (int)appointmentRecord["AppointmentTypeId"];
-            e.portalId = (int)appointmentRecord["PortalId"];
-            e.title = appointmentRecord["Title"].ToString();
-            e.description = appointmentRecord["Description"].ToString();
-            e.notes = appointmentRecord["Notes"].ToString();
-            e.address1 = appointmentRecord["Address1"].ToString();
-            e.address2 = appointmentRecord["Address2"].ToString();
-            e.city = appointmentRecord["City"].ToString();
-            e.stateId = (int)appointmentRecord["StateId"];
-            e.zip = appointmentRecord["Zip"].ToString();
-            e.phone = appointmentRecord["Phone"].ToString();
+            appointment.id = (int)appointmentRecord["AppointmentId"];
+            appointment.moduleId = (int)appointmentRecord["ModuleId"];
+            appointment.appointmentTypeId = (int)appointmentRecord["AppointmentTypeId"];
+            appointment.portalId = (int)appointmentRecord["PortalId"];
+            appointment.title = appointmentRecord["Title"].ToString();
+            appointment.description = appointmentRecord["Description"].ToString();
+            appointment.notes = appointmentRecord["Notes"].ToString();
+            appointment.address1 = appointmentRecord["Address1"].ToString();
+            appointment.address2 = appointmentRecord["Address2"].ToString();
+            appointment.city = appointmentRecord["City"].ToString();
+            appointment.stateId = (int)appointmentRecord["StateId"];
+            appointment.zip = appointmentRecord["Zip"].ToString();
+            appointment.phone = appointmentRecord["Phone"].ToString();
             //e.additionalAddressInfo = appointmentRecord["AdditionalAddressInfo"].ToString();
             //e.contactStreet = appointmentRecord["contactStreet"].ToString();
             //e.contactPhone = appointmentRecord["contactPhone"].ToString();
@@ -310,7 +372,7 @@ namespace Engage.Dnn.Booking
             //e.creationDate = (DateTime)appointmentRecord["creationDate"];
             //e.revisionDate = (DateTime)appointmentRecord["RevisionDate"];
 
-            return e;
+            return appointment;
         }
 
         /// <summary>
@@ -521,6 +583,96 @@ namespace Engage.Dnn.Booking
             //string rule = this.RecurrenceRule != null ? this.RecurrenceRule.ToString() : null;
             //return Util.ICalUtil.Export(this.overview, this.location, new Appointment(this.Id, this.StartDateTime, this.EventEnd, this.Title, rule), true, this.TimeZoneOffset);
             return string.Empty;
+        }
+
+        /// <summary>
+        /// Inserts this event.
+        /// </summary>
+        /// <param name="revisingUser">The user who is inserting this event.</param>
+        /// <exception cref="DBException">If an error occurs while going to the database to insert the event</exception>
+        private void Insert(int revisingUser)
+        {
+            IDataProvider dp = DataProvider.Instance;
+
+            try
+            {
+                this.id = dp.ExecuteNonQuery(
+                        CommandType.StoredProcedure,
+                        dp.NamePrefix + "spInsertAppointment",
+                        Utility.CreateIntegerParam("@PortalId", this.portalId),
+                        Utility.CreateIntegerParam("@ModuleId", this.moduleId),
+                        Utility.CreateVarcharParam("@Title", this.title),
+                        Utility.CreateTextParam("@Description", this.description)
+                        //Utility.CreateDateTimeParam("@EventStart", this.eventStart),
+                        //Utility.CreateDateTimeParam("@EventEnd", this.eventEnd),
+                        //Utility.CreateIntegerParam("@TimeZoneOffset", (int)this.timeZoneOffset.TotalMinutes),
+                        //Utility.CreateVarcharParam("@Organizer", this.organizer),
+                        //Utility.CreateVarcharParam("@OrganizerEmail", this.organizerEmail),
+                        //Utility.CreateVarcharParam("@Location", this.location),
+                        //Utility.CreateVarcharParam("@LocationUrl", this.locationUrl),
+                        //Utility.CreateVarcharParam("@InvitationUrl", this.invitationUrl),
+                        //Utility.CreateVarcharParam("@RecapUrl", this.recapUrl),
+                        //Utility.CreateIntegerParam("@RecurrenceParentId", this.recurrenceParentId),
+                        //Utility.CreateVarcharParam("@RecurrenceRule", this.recurrenceRule != null ? this.recurrenceRule.ToString() : null),
+                        //Utility.CreateBitParam("@AllowRegistrations", this.allowRegistrations),
+                        //Utility.CreateBitParam("@isFeatured", this.isFeatured),
+                        //Utility.CreateIntegerParam("@CreatedBy", revisingUser),
+                        //Utility.CreateDateTimeParam("@FinalRecurringEndDate", this.FinalRecurringEndDate),
+                        //Utility.CreateIntegerParam("@Capacity", this.capacity),
+                        //Utility.CreateBitParam("@InDaylightTime", this.inDaylightTime),
+                        //Utility.CreateTextParam("@CapacityMetMessage", this.capacityMetMessage),
+                        //Utility.CreateBitParam("@IsDeleted", this.isDeleted)
+                        );
+            }
+            catch (SystemException de)
+            {
+                throw new DBException("spInsertEvent", de);
+            }
+        }
+
+        /// <summary>
+        /// Updates this event.
+        /// </summary>
+        /// <param name="revisingUser">The user responsible for updating this event.</param>
+        /// <exception cref="DBException">If an error occurs while going to the database to update the event</exception>
+        private void Update(int revisingUser)
+        {
+            IDataProvider dp = DataProvider.Instance;
+
+            try
+            {
+                dp.ExecuteNonQuery(
+                        CommandType.StoredProcedure,
+                        dp.NamePrefix + "spUpdateAppointment",
+                        Utility.CreateIntegerParam("@EventId", this.id),
+                        Utility.CreateVarcharParam("@Title", this.title),
+                        Utility.CreateTextParam("@Description", this.description)
+                        ////Utility.CreateDateTimeParam("@EventStart", this.eventStart),
+                        ////Utility.CreateDateTimeParam("@EventEnd", this.eventEnd),
+                        ////Utility.CreateIntegerParam("@TimeZoneOffset", (int)this.timeZoneOffset.TotalMinutes),
+                        ////Utility.CreateVarcharParam("@Organizer", this.organizer),
+                        ////Utility.CreateVarcharParam("@OrganizerEmail", this.organizerEmail),
+                        ////Utility.CreateVarcharParam("@Location", this.location),
+                        ////Utility.CreateVarcharParam("@LocationUrl", this.locationUrl),
+                        ////Utility.CreateVarcharParam("@InvitationUrl", this.invitationUrl),
+                        ////Utility.CreateVarcharParam("@RecapUrl", this.recapUrl),
+                        ////Utility.CreateTextParam("@RecurrenceRule", this.recurrenceRule != null ? this.recurrenceRule.ToString() : null),
+                        ////Utility.CreateIntegerParam("@RecurrenceParentId", this.recurrenceParentId),
+                        ////Utility.CreateBitParam("@AllowRegistrations", this.allowRegistrations),
+                        ////Utility.CreateBitParam("@Canceled", this.canceled),
+                        ////Utility.CreateBitParam("@isFeatured", this.isFeatured),
+                        ////Utility.CreateIntegerParam("@RevisingUser", revisingUser),
+                        ////Utility.CreateDateTimeParam("@FinalRecurringEndDate", this.FinalRecurringEndDate),
+                        ////Utility.CreateIntegerParam("@Capacity", this.capacity),
+                        ////Utility.CreateBitParam("@InDaylightTime", this.inDaylightTime),
+                        ////Utility.CreateTextParam("@CapacityMetMessage", this.capacityMetMessage),
+                        ////Utility.CreateBitParam("@IsDeleted", this.isDeleted)
+                        );
+            }
+            catch (SystemException de)
+            {
+                throw new DBException("spUpdateEvent", de);
+            }
         }
     }
 }

@@ -297,13 +297,6 @@
       <DependentUpon>GlobalNavigation.ascx</DependentUpon>
     </Compile>
     <Compile Include="Setting.cs" />
-    <Compile Include="Util\Approval.ascx.cs">
-      <DependentUpon>Approval.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Util\Approval.ascx.designer.cs">
-      <DependentUpon>Approval.ascx</DependentUpon>
-    </Compile>
     <Compile Include="MainContainer.ascx.cs">
       <DependentUpon>MainContainer.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -386,7 +379,6 @@
     <Content Include="Admin\App_LocalResources\NotConfigured.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Util\Approval.ascx" />
     <Content Include="Samples\AttendingReminder.htm" />
     <Content Include="Samples\NoResponseReminder.htm" />
     <Content Include="Samples\NotAttendingReminder.htm" />
