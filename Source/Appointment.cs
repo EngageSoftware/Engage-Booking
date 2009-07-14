@@ -27,7 +27,6 @@ namespace Engage.Dnn.Booking
     [XmlRoot(ElementName = "appointment", IsNullable = false)]
     public class Appointment : IEditableObject, INotifyPropertyChanged, ITemplateable
     {
-
         /// <summary>
         /// Backing field for <see cref="PortalId"/>.
         /// </summary>
@@ -118,10 +117,31 @@ namespace Engage.Dnn.Booking
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string phone;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Appointment"/> class.
+        /// </summary>
         private Appointment()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Appointment"/> class.
+        /// </summary>
+        /// <param name="portalId">The portal id.</param>
+        /// <param name="moduleId">The module id.</param>
+        /// <param name="organizerEmail">The organizer email.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="overview">The overview.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="eventStart">The event start.</param>
+        /// <param name="eventEnd">The event end.</param>
+        /// <param name="timeZoneOffset">The time zone offset.</param>
+        /// <param name="location">The location.</param>
+        /// <param name="isFeatured">if set to <c>true</c> [is featured].</param>
+        /// <param name="allowRegistrations">if set to <c>true</c> [allow registrations].</param>
+        /// <param name="capacity">The capacity.</param>
+        /// <param name="inDaylightTime">if set to <c>true</c> [in daylight time].</param>
+        /// <param name="capacityMetMessage">The capacity met message.</param>
         private Appointment(int portalId, int moduleId, string organizerEmail, string title, string overview, string description, DateTime eventStart, DateTime eventEnd, TimeSpan timeZoneOffset, string location, bool isFeatured, bool allowRegistrations, int? capacity, bool inDaylightTime, string capacityMetMessage)
         {
             this.portalId = portalId;
@@ -141,6 +161,34 @@ namespace Engage.Dnn.Booking
             //this.capacity = capacity;
             //this.inDaylightTime = inDaylightTime;
             //this.capacityMetMessage = capacityMetMessage;
+        }
+
+        /// <summary>
+        /// Loads the specified appointment id.
+        /// </summary>
+        /// <param name="id">The appointment id.</param>
+        /// <returns></returns>
+        public static Appointment Load(int id)
+        {
+            IDataProvider dp = DataProvider.Instance;
+            Appointment e = null;
+
+            try
+            {
+                using (IDataReader reader = dp.ExecuteReader(CommandType.StoredProcedure, dp.NamePrefix + "spGetEvent", Engage.Utility.CreateIntegerParam("@EventId", id)))
+                {
+                    if (reader.Read())
+                    {
+                        e = Fill(reader);
+                    }
+                }
+            }
+            catch (Exception se)
+            {
+                throw new DBException("spGetAppointment", se);
+            }
+
+            return e;
         }
 
         #region INotifyPropertyChanged Members
@@ -176,34 +224,6 @@ namespace Engage.Dnn.Booking
         }
 
         #endregion
-
-        /// <summary>
-        /// Loads the specified appointment id.
-        /// </summary>
-        /// <param name="id">The appointment id.</param>
-        /// <returns></returns>
-        public static Appointment Load(int id)
-        {
-            IDataProvider dp = DataProvider.Instance;
-            Appointment e = null;
-
-            try
-            {
-                using (IDataReader reader = dp.ExecuteReader(CommandType.StoredProcedure, dp.NamePrefix + "spGetEvent", Engage.Utility.CreateIntegerParam("@EventId", id)))
-                {
-                    if (reader.Read())
-                    {
-                        e = Fill(reader);
-                    }
-                }
-            }
-            catch (Exception se)
-            {
-                throw new DBException("spGetAppointment", se);
-            }
-
-            return e;
-        }
 
         /// <summary>
         /// Saves this event.
@@ -489,7 +509,7 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// Gets or sets the Zip.
         /// </summary>
-        /// <value>The Zip.</value>
+        /// <value>The Zip code.</value>
         [XmlElement(Order = 9)]
         public string Zip
         {

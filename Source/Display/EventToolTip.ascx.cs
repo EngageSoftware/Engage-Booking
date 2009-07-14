@@ -92,7 +92,7 @@ namespace Engage.Dnn.Booking.Display
 
         private void RequestAppointmentButton_Click(object sender, EventArgs e)
         {
-            this.Response.Redirect(this.BuildLinkUrl(this.ModuleId, "AllowAppointmentRequest"));
+            this.Response.Redirect(this.BuildLinkUrl(this.ModuleId, "AppointmentRequest"));
         }
     }
 }

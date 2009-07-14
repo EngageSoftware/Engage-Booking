@@ -401,7 +401,7 @@ namespace Engage.Dnn.Booking.Display
                         {
                             ButtonAction appointmentButton = (ButtonAction)this.LoadControl(this.actionsControlsFolder + "ButtonAction.ascx");
                             appointmentButton.ModuleConfiguration = this.ModuleConfiguration;
-                            appointmentButton.Href = this.BuildLinkUrl(this.ModuleId, "AllowAppointmentRequest");
+                            appointmentButton.Href = this.BuildLinkUrl(this.ModuleId, "AppointmentRequest");
                             appointmentButton.ResourceKey = "AppointmentRequestButton";
                             container.Controls.Add(appointmentButton);
                         }
