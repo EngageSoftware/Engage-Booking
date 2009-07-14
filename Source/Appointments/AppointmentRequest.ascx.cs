@@ -85,7 +85,7 @@ namespace Engage.Dnn.Booking.Appointments
         {
             this.SuccessModuleMessage.Visible = true;
             //this.AddNewEvent.Visible = false;
-            this.FooterMultiview.SetActiveView(this.FinalFooterView);
+            //this.FooterMultiview.SetActiveView(this.FinalFooterView);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Engage.Dnn.Booking.Appointments
         /// </summary>
         private void Update()
         {
-            int timeZoneOffsetMinutes;
+            //int timeZoneOffsetMinutes;
             int? appointmentId = this.AppointmentId;
             //if (appointmentId.HasValue && int.TryParse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out timeZoneOffsetMinutes))
             //{
@@ -133,7 +133,7 @@ namespace Engage.Dnn.Booking.Appointments
         /// </summary>
         private void Insert()
         {
-            int timeZoneOffsetMinutes;
+            ////int timeZoneOffsetMinutes;
             //if (int.TryParse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out timeZoneOffsetMinutes))
             //{
                 //TimeSpan timeZoneOffset = new TimeSpan(0, timeZoneOffsetMinutes, 0);

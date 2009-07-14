@@ -220,27 +220,22 @@
                         <li class="start medium">
                             <asp:Label ID="Start" CssClass="start-label" Visible = "false" runat="server" Text="Start" AssociateControlId="StartBox" />
                             <asp:TextBox ID="StartBox" CssClass="start-box" Visible="false" runat="server" />
-                            <=== insert you calendar img here ===>
-                        </li>
-                         <li class="at-time short">
-                            <asp:Label ID="AtTime" CssClass="at-time-label" Visible = "false" runat="server" Text="at" AssociateControlId="AtTimeBox" />
-                            <asp:TextBox ID="AtTimeBox" CssClass="at-time-box" Visible="false" runat="server" />
                             <telerik:raddatetimepicker runat="server" id="StartDateTimePicker" skin="WebBlue">
                                 <timeview skin="WebBlue"/>
                                 <calendar skin="WebBlue" ShowRowHeaders="false"/>
                                 <DateInput InvalidStyleDuration="100"/>
                                 <ClientEvents OnDateSelected="StartDateTimePicker_DateSelected" />
                             </telerik:raddatetimepicker>
-                            
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="StartDateTimePicker" ResourceKey="StartDateTimePickerRequired" Display="None" EnableClientScript="false"/>
+                         </li>
+                         <li class="at-time short">
+                            <asp:Label ID="AtTime" CssClass="at-time-label" Visible = "false" runat="server" Text="at" AssociateControlId="AtTimeBox" />
+                            <asp:TextBox ID="AtTimeBox" CssClass="at-time-box" Visible="false" runat="server" />                            
+                           
                          </li>
                          <li class="end medium">
                             <asp:Label ID="End" CssClass="end-label" Visible = "false" runat="server" Text="End:" AssociateControlId="EndBox" />
                             <asp:TextBox ID="EndBox" CssClass="end-box" Visible="false" runat="server" />
-                        </li>
-                        <li class="at-time short">
-                            <asp:Label ID="AtTime" CssClass="at-time-label" Visible = "false" runat="server" Text="at" AssociateControlId="AtTimeBox" />
-                            <asp:TextBox ID="AtTimeBox" CssClass="at-time-box" Visible="false" runat="server" />
                             <telerik:raddatetimepicker runat="server" id="EndDateTimePicker" skin="WebBlue">
                                 <timeview skin="WebBlue"/>
                                 <calendar skin="WebBlue" ShowRowHeaders="false"/>
@@ -254,7 +249,10 @@
                                 ResourceKey="EndDateCompareValidator"
                                 Operator="GreaterThan"/>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="EndDateTimePicker" ResourceKey="EndDateTimePickerRequired" Display="None" EnableClientScript="false"/>
-
+                        </li>
+                        <li class="at-time short">
+                            <asp:Label ID="AtEndTime" CssClass="at-time-label" Visible = "false" runat="server" Text="at" AssociateControlId="AtTimeBox" />
+                            <asp:TextBox ID="AtEndTimeBox" CssClass="at-time-box" Visible="false" runat="server" />
                          </li>
                     </ol>
             </fieldset>
@@ -291,7 +289,7 @@
 
 <engage:ValidationSummary ID="ValidationSummary1" runat="server" />
 
-<asp:MultiView ID="FooterMultiview" runat="server" ActiveViewIndex="0">
+<%--<asp:MultiView ID="FooterMultiview" runat="server" ActiveViewIndex="0">
     <asp:View ID="AddEventFooterView" runat="server">
         <div class="AddEventFooterButtons AdminButtons FooterButtons">
             <asp:ImageButton ID="SaveEventButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageEvents/Images/save.gif" />
@@ -306,7 +304,7 @@
             <asp:HyperLink ID="HyperLink1" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageEvents/Images/home.gif" ResourceKey=CancelGoHome.Alt" />
         </div>
     </asp:View>
-</asp:MultiView>
+</asp:MultiView>--%>
 <script type="text/ecmascript">
     function StartDateTimePicker_DateSelected(sender, eventArgs) {
         var EndDateTimePicker = $find("<%= EndDateTimePicker.ClientID %>");

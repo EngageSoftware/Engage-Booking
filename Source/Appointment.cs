@@ -321,12 +321,9 @@ namespace Engage.Dnn.Booking
         /// <param name="location">The location of the event.</param>
         /// <param name="isFeatured">if set to <c>true</c> the event should be listed in featured displays.</param>
         /// <param name="allowRegistrations">if set to <c>true</c> this event allows users to register for it.</param>
-        /// <param name="recurrenceRule">The recurrence rule.</param>
         /// <param name="capacity">The maximum number of registrants for this event, or <c>null</c> if there is no maximum.</param>
         /// <param name="inDaylightTime">if set to <c>true</c> this event occurs in Daylight Time.</param>
-        /// <param name="capacityMetMessage">
-        /// <c>null</c> or <see cref="string.Empty"/> to display a generic message.
-        /// </param>
+        /// <param name="capacityMetMessage"><c>null</c> or <see cref="string.Empty"/> to display a generic message.</param>
         /// <returns>A new event object.</returns>
         public static Appointment Create(int portalId, int moduleId, string organizerEmail, string title, string overview, string description, DateTime eventStart, DateTime eventEnd, TimeSpan timeZoneOffset, string location, bool isFeatured, bool allowRegistrations, int? capacity, bool inDaylightTime, string capacityMetMessage)
         {

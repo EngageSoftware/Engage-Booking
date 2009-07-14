@@ -12,12 +12,17 @@
 namespace Engage.Dnn.Booking.Workflow
 {
     using System;
+    using System.Web.UI;
 
     /// <summary>
     /// A control which lets the user email a link to this page or site to a friend
     /// </summary>
     public partial class Approval : ModuleBase
     {
+        /// <summary>
+        /// Raises the <see cref="Control.Init"/> event.
+        /// </summary>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected override void OnInit(EventArgs e)
         {
             this.Load += Page_Load;

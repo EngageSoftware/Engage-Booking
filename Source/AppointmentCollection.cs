@@ -222,12 +222,12 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Adds an occurrence of <paramref name="masterAppointment"/> that fits within the given time span to <paramref name="events"/>.
+        /// Adds an occurrence of <paramref name="masterAppointment"/> that fits within the given time span to <paramref name="appointments"/>.
         /// </summary>
         /// <param name="masterAppointment">The master event.</param>
         /// <param name="startDate">The start date.</param>
         /// <param name="endDate">The end date.</param>
-        /// <param name="events">The list of events to which the occurrence will be added.</param>
+        /// <param name="appointments">The appointments.</param>
         private static void AddEventOccurrence(Appointment masterAppointment, DateTime? startDate, DateTime? endDate, ICollection<Appointment> appointments)
         {
             //masterAppointment.RecurrenceRule.SetEffectiveRange(startDate ?? DateTime.MinValue, endDate ?? DateTime.MaxValue);

@@ -175,6 +175,10 @@ namespace Engage.Dnn.Booking
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether [allow appointments]. THIS IS JUST A PLACEHOLDER FOR NOW. MAY NOT NEED.
+        /// </summary>
+        /// <value><c>true</c> if [allow appointments]; otherwise, <c>false</c>.</value>
         protected bool AllowAppointments
         {
             get
