@@ -45,6 +45,8 @@ namespace Engage.Dnn.Booking.Appointments
             {
                 if (!this.IsPostBack)
                 {
+                    this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime");
+                    this.EndDateTimePicker.SelectedDate = this.GetDateFromQueryString("endTime");
                     // this.SetupControl();
                     // this.BindData();
                 }
@@ -78,7 +80,7 @@ namespace Engage.Dnn.Booking.Appointments
             }
         }
 
-        /// <summary>
+       /// <summary>
         /// Displays the final success.
         /// </summary>
         private void DisplayFinalSuccess()
@@ -164,6 +166,16 @@ namespace Engage.Dnn.Booking.Appointments
 
                 //appointment.Save(this.UserId);
             //}
+
+        private DateTime? GetDateFromQueryString(string parameterName)
+        {
+            DateTime dateValue;
+            if (DateTime.TryParseExact(this.Request.QueryString[parameterName], "yyyy-MM-dd-HH-mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue))
+            {
+                return dateValue;
+            }
+
+            return null;
         }
     }
 }

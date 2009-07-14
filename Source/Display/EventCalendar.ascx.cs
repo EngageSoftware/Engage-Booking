@@ -27,6 +27,19 @@ namespace Engage.Dnn.Booking.Display
     public partial class EventCalendar : ModuleBase
     {
         /// <summary>
+        /// Gets the URL template (in <see cref="string.Format(string,object)"/> notation) to use to get to the new appointment page (for a specific time range).
+        /// </summary>
+        /// <value>The new appointment URL template.</value>
+        protected string NewAppointmentUrlTemplate
+        {
+            get
+            {
+                // We can't just send {0} to BuildLinkUrl, because it will get "special treatment" by the friendly URL provider for its special characters
+                return this.BuildLinkUrl(this.ModuleId, "AllowAppointmentRequest", "startTime=__--0--__", "endTime=__--1--__").Replace("__--", "{").Replace("--__", "}");
+            }
+        }
+
+        /// <summary>
         /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
         /// </summary>
         /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
@@ -37,6 +50,7 @@ namespace Engage.Dnn.Booking.Display
             this.Load += this.Page_Load;
             this.EventsCalendarDisplay.AppointmentCreated += this.EventsCalendarDisplay_AppointmentCreated;
             this.EventsCalendarDisplay.AppointmentDataBound += this.EventsCalendarDisplay_AppointmentDataBound;
+            ////this.EventsCalendarDisplay.TimeSlotCreated
             this.EventsCalendarToolTipManager.AjaxUpdate += this.EventsCalendarToolTipManager_AjaxUpdate;
         }
 

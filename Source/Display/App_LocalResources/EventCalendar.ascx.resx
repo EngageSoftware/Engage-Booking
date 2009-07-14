@@ -141,6 +141,9 @@
   <data name="HeaderWeek.Text" xml:space="preserve">
     <value>Week</value>
   </data>
+  <data name="RequestAppointment.Text" xml:space="preserve">
+    <value>Request Appointment</value>
+  </data>
   <data name="Show24Hours.Text" xml:space="preserve">
     <value>Show 24 hours...</value>
   </data>
