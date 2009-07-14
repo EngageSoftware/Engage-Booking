@@ -41,112 +41,121 @@ namespace Engage.Dnn.Booking.Appointments {
         protected global::System.Web.UI.WebControls.TextBox EventTypeBox;
         
         /// <summary>
-        /// Title control.
+        /// TitleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Title;
+        protected global::System.Web.UI.WebControls.Label TitleLabel;
         
         /// <summary>
-        /// TitleBox control.
+        /// TitleTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TitleBox;
+        protected global::System.Web.UI.WebControls.TextBox TitleTextBox;
         
         /// <summary>
-        /// Description control.
+        /// DescriptionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Description;
+        protected global::System.Web.UI.WebControls.Label DescriptionLabel;
         
         /// <summary>
-        /// DescriptionBox control.
+        /// DescriptionTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DescriptionBox;
+        protected global::System.Web.UI.WebControls.TextBox DescriptionTextBox;
         
         /// <summary>
-        /// Considerations control.
+        /// ConsiderationsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Considerations;
+        protected global::System.Web.UI.WebControls.Label ConsiderationsLabel;
         
         /// <summary>
-        /// ConsiderationsBox control.
+        /// ConsiderationsTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ConsiderationsBox;
+        protected global::System.Web.UI.WebControls.TextBox ConsiderationsTextBox;
         
         /// <summary>
-        /// Street control.
+        /// StreetLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Street;
+        protected global::System.Web.UI.WebControls.Label StreetLabel;
         
         /// <summary>
-        /// StreetBox control.
+        /// StreetTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StreetBox;
+        protected global::System.Web.UI.WebControls.TextBox StreetTextBox;
         
         /// <summary>
-        /// RoomBox control.
+        /// RoomTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RoomBox;
+        protected global::System.Web.UI.WebControls.TextBox RoomTextBox;
         
         /// <summary>
-        /// City control.
+        /// CityLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label City;
+        protected global::System.Web.UI.WebControls.Label CityLabel;
         
         /// <summary>
-        /// CityBox control.
+        /// CityTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CityBox;
+        protected global::System.Web.UI.WebControls.TextBox CityTextBox;
         
         /// <summary>
-        /// StateBox control.
+        /// StateLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StateBox;
+        protected global::System.Web.UI.WebControls.Label StateLabel;
+        
+        /// <summary>
+        /// StateDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList StateDropDownList;
         
         /// <summary>
         /// ZipBox control.
@@ -498,5 +507,32 @@ namespace Engage.Dnn.Booking.Appointments {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Engage.Controls.ValidationSummary ValidationSummary1;
+        
+        /// <summary>
+        /// SaveEventButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton SaveEventButton;
+        
+        /// <summary>
+        /// CancelEventLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink CancelEventLink;
+        
+        /// <summary>
+        /// SaveAndCreateNewEventButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton SaveAndCreateNewEventButton;
     }
 }
