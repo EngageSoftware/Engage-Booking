@@ -55,17 +55,17 @@
                 }
                 timeoutValue = null;
 
-            $('.EventCalendar .rsContentTable td').hover(function() {
+            $('.EventCalendar .rsContentTable td').live('mouseover', function() {
                 clearTimeout(timeoutValue);
-                var $this = $(this),
+                var timeSlotPosition = $(this).position(),
                     timeSlot = radScheduler.get_activeModel().getTimeSlotFromDomElement(this);
                 $('.NewAppointmentTooltip')
                     .show()
-                    .css('top', $this.position().top)
-                    .css('left', $this.position().left)
+                    .css('top', timeSlotPosition.top)
+                    .css('left', timeSlotPosition.left)
                 .find('a')
                     .attr('href', String.format(newAppointmentUrl, formatDateUrlParameter(timeSlot.get_startTime()), formatDateUrlParameter(timeSlot.get_endTime())));
-            }, function() {
+            }).live('mouseout', function() {
                 timeoutValue = setTimeout(function() {
                     $('.NewAppointmentTooltip')
                         .hide();
