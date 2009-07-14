@@ -67,7 +67,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -312,13 +314,6 @@
       <DependentUpon>Settings.ascx</DependentUpon>
     </Compile>
     <Compile Include="Util\Utility.cs" />
-    <Compile Include="Workflow\Approval.ascx.cs">
-      <DependentUpon>Approval.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Workflow\Approval.ascx.designer.cs">
-      <DependentUpon>Approval.ascx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="EngageBooking.4.dnn" />
@@ -569,7 +564,6 @@
     <Content Include="Images\fancy_title_main.png" />
     <Content Include="Images\fancy_title_right.png" />
     <None Include="JavaScript\jquery-1.2.6.min.debug.js" />
-    <None Include="JavaScript\EngageEvents.EditTypeDialog.js" />
     <Content Include="App_LocalResources\ChooseDisplay.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
@@ -647,7 +641,6 @@
     <Content Include="Templates\ListingShort\short-listing.jpg" />
     <Content Include="Templates\MiniList\minilist.jpg" />
     <Content Include="Templates\Narrow\narrow.jpg" />
-    <Content Include="Workflow\Approval.ascx" />
     <None Include="EngageBooking.5.dnn" />
     <None Include="EngageBooking.Build" />
     <None Include="Templates\EngageManifest.xsd" />
