@@ -11,6 +11,7 @@
     
     <!-- Compress each embedded resource file -->
     <CompressorTask
+       Condition="'%(Resources.Extension)'=='.js'"
        JavaScriptFiles="%(Resources.Identity)"
        ObfuscateJavaScript="FoSho"
        JavaScriptOutputFile="%(Resources.Identity)"
