@@ -142,6 +142,13 @@
     <Compile Include="Controls\ModuleMessage.ascx.designer.cs">
       <DependentUpon>ModuleMessage.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Display\Approval.ascx.cs">
+      <DependentUpon>Approval.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display\Approval.ascx.designer.cs">
+      <DependentUpon>Approval.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Display\EventToolTip.ascx.cs">
       <DependentUpon>EventToolTip.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -425,6 +432,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Display\AppointmentRequest.ascx" />
+    <Content Include="Display\Approval.ascx" />
     <Content Include="Display\EventToolTip.ascx" />
     <Content Include="Images\add-apntmnt-disabled.gif" />
     <Content Include="Images\add-apntmnt.gif" />
