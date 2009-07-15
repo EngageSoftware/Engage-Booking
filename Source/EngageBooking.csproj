@@ -288,7 +288,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Display\App_LocalResources\EventCalendar.ascx.resx">
+    <Content Include="Display\App_LocalResources\AppointmentCalendar.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
