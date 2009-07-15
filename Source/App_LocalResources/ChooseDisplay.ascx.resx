@@ -123,7 +123,7 @@
   <data name="ChooseDisplayType.Text" xml:space="preserve">
     <value>Choose Display Type</value>
   </data>
-  <data name="EventCalendar.Text" xml:space="preserve">
+  <data name="AppointmentCalendar.Text" xml:space="preserve">
     <value>Calendar</value>
   </data>
   <data name="EventListingTemplate.Text" xml:space="preserve">

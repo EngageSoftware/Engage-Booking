@@ -1,4 +1,4 @@
-// <copyright file="EventCalendar.ascx.cs" company="Engage Software">
+// <copyright file="AppointmentCalendar.ascx.cs" company="Engage Software">
 // Engage: Booking - http://www.EngageSoftware.com
 // Copyright (c) 2004-2009
 // by Engage Software ( http://www.engagesoftware.com )
@@ -24,7 +24,7 @@ namespace Engage.Dnn.Booking.Display
     /// <summary>
     /// Control to display the events calendar view
     /// </summary>
-    public partial class EventCalendar : ModuleBase
+    public partial class AppointmentCalendar : ModuleBase
     {
         /// <summary>
         /// Gets the URL template (in <see cref="string.Format(string,object)"/> notation) to use to get to the new appointment page (for a specific time range).
@@ -116,7 +116,7 @@ namespace Engage.Dnn.Booking.Display
         private void EventsCalendarDisplay_AppointmentDataBound(object sender, SchedulerEventArgs e)
         {
             this.EventsCalendarToolTipManager.TargetControls.Clear();
-            ScriptManager.RegisterStartupScript(this, typeof(EventCalendar), "HideToolTip", "hideActiveToolTip();", true);
+            ScriptManager.RegisterStartupScript(this, typeof(AppointmentCalendar), "HideToolTip", "hideActiveToolTip();", true);
         }
 
         /// <summary>

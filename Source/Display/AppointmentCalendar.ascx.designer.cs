@@ -11,7 +11,7 @@
 namespace Engage.Dnn.Booking.Display {
     
     
-    public partial class EventCalendar {
+    public partial class AppointmentCalendar {
         
         /// <summary>
         /// EventsCalendarDisplay control.

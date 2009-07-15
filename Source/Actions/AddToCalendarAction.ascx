@@ -1,2 +1,0 @@
-<%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Actions.AddToCalendarAction" CodeBehind="AddToCalendarAction.ascx.cs" %>
-<asp:Button ID="AddToCalendarButton" CssClass="Normal" runat="server" resourceKey="AddToCalendarButton" />

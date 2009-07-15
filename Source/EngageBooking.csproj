@@ -116,58 +116,6 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions\ActionControlBase.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Actions\AddToCalendarAction.ascx.cs">
-      <DependentUpon>AddToCalendarAction.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Actions\AddToCalendarAction.ascx.designer.cs">
-      <DependentUpon>AddToCalendarAction.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Actions\ButtonAction.ascx.cs">
-      <DependentUpon>ButtonAction.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Actions\ButtonAction.ascx.designer.cs">
-      <DependentUpon>ButtonAction.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Actions\CancelAction.ascx.cs">
-      <DependentUpon>CancelAction.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Actions\CancelAction.ascx.designer.cs">
-      <DependentUpon>CancelAction.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Actions\RegisterAction.ascx.cs">
-      <DependentUpon>RegisterAction.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Actions\RegisterAction.ascx.designer.cs">
-      <DependentUpon>RegisterAction.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Actions\DeleteAction.ascx.cs">
-      <DependentUpon>DeleteAction.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Actions\DeleteAction.ascx.designer.cs">
-      <DependentUpon>DeleteAction.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Actions\SortAction.ascx.cs">
-      <DependentUpon>SortAction.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Actions\SortAction.ascx.designer.cs">
-      <DependentUpon>SortAction.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Actions\StatusFilterAction.ascx.cs">
-      <DependentUpon>StatusFilterAction.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Actions\StatusFilterAction.ascx.designer.cs">
-      <DependentUpon>StatusFilterAction.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\LicenseError.ascx.cs">
       <DependentUpon>LicenseError.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -184,26 +132,8 @@
     </Compile>
     <Compile Include="Appointment.cs" />
     <Compile Include="AppointmentCollection.cs" />
-    <Compile Include="Appointments\AppointmentRequest.ascx.cs">
+    <Compile Include="Display\AppointmentRequest.ascx.designer.cs">
       <DependentUpon>AppointmentRequest.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Appointments\AppointmentRequest.ascx.designer.cs">
-      <DependentUpon>AppointmentRequest.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\TemplatePicker.ascx.cs">
-      <DependentUpon>TemplatePicker.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Controls\TemplatePicker.ascx.designer.cs">
-      <DependentUpon>TemplatePicker.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\EditTypeDialog.aspx.cs">
-      <DependentUpon>EditTypeDialog.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Controls\EditTypeDialog.aspx.designer.cs">
-      <DependentUpon>EditTypeDialog.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controls\ModuleMessage.ascx.cs">
       <DependentUpon>ModuleMessage.ascx</DependentUpon>
@@ -212,19 +142,12 @@
     <Compile Include="Controls\ModuleMessage.ascx.designer.cs">
       <DependentUpon>ModuleMessage.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ChooseDisplay.ascx.cs">
-      <DependentUpon>ChooseDisplay.ascx</DependentUpon>
+    <Compile Include="Display\EventToolTip.ascx.cs">
+      <DependentUpon>EventToolTip.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ChooseDisplay.ascx.designer.cs">
-      <DependentUpon>ChooseDisplay.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Display\EventDetail.ascx.cs">
-      <DependentUpon>EventDetail.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Display\EventDetail.ascx.designer.cs">
-      <DependentUpon>EventDetail.ascx</DependentUpon>
+    <Compile Include="Display\EventToolTip.ascx.designer.cs">
+      <DependentUpon>EventToolTip.ascx</DependentUpon>
     </Compile>
     <Compile Include="ListingMode.cs" />
     <Compile Include="Util\ICalUtil.cs" />
@@ -243,27 +166,6 @@
     <Compile Include="Properties\Assemblyinfo.cs" />
     <Compile Include="Components\EmailScheduler.cs" />
     <Compile Include="Components\FeaturesController.cs" />
-    <Compile Include="Display\EventDisplay.ascx.cs">
-      <DependentUpon>EventDisplay.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Display\EventDisplay.ascx.designer.cs">
-      <DependentUpon>EventDisplay.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Display\EventListingItem.ascx.cs">
-      <DependentUpon>EventListingItem.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Display\EventListingItem.ascx.designer.cs">
-      <DependentUpon>EventListingItem.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Display\EventToolTip.ascx.cs">
-      <DependentUpon>EventToolTip.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Display\EventToolTip.ascx.designer.cs">
-      <DependentUpon>EventToolTip.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Display\CalendarDisplayOptions.ascx.cs">
       <DependentUpon>CalendarDisplayOptions.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -271,19 +173,12 @@
     <Compile Include="Display\CalendarDisplayOptions.ascx.designer.cs">
       <DependentUpon>CalendarDisplayOptions.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Display\EventCalendar.ascx.cs">
-      <DependentUpon>EventCalendar.ascx</DependentUpon>
+    <Compile Include="Display\AppointmentCalendar.ascx.cs">
+      <DependentUpon>AppointmentCalendar.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Display\EventCalendar.ascx.designer.cs">
-      <DependentUpon>EventCalendar.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\RecurrenceEditor.ascx.cs">
-      <DependentUpon>RecurrenceEditor.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Controls\RecurrenceEditor.ascx.designer.cs">
-      <DependentUpon>RecurrenceEditor.ascx</DependentUpon>
+    <Compile Include="Display\AppointmentCalendar.ascx.designer.cs">
+      <DependentUpon>AppointmentCalendar.ascx</DependentUpon>
     </Compile>
     <Compile Include="Register.ascx.cs">
       <DependentUpon>Register.ascx</DependentUpon>
@@ -319,8 +214,6 @@
   <ItemGroup>
     <None Include="EngageBooking.4.dnn" />
     <None Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
-    <None Include="Templates\Engage Events Templates.docx" />
-    <None Include="Templates\Engage Events Templates.pdf" />
     <None Include="Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
@@ -385,11 +278,6 @@
     <Content Include="Images\vcalendar.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Display\App_LocalResources\EventListing.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\Respond.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
@@ -437,7 +325,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Display\CalendarDisplayOptions.ascx" />
-    <Content Include="Display\EventCalendar.ascx" />
+    <Content Include="Display\AppointmentCalendar.ascx" />
     <Content Include="Images\errorSmallIcon.png" />
     <Content Include="Images\greenBody.gif" />
     <Content Include="Images\greenBt.gif" />
@@ -451,7 +339,6 @@
     <Content Include="App_LocalResources\EventEdit.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Display\EventToolTip.ascx" />
     <Content Include="Images\cancel_disabled.gif" />
     <Content Include="Images\manage_RSVPs.gif" />
     <Content Include="Images\manage_RSVPs_disabled.gif" />
@@ -468,11 +355,6 @@
     <Content Include="Images\exit.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Display\App_LocalResources\EventToolTip.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\ResponseDetail.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
@@ -486,56 +368,23 @@
     <Content Include="Images\home_disabled.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Display\App_LocalResources\RsvpDisplay.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\EmailEdit.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Display\EventDisplay.ascx" />
-    <Content Include="Display\EventListingItem.ascx" />
-    <Content Include="Templates\Default\Item.Listing.html" />
-    <Content Include="Templates\Default\Template.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Display\WorkflowDisplayOptions.ascx" />
-    <Content Include="Templates\Default-Single\Detail.Item.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Actions\AddToCalendarAction.ascx" />
-    <Content Include="Actions\ButtonAction.ascx" />
-    <Content Include="Actions\CancelAction.ascx" />
-    <Content Include="Actions\DeleteAction.ascx" />
-    <Content Include="Actions\SortAction.ascx" />
-    <Content Include="Actions\StatusFilterAction.ascx" />
-    <Content Include="Display\App_LocalResources\TemplateDisplayOptions.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Display\EventDetail.ascx" />
-    <Content Include="Controls\RecurrenceEditor.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controls\ModuleMessage.ascx" />
-    <Content Include="Controls\App_LocalResources\RecurrenceEditor.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\SharedResources.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Controls\EditTypeDialog.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Actions\RegisterAction.ascx" />
     <Content Include="Admin\LicenseError.ascx" />
-    <Content Include="Controls\App_LocalResources\EditTypeDialog.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="ChooseDisplay.ascx" />
-    <Content Include="Controls\TemplatePicker.ascx" />
     <Content Include="Images\attending_icon.gif" />
     <Content Include="Images\export_to_csv.gif" />
     <Content Include="Images\export_to_excel.gif" />
@@ -559,35 +408,10 @@
     <Content Include="Images\fancy_title_left.png" />
     <Content Include="Images\fancy_title_main.png" />
     <Content Include="Images\fancy_title_right.png" />
-    <None Include="JavaScript\jquery-1.2.6.min.debug.js" />
     <Content Include="App_LocalResources\ChooseDisplay.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Controls\App_LocalResources\TemplatePicker.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Actions\App_LocalResources\AddToCalendarAction.ascx.resx">
-    </Content>
-    <Content Include="Actions\App_LocalResources\ButtonAction.ascx.resx">
-    </Content>
-    <Content Include="Appointments\App_LocalResources\AppointmentRequest.ascx.resx" />
-    <EmbeddedResource Include="JavaScript\jquery.fancybox-1.0.0.js" />
-    <Content Include="Templates\Admin\ManageEvents\App_LocalResources\Template.resx" />
-    <Content Include="Templates\Legacy-ListingAll\App_LocalResources\Template.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Templates\Default\Manifest.xml" />
-    <Content Include="Templates\ListingShort\Manifest.xml" />
-    <Content Include="Templates\ListingShort\Template.css" />
-    <Content Include="Templates\Narrow\App_LocalResources\Template.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Templates\MiniList\App_LocalResources\Template.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Templates\Default-Single\App_LocalResources\Template.resx">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Display\App_LocalResources\AppointmentRequest.ascx.resx" />
     <Content Include="References\DotNetNuke.dll" />
     <Content Include="References\DotNetNuke.WebUtility.dll" />
     <Content Include="References\Engage.Dnn.Framework.dll" />
@@ -596,52 +420,17 @@
     <Content Include="References\Telerik.Web.UI.dll" />
     <Content Include="Display\App_LocalResources\CalendarDisplayOptions.ascx.resx">
     </Content>
-    <Content Include="Templates\Default\App_LocalResources\Template.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Admin\App_LocalResources\LicenseError.ascx.resx">
     </Content>
-    <Content Include="Templates\Default-Single\Manifest.xml" />
-    <Content Include="Templates\Default-Single\Template.css" />
-    <Content Include="Templates\ListingShort\Item.ListingShort.html" />
-    <Content Include="Templates\MiniList\MiniList.htm" />
-    <Content Include="Templates\Narrow\Narrow.htm" />
-    <Content Include="Templates\MiniList\Manifest.xml" />
-    <Content Include="Templates\MiniList\Template.css" />
-    <Content Include="Templates\Narrow\Manifest.xml" />
-    <Content Include="Templates\Narrow\Template.css" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Actions\App_LocalResources\StatusFilterAction.ascx.resx">
-    </Content>
-    <Content Include="Actions\App_LocalResources\SortAction.ascx.resx">
-    </Content>
-    <Content Include="Actions\App_LocalResources\RegisterAction.ascx.resx">
-    </Content>
-    <Content Include="Actions\App_LocalResources\DeleteAction.ascx.resx">
-    </Content>
-    <Content Include="Actions\App_LocalResources\CancelAction.ascx.resx">
-    </Content>
-    <Content Include="Appointments\AppointmentRequest.ascx" />
+    <Content Include="Display\AppointmentRequest.ascx" />
+    <Content Include="Display\EventToolTip.ascx" />
     <Content Include="Images\add-apntmnt-disabled.gif" />
     <Content Include="Images\add-apntmnt.gif" />
     <Content Include="Images\choose_display.gif" />
-    <Content Include="Templates\Admin\ManageEvents\default.jpg" />
-    <Content Include="Templates\Admin\ManageEvents\Item.Listing.html" />
-    <Content Include="Templates\Admin\ManageEvents\Manifest.xml" />
-    <Content Include="Templates\Admin\ManageEvents\Template.css" />
-    <Content Include="Templates\Default-Single\single-item-default.jpg" />
-    <Content Include="Templates\Default\default.jpg" />
-    <Content Include="Templates\Legacy-ListingAll\Item.Listing.html" />
-    <Content Include="Templates\Legacy-ListingAll\legacy.jpg" />
-    <Content Include="Templates\Legacy-ListingAll\Manifest.xml" />
-    <Content Include="Templates\Legacy-ListingAll\Template.css" />
-    <Content Include="Templates\ListingShort\short-listing.jpg" />
-    <Content Include="Templates\MiniList\minilist.jpg" />
-    <Content Include="Templates\Narrow\narrow.jpg" />
     <None Include="EngageBooking.5.dnn" />
     <None Include="EngageBooking.Build" />
-    <None Include="Templates\EngageManifest.xsd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v8.0\WebApplications\Microsoft.WebApplication.targets" Condition="'$(Solutions.VSVersion)' == '8.0'" />

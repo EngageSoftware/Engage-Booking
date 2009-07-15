@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EventToolTip.ascx.cs" Inherits="Engage.Dnn.Booking.Display.EventToolTip" %>
-<%@ Register TagPrefix="engage" TagName="RegisterAction" Src="../Actions/RegisterAction.ascx" %>
 
 <div class="EventToolTip">
     <h2 class="EventTitleToolTip Head"><asp:Label runat="server" ID="EventTitle"/></h2>
@@ -7,7 +6,7 @@
     <div class="event_description_tooltip Normal"><asp:Literal runat="server" id="EventOverview" /></div>
     <div class="tooltip_buttons">
     	<asp:Button ID="EditButton" runat="server" CssClass="Normal" ResourceKey="EditButton"/>
-        <engage:RegisterAction ID="RegisterButton" runat="server"/>
+        <asp:Button ID="RegisterButton" runat="server" CssClass="Normal" ResourceKey="RegisterButton"/>
         <asp:Button ID="AddToCalendarButton" runat="server" CssClass="Normal" resourceKey="AddToCalendarButton"/>
     	<asp:Button ID="RequestAppointmentButton" runat="server" CssClass="Normal" ResourceKey="RequestAppointmentButton"/>	</div> 
 </div>

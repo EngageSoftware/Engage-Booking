@@ -48,10 +48,6 @@ namespace Engage.Dnn.Booking.Display
             this.EditButton.Click += this.EditButton_Click;
             this.RequestAppointmentButton.Click += this.RequestAppointmentButton_Click;
 
-            this.RegisterButton.CurrentAppointment = this.currentAppointment;
-            this.RegisterButton.ModuleConfiguration = this.ModuleConfiguration;
-            this.RegisterButton.LocalResourceFile = this.LocalResourceFile;
-
             AJAX.RegisterPostBackControl(this.AddToCalendarButton);
             AJAX.RegisterPostBackControl(this.RequestAppointmentButton);
         }

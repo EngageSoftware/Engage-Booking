@@ -35,7 +35,7 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// The default sub-control to load when no control key is provided
         /// </summary>
-        private static readonly SubControlInfo DefaultSubControl = new SubControlInfo("Display/EventDisplay.ascx", false);
+        private static readonly SubControlInfo DefaultSubControl = new SubControlInfo("Display/AppointmentCalendar.ascx", false);
 
         /// <summary>
         /// The sub-control to load when there is an error with the license
@@ -88,13 +88,8 @@ namespace Engage.Dnn.Booking
             IDictionary<string, SubControlInfo> keyDictionary = new Dictionary<string, SubControlInfo>(11, StringComparer.OrdinalIgnoreCase);
 
             keyDictionary.Add(DefaultControlKey, DefaultSubControl);
-            keyDictionary.Add("EventListingAdmin", new SubControlInfo("Display/EventListingItem.ascx", true));
-            keyDictionary.Add("EmailAFriend", new SubControlInfo("EmailAFriend.ascx", false));
-            keyDictionary.Add("Register", new SubControlInfo("Register.ascx", false));
-            keyDictionary.Add("EventDetail", new SubControlInfo("Display/EventDetail.ascx", false));
-            keyDictionary.Add("ChooseDisplay", new SubControlInfo("ChooseDisplay.ascx", true));
-            keyDictionary.Add("AppointmentRequest", new SubControlInfo("Appointments/AppointmentRequest.ascx", true));
-            keyDictionary.Add("Approval", new SubControlInfo("Workflow/Approval.ascx", true));
+            keyDictionary.Add("AppointmentRequest", new SubControlInfo("Display/AppointmentRequest.ascx", true));
+            keyDictionary.Add("Approval", new SubControlInfo("Display/Approval.ascx", true));
             
             return keyDictionary;
         }

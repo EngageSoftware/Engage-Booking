@@ -18,7 +18,6 @@ namespace Engage.Dnn.Booking
     using System.Diagnostics;
     using System.Web.UI.WebControls;
     using Data;
-    using Framework.Templating;
 
     /// <summary>
     /// A strongly-typed collection of <see cref="BindingList{T}"/> objects.
@@ -26,7 +25,7 @@ namespace Engage.Dnn.Booking
     /// <remarks>
     /// This class inherits from <see cref="Appointment"/> for future support.
     /// </remarks>
-    public class AppointmentCollection : BindingList<Appointment>, IEnumerable<ITemplateable>
+    public class AppointmentCollection : BindingList<Appointment>
     {
         /// <summary>
         /// Backing field for <see cref="TotalRecords"/>.
@@ -88,20 +87,6 @@ namespace Engage.Dnn.Booking
         public static AppointmentCollection Load(int portalId, ListingMode listingMode, string sortExpression, int pageIndex, int pageSize, bool showAll, bool featuredOnly)
         {
             return Load(portalId, listingMode, sortExpression, pageIndex, pageSize, showAll, featuredOnly, true);
-        }
-
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
-        /// </returns>
-        IEnumerator<ITemplateable> IEnumerable<ITemplateable>.GetEnumerator()
-        {
-            foreach (Appointment @event in this)
-            {
-                yield return @event;
-            }
         }
 
         /// <summary>

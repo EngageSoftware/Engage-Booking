@@ -1,1 +1,0 @@
-<%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Display.EventListingItem"  CodeBehind="EventListingItem.ascx.cs" %>
