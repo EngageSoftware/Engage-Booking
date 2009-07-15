@@ -14,6 +14,15 @@ namespace Engage.Dnn.Booking.Display {
     public partial class AppointmentCalendar {
         
         /// <summary>
+        /// ApprovalControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Engage.Dnn.Booking.Display.Approval ApprovalControl;
+        
+        /// <summary>
         /// EventsCalendarDisplay control.
         /// </summary>
         /// <remarks>

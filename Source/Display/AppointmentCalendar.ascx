@@ -1,7 +1,8 @@
 <%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Display.AppointmentCalendar" CodeBehind="AppointmentCalendar.ascx.cs" %>
 <%@ Import Namespace="DotNetNuke.UI.Utilities" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
-<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+<%@ Register TagPrefix="engage" TagName="approval" Src="Approval.ascx" %>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -79,6 +80,8 @@
     })(jQuery);
 //]]>
 </script>
+
+<engage:approval ID="ApprovalControl" runat="server" />
 
 <div class="EventHeader">
     <h2 class="NormalBold">

@@ -64,6 +64,7 @@ namespace Engage.Dnn.Booking.Display
             {
                 this.AddJQueryReference();
                 this.LocalizeCalendar();
+                this.ApprovalControl.Visible = IsEditable;
                 this.RequestAppointmentLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "AppointmentRequest");
                 this.BindData();
             }
@@ -165,11 +166,9 @@ namespace Engage.Dnn.Booking.Display
         {
             this.EventsCalendarDisplay.Culture = CultureInfo.CurrentCulture;
             this.EventsCalendarDisplay.DataSource = Booking.AppointmentCollection.Load(this.PortalId, ListingMode.All, false, this.IsFeatured);
-            this.EventsCalendarDisplay.DataEndField = "EventEnd";
+            this.EventsCalendarDisplay.DataEndField = "EndDateTime";
             this.EventsCalendarDisplay.DataKeyField = "Id";
-            this.EventsCalendarDisplay.DataRecurrenceField = "RecurrenceRule";
-            this.EventsCalendarDisplay.DataRecurrenceParentKeyField = "RecurrenceParentId";
-            this.EventsCalendarDisplay.DataStartField = "EventStart";
+            this.EventsCalendarDisplay.DataStartField = "StartDateTime";
             this.EventsCalendarDisplay.DataSubjectField = "Title";
             this.EventsCalendarDisplay.DataBind();
 
