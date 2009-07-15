@@ -50,7 +50,6 @@ namespace Engage.Dnn.Booking.Display
             this.Load += this.Page_Load;
             this.EventsCalendarDisplay.AppointmentCreated += this.EventsCalendarDisplay_AppointmentCreated;
             this.EventsCalendarDisplay.AppointmentDataBound += this.EventsCalendarDisplay_AppointmentDataBound;
-            ////this.EventsCalendarDisplay.TimeSlotCreated
             this.EventsCalendarToolTipManager.AjaxUpdate += this.EventsCalendarToolTipManager_AjaxUpdate;
         }
 
@@ -65,6 +64,7 @@ namespace Engage.Dnn.Booking.Display
             {
                 this.AddJQueryReference();
                 this.LocalizeCalendar();
+                this.RequestAppointmentLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "AppointmentRequest");
                 this.BindData();
             }
             catch (Exception exc)

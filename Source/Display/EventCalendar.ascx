@@ -5,25 +5,78 @@
 
 <script type="text/javascript">
 //<![CDATA[
-    function hideActiveToolTip()
-    {            
-        var controller = Telerik.Web.UI.RadToolTipController.getInstance();
-        var tooltip = controller.get_activeToolTip();
-        if (tooltip)
-        {
-            tooltip.hide(); 
+    (function($) {
+        var newAppointmentUrl = '<%=ClientAPI.GetSafeJSString(NewAppointmentUrlTemplate) %>',
+            radSchedulerId = '<%=EventsCalendarDisplay.ClientID %>',
+            formatDateUrlParameter = function(date) {
+                return encodeURIComponent(date.format("yyyy-MM-dd-HH-mm"));
+            }
+        timeoutValue = null;
+
+        var pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
+        pageRequestManager.add_beginRequest(function(sender, args) {
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            if (args.get_postBackElement().id.indexOf('EventsCalendarDisplay') != -1) {
+                hideActiveToolTip();
+            }
+        });
+        pageRequestManager.add_endRequest(function() {
+            wireupCalendarHover();
+        });
+
+        function hideActiveToolTip() {
+            var controller = Telerik.Web.UI.RadToolTipController.getInstance();
+            var tooltip = controller.get_activeToolTip();
+            if (tooltip) {
+                tooltip.hide();
+            }
         }
-    }
-    
-    Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(beginRequestHandler);
-    function beginRequestHandler(sender, args)
-    {
-        var prm = Sys.WebForms.PageRequestManager.getInstance();
-        if (args.get_postBackElement().id.indexOf('EventsCalendarDisplay') != -1) 
-        { 
-            hideActiveToolTip(); 
-        } 
-    } 
+
+        function wireupCalendarHover() {
+            $('.EventCalendar .rsContentTable td')
+                .unbind('mouseenter').unbind('mouseleave')
+                .hover(function(event) {
+                    clearTimeout(timeoutValue);
+
+                    if (!$('.NewAppointmentToolip').is(':visible')) {
+                        var timeSlotPosition = $(this).position(),
+                        timeSlot = $find(radSchedulerId).get_activeModel().getTimeSlotFromDomElement(this);
+                        
+                        $('.NewAppointmentTooltip')
+                            .show()
+                            .css('top', event.clientY)
+                            .css('left', event.clientX)
+                        .find('a')
+                            .attr('href', String.format(newAppointmentUrl, formatDateUrlParameter(timeSlot.get_startTime()), formatDateUrlParameter(timeSlot.get_endTime())));
+                    }
+                }, function() {
+                    if ($('.NewAppointmentToolip').is(':visible')) {
+                        timeoutValue = setTimeout(function() {
+                            $('.NewAppointmentTooltip')
+                                .hide();
+                        }
+                            , 100);
+                    }
+                    else {
+                        clearTimeout(timeoutValue);
+                    }
+                });
+        }
+
+        $(function() {
+            wireupCalendarHover();
+            $('.NewAppointmentTooltip').hover(function() {
+                clearTimeout(timeoutValue);
+            }, function() {
+                clearTimeout(timeoutValue);
+                timeoutValue = setTimeout(function() {
+                    $('.NewAppointmentTooltip')
+                        .hide();
+                }
+                    , 100);
+            });
+        });
+    })(jQuery);
 //]]>
 </script>
 
@@ -41,46 +94,8 @@
                 animation="None" position="BottomRight" HideEvent="LeaveTooltip" text="Loading..." AutoTooltipify="false" />
         </ContentTemplate>
     </asp:UpdatePanel>
+    <asp:Hyperlink ID="RequestAppointmentLink" runat="server" CssClass="RequestAppointmentLink" ResourceKey="RequestAppointment.Text" />
     <div class="NewAppointmentTooltip Normal">
         <asp:Hyperlink runat="server" ResourceKey="RequestAppointment.Text" />
     </div>
 </div>
-<script type="text/javascript">
-    (function($) {
-        $(function() {
-            var newAppointmentUrl = '<%=ClientAPI.GetSafeJSString(NewAppointmentUrlTemplate) %>',
-                radScheduler = $find('<%=EventsCalendarDisplay.ClientID %>'),
-                formatDateUrlParameter = function(date) {
-                    return encodeURIComponent(date.format("yyyy-MM-dd-HH-mm"));
-                }
-                timeoutValue = null;
-
-            $('.EventCalendar .rsContentTable td').live('mouseover', function() {
-                clearTimeout(timeoutValue);
-                var timeSlotPosition = $(this).position(),
-                    timeSlot = radScheduler.get_activeModel().getTimeSlotFromDomElement(this);
-                $('.NewAppointmentTooltip')
-                    .show()
-                    .css('top', timeSlotPosition.top)
-                    .css('left', timeSlotPosition.left)
-                .find('a')
-                    .attr('href', String.format(newAppointmentUrl, formatDateUrlParameter(timeSlot.get_startTime()), formatDateUrlParameter(timeSlot.get_endTime())));
-            }).live('mouseout', function() {
-                timeoutValue = setTimeout(function() {
-                    $('.NewAppointmentTooltip')
-                        .hide();
-                    }
-                    , 100);
-            });
-            $('.NewAppointmentTooltip').hover(function() {
-                clearTimeout(timeoutValue);
-            }, function() {
-                timeoutValue = setTimeout(function() {
-                    $('.NewAppointmentTooltip')
-                        .hide();
-                    }
-                    , 100);
-            });
-        });
-    })(jQuery);
-</script>

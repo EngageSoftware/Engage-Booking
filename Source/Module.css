@@ -21,7 +21,7 @@
 .RadScheduler_Telerik div.rsHeader p { width:110px; }
 
 .EventCalendar { position:relative; } /*.EventCalendar is position:relative to serve as a base for .NewAppointmentTooltip's position:absolute*/
-.NewAppointmentTooltip {background: Transparent url(images/request-appt-background.png) no-repeat; width:150px; height:63px; position:absolute; display:none; padding-top:1em; text-align:center;}
+.NewAppointmentTooltip {background: Transparent url(images/request-appt-background.png) no-repeat; width:150px; height:63px; position:fixed; display:none; padding-top:1em; text-align:center; z-index:1000;}
 
 .RadScheduler .rsWrap {margin-bottom: 2px;}
 .RadScheduler .rsMonthView .rsWrap {height: 18px !important; width: 100%; overflow: hidden; white-space:nowrap;}
