@@ -35,7 +35,7 @@ namespace Engage.Dnn.Booking.Display
             get
             {
                 // We can't just send {0} to BuildLinkUrl, because it will get "special treatment" by the friendly URL provider for its special characters
-                return this.BuildLinkUrl(this.ModuleId, "AllowAppointmentRequest", "startTime=__--0--__", "endTime=__--1--__").Replace("__--", "{").Replace("--__", "}");
+                return this.BuildLinkUrl(this.ModuleId, "AppointmentRequest", "startTime=__--0--__", "endTime=__--1--__").Replace("__--", "{").Replace("--__", "}");
             }
         }
 

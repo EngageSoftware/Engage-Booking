@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add Event.Text" xml:space="preserve">
-    <value>Add Event</value>
+  <data name="Add Appointment.Text" xml:space="preserve">
+    <value>Add Appointment</value>
   </data>
   <data name="Choose Display.Text" xml:space="preserve">
     <value>Choose Display</value>
@@ -126,8 +126,8 @@
   <data name="Home.Text" xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="Manage Events.Text" xml:space="preserve">
-    <value>Manage Events</value>
+  <data name="Manage Appointments.Text" xml:space="preserve">
+    <value>Manage Appointments</value>
   </data>
   <data name="Responses.Text" xml:space="preserve">
     <value>Responses</value>

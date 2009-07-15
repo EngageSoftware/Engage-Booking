@@ -69,6 +69,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -371,9 +372,6 @@
     <Content Include="Admin\App_LocalResources\NotConfigured.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Samples\AttendingReminder.htm" />
-    <Content Include="Samples\NoResponseReminder.htm" />
-    <Content Include="Samples\NotAttendingReminder.htm" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\UserContainer.ascx.resx">
@@ -416,8 +414,6 @@
     <Content Include="Images\bt_create_account.gif" />
     <Content Include="Images\bt_login.gif" />
     <Content Include="Register.ascx" />
-    <Content Include="Images\add_event.gif" />
-    <Content Include="Images\add_event_disabled.gif" />
     <Content Include="Images\approve.gif" />
     <Content Include="Images\back.gif" />
     <Content Include="Images\cancel.gif" />
@@ -627,6 +623,8 @@
     <Content Include="Actions\App_LocalResources\CancelAction.ascx.resx">
     </Content>
     <Content Include="Appointments\AppointmentRequest.ascx" />
+    <Content Include="Images\add-apntmnt-disabled.gif" />
+    <Content Include="Images\add-apntmnt.gif" />
     <Content Include="Images\choose_display.gif" />
     <Content Include="Templates\Admin\ManageEvents\default.jpg" />
     <Content Include="Templates\Admin\ManageEvents\Item.Listing.html" />
