@@ -15,6 +15,7 @@ namespace Engage.Dnn.Booking.Appointments
     using System.Globalization;
     using System.Web;
     using Booking;
+    using DotNetNuke.Common.Lists;
     using DotNetNuke.Services.Exceptions;
 
     /// <summary>
@@ -46,7 +47,7 @@ namespace Engage.Dnn.Booking.Appointments
                 {
                     this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime");
                     this.EndDateTimePicker.SelectedDate = this.GetDateFromQueryString("endTime");
-                    //// this.SetupControl();
+                    this.SetupControl();
                     //// this.BindData();
                 }
 
@@ -57,6 +58,18 @@ namespace Engage.Dnn.Booking.Appointments
                 Exceptions.ProcessModuleLoadException(this, exc);
             }
         }
+
+        private void SetupControl()
+        {
+            ListController controller = new ListController();
+            ListEntryInfoCollection regions = controller.GetListEntryInfoCollection("Region");
+
+            StateDropDownList.DataTextField = "Text";
+            StateDropDownList.DataValueField = "EntryId";
+            StateDropDownList.DataSource = regions;
+            StateDropDownList.DataBind();
+        }
+
 
         /////// <summary>
         /////// Handles the OnClick event of the SaveAppointmentButton control.
