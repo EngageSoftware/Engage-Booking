@@ -14,6 +14,24 @@ namespace Engage.Dnn.Booking.Display {
     public partial class Approval {
         
         /// <summary>
+        /// AcceptItemsButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton AcceptItemsButton;
+        
+        /// <summary>
+        /// DeclineItemsButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton DeclineItemsButton;
+        
+        /// <summary>
         /// AppointmentsGrid control.
         /// </summary>
         /// <remarks>
@@ -21,5 +39,14 @@ namespace Engage.Dnn.Booking.Display {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView AppointmentsGrid;
+        
+        /// <summary>
+        /// PagingControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.WebControls.PagingControl PagingControl;
     }
 }

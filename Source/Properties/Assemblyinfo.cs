@@ -30,4 +30,4 @@ using System.Web.UI;
 [assembly: AssemblyKeyFile("")]
 [assembly: AssemblyKeyName("")]
 
-[assembly: WebResource("Engage.Dnn.Events.JavaScript.jquery.fancybox-1.0.0.js", "text/javascript")]
+[assembly: WebResource("Engage.Dnn.Booking.JavaScript.SelectAllPlugin.js", "text/javascript")]

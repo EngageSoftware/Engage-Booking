@@ -12,6 +12,7 @@
 namespace Engage.Dnn.Booking.Display
 {
     using System;
+    using System.Globalization;
     using Booking;
     using DotNetNuke.Services.Exceptions;
 
@@ -20,6 +21,20 @@ namespace Engage.Dnn.Booking.Display
     /// </summary>
     public partial class Approval : ModuleBase
     {
+        protected int PageIndex
+        {
+            get
+            {
+                int pageIndex;
+                if (int.TryParse(this.Request.QueryString["page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out pageIndex))
+                {
+                    return pageIndex - 1;
+                }
+
+                return 0;
+            }
+        }
+
         /// <summary>
         /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
         /// </summary>
@@ -27,7 +42,6 @@ namespace Engage.Dnn.Booking.Display
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-
             this.Load += this.Page_Load;
         }
 
@@ -40,6 +54,7 @@ namespace Engage.Dnn.Booking.Display
         {
             try
             {
+                this.SetupSelectAllPlugin();
                 this.BindData();
             }
             catch (Exception exc)
@@ -49,12 +64,34 @@ namespace Engage.Dnn.Booking.Display
         }
 
         /// <summary>
+        /// Sets up the Select All jQuery plugin (to allow the header checkbox to select all other checkboxes).
+        /// </summary>
+        private void SetupSelectAllPlugin()
+        {
+            const string SelectAllCheckBoxCssClass = "header-checkbox";
+            const string CheckBoxesCssClass = "select-checkbox";
+            string initScriptKey = string.Format("SelectAllPlugin {0} : {1}", SelectAllCheckBoxCssClass, CheckBoxesCssClass);
+
+            this.AddJQueryReference();
+            this.Page.ClientScript.RegisterClientScriptResource(typeof(Approval), "Engage.Dnn.Booking.JavaScript.SelectAllPlugin.js");
+            this.Page.ClientScript.RegisterStartupScript(
+                    typeof(Approval),
+                    initScriptKey,
+                    "jQuery(function($) { $('." + SelectAllCheckBoxCssClass + "').selectAll($('." + CheckBoxesCssClass + "')); });",
+                    true);
+        }
+
+        /// <summary>
         /// Binds the data.
         /// </summary>
         private void BindData()
         {
-            this.AppointmentsGrid.DataSource = AppointmentCollection.Load(this.PortalId, ListingMode.All, true, this.IsFeatured);
+            var appointments = AppointmentCollection.Load(this.PortalId, ListingMode.All, "Id ASC", this.PageIndex, this.PagingControl.PageSize, true, this.IsFeatured);
+            this.AppointmentsGrid.DataSource = appointments;
             this.AppointmentsGrid.DataBind();
+
+            this.PagingControl.CurrentPage = this.PageIndex + 1;
+            this.PagingControl.TotalRecords = appointments.TotalRecords;
         }
     }
 }
