@@ -6,32 +6,34 @@
 
 <script type="text/javascript">
 //<![CDATA[
+    var pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
+    pageRequestManager.add_beginRequest(function(sender, args) {
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
+        if (args.get_postBackElement().id.indexOf('EventsCalendarDisplay') != -1) {
+            hideActiveToolTip();
+        }
+    });
+
+    function hideActiveToolTip() {
+        var controller = Telerik.Web.UI.RadToolTipController.getInstance();
+        var tooltip = controller.get_activeToolTip();
+        if (tooltip) {
+            tooltip.hide();
+        }
+    }
+    
     (function($) {
         var newAppointmentUrl = '<%=ClientAPI.GetSafeJSString(NewAppointmentUrlTemplate) %>',
             radSchedulerId = '<%=EventsCalendarDisplay.ClientID %>',
-            formatDateUrlParameter = function(date) {
-                return encodeURIComponent(date.format("yyyy-MM-dd-HH-mm"));
-            }
-        timeoutValue = null;
+            timeoutValue = null;
+        
+        function formatDateUrlParameter(date) {
+            return encodeURIComponent(date.format("yyyy-MM-dd-HH-mm"));
+        }
 
-        var pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
-        pageRequestManager.add_beginRequest(function(sender, args) {
-            var prm = Sys.WebForms.PageRequestManager.getInstance();
-            if (args.get_postBackElement().id.indexOf('EventsCalendarDisplay') != -1) {
-                hideActiveToolTip();
-            }
-        });
         pageRequestManager.add_endRequest(function() {
             wireupCalendarHover();
         });
-
-        function hideActiveToolTip() {
-            var controller = Telerik.Web.UI.RadToolTipController.getInstance();
-            var tooltip = controller.get_activeToolTip();
-            if (tooltip) {
-                tooltip.hide();
-            }
-        }
 
         function wireupCalendarHover() {
             $('.EventCalendar .rsContentTable td')
