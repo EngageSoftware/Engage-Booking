@@ -71,7 +71,7 @@ namespace Engage.Dnn.Booking.Display
         /// </summary>
         private void BindData()
         {
-            var appointments = AppointmentCollection.Load(this.ModuleId, null, this.CurrentPageIndex, this.PagingControl.PageSize);
+            var appointments = AppointmentCollection.Load(this.ModuleId, null, this.CurrentPageIndex - 1, this.PagingControl.PageSize);
             this.AppointmentsGrid.DataSource = appointments;
             this.AppointmentsGrid.DataBind();
 

@@ -117,9 +117,9 @@ namespace Engage.Dnn.Booking
         }
      
         /// <summary>
-        /// Gets the index of the current page from the QueryString.
+        /// Gets the (one-based) index of the current page from the <see cref="HttpRequest.QueryString"/>.
         /// </summary>
-        /// <value>The index of the current page.</value>
+        /// <value>The one-based index of the current page.</value>
         protected int CurrentPageIndex
         {
             get
