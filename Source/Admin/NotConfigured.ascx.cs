@@ -15,7 +15,6 @@ namespace Engage.Dnn.Booking.Admin
     using System.Globalization;
     using DotNetNuke.Common;
     using DotNetNuke.Entities.Modules;
-    using Framework.Templating;
 
     /// <summary>
     /// Displayed when the module has not yet been configured.  Sets up a default configuration.
@@ -40,25 +39,7 @@ namespace Engage.Dnn.Booking.Admin
         private void SetupDefaultSettings()
         {
             ModuleController modules = new ModuleController();
-            modules.UpdateTabModuleSetting(this.TabModuleId, "DisplayType", "LIST");
-            modules.UpdateTabModuleSetting(this.TabModuleId, "DisplayModeOption", ListingMode.All.ToString());
             modules.UpdateTabModuleSetting(this.TabModuleId, "RecordsPerPage", 10.ToString(CultureInfo.InvariantCulture));
-
-            // TODO: add error handling if no templates exist?
-            TemplateInfo defaultTemplate = this.GetTemplates(TemplateType.List)[0];
-            modules.UpdateTabModuleSetting(this.TabModuleId, "Template", defaultTemplate.FolderName);
-
-            string singleItemTemplateFolderName;
-            if (defaultTemplate.Settings.ContainsKey("SingleItemTemplate"))
-            {
-                singleItemTemplateFolderName = defaultTemplate.Settings["SingleItemTemplate"];
-            }
-            else
-            {
-                singleItemTemplateFolderName = this.GetTemplates(TemplateType.SingleItem)[0].FolderName;
-            }
-
-            modules.UpdateTabModuleSetting(this.TabModuleId, "SingleItemTemplate", singleItemTemplateFolderName);
         }
     }
 }

@@ -15,24 +15,16 @@ namespace Engage.Dnn.Booking
     using System.ComponentModel;
     using System.Data;
     using System.Diagnostics;
-    using System.Globalization;
     using System.Xml.Serialization;
     using Data;
     using Engage;
-    using Framework.Templating;
 
     /// <summary>
     /// An event, with a title, description, location, and start and end date.
     /// </summary>
     [XmlRoot(ElementName = "appointment", IsNullable = false)]
-    public class Appointment : IEditableObject, INotifyPropertyChanged, ITemplateable
+    public class Appointment : IEditableObject, INotifyPropertyChanged
     {
-        /// <summary>
-        /// Backing field for <see cref="PortalId"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private int portalId = -1;
-
         /// <summary>
         /// Backing field for <see cref="EndDateTime"/>.
         /// </summary>
@@ -118,7 +110,7 @@ namespace Engage.Dnn.Booking
         private string phone;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Appointment"/> class.
+        /// Prevents a default instance of the <see cref="Appointment"/> class from being created.
         /// </summary>
         private Appointment()
         {
@@ -144,7 +136,6 @@ namespace Engage.Dnn.Booking
         /// <param name="capacityMetMessage">The capacity met message.</param>
         private Appointment(int portalId, int moduleId, string organizerEmail, string title, string overview, string description, DateTime eventStart, DateTime eventEnd, TimeSpan timeZoneOffset, string location, bool isFeatured, bool allowRegistrations, int? capacity, bool inDaylightTime, string capacityMetMessage)
         {
-            this.portalId = portalId;
             this.moduleId = moduleId;
             //this.organizerEmail = organizerEmail ?? string.Empty;
             //this.title = title;
@@ -242,73 +233,6 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Gets the value of the property with the given <paramref name="propertyName"/>, or <see cref="string.Empty"/> if a property with that name does not exist on this object or is <c>null</c>.
-        /// </summary>
-        /// <remarks>
-        /// To avoid conflicts with template syntax, avoid using the following symbols in the property name
-        /// <list type="bullet">
-        ///     <item><description>:</description></item>
-        ///     <item><description>%</description></item>
-        ///     <item><description>$</description></item>
-        ///     <item><description>#</description></item>
-        ///     <item><description>&gt;</description></item>
-        ///     <item><description>&lt;</description></item>
-        ///     <item><description>"</description></item>
-        ///     <item><description>'</description></item>
-        /// </list>
-        /// </remarks>
-        /// <param name="propertyName">Name of the property.</param>
-        /// <returns>The string representation of the value of this instance.</returns>
-        public string GetValue(string propertyName)
-        {
-            return this.GetValue(propertyName, null);
-        }
-
-        /// <summary>
-        /// Gets the value of the property with the given <paramref name="propertyName"/>, or <see cref="string.Empty"/> if a property with that name does not exist on this object or is <c>null</c>.
-        /// </summary>
-        /// <remarks>
-        /// To avoid conflicts with template syntax, avoid using the following symbols in the property name
-        /// <list type="bullet">
-        ///     <item><description>:</description></item>
-        ///     <item><description>%</description></item>
-        ///     <item><description>$</description></item>
-        ///     <item><description>#</description></item>
-        ///     <item><description>&gt;</description></item>
-        ///     <item><description>&lt;</description></item>
-        ///     <item><description>"</description></item>
-        ///     <item><description>'</description></item>
-        /// </list>
-        /// </remarks>
-        /// <param name="propertyName">Name of the property.</param>
-        /// <param name="format">A numeric or DateTime format string, or <c>null</c> or <see cref="string.Empty"/> to apply the default format.</param>
-        /// <returns>The string representation of the value of this instance as specified by <paramref name="format"/>.</returns>
-        public string GetValue(string propertyName, string format)
-        {
-            switch (propertyName.ToUpperInvariant())
-            {
-                case "ID":
-                    return this.Id.ToString(format, CultureInfo.CurrentCulture);
-                    //case "TITLE":
-                    //    return this.Title;
-                    //case "OVERVIEW":
-                    //    return this.Overview;
-                    //case "DESCRIPTION":
-                    //    return this.Description;
-                    //case "EVENTSTART":
-                    //case "EVENT START":
-                    //    return this.EventStart.ToString(format, CultureInfo.CurrentCulture);
-                    //case "EVENTEND":
-                    //case "EVENT END":
-                    //    return this.EventEnd.ToString(format, CultureInfo.CurrentCulture);
-                    //case "LOCATION":
-                    //    return this.Location;
-            }
-
-            return string.Empty;
-        }
-
-        /// <summary>
         /// Deletes the specified appointment id.
         /// </summary>
         /// <param name="id">The appointment id.</param>
@@ -318,7 +242,7 @@ namespace Engage.Dnn.Booking
 
             try
             {
-                dp.ExecuteNonQuery(CommandType.StoredProcedure, dp.NamePrefix + "spDeleteAppointment", Engage.Utility.CreateIntegerParam("@Appointment", id));
+                dp.ExecuteNonQuery(CommandType.StoredProcedure, dp.NamePrefix + "spDeleteAppointment", Utility.CreateIntegerParam("@Appointment", id));
             }
             catch (Exception se)
             {
@@ -362,7 +286,6 @@ namespace Engage.Dnn.Booking
             appointment.id = (int)appointmentRecord["AppointmentId"];
             appointment.moduleId = (int)appointmentRecord["ModuleId"];
             appointment.appointmentTypeId = (int)appointmentRecord["AppointmentTypeId"];
-            appointment.portalId = (int)appointmentRecord["PortalId"];
             appointment.title = appointmentRecord["Title"].ToString();
             appointment.description = appointmentRecord["Description"].ToString();
             appointment.notes = appointmentRecord["Notes"].ToString();
@@ -372,6 +295,8 @@ namespace Engage.Dnn.Booking
             appointment.stateId = (int)appointmentRecord["StateId"];
             appointment.zip = appointmentRecord["Zip"].ToString();
             appointment.phone = appointmentRecord["Phone"].ToString();
+            appointment.startDateTime = (DateTime)appointmentRecord["StartDateTime"];
+            appointment.endDateTime = (DateTime)appointmentRecord["EndDateTime"];
             //e.additionalAddressInfo = appointmentRecord["AdditionalAddressInfo"].ToString();
             //e.contactStreet = appointmentRecord["contactStreet"].ToString();
             //e.contactPhone = appointmentRecord["contactPhone"].ToString();
@@ -533,16 +458,6 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Gets the portal id.
-        /// </summary>
-        /// <value>The portal id.</value>
-        public int PortalId
-        {
-            [DebuggerStepThrough]
-            get { return this.portalId; }
-        }
-
-        /// <summary>
         /// Gets the module id.
         /// </summary>
         /// <value>The module id.</value>
@@ -616,7 +531,6 @@ namespace Engage.Dnn.Booking
                 this.id = dp.ExecuteNonQuery(
                         CommandType.StoredProcedure,
                         dp.NamePrefix + "spInsertAppointment",
-                        Utility.CreateIntegerParam("@PortalId", this.portalId),
                         Utility.CreateIntegerParam("@ModuleId", this.moduleId),
                         Utility.CreateVarcharParam("@Title", this.title),
                         Utility.CreateTextParam("@Description", this.description)

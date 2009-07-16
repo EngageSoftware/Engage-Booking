@@ -64,7 +64,7 @@ namespace Engage.Dnn.Booking.Display
             {
                 this.AddJQueryReference();
                 this.LocalizeCalendar();
-                this.ApprovalControl.Visible = IsEditable;
+                this.SetupApprovalControl();
                 this.RequestAppointmentLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "AppointmentRequest");
                 this.BindData();
             }
@@ -72,6 +72,15 @@ namespace Engage.Dnn.Booking.Display
             {
                 Exceptions.ProcessModuleLoadException(this, exc);
             }
+        }
+
+        /// <summary>
+        /// Sets up the approval control.
+        /// </summary>
+        private void SetupApprovalControl()
+        {
+            this.ApprovalControl.Visible = this.IsEditable;
+            this.ApprovalControl.ModuleConfiguration = this.ModuleConfiguration;
         }
 
         /// <summary>
@@ -165,7 +174,7 @@ namespace Engage.Dnn.Booking.Display
         private void BindData()
         {
             this.EventsCalendarDisplay.Culture = CultureInfo.CurrentCulture;
-            this.EventsCalendarDisplay.DataSource = Booking.AppointmentCollection.Load(this.PortalId, ListingMode.All, false, this.IsFeatured);
+            this.EventsCalendarDisplay.DataSource = Booking.AppointmentCollection.Load(this.PortalId);
             this.EventsCalendarDisplay.DataEndField = "EndDateTime";
             this.EventsCalendarDisplay.DataKeyField = "Id";
             this.EventsCalendarDisplay.DataStartField = "StartDateTime";

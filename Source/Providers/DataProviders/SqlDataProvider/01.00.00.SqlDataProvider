@@ -23,7 +23,6 @@ CREATE TABLE {databaseOwner}[{objectQualifier}Engage_Appointment]
 	AppointmentId [int] NOT NULL IDENTITY(1,1),
 	AppointmentTypeId int NOT NULL,
 	ModuleId int NOT NULL,
-	PortalId int NOT NULL,
 	Title nvarchar(50) NOT NULL,
 	Description ntext NULL,
 	Notes ntext NULL,
@@ -74,17 +73,51 @@ ALTER TABLE {databaseOwner}[{objectQualifier}Engage_Appointment] ADD CONSTRAINT
 	) 
 GO
 
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_spGetAppointments]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}Engage_spGetAppointments]
+GO
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}Engage_spGetAppointments](
-	@portalId int
+	@moduleId int,
+	@sortExpression nvarchar(255) = 'StartDateTime, EndDateTime, Title',
+	@pageSize int,
+	@pageIndex int
 )
 AS
 BEGIN
-	 SELECT *
-	 FROM   {databaseOwner}[{objectQualifier}Engage_Appointment]
-	 WHERE  PortalId = @portalId
+	CREATE TABLE #allAppointments
+	(
+		Id int NOT NULL IDENTITY(1,1),
+		AppointmentId int
+	)
+	
+	DECLARE @sql nvarchar(4000)
+	SET @sql =        'INSERT INTO #allAppointments ([AppointmentId]) '
+	SET @sql = @sql + 'SELECT [AppointmentId] '
+	SET @sql = @sql + 'FROM {databaseOwner}[{objectQualifier}Engage_Appointment] '
+	SET @sql = @sql + 'WHERE ModuleId = @moduleId '
+	SET @sql = @sql + 'ORDER BY ' + @sortExpression
+
+	EXEC sp_executesql @sql, N'@moduleId int', @moduleId
+	
+	SELECT @@RowCount AS TotalRecords
+
+	IF (@pageSize = 0 OR @pageSize IS NULL)
+	 	BEGIN
+	 		SELECT a.* FROM #allAppointments aa
+			JOIN {databaseOwner}[{objectQualifier}Engage_Appointment] a on (aa.AppointmentId = a.AppointmentId)
+	 	END
+	ELSE
+	 	BEGIN
+	 		SELECT a.* FROM #allAppointments aa
+			JOIN {databaseOwner}[{objectQualifier}Engage_Appointment] a on (aa.AppointmentId = a.AppointmentId)
+	 		WHERE (aa.AppointmentId >= @pageIndex * @pageSize + 1) AND aa.AppointmentId < (@pageIndex * @pageSize) + @pageSize + 1
+	 	END
 END
 GO
 
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_spDeleteAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}Engage_spDeleteAppointment]
+GO
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}Engage_spDeleteAppointment](
 	@appointmentId int
 )
@@ -95,11 +128,13 @@ BEGIN
 END
 GO
 
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_spInsertAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}Engage_spInsertAppointment]
+GO
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}Engage_spInsertAppointment]
 (
    @AppointmentTypeId int
    ,@ModuleId int
-   ,@PortalId int
    ,@Title nvarchar(50)
    ,@Description ntext
    ,@Notes ntext
@@ -133,7 +168,6 @@ BEGIN
 INSERT INTO {databaseOwner}[{objectQualifier}Engage_Appointment]
            ([AppointmentTypeId]
            ,[ModuleId]
-           ,[PortalId]
            ,[Title]
            ,[Description]
            ,[Notes]
@@ -165,7 +199,6 @@ INSERT INTO {databaseOwner}[{objectQualifier}Engage_Appointment]
      VALUES
            (@AppointmentTypeId
            ,@ModuleId
-           ,@PortalId
            ,@Title
            ,@Description
            ,@Notes

@@ -156,7 +156,6 @@
     <Compile Include="Display\EventToolTip.ascx.designer.cs">
       <DependentUpon>EventToolTip.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ListingMode.cs" />
     <Compile Include="Util\ICalUtil.cs" />
     <Compile Include="Util\TelerikSkin.cs" />
     <Compile Include="Display\WorkflowDisplayOptions.ascx.cs">

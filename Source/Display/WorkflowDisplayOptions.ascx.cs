@@ -67,7 +67,7 @@ namespace Engage.Dnn.Booking.Display
         {
             try
             {
-                FillListControl(this.DisplayModeDropDown, Enum.GetNames(typeof(ListingMode)), string.Empty, string.Empty);
+                ////FillListControl(this.DisplayModeDropDown, Enum.GetNames(typeof(ListingMode)), string.Empty, string.Empty);
                 Utility.LocalizeListControl(this.DisplayModeDropDown, this.LocalResourceFile);
                 SelectListValue(this.DisplayModeDropDown, this.DisplayModeOption);
 
