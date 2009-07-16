@@ -11,7 +11,6 @@
 
 namespace Engage.Dnn.Booking
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
@@ -95,24 +94,9 @@ namespace Engage.Dnn.Booking
         /// <exception cref="DBException">if there's an error while going to the database to retrieve the appointments</exception>
         private static AppointmentCollection Load(int moduleId, string sortExpression, int? pageIndex, int? pageSize)
         {
-            IDataProvider dp = DataProvider.Instance;
-            try
+            using (IDataReader reader = AppointmentSqlDataProvider.GetAppointments(moduleId, sortExpression, pageSize, pageIndex))
             {
-                using (
-                        IDataReader reader = dp.ExecuteReader(
-                                CommandType.StoredProcedure,
-                                dp.NamePrefix + "spGetAppointments",
-                                Engage.Utility.CreateIntegerParam("@moduleId", moduleId),
-                                sortExpression == null ? null : Engage.Utility.CreateVarcharParam("@sortExpression", sortExpression),
-                                Engage.Utility.CreateIntegerParam("@pageSize", pageSize),
-                                Engage.Utility.CreateIntegerParam("@pageIndex", pageIndex)))
-                {
-                    return FillAppointments(reader, pageSize);
-                }
-            }
-            catch (Exception exc)
-            {
-                throw new DBException("spGetAppointments", exc);
+                return FillAppointments(reader, pageSize);
             }
         }
 

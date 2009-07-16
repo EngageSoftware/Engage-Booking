@@ -17,7 +17,7 @@ namespace Engage.Dnn.Booking
     using System.Diagnostics;
     using System.Xml.Serialization;
     using Data;
-    using Engage;
+    using DotNetNuke.Common.Utilities;
 
     /// <summary>
     /// An event, with a title, description, location, and start and end date.
@@ -26,160 +26,14 @@ namespace Engage.Dnn.Booking
     public class Appointment : IEditableObject, INotifyPropertyChanged
     {
         /// <summary>
-        /// Backing field for <see cref="EndDateTime"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private DateTime endDateTime;
-
-        /// <summary>
-        /// Backing field for <see cref="startDateTime"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private DateTime startDateTime;
-
-        /// <summary>
-        /// Backing field for <see cref="Id"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private int id = -1;
-
-        /// <summary>
-        /// Backing field for <see cref="Description"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string description = string.Empty;
-
-        /// <summary>
-        /// Backing field for <see cref="Title"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string title = string.Empty;
-
-        /// <summary>
-        /// Backing field for <see cref="ModuleId"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private int moduleId = -1;
-
-        /// <summary>
-        /// Backing field for <see cref="AppointmentTypeId"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private int appointmentTypeId;
-
-        /// <summary>
-        /// Backing field for <see cref="Notes"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string notes;
-
-        /// <summary>
-        /// Backing field for <see cref="Address1"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string address1;
-
-        /// <summary>
-        /// Backing field for <see cref="Address2"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string address2;
-
-        /// <summary>
-        /// Backing field for <see cref="City"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string city;
-
-        /// <summary>
-        /// Backing field for <see cref="StateId"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private int stateId;
-
-        /// <summary>
-        /// Backing field for <see cref="Zip"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string zip;
-
-        /// <summary>
-        /// Backing field for <see cref="Phone"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string phone;
-
-        /// <summary>
         /// Prevents a default instance of the <see cref="Appointment"/> class from being created.
         /// </summary>
         private Appointment()
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Appointment"/> class.
-        /// </summary>
-        /// <param name="portalId">The portal id.</param>
-        /// <param name="moduleId">The module id.</param>
-        /// <param name="organizerEmail">The organizer email.</param>
-        /// <param name="title">The title.</param>
-        /// <param name="overview">The overview.</param>
-        /// <param name="description">The description.</param>
-        /// <param name="eventStart">The event start.</param>
-        /// <param name="eventEnd">The event end.</param>
-        /// <param name="timeZoneOffset">The time zone offset.</param>
-        /// <param name="location">The location.</param>
-        /// <param name="isFeatured">if set to <c>true</c> [is featured].</param>
-        /// <param name="allowRegistrations">if set to <c>true</c> [allow registrations].</param>
-        /// <param name="capacity">The capacity.</param>
-        /// <param name="inDaylightTime">if set to <c>true</c> [in daylight time].</param>
-        /// <param name="capacityMetMessage">The capacity met message.</param>
-        private Appointment(int portalId, int moduleId, string organizerEmail, string title, string overview, string description, DateTime eventStart, DateTime eventEnd, TimeSpan timeZoneOffset, string location, bool isFeatured, bool allowRegistrations, int? capacity, bool inDaylightTime, string capacityMetMessage)
-        {
-            this.moduleId = moduleId;
-            //this.organizerEmail = organizerEmail ?? string.Empty;
-            //this.title = title;
-            //this.overview = overview;
-            //this.description = description;
-            //this.eventStart = eventStart;
-            //this.eventEnd = eventEnd;
-            //this.timeZoneOffset = timeZoneOffset;
-            //this.location = location;
-            //this.isFeatured = isFeatured;
-            //this.allowRegistrations = allowRegistrations;
-            //this.recurrenceRule = recurrenceRule;
-            //this.canceled = canceled;
-            //this.capacity = capacity;
-            //this.inDaylightTime = inDaylightTime;
-            //this.capacityMetMessage = capacityMetMessage;
-        }
-
-        /// <summary>
-        /// Loads the specified appointment id.
-        /// </summary>
-        /// <param name="id">The appointment id.</param>
-        /// <returns></returns>
-        public static Appointment Load(int id)
-        {
-            IDataProvider dp = DataProvider.Instance;
-            Appointment e = null;
-
-            try
-            {
-                using (IDataReader reader = dp.ExecuteReader(CommandType.StoredProcedure, dp.NamePrefix + "spGetEvent", Engage.Utility.CreateIntegerParam("@EventId", id)))
-                {
-                    if (reader.Read())
-                    {
-                        e = Fill(reader);
-                    }
-                }
-            }
-            catch (Exception se)
-            {
-                throw new DBException("spGetAppointment", se);
-            }
-
-            return e;
+            this.ModuleId = Null.NullInteger;
+            this.Description = string.Empty;
+            this.Title = string.Empty;
+            this.AppointmentId = Null.NullInteger;
         }
 
         #region INotifyPropertyChanged Members
@@ -190,6 +44,365 @@ namespace Engage.Dnn.Booking
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
+
+        /// <summary>
+        /// Gets the id of this Appointment.
+        /// </summary>
+        /// <value>This <see cref="Appointment"/>'s id.</value>
+        [XmlElement(Order = 1)]
+        public int AppointmentId
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets or sets the title.
+        /// </summary>
+        /// <value>The title of this appointment.</value>
+        [XmlElement(Order = 2)]
+        public string Title
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the Description.
+        /// </summary>
+        /// <value>The Description.</value>
+        [XmlElement(Order = 3)]
+        public string Description
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the Notes.
+        /// </summary>
+        /// <value>The Notes.</value>
+        [XmlElement(Order = 4)]
+        public string Notes
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the Address1.
+        /// </summary>
+        /// <value>The Address1.</value>
+        [XmlElement(Order = 5)]
+        public string Address1
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the Address2.
+        /// </summary>
+        /// <value>The Address2.</value>
+        [XmlElement(Order = 6)]
+        public string Address2
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the City.
+        /// </summary>
+        /// <value>The city in which this appointment takes place.</value>
+        [XmlElement(Order = 7)]
+        public string City
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the Region Id.
+        /// </summary>
+        /// <value>The Region Id.</value>
+        [XmlElement(Order = 8)]
+        public int? RegionId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets the Region.
+        /// </summary>
+        /// <value>The name of the region in which this appointment takes place.</value>
+        [XmlIgnore]
+        public string Region
+        {
+            [DebuggerStepThrough]
+            //// TODO: lookup using DNN mechanisms.
+                    get { return string.Empty; }
+        }
+
+        /// <summary>
+        /// Gets or sets the Postal Code.
+        /// </summary>
+        /// <value>The Postal Code.</value>
+        [XmlElement(Order = 9)]
+        public string PostalCode
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the Phone.
+        /// </summary>
+        /// <value>The Phone.</value>
+        [XmlElement(Order = 10)]
+        public string Phone
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets the module id.
+        /// </summary>
+        /// <value>The module id.</value>
+        public int ModuleId
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets or sets when the appointment starts.
+        /// </summary>
+        /// <value>The appointment's start date and time.</value>
+        [XmlElement(Order = 11)]
+        public DateTime StartDateTime
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets when this appointment ends.
+        /// </summary>
+        /// <value>The appointment's end date and time.</value>
+        [XmlElement(Order = 12)]
+        public DateTime EndDateTime
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the ID of the appointment type.
+        /// </summary>
+        /// <value>The appointment type ID of this appointment.</value>
+        [XmlElement(Order = 13)]
+        public int AppointmentTypeId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the additional address info.
+        /// </summary>
+        /// <value>The additional address info.</value>
+        [XmlElement(Order = 14)]
+        public string AdditionalAddressInfo
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the contact's street address.
+        /// </summary>
+        /// <value>The contact's street address.</value>
+        [XmlElement(Order = 15)]
+        public string ContactStreet
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the contact's phone number.
+        /// </summary>
+        /// <value>The contact's phone number.</value>
+        [XmlElement(Order = 16)]
+        public string ContactPhone
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the name of the requestor.
+        /// </summary>
+        /// <value>The name of the requestor.</value>
+        [XmlElement(Order = 17)]
+        public string RequestorName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the type of <see cref="RequestorPhone"/>.
+        /// </summary>
+        /// <value>The type of <see cref="RequestorPhone"/>.</value>
+        [XmlElement(Order = 18)]
+        public string RequestorPhoneType
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the requestor's phone number.
+        /// </summary>
+        /// <value>The requestor's phone number.</value>
+        [XmlElement(Order = 19)]
+        public string RequestorPhone
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the requestor's email address.
+        /// </summary>
+        /// <value>The requestor's email address.</value>
+        [XmlElement(Order = 20)]
+        public string RequestorEmail
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the type of <see cref="RequestorAltPhone"/>.
+        /// </summary>
+        /// <value>The type of <see cref="RequestorAltPhone"/>.</value>
+        [XmlElement(Order = 21)]
+        public string RequestorAltPhoneType
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the requestor's alternate phone number.
+        /// </summary>
+        /// <value>The requestor's alternate phone number.</value>
+        [XmlElement(Order = 22)]
+        public string RequestorAltPhone
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the number of participants.
+        /// </summary>
+        /// <value>The number of participants.</value>
+        [XmlElement(Order = 23)]
+        public int NumberOfParticipants
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the gender of the group of participants (Male, Female, or Mixed).
+        /// </summary>
+        /// <value>The gender of the participant group.</value>
+        [XmlElement(Order = 24)]
+        public string ParticipantGender
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets any special instructions from the participants.
+        /// </summary>
+        /// <value>The participants' special instructions.</value>
+        [XmlElement(Order = 25)]
+        public string ParticipantInstructions
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the number of special participants.
+        /// </summary>
+        /// <value>The number of special participants.</value>
+        [XmlElement(Order = 26)]
+        public int NumberOfSpecialParticipants
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance has been accepted.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is accepted; otherwise, <c>false</c>.
+        /// </value>
+        [XmlElement(Order = 27)]
+        public bool IsAccepted
+        {
+            get; 
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the participant flag.
+        /// </summary>
+        /// <value>The participant flag.</value>
+        [XmlElement(Order = 28)]
+        public char ParticipantFlag
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Loads the <see cref="Appointment"/> with the specified <paramref name="appointmentId"/>.
+        /// </summary>
+        /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to load.</param>
+        /// <returns>The <see cref="Appointment"/> instance with the given <paramref name="appointmentId"/>, or <c>null</c> if no <see cref="Appointment"/> exists with that ID</returns>
+        public static Appointment Load(int appointmentId)
+        {
+            using (IDataReader reader = AppointmentSqlDataProvider.GetAppointment(appointmentId))
+            {
+                if (reader.Read())
+                {
+                    return Fill(reader);
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Deletes the specified appointment id.
+        /// </summary>
+        /// <param name="id">The appointment id.</param>
+        public static void Delete(int id)
+        {
+            AppointmentSqlDataProvider.DeleteAppointment(id);
+        }
 
         #region IEditableObject Members
 
@@ -222,7 +435,7 @@ namespace Engage.Dnn.Booking
         /// <param name="revisingUser">The user who is saving this event.</param>
         public void Save(int revisingUser)
         {
-            if (this.id < 0)
+            if (this.AppointmentId == Null.NullInteger)
             {
                 this.Insert(revisingUser);
             }
@@ -230,48 +443,6 @@ namespace Engage.Dnn.Booking
             {
                 this.Update(revisingUser);
             }
-        }
-
-        /// <summary>
-        /// Deletes the specified appointment id.
-        /// </summary>
-        /// <param name="id">The appointment id.</param>
-        public static void Delete(int id)
-        {
-            IDataProvider dp = DataProvider.Instance;
-
-            try
-            {
-                dp.ExecuteNonQuery(CommandType.StoredProcedure, dp.NamePrefix + "spDeleteAppointment", Utility.CreateIntegerParam("@Appointment", id));
-            }
-            catch (Exception se)
-            {
-                throw new DBException("spDeleteAppointment", se);
-            }           
-        }
-
-        /// <summary>
-        /// Creates the specified event.
-        /// </summary>
-        /// <param name="portalId">The portal id.</param>
-        /// <param name="moduleId">The module id.</param>
-        /// <param name="organizerEmail">The organizer email.</param>
-        /// <param name="title">The title of the event.</param>
-        /// <param name="overview">The overview or description of the event.</param>
-        /// <param name="description">The description.</param>
-        /// <param name="eventStart">The event's start date and time.</param>
-        /// <param name="eventEnd">The event end.</param>
-        /// <param name="timeZoneOffset">The time zone offset.</param>
-        /// <param name="location">The location of the event.</param>
-        /// <param name="isFeatured">if set to <c>true</c> the event should be listed in featured displays.</param>
-        /// <param name="allowRegistrations">if set to <c>true</c> this event allows users to register for it.</param>
-        /// <param name="capacity">The maximum number of registrants for this event, or <c>null</c> if there is no maximum.</param>
-        /// <param name="inDaylightTime">if set to <c>true</c> this event occurs in Daylight Time.</param>
-        /// <param name="capacityMetMessage"><c>null</c> or <see cref="string.Empty"/> to display a generic message.</param>
-        /// <returns>A new event object.</returns>
-        public static Appointment Create(int portalId, int moduleId, string organizerEmail, string title, string overview, string description, DateTime eventStart, DateTime eventEnd, TimeSpan timeZoneOffset, string location, bool isFeatured, bool allowRegistrations, int? capacity, bool inDaylightTime, string capacityMetMessage)
-        {
-            return new Appointment(portalId, moduleId, organizerEmail, title, overview, description, eventStart, eventEnd, timeZoneOffset, location, isFeatured, allowRegistrations, capacity, inDaylightTime, capacityMetMessage);
         }
 
         /// <summary>
@@ -283,238 +454,36 @@ namespace Engage.Dnn.Booking
         {
             Appointment appointment = new Appointment();
 
-            appointment.id = (int)appointmentRecord["AppointmentId"];
-            appointment.moduleId = (int)appointmentRecord["ModuleId"];
-            appointment.appointmentTypeId = (int)appointmentRecord["AppointmentTypeId"];
-            appointment.title = appointmentRecord["Title"].ToString();
-            appointment.description = appointmentRecord["Description"].ToString();
-            appointment.notes = appointmentRecord["Notes"].ToString();
-            appointment.address1 = appointmentRecord["Address1"].ToString();
-            appointment.address2 = appointmentRecord["Address2"].ToString();
-            appointment.city = appointmentRecord["City"].ToString();
-            appointment.stateId = (int)appointmentRecord["StateId"];
-            appointment.zip = appointmentRecord["Zip"].ToString();
-            appointment.phone = appointmentRecord["Phone"].ToString();
-            appointment.startDateTime = (DateTime)appointmentRecord["StartDateTime"];
-            appointment.endDateTime = (DateTime)appointmentRecord["EndDateTime"];
-            //e.additionalAddressInfo = appointmentRecord["AdditionalAddressInfo"].ToString();
-            //e.contactStreet = appointmentRecord["contactStreet"].ToString();
-            //e.contactPhone = appointmentRecord["contactPhone"].ToString();
-            //e.requestorName = appointmentRecord["requestorName"].ToString();
-            //e.requestorPhoneType = appointmentRecord["requestorPhoneType"].ToString();
-            //e.requestorPhone = appointmentRecord["requestorPhone"].ToString();
-            //e.requestorEmail = appointmentRecord["requestorEmail"].ToString();
-            //e.requestorAltPhoneType = appointmentRecord["requestorAltPhoneType"].ToString();
-            //e.requestorAltPhone = appointmentRecord["requestorAltPhone"].ToString();
-            //e.numberOfParticipants = appointmentRecord["numberOfParticipants"].ToString();
-            //e.numberOfSpecialParticipants = appointmentRecord["numberOfSpecialParticipants"].ToString();
-            //e.participantGender = appointmentRecord["participantGender"].ToString();
-            //e.participantFlag = appointmentRecord["AdditionalAddressInfo"].ToString();
-            //e.accepted = (bool)appointmentRecord["Accepted"];
-            //e.creationDate = (DateTime)appointmentRecord["creationDate"];
-            //e.revisionDate = (DateTime)appointmentRecord["RevisionDate"];
+            appointment.AppointmentId = (int)appointmentRecord["AppointmentId"];
+            appointment.AppointmentTypeId = (int)appointmentRecord["AppointmentTypeId"];
+            appointment.ModuleId = (int)appointmentRecord["ModuleId"];
+            appointment.Title = appointmentRecord["Title"].ToString();
+            appointment.Description = appointmentRecord["Description"].ToString();
+            appointment.Notes = appointmentRecord["Notes"].ToString();
+            appointment.Address1 = appointmentRecord["Address1"].ToString();
+            appointment.Address2 = appointmentRecord["Address2"].ToString();
+            appointment.City = appointmentRecord["City"].ToString();
+            appointment.RegionId = appointmentRecord["RegionId"] as int?;
+            appointment.PostalCode = appointmentRecord["PostalCode"].ToString();
+            appointment.Phone = appointmentRecord["Phone"].ToString();
+            appointment.AdditionalAddressInfo = appointmentRecord["AdditionalAddressInfo"].ToString();
+            appointment.ContactStreet = appointmentRecord["ContactStreet"].ToString();
+            appointment.ContactPhone = appointmentRecord["ContactPhone"].ToString();
+            appointment.RequestorName = appointmentRecord["RequestorName"].ToString();
+            appointment.RequestorPhoneType = appointmentRecord["RequestorPhoneType"].ToString();
+            appointment.RequestorPhone = appointmentRecord["RequestorPhone"].ToString();
+            appointment.RequestorEmail = appointmentRecord["RequestorEmail"].ToString();
+            appointment.RequestorAltPhoneType = appointmentRecord["RequestorAltPhoneType"].ToString();
+            appointment.RequestorAltPhone = appointmentRecord["RequestorAltPhone"].ToString();
+            appointment.StartDateTime = (DateTime)appointmentRecord["StartDateTime"];
+            appointment.EndDateTime = (DateTime)appointmentRecord["EndDateTime"];
+            appointment.NumberOfParticipants = (int)appointmentRecord["NumberOfParticipants"];
+            appointment.NumberOfSpecialParticipants = (int)appointmentRecord["NumberOfSpecialParticipants"];
+            appointment.ParticipantGender = appointmentRecord["ParticipantGender"].ToString();
+            appointment.ParticipantFlag = appointmentRecord["ParticipantFlag"].ToString()[0];
+            appointment.IsAccepted = (bool)appointmentRecord["Accepted"];
 
             return appointment;
-        }
-
-        /// <summary>
-        /// Gets the id of this Appointment.
-        /// </summary>
-        /// <value>This <see cref="Appointment"/>'s id.</value>
-        [XmlElement(Order = 1)]
-        public int Id
-        {
-            [DebuggerStepThrough]
-            get { return this.id; }
-        }
-
-        /// <summary>
-        /// Gets or sets the title.
-        /// </summary>
-        /// <value>The title of this appointment.</value>
-        [XmlElement(Order = 2)]
-        public string Title
-        {
-            [DebuggerStepThrough]
-            get { return this.title; }
-            [DebuggerStepThrough]
-            set { this.title = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the Description.
-        /// </summary>
-        /// <value>The Description.</value>
-        [XmlElement(Order = 8)]
-        public string Description
-        {
-            [DebuggerStepThrough]
-            get { return this.description; }
-            [DebuggerStepThrough]
-            set { this.description = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the Notes.
-        /// </summary>
-        /// <value>The Notes.</value>
-        [XmlElement(Order = 8)]
-        public string Notes
-        {
-            [DebuggerStepThrough]
-            get { return this.notes; }
-            [DebuggerStepThrough]
-            set { this.notes = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the Address1.
-        /// </summary>
-        /// <value>The Address1.</value>
-        [XmlElement(Order = 8)]
-        public string Address1
-        {
-            [DebuggerStepThrough]
-            get { return this.address1; }
-            [DebuggerStepThrough]
-            set { this.address1 = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the Address2.
-        /// </summary>
-        /// <value>The Address2.</value>
-        [XmlElement(Order = 9)]
-        public string Address2
-        {
-            [DebuggerStepThrough]
-            get { return this.address2; }
-            [DebuggerStepThrough]
-            set { this.address2 = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the City.
-        /// </summary>
-        /// <value>The City.</value>
-        [XmlElement(Order = 9)]
-        public string City
-        {
-            [DebuggerStepThrough]
-            get { return this.city; }
-            [DebuggerStepThrough]
-            set { this.city = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the StateId.
-        /// </summary>
-        /// <value>The StateId.</value>
-        [XmlElement(Order = 9)]
-        public int StateId
-        {
-            [DebuggerStepThrough]
-            get { return this.stateId; }
-            [DebuggerStepThrough]
-            set { this.stateId = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the State.
-        /// </summary>
-        /// <value>The State.</value>
-        [XmlElement(Order = 9)]
-        public string State
-        {
-            [DebuggerStepThrough]
-            //// TODO: lookup using DNN mechanisms.
-                    get { return string.Empty; }
-        }
-
-        /// <summary>
-        /// Gets or sets the Zip.
-        /// </summary>
-        /// <value>The Zip code.</value>
-        [XmlElement(Order = 9)]
-        public string Zip
-        {
-            [DebuggerStepThrough]
-            get { return this.zip; }
-            [DebuggerStepThrough]
-            set { this.zip = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the Phone.
-        /// </summary>
-        /// <value>The Phone.</value>
-        [XmlElement(Order = 9)]
-        public string Phone
-        {
-            [DebuggerStepThrough]
-            get { return this.phone; }
-            [DebuggerStepThrough]
-            set { this.phone = value; }
-        }
-
-        /// <summary>
-        /// Gets the module id.
-        /// </summary>
-        /// <value>The module id.</value>
-        public int ModuleId
-        {
-            [DebuggerStepThrough]
-            get { return this.moduleId; }
-        }
-
-        /// <summary>
-        /// Gets or sets when the appointment starts.
-        /// </summary>
-        /// <value>The appointment's start date and time.</value>
-        [XmlElement(Order = 9)]
-        public DateTime StartDateTime
-        {
-            [DebuggerStepThrough]
-            get { return this.startDateTime; }
-            [DebuggerStepThrough]
-            set { this.startDateTime = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets when this appointment ends.
-        /// </summary>
-        /// <value>The appointment's end date and time.</value>
-        [XmlElement(Order = 10)]
-        public DateTime EndDateTime
-        {
-            [DebuggerStepThrough]
-            get { return this.endDateTime; }
-            [DebuggerStepThrough]
-            set { this.endDateTime = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the title.
-        /// </summary>
-        /// <value>The appointmentType Id of this appointment.</value>
-        [XmlElement(Order = 2)]
-        public int AppointmentTypeId
-        {
-            [DebuggerStepThrough]
-            get { return this.appointmentTypeId; }
-            [DebuggerStepThrough]
-            set { this.appointmentTypeId = value; }
-        }
-        
-        /// <summary>
-        /// Creates an iCal representation of this appointment.
-        /// </summary>
-        /// <returns>An iCal representation of this appointment</returns>
-        public string ToICal()
-        {
-            //string rule = this.RecurrenceRule != null ? this.RecurrenceRule.ToString() : null;
-            //return Util.ICalUtil.Export(this.overview, this.location, new Appointment(this.Id, this.StartDateTime, this.EventEnd, this.Title, rule), true, this.TimeZoneOffset);
-            return string.Empty;
         }
 
         /// <summary>
@@ -524,41 +493,7 @@ namespace Engage.Dnn.Booking
         /// <exception cref="DBException">If an error occurs while going to the database to insert the event</exception>
         private void Insert(int revisingUser)
         {
-            IDataProvider dp = DataProvider.Instance;
-
-            try
-            {
-                this.id = dp.ExecuteNonQuery(
-                        CommandType.StoredProcedure,
-                        dp.NamePrefix + "spInsertAppointment",
-                        Utility.CreateIntegerParam("@ModuleId", this.moduleId),
-                        Utility.CreateVarcharParam("@Title", this.title),
-                        Utility.CreateTextParam("@Description", this.description)
-                        //Utility.CreateDateTimeParam("@EventStart", this.eventStart),
-                        //Utility.CreateDateTimeParam("@EventEnd", this.eventEnd),
-                        //Utility.CreateIntegerParam("@TimeZoneOffset", (int)this.timeZoneOffset.TotalMinutes),
-                        //Utility.CreateVarcharParam("@Organizer", this.organizer),
-                        //Utility.CreateVarcharParam("@OrganizerEmail", this.organizerEmail),
-                        //Utility.CreateVarcharParam("@Location", this.location),
-                        //Utility.CreateVarcharParam("@LocationUrl", this.locationUrl),
-                        //Utility.CreateVarcharParam("@InvitationUrl", this.invitationUrl),
-                        //Utility.CreateVarcharParam("@RecapUrl", this.recapUrl),
-                        //Utility.CreateIntegerParam("@RecurrenceParentId", this.recurrenceParentId),
-                        //Utility.CreateVarcharParam("@RecurrenceRule", this.recurrenceRule != null ? this.recurrenceRule.ToString() : null),
-                        //Utility.CreateBitParam("@AllowRegistrations", this.allowRegistrations),
-                        //Utility.CreateBitParam("@isFeatured", this.isFeatured),
-                        //Utility.CreateIntegerParam("@CreatedBy", revisingUser),
-                        //Utility.CreateDateTimeParam("@FinalRecurringEndDate", this.FinalRecurringEndDate),
-                        //Utility.CreateIntegerParam("@Capacity", this.capacity),
-                        //Utility.CreateBitParam("@InDaylightTime", this.inDaylightTime),
-                        //Utility.CreateTextParam("@CapacityMetMessage", this.capacityMetMessage),
-                        //Utility.CreateBitParam("@IsDeleted", this.isDeleted)
-                        );
-            }
-            catch (SystemException de)
-            {
-                throw new DBException("spInsertEvent", de);
-            }
+            this.AppointmentId = AppointmentSqlDataProvider.InsertAppointment(this, revisingUser);
         }
 
         /// <summary>
@@ -568,42 +503,7 @@ namespace Engage.Dnn.Booking
         /// <exception cref="DBException">If an error occurs while going to the database to update the event</exception>
         private void Update(int revisingUser)
         {
-            IDataProvider dp = DataProvider.Instance;
-
-            try
-            {
-                dp.ExecuteNonQuery(
-                        CommandType.StoredProcedure,
-                        dp.NamePrefix + "spUpdateAppointment",
-                        Utility.CreateIntegerParam("@EventId", this.id),
-                        Utility.CreateVarcharParam("@Title", this.title),
-                        Utility.CreateTextParam("@Description", this.description)
-                        ////Utility.CreateDateTimeParam("@EventStart", this.eventStart),
-                        ////Utility.CreateDateTimeParam("@EventEnd", this.eventEnd),
-                        ////Utility.CreateIntegerParam("@TimeZoneOffset", (int)this.timeZoneOffset.TotalMinutes),
-                        ////Utility.CreateVarcharParam("@Organizer", this.organizer),
-                        ////Utility.CreateVarcharParam("@OrganizerEmail", this.organizerEmail),
-                        ////Utility.CreateVarcharParam("@Location", this.location),
-                        ////Utility.CreateVarcharParam("@LocationUrl", this.locationUrl),
-                        ////Utility.CreateVarcharParam("@InvitationUrl", this.invitationUrl),
-                        ////Utility.CreateVarcharParam("@RecapUrl", this.recapUrl),
-                        ////Utility.CreateTextParam("@RecurrenceRule", this.recurrenceRule != null ? this.recurrenceRule.ToString() : null),
-                        ////Utility.CreateIntegerParam("@RecurrenceParentId", this.recurrenceParentId),
-                        ////Utility.CreateBitParam("@AllowRegistrations", this.allowRegistrations),
-                        ////Utility.CreateBitParam("@Canceled", this.canceled),
-                        ////Utility.CreateBitParam("@isFeatured", this.isFeatured),
-                        ////Utility.CreateIntegerParam("@RevisingUser", revisingUser),
-                        ////Utility.CreateDateTimeParam("@FinalRecurringEndDate", this.FinalRecurringEndDate),
-                        ////Utility.CreateIntegerParam("@Capacity", this.capacity),
-                        ////Utility.CreateBitParam("@InDaylightTime", this.inDaylightTime),
-                        ////Utility.CreateTextParam("@CapacityMetMessage", this.capacityMetMessage),
-                        ////Utility.CreateBitParam("@IsDeleted", this.isDeleted)
-                        );
-            }
-            catch (SystemException de)
-            {
-                throw new DBException("spUpdateEvent", de);
-            }
+            AppointmentSqlDataProvider.UpdateAppointment(this, revisingUser);
         }
     }
 }

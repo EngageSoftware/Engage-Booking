@@ -90,75 +90,6 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Gets the occurrence date.
-        /// </summary>
-        /// <value>The date when the event occurs.</value>
-        /// <exception cref="InvalidOperationException">EventStart is not present on QueryString</exception>
-        protected DateTime EventStart
-        {
-            get
-            {
-                if (this.Request.QueryString["start"] != null)
-                {
-                    long startTicks;
-                    if (long.TryParse(this.Request.QueryString["start"], NumberStyles.Integer, CultureInfo.InvariantCulture, out startTicks))
-                    {
-                        return new DateTime(startTicks);
-                    }
-                }
-
-                throw new InvalidOperationException("EventStart is not present on QueryString: " + this.Request.RawUrl);
-            }
-        }
-
-        /// <summary>
-        /// Gets the register URL.
-        /// </summary>
-        /// <value>The register URL.</value>
-        protected string RegisterUrl
-        {
-            get
-            {
-                int? eventId = this.AppointmentId;
-                if (eventId.HasValue)
-                {
-                    return this.BuildLinkUrl(this.ModuleId, "Register", Util.Utility.GetEventParameters(eventId.Value, this.EventStart));
-                }
-
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Gets the Response URL.
-        /// </summary>
-        /// <value>The Response URL.</value>
-        protected string ResponseUrl
-        {
-            get
-            {
-                int? eventId = this.AppointmentId;
-                if (eventId.HasValue)
-                {
-                    return this.BuildLinkUrl(this.ModuleId, "Response", Util.Utility.GetEventParameters(eventId.Value, this.EventStart));
-                }
-
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance should display only featured events.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if this instance should only display featured events; otherwise, <c>false</c>.
-        /// </value>
-        protected bool IsFeatured
-        {
-            get { return Utility.GetBoolSetting(this.Settings, "FeaturedOnly", false); }
-        }
-
-        /// <summary>
         /// Gets a value indicating whether this instance is configured.
         /// </summary>
         /// <value>
@@ -168,10 +99,7 @@ namespace Engage.Dnn.Booking
         {
             get
             {
-                return "CALENDAR".Equals(Utility.GetStringSetting(this.Settings, "DisplayType"), StringComparison.OrdinalIgnoreCase)
-                       ||
-                       (Engage.Utility.HasValue(Utility.GetStringSetting(this.Settings, "Template"))
-                        && Engage.Utility.HasValue(Utility.GetStringSetting(this.Settings, "SingleItemTemplate")));
+                return true;
             }
         }
 
@@ -197,7 +125,7 @@ namespace Engage.Dnn.Booking
             get
             {
                 int index;
-                if (!int.TryParse(this.Request.QueryString["currentPage"], NumberStyles.Integer, CultureInfo.InvariantCulture, out index))
+                if (!int.TryParse(this.Request.QueryString["page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out index))
                 {
                     index = 1;
                 }

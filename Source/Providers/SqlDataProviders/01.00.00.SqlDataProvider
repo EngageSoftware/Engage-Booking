@@ -1,0 +1,312 @@
+﻿IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]', N'U') IS NULL
+BEGIN
+CREATE TABLE {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]
+	(
+		AppointmentTypeId int NOT NULL IDENTITY(1,1) 
+			CONSTRAINT {objectQualifier}PK_EngageBooking_AppointmentType PRIMARY KEY,
+		Name nvarchar(50) NOT NULL,
+		CreationDate datetime NOT NULL DEFAULT GETDATE(),
+		RevisionDate datetime NOT NULL DEFAULT GETDATE(),
+		RevisingUser int NOT NULL
+	)
+END
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_Appointment]', N'U') IS NULL
+BEGIN
+CREATE TABLE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+	(
+	AppointmentId int NOT NULL IDENTITY(1,1) 
+		CONSTRAINT {objectQualifier}PK_EngageBooking_Appointment PRIMARY KEY,
+	AppointmentTypeId int NOT NULL 
+		CONSTRAINT {objectQualifier}FK_EngageBooking_Appointment_EngageBooking_AppointmentType FOREIGN KEY REFERENCES {objectQualifier}EngageBooking_AppointmentType (AppointmentTypeId),
+	ModuleId int NOT NULL,
+	Title nvarchar(50) NOT NULL,
+	Description ntext NULL,
+	Notes ntext NULL,
+	Address1 nvarchar(50) NULL,
+	Address2 nvarchar(50) NULL,
+	City nvarchar(50) NULL,
+	RegionId int NULL,
+	PostalCode nvarchar(50) NULL,
+	Phone nvarchar(50) NULL,
+	AdditionalAddressInfo nvarchar(50) NULL,
+	ContactStreet nvarchar(50) NULL,
+	ContactPhone nvarchar(50) NULL,
+	RequestorName nvarchar(50) NULL,
+	RequestorPhoneType nvarchar(50) NULL,
+	RequestorPhone nvarchar(13) NULL,
+	RequestorEmail nvarchar(100) NULL,
+	RequestorAltPhoneType nvarchar(50) NULL,
+	RequestorAltPhone nvarchar(13) NULL,
+	StartDateTime datetime NOT NULL,
+	EndDateTime datetime NOT NULL,
+	NumberOfParticipants int NOT NULL DEFAULT 0,
+	ParticipantGender nvarchar(25) NULL,
+	ParticipantFlag nchar NOT NULL,
+	ParticipantInstructions ntext NULL,
+	NumberOfSpecialParticipants int NOT NULL DEFAULT 0,
+	Accepted bit NOT NULL DEFAULT 0,
+	CreationDate datetime NOT NULL DEFAULT GETDATE(),
+	RevisionDate datetime NOT NULL DEFAULT GETDATE(),
+	RevisingUser int NOT NULL
+	)
+END
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments](
+	@moduleId int,
+	@sortExpression nvarchar(255) = 'StartDateTime, EndDateTime, Title',
+	@pageSize int,
+	@pageIndex int
+)
+AS
+BEGIN
+	CREATE TABLE #allAppointments
+	(
+		Id int NOT NULL IDENTITY(1,1),
+		AppointmentId int
+	)
+	
+	DECLARE @sql nvarchar(4000)
+	SET @sql =        'INSERT INTO #allAppointments ([AppointmentId]) '
+	SET @sql = @sql + 'SELECT [AppointmentId] '
+	SET @sql = @sql + 'FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment] '
+	SET @sql = @sql + 'WHERE ModuleId = @moduleId '
+	SET @sql = @sql + 'ORDER BY ' + @sortExpression
+
+	EXEC sp_executesql @sql, N'@moduleId int', @moduleId
+	
+	SELECT @@RowCount AS TotalRecords
+
+	IF (@pageSize = 0 OR @pageSize IS NULL OR @pageIndex IS NULL)
+	 	BEGIN
+	 		SELECT a.* FROM #allAppointments aa
+			JOIN {databaseOwner}[{objectQualifier}EngageBooking_Appointment] a on (aa.AppointmentId = a.AppointmentId)
+	 	END
+	ELSE
+	 	BEGIN
+	 		SELECT a.* FROM #allAppointments aa
+			JOIN {databaseOwner}[{objectQualifier}EngageBooking_Appointment] a on (aa.AppointmentId = a.AppointmentId)
+	 		WHERE (aa.AppointmentId >= @pageIndex * @pageSize + 1) AND aa.AppointmentId < (@pageIndex * @pageSize) + @pageSize + 1
+	 	END
+END
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spDeleteAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spDeleteAppointment]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spDeleteAppointment](
+	@appointmentId int
+)
+AS
+BEGIN
+	 DELETE FROM   {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+	 WHERE  AppointmentId = @appointmentId
+END
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spInsertAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spInsertAppointment]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spInsertAppointment]
+(
+   @appointmentTypeId int
+   ,@moduleId int
+   ,@title nvarchar(50)
+   ,@description ntext
+   ,@notes ntext
+   ,@address1 nvarchar(50)
+   ,@address2 nvarchar(50)
+   ,@city nvarchar(50)
+   ,@regionId int
+   ,@postalCode nvarchar(50)
+   ,@phone nvarchar(50)
+   ,@additionalAddressInfo nvarchar(50)
+   ,@contactStreet nvarchar(50)
+   ,@contactPhone nvarchar(50)
+   ,@requestorName nvarchar(50)
+   ,@requestorPhoneType nvarchar(50)
+   ,@requestorPhone nvarchar(13)
+   ,@requestorEmail nvarchar(100)
+   ,@requestorAltPhoneType nvarchar(50)
+   ,@requestorAltPhone nvarchar(13)
+   ,@startDateTime datetime
+   ,@endDateTime datetime
+   ,@numberOfParticipants int
+   ,@participantGender nvarchar(25)
+   ,@participantFlag nchar
+   ,@participantInstructions ntext
+   ,@numberOfSpecialParticipants int
+   ,@accepted bit
+   ,@revisingUser int
+)
+AS
+BEGIN
+
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+           ([AppointmentTypeId]
+           ,[ModuleId]
+           ,[Title]
+           ,[Description]
+           ,[Notes]
+           ,[Address1]
+           ,[Address2]
+           ,[City]
+           ,[RegionId]
+           ,[PostalCode]
+           ,[Phone]
+           ,[AdditionalAddressInfo]
+           ,[ContactStreet]
+           ,[ContactPhone]
+           ,[RequestorName]
+           ,[RequestorPhoneType]
+           ,[RequestorPhone]
+           ,[RequestorEmail]
+           ,[RequestorAltPhoneType]
+           ,[RequestorAltPhone]
+           ,[StartDateTime]
+           ,[EndDateTime]
+           ,[NumberOfParticipants]
+           ,[ParticipantGender]
+           ,[ParticipantFlag]
+           ,[ParticipantInstructions]
+           ,[NumberOfSpecialParticipants]
+           ,[Accepted]
+           ,[CreationDate]
+           ,[RevisionDate]
+           ,[RevisingUser])
+     VALUES
+           (@appointmentTypeId
+           ,@moduleId
+           ,@title
+           ,@description
+           ,@notes
+           ,@address1
+           ,@address2
+           ,@city
+           ,@regionId
+           ,@postalCode
+           ,@phone
+           ,@additionalAddressInfo
+           ,@contactStreet
+           ,@contactPhone
+           ,@requestorName
+           ,@requestorPhoneType
+           ,@requestorPhone
+           ,@requestorEmail
+           ,@requestorAltPhoneType
+           ,@requestorAltPhone
+           ,@startDateTime
+           ,@endDateTime
+           ,@numberOfParticipants
+           ,@participantGender
+           ,@participantFlag
+           ,@participantInstructions
+           ,@numberOfSpecialParticipants
+           ,@accepted
+           ,GETDATE()
+           ,GETDATE()
+           ,@revisingUser)
+
+END
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spUpdateAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spUpdateAppointment]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spUpdateAppointment]
+(
+   @appointmentId int
+   ,@appointmentTypeId int
+   ,@title nvarchar(50)
+   ,@description ntext
+   ,@notes ntext
+   ,@address1 nvarchar(50)
+   ,@address2 nvarchar(50)
+   ,@city nvarchar(50)
+   ,@regionId int
+   ,@postalCode nvarchar(50)
+   ,@phone nvarchar(50)
+   ,@additionalAddressInfo nvarchar(50)
+   ,@contactStreet nvarchar(50)
+   ,@contactPhone nvarchar(50)
+   ,@requestorName nvarchar(50)
+   ,@requestorPhoneType nvarchar(50)
+   ,@requestorPhone nvarchar(13)
+   ,@requestorEmail nvarchar(100)
+   ,@requestorAltPhoneType nvarchar(50)
+   ,@requestorAltPhone nvarchar(13)
+   ,@startDateTime datetime
+   ,@endDateTime datetime
+   ,@numberOfParticipants int
+   ,@participantGender nvarchar(25)
+   ,@participantFlag nchar
+   ,@participantInstructions ntext
+   ,@numberOfSpecialParticipants int
+   ,@accepted bit
+   ,@revisingUser int
+)
+AS
+BEGIN
+
+UPDATE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+SET [AppointmentTypeId] = @appointmentTypeId
+   ,[Title] = @title
+   ,[Description] = @description
+   ,[Notes] = @notes
+   ,[Address1] = @address1
+   ,[Address2] = @address2
+   ,[City] = @city
+   ,[RegionId] = @regionId
+   ,[PostalCode] = @postalCode
+   ,[Phone] = @phone
+   ,[AdditionalAddressInfo] = @additionalAddressInfo
+   ,[ContactStreet] = @contactStreet
+   ,[ContactPhone] = @contactPhone
+   ,[RequestorName] = @requestorName
+   ,[RequestorPhoneType] = @requestorPhoneType
+   ,[RequestorPhone] = @requestorPhone
+   ,[RequestorEmail] = @requestorEmail
+   ,[RequestorAltPhoneType] = @requestorAltPhoneType
+   ,[RequestorAltPhone] = @requestorAltPhone
+   ,[StartDateTime] = @startDateTime
+   ,[EndDateTime] = @endDateTime
+   ,[NumberOfParticipants] = @numberOfParticipants
+   ,[ParticipantGender] = @participantGender
+   ,[ParticipantFlag] = @participantFlag
+   ,[ParticipantInstructions] = @participantInstructions
+   ,[NumberOfSpecialParticipants] = @numberOfSpecialParticipants
+   ,[Accepted] = @accepted
+   ,[RevisionDate] = GETDATE()
+   ,[RevisingUser] = @revisingUser
+WHERE AppointmentId = @appointmentId
+
+END
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointment]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointment]
+(
+   @appointmentId int
+)
+AS
+BEGIN
+
+SELECT AppointmentId, ModuleId, AppointmentTypeId, TItle, Description, Notes,
+	   Address1, Address2, City, PostalCode, Phone, StartDateTime, EndDateTime,
+	   AdditionalAddressInfo, ContactStreet, ContactPhone, RequestorName,
+	   RequestorPhoneType, RequestorPhone, RequestorEmail, RequestorAltPhoneType,
+	   RequestorAltPhone, NumberOfParticipants, NumberOfSpecialParticipants,
+	   ParticipantGender, Accepted, CreationDate, RevisionDate
+FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+WHERE AppointmentId = @appointmentId
+
+END
+GO
+

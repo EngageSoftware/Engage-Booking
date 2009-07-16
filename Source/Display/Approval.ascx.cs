@@ -12,7 +12,6 @@
 namespace Engage.Dnn.Booking.Display
 {
     using System;
-    using System.Globalization;
     using Booking;
     using DotNetNuke.Services.Exceptions;
 
@@ -21,20 +20,6 @@ namespace Engage.Dnn.Booking.Display
     /// </summary>
     public partial class Approval : ModuleBase
     {
-        protected int PageIndex
-        {
-            get
-            {
-                int pageIndex;
-                if (int.TryParse(this.Request.QueryString["page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out pageIndex))
-                {
-                    return pageIndex - 1;
-                }
-
-                return 0;
-            }
-        }
-
         /// <summary>
         /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
         /// </summary>
@@ -86,12 +71,11 @@ namespace Engage.Dnn.Booking.Display
         /// </summary>
         private void BindData()
         {
-            var appointments = AppointmentCollection.Load(this.ModuleId, null, this.PageIndex, this.PagingControl.PageSize);
+            var appointments = AppointmentCollection.Load(this.ModuleId, null, this.CurrentPageIndex, this.PagingControl.PageSize);
             this.AppointmentsGrid.DataSource = appointments;
             this.AppointmentsGrid.DataBind();
 
-            this.PagingControl.CurrentPage = this.PageIndex + 1;
-            this.PagingControl.TotalRecords = appointments.TotalRecords;
+            this.SetupPagingControl(this.PagingControl, appointments.TotalRecords);
         }
     }
 }

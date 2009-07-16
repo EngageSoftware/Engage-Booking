@@ -1,25 +1,28 @@
-/****** Object:  Table [dbo].[dnn_Engage_Appointment]    Script Date: 07/08/2009 10:19:52 ******/
-IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_Appointment]') AND type in (N'U'))
-DROP TABLE {databaseOwner}[{objectQualifier}Engage_Appointment]
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_Appointment]', N'U') IS NOT NULL
+	DROP TABLE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 GO
 
-/****** Object:  Table [dbo].[dnn_Engage_AppointmentType]    Script Date: 07/08/2009 10:20:07 ******/
-IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_AppointmentType]') AND type in (N'U'))
-DROP TABLE {databaseOwner}[{objectQualifier}Engage_AppointmentType]
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]', N'U') IS NOT NULL
+	DROP TABLE {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]
 GO
 
-if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Engage_spGetAppointments]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
-drop procedure {databaseOwner}[{objectQualifier}Engage_spGetAppointments]
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments]
 GO
 
-if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Engage_spDeleteAppointment]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
-drop procedure {databaseOwner}[{objectQualifier}Engage_spDeleteAppointment]
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spDeleteAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spDeleteAppointment]
 GO
 
-if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Engage_spInsertAppointment]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
-drop procedure {databaseOwner}[{objectQualifier}Engage_spInsertAppointment]
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spInsertAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spInsertAppointment]
 GO
 
-if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}Engage_spUpdateAppointment]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
-drop procedure {databaseOwner}[{objectQualifier}Engage_spUpdateAppointment]
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spUpdateAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spUpdateAppointment]
 GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointment]
+GO
+

@@ -143,7 +143,7 @@ namespace Engage.Dnn.Booking.Display
                 EventToolTip toolTip = (EventToolTip)this.LoadControl("EventToolTip.ascx");
 
                 toolTip.ModuleConfiguration = this.ModuleConfiguration;
-                toolTip.SetEvent(appointment);
+                toolTip.SetAppointment(appointment);
                 e.UpdatePanel.ContentTemplateContainer.Controls.Add(toolTip);
             }
         }
@@ -174,9 +174,9 @@ namespace Engage.Dnn.Booking.Display
         private void BindData()
         {
             this.EventsCalendarDisplay.Culture = CultureInfo.CurrentCulture;
-            this.EventsCalendarDisplay.DataSource = Booking.AppointmentCollection.Load(this.PortalId);
+            this.EventsCalendarDisplay.DataSource = Booking.AppointmentCollection.Load(this.ModuleId);
             this.EventsCalendarDisplay.DataEndField = "EndDateTime";
-            this.EventsCalendarDisplay.DataKeyField = "Id";
+            this.EventsCalendarDisplay.DataKeyField = "AppointmentId";
             this.EventsCalendarDisplay.DataStartField = "StartDateTime";
             this.EventsCalendarDisplay.DataSubjectField = "Title";
             this.EventsCalendarDisplay.DataBind();

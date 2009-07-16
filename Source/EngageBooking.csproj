@@ -156,6 +156,8 @@
     <Compile Include="Display\EventToolTip.ascx.designer.cs">
       <DependentUpon>EventToolTip.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Providers\SqlDataProviders\AppointmentSqlDataProvider.cs" />
+    <Compile Include="Providers\SqlDataProviders\SqlDataProvider.cs" />
     <Compile Include="Util\ICalUtil.cs" />
     <Compile Include="Util\TelerikSkin.cs" />
     <Compile Include="Display\WorkflowDisplayOptions.ascx.cs">
@@ -186,13 +188,6 @@
     <Compile Include="Display\AppointmentCalendar.ascx.designer.cs">
       <DependentUpon>AppointmentCalendar.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Register.ascx.cs">
-      <DependentUpon>Register.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Register.ascx.designer.cs">
-      <DependentUpon>Register.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Navigation\GlobalNavigation.ascx.cs">
       <DependentUpon>GlobalNavigation.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -219,7 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="EngageBooking.4.dnn" />
-    <None Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
+    <None Include="Providers\SqlDataProviders\01.00.00.SqlDataProvider" />
     <None Include="Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
@@ -307,7 +302,6 @@
     </Content>
     <Content Include="Images\bt_create_account.gif" />
     <Content Include="Images\bt_login.gif" />
-    <Content Include="Register.ascx" />
     <Content Include="Images\approve.gif" />
     <Content Include="Images\back.gif" />
     <Content Include="Images\cancel.gif" />

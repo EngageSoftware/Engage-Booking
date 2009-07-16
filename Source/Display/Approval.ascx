@@ -7,7 +7,7 @@
     <asp:GridView ID="AppointmentsGrid" runat="server" GridLines="None" AutoGenerateColumns="false"
         CssClass="approval-grid" AlternatingRowStyle-CssClass="alternate" RowStyle-CssClass="row">
         <Columns>
-            <asp:BoundField DataField="Id" DataFormatString="{0:00}" />
+            <asp:BoundField DataField="AppointmentId" DataFormatString="{0:00}" />
             <asp:TemplateField>
                 <HeaderTemplate>
                     <asp:CheckBox runat="server" CssClass="header-checkbox" />
@@ -20,8 +20,8 @@
             <asp:BoundField DataField="StartDateTime" HeaderText="Date and Time" DataFormatString="{0:dddd, MMM dd, yyyy} at {0:h:mm tt}" />
             <asp:TemplateField HeaderText="Actions">
                 <ItemTemplate>
-                    <asp:LinkButton runat="server" CommandName="Accept" CommandArgument='<%#Eval("Id") %>' CssClass="approval-accept-link" ResourceKey="Accept" />
-                    <asp:LinkButton runat="server" CommandName="Decline" CommandArgument='<%#Eval("Id") %>' CssClass="approval-decline-link" ResourceKey="Decline" />
+                    <asp:LinkButton runat="server" CommandName="Accept" CommandArgument='<%#Eval("AppointmentId") %>' CssClass="approval-accept-link" ResourceKey="Accept" />
+                    <asp:LinkButton runat="server" CommandName="Decline" CommandArgument='<%#Eval("AppointmentId") %>' CssClass="approval-decline-link" ResourceKey="Decline" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
