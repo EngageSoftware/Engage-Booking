@@ -43,7 +43,7 @@ CREATE TABLE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 	EndDateTime datetime NOT NULL,
 	NumberOfParticipants int NOT NULL DEFAULT 0,
 	ParticipantGender nvarchar(25) NULL,
-	ParticipantFlag nchar NOT NULL,
+	ParticipantFlag nchar(1) NOT NULL,
 	ParticipantInstructions ntext NULL,
 	NumberOfSpecialParticipants int NOT NULL DEFAULT 0,
 	Accepted bit NOT NULL DEFAULT 0,
@@ -138,7 +138,7 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spInsertAppointm
    ,@endDateTime datetime
    ,@numberOfParticipants int
    ,@participantGender nvarchar(25)
-   ,@participantFlag nchar
+   ,@participantFlag nchar(1)
    ,@participantInstructions ntext
    ,@numberOfSpecialParticipants int
    ,@accepted bit
@@ -244,7 +244,7 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spUpdateAppointm
    ,@endDateTime datetime
    ,@numberOfParticipants int
    ,@participantGender nvarchar(25)
-   ,@participantFlag nchar
+   ,@participantFlag nchar(1)
    ,@participantInstructions ntext
    ,@numberOfSpecialParticipants int
    ,@accepted bit
@@ -298,12 +298,13 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointment
 AS
 BEGIN
 
-SELECT AppointmentId, ModuleId, AppointmentTypeId, TItle, Description, Notes,
-	   Address1, Address2, City, PostalCode, Phone, StartDateTime, EndDateTime,
+SELECT AppointmentId, AppointmentTypeId, ModuleId, Title, Description, Notes,
+	   Address1, Address2, City, RegionId, PostalCode, Phone, 
 	   AdditionalAddressInfo, ContactStreet, ContactPhone, RequestorName,
 	   RequestorPhoneType, RequestorPhone, RequestorEmail, RequestorAltPhoneType,
-	   RequestorAltPhone, NumberOfParticipants, NumberOfSpecialParticipants,
-	   ParticipantGender, Accepted, CreationDate, RevisionDate
+	   RequestorAltPhone, StartDateTime, EndDateTime, 
+	   NumberOfParticipants, NumberOfSpecialParticipants,
+	   ParticipantGender, ParticipantFlag, Accepted, CreationDate, RevisionDate
 FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 WHERE AppointmentId = @appointmentId
 

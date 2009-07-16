@@ -41,6 +41,69 @@ namespace Engage.Dnn.Booking.Display {
         protected global::System.Web.UI.WebControls.GridView AppointmentsGrid;
         
         /// <summary>
+        /// AppointmentDetailsPlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder AppointmentDetailsPlaceHolder;
+        
+        /// <summary>
+        /// DetailDateAndTimeLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DetailDateAndTimeLabel;
+        
+        /// <summary>
+        /// DetailFullNameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DetailFullNameLabel;
+        
+        /// <summary>
+        /// DetailPhoneTypeLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DetailPhoneTypeLabel;
+        
+        /// <summary>
+        /// DetailPhoneNumberLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DetailPhoneNumberLabel;
+        
+        /// <summary>
+        /// DetailNumberOfParticipantsLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DetailNumberOfParticipantsLabel;
+        
+        /// <summary>
+        /// DetailNamesLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DetailNamesLabel;
+        
+        /// <summary>
         /// PagingControl control.
         /// </summary>
         /// <remarks>

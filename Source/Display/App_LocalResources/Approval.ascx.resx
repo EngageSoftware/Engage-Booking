@@ -138,4 +138,7 @@
   <data name="Name.Header" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="NumberOfParticipants.Format.Text" xml:space="preserve">
+    <value>{0:00} including {1:00} deaf participants</value>
+  </data>
 </root>
