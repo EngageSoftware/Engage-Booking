@@ -1,27 +1,22 @@
-﻿IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_AppointmentType]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+﻿IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_AppointmentType]', N'U') IS NULL
 BEGIN
 CREATE TABLE {databaseOwner}[{objectQualifier}Engage_AppointmentType]
 	(
-	AppointmentTypeId [int] NOT NULL IDENTITY(1,1),
-	Name nvarchar(50) NOT NULL,
-	)  ON [PRIMARY]
+		AppointmentTypeId int NOT NULL IDENTITY(1,1) 
+			CONSTRAINT {objectQualifier}PK_Engage_AppointmentType PRIMARY KEY,
+		Name nvarchar(50) NOT NULL,
+	)
 END
 GO
 
-if not exists (select * from dbo.sysobjects where id = object_id(N'[{objectQualifier}PK_Engage_AppointmentType]'))
-ALTER TABLE {databaseOwner}[{objectQualifier}Engage_AppointmentType] ADD CONSTRAINT
-	[{objectQualifier}PK_Engage_AppointmentType] PRIMARY KEY CLUSTERED 
-	(
-	AppointmentTypeId
-	)  ON [PRIMARY]
-GO
-
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_Appointment]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_Appointment]', N'U') IS NULL
 BEGIN
 CREATE TABLE {databaseOwner}[{objectQualifier}Engage_Appointment]
 	(
-	AppointmentId [int] NOT NULL IDENTITY(1,1),
-	AppointmentTypeId int NOT NULL,
+	AppointmentId int NOT NULL IDENTITY(1,1) 
+		CONSTRAINT {objectQualifier}PK_Engage_Appointment PRIMARY KEY,
+	AppointmentTypeId int NOT NULL 
+		CONSTRAINT {objectQualifier}FK_Engage_Appointment_Engage_AppointmentType FOREIGN KEY REFERENCES {objectQualifier}Engage_AppointmentType (AppointmentTypeId),
 	ModuleId int NOT NULL,
 	Title nvarchar(50) NOT NULL,
 	Description ntext NULL,
@@ -51,26 +46,8 @@ CREATE TABLE {databaseOwner}[{objectQualifier}Engage_Appointment]
 	Accepted bit NOT NULL DEFAULT 0,
 	CreationDate DATETIME NOT NULL DEFAULT GETDATE(),
 	RevisionDate DATETIME NOT NULL,
-	)  ON [PRIMARY]
+	)
 END
-GO
-
-ALTER TABLE {databaseOwner}[{objectQualifier}Engage_Appointment] ADD CONSTRAINT
-	[{objectQualifier}PK_Engage_Appointment] PRIMARY KEY CLUSTERED 
-	(
-	AppointmentId
-	) ON [PRIMARY]
-
-GO
-
-ALTER TABLE {databaseOwner}[{objectQualifier}Engage_Appointment] ADD CONSTRAINT
-	[{objectQualifier}FK_Engage_Appointment_Engage_AppointmentType] FOREIGN KEY
-	(
-	AppointmentTypeId
-	) REFERENCES {databaseOwner}[{objectQualifier}Engage_AppointmentType]
-	(
-	AppointmentTypeId
-	) 
 GO
 
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_spGetAppointments]', N'P') IS NOT NULL
@@ -231,7 +208,9 @@ INSERT INTO {databaseOwner}[{objectQualifier}Engage_Appointment]
 END
 GO
 
-
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}Engage_spUpdateAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}Engage_spUpdateAppointment]
+GO
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}Engage_spUpdateAppointment]
 (
    @AppointmentId int
