@@ -39,7 +39,7 @@ namespace Engage.Dnn.Booking
                 if (!this.IsPostBack)
                 {
                     Dnn.Utility.LocalizeGridView(ref this.DetailsDisplayModuleGrid, this.LocalResourceFile);
-                    this.DetailsDisplayModuleGrid.DataSource = new ModuleController().GetModulesByDefinition(this.PortalId, Util.Utility.ModuleDefinitionFriendlyName);
+                    this.DetailsDisplayModuleGrid.DataSource = new ModuleController().GetModulesByDefinition(this.PortalId, Booking.Utility.ModuleDefinitionFriendlyName);
                     this.DetailsDisplayModuleGrid.DataBind();
 
                     this.SetOptions();

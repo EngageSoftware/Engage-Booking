@@ -1,6 +1,6 @@
 <%@ Import Namespace="System.Globalization"%>
 <%@ Import Namespace="Engage.Dnn.Booking"%>
-<%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Display.Approval" CodeBehind="Approval.ascx.cs" %>
+<%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Approval" CodeBehind="Approval.ascx.cs" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
 <div class="approval">

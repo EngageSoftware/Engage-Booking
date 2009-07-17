@@ -36,7 +36,7 @@ namespace Engage.Dnn.Booking
         /// <value>The name of this module's desktop module record in DNN.</value>
         public override string DesktopModuleName
         {
-            get { return Util.Utility.DesktopModuleName; }
+            get { return Booking.Utility.DesktopModuleName; }
         }
 
         /// <summary>

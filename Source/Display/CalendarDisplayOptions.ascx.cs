@@ -9,14 +9,14 @@
 // CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 // DEALINGS IN THE SOFTWARE.
 
-namespace Engage.Dnn.Booking.Display
+namespace Engage.Dnn.Booking
 {
     using System;
     using System.Globalization;
     using System.Web.UI.WebControls;
     using DotNetNuke.Entities.Modules;
     using DotNetNuke.Services.Exceptions;
-    using Util;
+    using Booking;
 
     /// <summary>
     /// The settings page for the calendar display mode.

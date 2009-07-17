@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Engage.Dnn.Booking.Display {
+namespace Engage.Dnn.Booking {
     
     
     public partial class EventToolTip {

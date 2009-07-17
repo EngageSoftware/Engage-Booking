@@ -158,7 +158,6 @@
     </Compile>
     <Compile Include="Providers\SqlDataProviders\AppointmentSqlDataProvider.cs" />
     <Compile Include="Providers\SqlDataProviders\SqlDataProvider.cs" />
-    <Compile Include="Util\ICalUtil.cs" />
     <Compile Include="Util\TelerikSkin.cs" />
     <Compile Include="Display\WorkflowDisplayOptions.ascx.cs">
       <DependentUpon>WorkflowDisplayOptions.ascx</DependentUpon>

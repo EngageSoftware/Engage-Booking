@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Engage.Dnn.Booking.Display {
+namespace Engage.Dnn.Booking {
     
     
     public partial class AppointmentCalendar {
@@ -20,7 +20,7 @@ namespace Engage.Dnn.Booking.Display {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Engage.Dnn.Booking.Display.Approval ApprovalControl;
+        protected global::Engage.Dnn.Booking.Approval ApprovalControl;
         
         /// <summary>
         /// EventsCalendarDisplay control.

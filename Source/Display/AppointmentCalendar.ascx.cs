@@ -9,7 +9,7 @@
 // CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 // DEALINGS IN THE SOFTWARE.
 
-namespace Engage.Dnn.Booking.Display
+namespace Engage.Dnn.Booking
 {
     using System;
     using System.Globalization;
@@ -181,13 +181,13 @@ namespace Engage.Dnn.Booking.Display
             this.EventsCalendarDisplay.DataSubjectField = "Title";
             this.EventsCalendarDisplay.DataBind();
 
-            string skinSetting = Utility.GetStringSetting(this.Settings, Setting.SkinSelection.PropertyName);
+            string skinSetting = Booking.Utility.GetStringSetting(this.Settings, Booking.Setting.SkinSelection.PropertyName);
             if (skinSetting != null)
             {
                 this.EventsCalendarDisplay.Skin = this.EventsCalendarToolTipManager.Skin = skinSetting;
             }
 
-            this.EventsCalendarDisplay.MonthView.VisibleAppointmentsPerDay = Utility.GetIntSetting(this.Settings, Setting.EventsPerDay.PropertyName, 3);
+            this.EventsCalendarDisplay.MonthView.VisibleAppointmentsPerDay = Booking.Utility.GetIntSetting(this.Settings, Booking.Setting.EventsPerDay.PropertyName, 3);
         }
     }
 }

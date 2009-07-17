@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Engage.Dnn.Booking.Navigation {
+namespace Engage.Dnn.Booking {
     
     
     public partial class GlobalNavigation {
