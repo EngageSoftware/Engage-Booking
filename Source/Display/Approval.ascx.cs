@@ -80,6 +80,11 @@ namespace Engage.Dnn.Booking.Display
             ////this.DetailNamesLabel.Text = 
         }
 
+        /// <summary>
+        /// Gets the ID of the <see cref="Appointment"/> represented by the row in the <see cref="AppointmentsGrid"/> with the given <paramref name="rowIndex"/>.
+        /// </summary>
+        /// <param name="rowIndex">Index of the row in the <see cref="AppointmentsGrid"/>.</param>
+        /// <returns>The Appointment ID</returns>
         private int? GetAppointmentIdFromRowIndex(int rowIndex)
         {
             int appointmentId;
@@ -92,6 +97,11 @@ namespace Engage.Dnn.Booking.Display
             return null;
         }
 
+        /// <summary>
+        /// Gets the text for <see cref="DetailNumberOfParticipantsLabel"/>.
+        /// </summary>
+        /// <param name="appointment">The appointment.</param>
+        /// <returns>A formatted string displaying the number of participants compared with the number of special participants</returns>
         private string GetNumberOfParticipantsText(Appointment appointment)
         {
             return string.Format(
