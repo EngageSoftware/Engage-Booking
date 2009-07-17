@@ -28,9 +28,9 @@ namespace Engage.Dnn.Booking
         Default,
 
         /// <summary>
-        /// A skin called Gray
+        /// A skin called Default
         /// </summary>
-        Gray,
+        Forest,
 
         /// <summary>
         /// A skin called Hay
@@ -38,15 +38,14 @@ namespace Engage.Dnn.Booking
         Hay,
 
         /// <summary>
-        /// A skin called Inox
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Inox", Justification = "Inox is the name of the skin and is correctly spelled")]
-        Inox,
-
-        /// <summary>
         /// A skin called Office2007
         /// </summary>
         Office2007,
+
+        /// <summary>
+        /// A skin called Simple, which is very CSS driven, with very few images
+        /// </summary>
+        Simple,
 
         /// <summary>
         /// A skin called Outlook

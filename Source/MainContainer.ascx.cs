@@ -1,5 +1,5 @@
 // <copyright file="MainContainer.ascx.cs" company="Engage Software">
-// Engage: Events - http://www.EngageSoftware.com
+// Engage: Booking
 // Copyright (c) 2004-2009
 // by Engage Software ( http://www.engagesoftware.com )
 // </copyright>
@@ -22,7 +22,7 @@ namespace Engage.Dnn.Booking
     using Framework;
 
     /// <summary>
-    /// The main container that is used by the Engage: Events module.  
+    /// The main container that is used by this module.  
     /// This control is registered with DNN, and is in charge of loading other requested control.
     /// </summary>
     public partial class MainContainer : ModuleBase

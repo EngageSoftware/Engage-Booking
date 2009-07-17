@@ -9,7 +9,7 @@
     var pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
     pageRequestManager.add_beginRequest(function(sender, args) {
         var prm = Sys.WebForms.PageRequestManager.getInstance();
-        if (args.get_postBackElement().id.indexOf('EventsCalendarDisplay') != -1) {
+        if (args.get_postBackElement().id.indexOf('AppointmentsCalendar') != -1) {
             hideActiveToolTip();
         }
     });
@@ -24,7 +24,7 @@
     
     (function($) {
         var newAppointmentUrl = '<%=ClientAPI.GetSafeJSString(NewAppointmentUrlTemplate) %>',
-            radSchedulerId = '<%=EventsCalendarDisplay.ClientID %>',
+            radSchedulerId = '<%=this.AppointmentsCalendar.ClientID %>',
             timeoutValue = null;
         
         function formatDateUrlParameter(date) {
@@ -93,9 +93,9 @@
 <div class="EventCalendar">
     <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <telerik:radscheduler id="EventsCalendarDisplay" runat="server" CssClass="booking-calendar" ReadOnly="True" 
+            <telerik:radscheduler id="AppointmentsCalendar" runat="server" CssClass="booking-calendar" ReadOnly="True" 
                 TimelineView-UserSelectable="False" OverflowBehavior="Expand" ShowAllDayRow="False" />
-            <telerik:radtooltipmanager runat="server" id="EventsCalendarToolTipManager" width="300" height="150"
+            <telerik:radtooltipmanager runat="server" id="CalendarToolTipManager" width="300" height="150"
                 animation="None" position="BottomRight" HideEvent="LeaveTooltip" text="Loading..." AutoTooltipify="false" />
         </ContentTemplate>
     </asp:UpdatePanel>

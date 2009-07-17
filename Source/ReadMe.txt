@@ -3,7 +3,7 @@ from EngageSoftware.com.
 
 For installation instructions and requirements please 
 be sure to check out our Engage: Booking Wiki which can be found at 
-http://www.EngageSoftware.com/Products/Modules/Engage_Events/EventsDocumentation.aspx
+http://www.EngageSoftware.com/Products/Modules/Engage_Booking/BookingDocumentation.aspx
 
 If you purchased the module from EngageSoftware.com your 
 user account is already setup with the proper permissions for 

@@ -14,12 +14,11 @@ namespace Engage.Dnn.Booking
     using System;
     using System.Globalization;
     using System.Web.UI.WebControls;
-    using Booking;
     using DotNetNuke.Services.Exceptions;
     using DotNetNuke.Services.Localization;
 
     /// <summary>
-    /// Control to display the events calendar view
+    /// Displays a list of the <see cref="Appointment"/>s waiting to be approved
     /// </summary>
     public partial class Approval : ModuleBase
     {

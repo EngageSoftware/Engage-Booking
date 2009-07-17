@@ -132,6 +132,9 @@
     </Compile>
     <Compile Include="Appointment.cs" />
     <Compile Include="AppointmentCollection.cs" />
+    <Compile Include="SettingsBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Display\AppointmentRequest.ascx.designer.cs">
       <DependentUpon>AppointmentRequest.ascx</DependentUpon>
     </Compile>
@@ -159,13 +162,6 @@
     <Compile Include="Providers\SqlDataProviders\AppointmentSqlDataProvider.cs" />
     <Compile Include="Providers\SqlDataProviders\SqlDataProvider.cs" />
     <Compile Include="Util\TelerikSkin.cs" />
-    <Compile Include="Display\WorkflowDisplayOptions.ascx.cs">
-      <DependentUpon>WorkflowDisplayOptions.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Display\WorkflowDisplayOptions.ascx.designer.cs">
-      <DependentUpon>WorkflowDisplayOptions.ascx</DependentUpon>
-    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ModuleBase.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -173,13 +169,6 @@
     <Compile Include="Properties\Assemblyinfo.cs" />
     <Compile Include="Components\EmailScheduler.cs" />
     <Compile Include="Components\FeaturesController.cs" />
-    <Compile Include="Display\CalendarDisplayOptions.ascx.cs">
-      <DependentUpon>CalendarDisplayOptions.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Display\CalendarDisplayOptions.ascx.designer.cs">
-      <DependentUpon>CalendarDisplayOptions.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Display\AppointmentCalendar.ascx.cs">
       <DependentUpon>AppointmentCalendar.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -194,7 +183,8 @@
     <Compile Include="Navigation\GlobalNavigation.ascx.designer.cs">
       <DependentUpon>GlobalNavigation.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Setting.cs" />
+    <Compile Include="ModuleSettings.cs">
+    </Compile>
     <Compile Include="MainContainer.ascx.cs">
       <DependentUpon>MainContainer.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -215,14 +205,6 @@
     <None Include="EngageBooking.4.dnn" />
     <None Include="Providers\SqlDataProviders\01.00.00.SqlDataProvider" />
     <None Include="Uninstall.SqlDataProvider" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\ItemPreview.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_LocalResources\PrinterFriendly.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\dn.gif" />
@@ -267,25 +249,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\UserContainer.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\Settings.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Images\vcalendar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\Respond.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\EmailAFriend.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Display\App_LocalResources\AppointmentCalendar.ascx.resx">
@@ -323,7 +290,6 @@
     <Content Include="Images\updatedisabled.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Display\CalendarDisplayOptions.ascx" />
     <Content Include="Display\AppointmentCalendar.ascx" />
     <Content Include="Images\errorSmallIcon.png" />
     <Content Include="Images\greenBody.gif" />
@@ -335,9 +301,6 @@
     <Content Include="Images\successSmallIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\EventEdit.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Images\cancel_disabled.gif" />
     <Content Include="Images\manage_RSVPs.gif" />
     <Content Include="Images\manage_RSVPs_disabled.gif" />
@@ -347,32 +310,13 @@
     <Content Include="Images\save_disabled.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\ResponseSummaryDisplay.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Images\create_another_event.gif" />
     <Content Include="Images\exit.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\ResponseDetail.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\Register.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Images\cancel_go_home.gif" />
     <Content Include="Images\home.gif" />
     <Content Include="Images\home_disabled.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\EmailEdit.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Display\WorkflowDisplayOptions.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controls\ModuleMessage.ascx" />
@@ -407,9 +351,6 @@
     <Content Include="Images\fancy_title_left.png" />
     <Content Include="Images\fancy_title_main.png" />
     <Content Include="Images\fancy_title_right.png" />
-    <Content Include="App_LocalResources\ChooseDisplay.ascx.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Display\App_LocalResources\AppointmentRequest.ascx.resx" />
     <Content Include="References\DotNetNuke.dll" />
     <Content Include="References\DotNetNuke.WebUtility.dll" />
@@ -417,8 +358,6 @@
     <Content Include="References\Engage.Framework.dll" />
     <Content Include="References\Microsoft.ApplicationBlocks.Data.dll" />
     <Content Include="References\Telerik.Web.UI.dll" />
-    <Content Include="Display\App_LocalResources\CalendarDisplayOptions.ascx.resx">
-    </Content>
     <Content Include="Admin\App_LocalResources\LicenseError.ascx.resx">
     </Content>
   </ItemGroup>

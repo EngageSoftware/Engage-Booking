@@ -14,15 +14,12 @@ namespace Engage.Dnn.Booking
     using System;
     using System.Globalization;
     using System.Web.UI;
-    using Booking;
     using DotNetNuke.Services.Exceptions;
     using DotNetNuke.Services.Localization;
     using Telerik.Web.UI;
-    using Setting = Setting;
-    using Utility = Utility;
 
     /// <summary>
-    /// Control to display the events calendar view
+    /// A calendar view of appointments, with optional approval control for editors of the module
     /// </summary>
     public partial class AppointmentCalendar : ModuleBase
     {
@@ -48,13 +45,13 @@ namespace Engage.Dnn.Booking
             base.OnInit(e);
 
             this.Load += this.Page_Load;
-            this.EventsCalendarDisplay.AppointmentCreated += this.EventsCalendarDisplay_AppointmentCreated;
-            this.EventsCalendarDisplay.AppointmentDataBound += this.EventsCalendarDisplay_AppointmentDataBound;
-            this.EventsCalendarToolTipManager.AjaxUpdate += this.EventsCalendarToolTipManager_AjaxUpdate;
+            this.AppointmentsCalendar.AppointmentCreated += this.EventsCalendarDisplay_AppointmentCreated;
+            this.AppointmentsCalendar.AppointmentDataBound += this.EventsCalendarDisplay_AppointmentDataBound;
+            this.CalendarToolTipManager.AjaxUpdate += this.EventsCalendarToolTipManager_AjaxUpdate;
         }
 
         /// <summary>
-        /// Handles the Load event of the Page control.
+        /// Handles the <see cref="Control.Load"/> event of this control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
@@ -88,22 +85,22 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void LocalizeCalendar()
         {
-            this.EventsCalendarDisplay.Localization.HeaderToday = Localization.GetString("HeaderToday.Text", this.LocalResourceFile);
-            this.EventsCalendarDisplay.Localization.HeaderPrevDay = Localization.GetString("HeaderPrevDay.Text", this.LocalResourceFile);
-            this.EventsCalendarDisplay.Localization.HeaderNextDay = Localization.GetString("HeaderNextDay.Text", this.LocalResourceFile);
-            this.EventsCalendarDisplay.Localization.HeaderDay = Localization.GetString("HeaderDay.Text", this.LocalResourceFile);
-            this.EventsCalendarDisplay.Localization.HeaderWeek = Localization.GetString("HeaderWeek.Text", this.LocalResourceFile);
-            this.EventsCalendarDisplay.Localization.HeaderMonth = Localization.GetString("HeaderMonth.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.HeaderToday = Localization.GetString("HeaderToday.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.HeaderPrevDay = Localization.GetString("HeaderPrevDay.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.HeaderNextDay = Localization.GetString("HeaderNextDay.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.HeaderDay = Localization.GetString("HeaderDay.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.HeaderWeek = Localization.GetString("HeaderWeek.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.HeaderMonth = Localization.GetString("HeaderMonth.Text", this.LocalResourceFile);
 
-            this.EventsCalendarDisplay.Localization.AllDay = Localization.GetString("AllDay.Text", this.LocalResourceFile);
-            this.EventsCalendarDisplay.Localization.Show24Hours = Localization.GetString("Show24Hours.Text", this.LocalResourceFile);
-            this.EventsCalendarDisplay.Localization.ShowBusinessHours = Localization.GetString("ShowBusinessHours.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.AllDay = Localization.GetString("AllDay.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.Show24Hours = Localization.GetString("Show24Hours.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.ShowBusinessHours = Localization.GetString("ShowBusinessHours.Text", this.LocalResourceFile);
 
-            this.EventsCalendarDisplay.Localization.ShowMore = Localization.GetString("ShowMore.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.ShowMore = Localization.GetString("ShowMore.Text", this.LocalResourceFile);
         }
 
         /// <summary>
-        /// Handles the AppointmentCreated event of the EventsCalendarDisplay control.
+        /// Handles the <see cref="RadScheduler.AppointmentCreated"/> event of the <see cref="AppointmentCalendar"/> control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="Telerik.Web.UI.AppointmentCreatedEventArgs"/> instance containing the event data.</param>
@@ -113,24 +110,24 @@ namespace Engage.Dnn.Booking
             {
                 foreach (AppointmentControl appointmentControl in e.Appointment.AppointmentControls)
                 {
-                    this.EventsCalendarToolTipManager.TargetControls.Add(appointmentControl.ClientID, e.Appointment.ID.ToString(), true);                    
+                    this.CalendarToolTipManager.TargetControls.Add(appointmentControl.ClientID, e.Appointment.ID.ToString(), true);                    
                 }
             }
         }
 
         /// <summary>
-        /// Handles the AppointmentDataBound event of the EventsCalendarDisplay control.
+        /// Handles the <see cref="RadScheduler.AppointmentDataBound"/> event of the <see cref="AppointmentCalendar"/> control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="Telerik.Web.UI.SchedulerEventArgs"/> instance containing the event data.</param>
         private void EventsCalendarDisplay_AppointmentDataBound(object sender, SchedulerEventArgs e)
         {
-            this.EventsCalendarToolTipManager.TargetControls.Clear();
+            this.CalendarToolTipManager.TargetControls.Clear();
             ScriptManager.RegisterStartupScript(this, typeof(AppointmentCalendar), "HideToolTip", "hideActiveToolTip();", true);
         }
 
         /// <summary>
-        /// Handles the AjaxUpdate event of the EventsCalendarToolTipManager control.
+        /// Handles the <see cref="RadToolTipManager.AjaxUpdate"/> event of the <see cref="CalendarToolTipManager"/> control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="Telerik.Web.UI.ToolTipUpdateEventArgs"/> instance containing the event data.</param>
@@ -139,7 +136,7 @@ namespace Engage.Dnn.Booking
             int eventId;
             if (int.TryParse(e.Value.Split('_')[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out eventId))
             {
-                Booking.Appointment appointment = Booking.Appointment.Load(eventId);
+                Appointment appointment = Appointment.Load(eventId);
                 EventToolTip toolTip = (EventToolTip)this.LoadControl("EventToolTip.ascx");
 
                 toolTip.ModuleConfiguration = this.ModuleConfiguration;
@@ -157,7 +154,7 @@ namespace Engage.Dnn.Booking
         /// </returns>
         private bool IsAppointmentRegisteredForTooltip(Telerik.Web.UI.Appointment apt)
         {
-            foreach (ToolTipTargetControl targetControl in this.EventsCalendarToolTipManager.TargetControls)
+            foreach (ToolTipTargetControl targetControl in this.CalendarToolTipManager.TargetControls)
             {
                 if (targetControl.TargetControlID == apt.ClientID)
                 {
@@ -173,21 +170,16 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void BindData()
         {
-            this.EventsCalendarDisplay.Culture = CultureInfo.CurrentCulture;
-            this.EventsCalendarDisplay.DataSource = Booking.AppointmentCollection.Load(this.ModuleId);
-            this.EventsCalendarDisplay.DataEndField = "EndDateTime";
-            this.EventsCalendarDisplay.DataKeyField = "AppointmentId";
-            this.EventsCalendarDisplay.DataStartField = "StartDateTime";
-            this.EventsCalendarDisplay.DataSubjectField = "Title";
-            this.EventsCalendarDisplay.DataBind();
+            this.AppointmentsCalendar.Culture = CultureInfo.CurrentCulture;
+            this.AppointmentsCalendar.DataSource = AppointmentCollection.Load(this.ModuleId);
+            this.AppointmentsCalendar.DataEndField = "EndDateTime";
+            this.AppointmentsCalendar.DataKeyField = "AppointmentId";
+            this.AppointmentsCalendar.DataStartField = "StartDateTime";
+            this.AppointmentsCalendar.DataSubjectField = "Title";
+            this.AppointmentsCalendar.DataBind();
 
-            string skinSetting = Booking.Utility.GetStringSetting(this.Settings, Booking.Setting.SkinSelection.PropertyName);
-            if (skinSetting != null)
-            {
-                this.EventsCalendarDisplay.Skin = this.EventsCalendarToolTipManager.Skin = skinSetting;
-            }
-
-            this.EventsCalendarDisplay.MonthView.VisibleAppointmentsPerDay = Booking.Utility.GetIntSetting(this.Settings, Booking.Setting.EventsPerDay.PropertyName, 3);
+            this.AppointmentsCalendar.Skin = this.CalendarToolTipManager.Skin = ModuleSettings.CalendarSkin.GetValueAsStringFor(this);
+            this.AppointmentsCalendar.MonthView.VisibleAppointmentsPerDay = ModuleSettings.AppointmentsToDisplayPerDay.GetValueAsInt32For(this).Value;
         }
     }
 }

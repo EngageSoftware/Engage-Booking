@@ -1,6 +1,7 @@
 <%@ Import Namespace="System.Globalization"%>
-<%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Settings" CodeBehind="Settings.ascx.cs" %>
+<%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Settings" CodeBehind="ModuleSettings.ascx.cs" %>
 <%@ Register TagPrefix="dnn" TagName="label" Src="~/controls/labelControl.ascx" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
 <style type="text/css">
     @import url(<%=Engage.Dnn.Framework.ModuleBase.ApplicationUrl %><%=Engage.Dnn.Framework.Utility.GetDesktopModuleFolderName(Engage.Dnn.Booking.Utility.DesktopModuleName) %>Module.css);
@@ -8,37 +9,35 @@
 
 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
     <ContentTemplate>        
-        <asp:PlaceHolder ID="ControlsPlaceholder" runat="server"/>
-        
-        <div class="EventsSetting">
-            <dnn:label ID="FeaturedEventLabel" ResourceKey="FeaturedEventLabel" runat="server" CssClass="SubHead" ControlName="FeaturedCheckBox" />
-            <asp:CheckBox ID="FeaturedCheckBox" runat="server" />
+        <div class="booking-setting">
+            <dnn:label ID="AllowAppointmentRequestsLabel" ResourceKey="AllowAppointmentRequestsLabel" runat="server" CssClass="SubHead" ControlName="AllowAppointmentRequestsCheckBox" />
+            <span>
+                <asp:CheckBox ID="AllowAppointmentRequestsCheckBox" runat="server" />
+            </span>
         </div>
-        <div class="EventsSetting">
-            <dnn:label ResourceKey="DetailsDisplayModuleLabel" runat="server" CssClass="SubHead" />
-            <asp:GridView ID="DetailsDisplayModuleGrid" runat="server" GridLines="None" AutoGenerateColumns="false" CssClass="Normal" UseAccessibleHeader="true">
-                <Columns>
-                    <asp:TemplateField HeaderText="Select">
-                        <ItemTemplate>
-                            <asp:RadioButton ID="DetailsDisplayModuleRadioButton" runat="server" CssClass="Normal" AutoPostBack="true" OnCheckedChanged="DetailsDisplayModuleRadioButton_CheckedChanged"/>
-                            <asp:HiddenField ID="TabModuleIdHiddenField" runat="server" Value='<%#((int)Eval("TabModuleID")).ToString(CultureInfo.InvariantCulture) %>' />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Page Name">
-                        <ItemTemplate>
-                            <%#new TabController().GetTab((int)this.Eval("TabID"), this.PortalId, false).TabName %>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField HeaderText="Tab ID" DataField="TabID"/>
-                    <asp:BoundField HeaderText="Module Title" DataField="ModuleName"/>
-                    <asp:BoundField HeaderText="Module ID" DataField="ModuleID"/>
-                </Columns>
-                <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                <AlternatingRowStyle BackColor="#eeeeee" />
-                <RowStyle BackColor="#f8f8f8" ForeColor="Black" />
-            </asp:GridView>
-            <asp:CustomValidator ID="DetailsDisplayModuleValidator" runat="server" CssClass="NormalRed" ResourceKey="DetailsDisplayModuleValidator" Display="None" />
+        <div class="booking-setting">
+            <dnn:label id="SkinLabel" runat="server" controlname="SkinDropDownList" ResourceKey="SkinLabel" CssClass="SubHead"/>
+            <asp:dropdownlist id="SkinDropDownList" Runat="server" />
         </div>
+        <div class="booking-setting">
+            <dnn:label runat="server" controlname="AppointmentsPerDayTextBox" ResourceKey="AppointmentsPerDayLabel" CssClass="SubHead"/>
+            <span class="NumericTextBoxWrapper">
+                <telerik:radnumerictextbox id="AppointmentsPerDayTextBox" runat="server" maxlength="3" maxvalue="100" minvalue="1" showspinbuttons="True"> 
+                    <NumberFormat AllowRounding="True" DecimalDigits="0"/>
+                </telerik:radnumerictextbox>
+            </span>
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="AppointmentsPerDayTextBox" ResourceKey="AppointmentsPerDayRequiredValidator" CssClass="NormalRed" Display="None" />
+        </div>
+        <div class="booking-setting">
+            <dnn:label ID="PagingLabel" runat="server" ControlName="RecordsPerPageTextBox" ResourceKey="PagingLabel" CssClass="SubHead" />
+            <span class="NumericTextBoxWrapper">
+                <telerik:radnumerictextbox id="RecordsPerPageTextBox" runat="server" maxlength="3" maxvalue="100" minvalue="1" showspinbuttons="True"> 
+                    <NumberFormat AllowRounding="True" DecimalDigits="0"/>
+                </telerik:radnumerictextbox>
+            </span>
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="RecordsPerPageTextBox" ResourceKey="RecordsPerPageRequiredValidator" CssClass="NormalRed" Display="None" />
+        </div>
+
         <asp:ValidationSummary runat="server" ShowMessageBox="false" ShowSummary="true" CssClass="NormalRed" />
     </ContentTemplate>
 </asp:UpdatePanel>

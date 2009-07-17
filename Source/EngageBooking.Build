@@ -218,7 +218,7 @@
     <copy file="${package.directory}/${project.name}_${package.license}_${project.version}_4/${project.name}_${package.license}_${project.version}_DependencySource.zip"
           tofile="${package.directory}/${project.name}_${package.license}_${project.version}_${dnn.version}/${project.name}_${package.license}_${project.version}_DependencySource.zip"/>
   </target>
-  <target name="move-enterprise-packages" description="The enterprise packages for Events are too big, so they need to be unzipped">
+  <target name="move-enterprise-packages" description="The enterprise packages for Booking are too big, so they need to be unzipped">
     <move file="${package.directory}/${project.name}_${package.license}_${project.version}_Install_${dnn.version}.zip" todir="${package.directory}/${project.name}_${package.license}_${project.version}_${dnn.version}/" overwrite="true"/>
     <move file="${package.directory}/${project.name}_${package.license}_${project.version}_Source_${dnn.version}.zip" todir="${package.directory}/${project.name}_${package.license}_${project.version}_${dnn.version}/" overwrite="true"/>
   </target>

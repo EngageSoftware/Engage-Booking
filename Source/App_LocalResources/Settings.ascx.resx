@@ -117,37 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllowAppointmentRequestsLabel.Help" xml:space="preserve">
+    <value>Check this option if you want to allow appointment requests to your calendar.</value>
+  </data>
+  <data name="AllowAppointmentRequestsLabel.Text" xml:space="preserve">
+    <value>Allow users to submit a request for an appointment</value>
+  </data>
+  <data name="AppointmentsPerDayLabel.Help" xml:space="preserve">
+    <value>Choose how many appointments to display in each day of the calendar when it is in month view.  If there are more appointments on that day than can be shown, a "Show more..." link will be displayed which links to the calendar's view for that day.</value>
+  </data>
+  <data name="AppointmentsPerDayLabel.Text" xml:space="preserve">
+    <value>Appointments to display per day</value>
+  </data>
+  <data name="AppointmentsPerDayRequiredValidator.Text" xml:space="preserve">
+    <value>Appointments to display per day is Required</value>
+  </data>
+  <data name="Black.Text" xml:space="preserve">
+    <value>Black</value>
+  </data>
   <data name="ControlTitle_settings.Text" xml:space="preserve">
-    <value>Booking Settings</value>
+    <value>Booking ModuleSettings</value>
   </data>
-  <data name="DetailsDisplayModuleLabel.Help" xml:space="preserve">
-    <value>Choose the Engage: Booking module in which event details should be displayed</value>
+  <data name="Default.Text" xml:space="preserve">
+    <value>Default</value>
   </data>
-  <data name="DetailsDisplayModuleLabel.Text" xml:space="preserve">
-    <value>Event Details Display Module</value>
+  <data name="Forest.Text" xml:space="preserve">
+    <value>Forest</value>
   </data>
-  <data name="DetailsDisplayModuleValidator.Text" xml:space="preserve">
-    <value>You must select an Event Details Display Module</value>
+  <data name="Hay.Text" xml:space="preserve">
+    <value>Hay</value>
   </data>
-  <data name="FeaturedEventLabel.Help" xml:space="preserve">
-    <value>Choose whether this module should display only events marked as featured</value>
+  <data name="Office2007.Text" xml:space="preserve">
+    <value>Office 2007</value>
   </data>
-  <data name="FeaturedEventLabel.Text" xml:space="preserve">
-    <value>Display Featured Events Only</value>
+  <data name="Outlook.Text" xml:space="preserve">
+    <value>Outlook</value>
   </data>
-  <data name="Module ID.Header" xml:space="preserve">
-    <value>Module ID</value>
+  <data name="PagingLabel.Help" xml:space="preserve">
+    <value>The number of appointments to display per page when viewing the approval table</value>
   </data>
-  <data name="Module Title.Header" xml:space="preserve">
-    <value>Module Title</value>
+  <data name="PagingLabel.Text" xml:space="preserve">
+    <value>Appointments per page</value>
   </data>
-  <data name="Page Name.Header" xml:space="preserve">
-    <value>Page Title</value>
+  <data name="RecordsPerPageRequiredValidator.Text" xml:space="preserve">
+    <value>Appointments per page is Required</value>
   </data>
-  <data name="Select.Header" xml:space="preserve">
-    <value> </value>
+  <data name="Simple.Text" xml:space="preserve">
+    <value>Simple</value>
   </data>
-  <data name="Tab ID.Header" xml:space="preserve">
-    <value>Tab ID</value>
+  <data name="SkinLabel.Help" xml:space="preserve">
+    <value>A skin determines the look of the calendar.  It will effect the colors (and, to a smaller degree, the layout) of the calendar, the tooltip, and the date picker.</value>
+  </data>
+  <data name="SkinLabel.Text" xml:space="preserve">
+    <value>Select a calendar skin</value>
+  </data>
+  <data name="Sunset.Text" xml:space="preserve">
+    <value>Sunset</value>
+  </data>
+  <data name="Telerik.Text" xml:space="preserve">
+    <value>Telerik</value>
+  </data>
+  <data name="Vista.Text" xml:space="preserve">
+    <value>Vista</value>
+  </data>
+  <data name="Web20.Text" xml:space="preserve">
+    <value>Web 2.0</value>
+  </data>
+  <data name="WebBlue.Text" xml:space="preserve">
+    <value>Web Blue</value>
   </data>
 </root>

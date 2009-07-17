@@ -132,7 +132,7 @@
   <data name="Responses.Text" xml:space="preserve">
     <value>Responses</value>
   </data>
-  <data name="Settings.Text" xml:space="preserve">
-    <value>Settings</value>
+  <data name="ModuleSettings.Text" xml:space="preserve">
+    <value>ModuleSettings</value>
   </data>
 </root>

@@ -23,22 +23,22 @@ namespace Engage.Dnn.Booking {
         protected global::Engage.Dnn.Booking.Approval ApprovalControl;
         
         /// <summary>
-        /// EventsCalendarDisplay control.
+        /// AppointmentsCalendar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadScheduler EventsCalendarDisplay;
+        protected global::Telerik.Web.UI.RadScheduler AppointmentsCalendar;
         
         /// <summary>
-        /// EventsCalendarToolTipManager control.
+        /// CalendarToolTipManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadToolTipManager EventsCalendarToolTipManager;
+        protected global::Telerik.Web.UI.RadToolTipManager CalendarToolTipManager;
         
         /// <summary>
         /// RequestAppointmentLink control.
