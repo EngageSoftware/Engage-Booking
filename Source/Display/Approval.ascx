@@ -41,7 +41,7 @@
                 <asp:Label runat="server" CssClass="approval-detail-value-label" ResourceKey="Number" /> <asp:Label ID="DetailPhoneNumberLabel" runat="server" CssClass="approval-detail-value" />
         </fieldset>
         <fieldset>
-            <legend><asp:Label runat="server" ResourceKey="Special Participants" /></legend>
+            <legend><%=this.Localize("Special Participants") %></legend>
             <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Total Number of Participants" /> <asp:Label ID="DetailNumberOfParticipantsLabel" runat="server" CssClass="approval-detail-value" />
             <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Names" /> <asp:Label ID="DetailNamesLabel" runat="server" CssClass="approval-detail-value" Text="We don't keep track of this field..." />
         </fieldset>
