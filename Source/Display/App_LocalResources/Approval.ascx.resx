@@ -129,16 +129,51 @@
   <data name="Date and Time.Header" xml:space="preserve">
     <value>Date and Time</value>
   </data>
+  <data name="Date and Time.Text" xml:space="preserve">
+    <value>Date and Time: </value>
+  </data>
+  <data name="DateAndTime.Format.Text" xml:space="preserve">
+    <value>{0:dddd, MMM dd, yyyy} at {0:h:mm tt}</value>
+    <comment>{0} is start date and time</comment>
+  </data>
   <data name="Decline Selected Items.Text" xml:space="preserve">
     <value>Decline Selected Items</value>
   </data>
   <data name="Decline.Text" xml:space="preserve">
     <value>Decline</value>
   </data>
+  <data name="DetailDateAndTime.Format.Text" xml:space="preserve">
+    <value>{0:ddd, MMM dd, yyyy} at {0:h:mm tt}</value>
+    <comment>{0} is start date and time
+{1} is end date and time</comment>
+  </data>
+  <data name="Full Name.Text" xml:space="preserve">
+    <value>Full Name: </value>
+  </data>
   <data name="Name.Header" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="Names.Text" xml:space="preserve">
+    <value>Names: </value>
+  </data>
+  <data name="Number.Text" xml:space="preserve">
+    <value>Number: </value>
+  </data>
   <data name="NumberOfParticipants.Format.Text" xml:space="preserve">
     <value>{0:00} including {1:00} deaf participants</value>
+    <comment>{0} is total number of participants
+{1} is number of special participants</comment>
+  </data>
+  <data name="Phone.Text" xml:space="preserve">
+    <value>Phone: </value>
+  </data>
+  <data name="Special Participants.Text" xml:space="preserve">
+    <value>Deaf Participant(s)</value>
+  </data>
+  <data name="Total Number of Participants.Text" xml:space="preserve">
+    <value>Total Number of Participants: </value>
+  </data>
+  <data name="Type.Text" xml:space="preserve">
+    <value>Type: </value>
   </data>
 </root>

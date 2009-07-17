@@ -44,11 +44,29 @@ namespace Engage.Dnn.Booking.Display
             try
             {
                 this.SetupSelectAllPlugin();
+                this.LocalizeGrid();
                 this.BindData();
             }
             catch (Exception exc)
             {
                 Exceptions.ProcessModuleLoadException(this, exc);
+            }
+        }
+
+        /// <summary>
+        /// Localizes the <see cref="AppointmentsGrid"/>.
+        /// </summary>
+        private void LocalizeGrid()
+        {
+            if (!this.IsPostBack)
+            {
+                Localization.LocalizeGridView(ref this.AppointmentsGrid, this.LocalResourceFile);
+
+                var startDateField = this.AppointmentsGrid.Columns[3] as BoundField;
+                if (startDateField != null)
+                {
+                    startDateField.DataFormatString = Localization.GetString("DateAndTime.Format.Text", this.LocalResourceFile);
+                }
             }
         }
 
@@ -72,7 +90,20 @@ namespace Engage.Dnn.Booking.Display
             }
 
             this.AppointmentDetailsPlaceHolder.Visible = true;
-            this.DetailDateAndTimeLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:ddd, MMM dd, yyyy} at {0:h:mm tt}", appointment.StartDateTime);
+            this.FillDetailSection(appointment);
+        }
+
+        /// <summary>
+        /// Fills the controls in <see cref="AppointmentDetailsPlaceHolder"/> with the information about the given <paramref name="appointment"/>.
+        /// </summary>
+        /// <param name="appointment">The appointment.</param>
+        private void FillDetailSection(Appointment appointment)
+        {
+            this.DetailDateAndTimeLabel.Text = string.Format(
+                    CultureInfo.CurrentCulture,
+                    Localization.GetString("DetailDateAndTime.Format.Text", this.LocalResourceFile),
+                    appointment.StartDateTime,
+                    appointment.EndDateTime);
             this.DetailFullNameLabel.Text = appointment.RequestorName;
             this.DetailPhoneTypeLabel.Text = appointment.RequestorPhoneType;
             this.DetailPhoneNumberLabel.Text = appointment.RequestorPhone;
