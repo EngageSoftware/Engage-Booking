@@ -43,14 +43,14 @@ namespace Engage.Dnn.Booking
         Office2007,
 
         /// <summary>
-        /// A skin called Simple, which is very CSS driven, with very few images
-        /// </summary>
-        Simple,
-
-        /// <summary>
         /// A skin called Outlook
         /// </summary>
         Outlook,
+
+        /// <summary>
+        /// A skin called Simple, which is very CSS driven, with very few images
+        /// </summary>
+        Simple,
 
         /// <summary>
         /// A skin called Sunset

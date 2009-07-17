@@ -165,6 +165,8 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void BindData()
         {
+            this.PagingControl.PageSize = ModuleSettings.AppointmentsPerPage.GetValueAsInt32For(this).Value;
+
             var appointments = AppointmentCollection.Load(this.ModuleId, null, this.CurrentPageIndex - 1, this.PagingControl.PageSize);
             this.AppointmentsGrid.DataSource = appointments;
             this.AppointmentsGrid.DataBind();

@@ -47,5 +47,5 @@
         </fieldset>
     </asp:PlaceHolder>
             
-    <dnn:PagingControl ID="PagingControl" runat="server" PageSize="10" CssClass="approval-paging"/>
+    <dnn:PagingControl ID="PagingControl" runat="server" CssClass="approval-paging"/>
 </div>
