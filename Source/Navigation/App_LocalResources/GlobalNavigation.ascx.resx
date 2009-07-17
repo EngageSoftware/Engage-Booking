@@ -120,19 +120,10 @@
   <data name="Add Appointment.Text" xml:space="preserve">
     <value>Add Appointment</value>
   </data>
-  <data name="Choose Display.Text" xml:space="preserve">
-    <value>Choose Display</value>
-  </data>
   <data name="Home.Text" xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="Manage Appointments.Text" xml:space="preserve">
-    <value>Manage Appointments</value>
-  </data>
-  <data name="Responses.Text" xml:space="preserve">
-    <value>Responses</value>
-  </data>
-  <data name="ModuleSettings.Text" xml:space="preserve">
-    <value>ModuleSettings</value>
+  <data name="Setting.Text" xml:space="preserve">
+    <value>Settings</value>
   </data>
 </root>

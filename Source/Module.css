@@ -33,9 +33,9 @@
 
 /* event edit page */
 
-.AdminButtons{text-align: left;}
+.approval-nav{text-align: left;}
 
-	.AdminButtons a img{padding: 0 6px 0 0;}
+	.approval-nav a img{padding: 0 6px 0 0;}
 	.FooterButtons {padding-top: 3%; }
 	.AddEventSuccessMessage {padding-left: 10%; }
 	.AddNewEvent {padding-top: 2%; width: 100%; height: 100%;}
