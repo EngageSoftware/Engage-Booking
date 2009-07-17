@@ -67,7 +67,7 @@ AS
 BEGIN
 	CREATE TABLE #allAppointments
 	(
-		Id int NOT NULL IDENTITY(1,1),
+		RowIndex int NOT NULL IDENTITY(1,1),
 		AppointmentId int
 	)
 	
@@ -91,7 +91,7 @@ BEGIN
 	 	BEGIN
 	 		SELECT a.* FROM #allAppointments aa
 			JOIN {databaseOwner}[{objectQualifier}EngageBooking_Appointment] a on (aa.AppointmentId = a.AppointmentId)
-	 		WHERE (aa.AppointmentId >= @pageIndex * @pageSize + 1) AND aa.AppointmentId < (@pageIndex * @pageSize) + @pageSize + 1
+	 		WHERE (aa.RowIndex >= @pageIndex * @pageSize + 1) AND aa.RowIndex < (@pageIndex * @pageSize) + @pageSize + 1
 	 	END
 END
 GO
