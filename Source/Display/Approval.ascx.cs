@@ -46,6 +46,7 @@ namespace Engage.Dnn.Booking.Display
                 this.SetupSelectAllPlugin();
                 this.LocalizeGrid();
                 this.BindData();
+                this.AppointmentsGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
             catch (Exception exc)
             {
@@ -149,7 +150,7 @@ namespace Engage.Dnn.Booking.Display
         {
             const string SelectAllCheckBoxCssClass = "header-checkbox";
             const string CheckBoxesCssClass = "select-checkbox";
-            string initScriptKey = string.Format("SelectAllPlugin {0} : {1}", SelectAllCheckBoxCssClass, CheckBoxesCssClass);
+            string initScriptKey = string.Format(CultureInfo.InvariantCulture, "SelectAllPlugin {0} : {1}", SelectAllCheckBoxCssClass, CheckBoxesCssClass);
 
             this.AddJQueryReference();
             this.Page.ClientScript.RegisterClientScriptResource(typeof(Approval), "Engage.Dnn.Booking.JavaScript.SelectAllPlugin.js");

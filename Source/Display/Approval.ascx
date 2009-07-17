@@ -7,7 +7,7 @@
     <asp:LinkButton ID="AcceptItemsButton" runat="server" CssClass="approval-accept-link' ResourceKey="Accept Selected Items" />
     <asp:LinkButton ID="DeclineItemsButton" runat="server" CssClass="approval-decline-link' ResourceKey="Decline Selected Items" />
     <asp:GridView ID="AppointmentsGrid" runat="server" GridLines="None" AutoGenerateColumns="false"
-        CssClass="approval-grid" AlternatingRowStyle-CssClass="alternate" RowStyle-CssClass="row" SelectedRowStyle-CssClass="selected">
+        CssClass="approval-grid" AlternatingRowStyle-CssClass="alternate" SelectedRowStyle-CssClass="selected">
         <Columns>
             <asp:BoundField DataField="AppointmentId" DataFormatString="{0:00}" />
             <asp:TemplateField>
