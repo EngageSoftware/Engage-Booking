@@ -373,7 +373,7 @@ namespace Engage.Dnn.Booking
         /// <c>true</c> if this instance is accepted; otherwise, <c>false</c>.
         /// </value>
         [XmlElement(Order = 27)]
-        public bool IsAccepted
+        public bool? IsAccepted
         {
             get; 
             set;
@@ -415,6 +415,26 @@ namespace Engage.Dnn.Booking
         public static void Delete(int id)
         {
             AppointmentSqlDataProvider.DeleteAppointment(id);
+        }
+
+        /// <summary>
+        /// Accepts the <see cref="Appointment"/> with the given <paramref name="appointmentId"/>.
+        /// </summary>
+        /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to accept.</param>
+        /// <param name="revisingUserId">The ID of the user accepting the <see cref="Appointment"/>.</param>
+        public static void Accept(int appointmentId, int revisingUserId)
+        {
+            AppointmentSqlDataProvider.SetAppointmentAcceptance(appointmentId, true, revisingUserId);
+        }
+
+        /// <summary>
+        /// Declines the <see cref="Appointment"/> with the given <paramref name="appointmentId"/>.
+        /// </summary>
+        /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to decline.</param>
+        /// <param name="revisingUserId">The ID of the user declining the <see cref="Appointment"/>.</param>
+        public static void Decline(int appointmentId, int revisingUserId)
+        {
+            AppointmentSqlDataProvider.SetAppointmentAcceptance(appointmentId, false, revisingUserId);
         }
 
         #region IEditableObject Members
@@ -494,7 +514,7 @@ namespace Engage.Dnn.Booking
             appointment.NumberOfSpecialParticipants = (int)appointmentRecord["NumberOfSpecialParticipants"];
             appointment.ParticipantGender = appointmentRecord["ParticipantGender"].ToString();
             appointment.ParticipantFlag = appointmentRecord["ParticipantFlag"].ToString()[0];
-            appointment.IsAccepted = (bool)appointmentRecord["Accepted"];
+            appointment.IsAccepted = appointmentRecord["IsAccepted"] as bool?;
 
             return appointment;
         }
@@ -502,11 +522,11 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// Inserts this event.
         /// </summary>
-        /// <param name="revisingUser">The user who is inserting this event.</param>
+        /// <param name="revisingUserId">The user who is inserting this event.</param>
         /// <exception cref="DBException">If an error occurs while going to the database to insert the event</exception>
-        private void Insert(int revisingUser)
+        private void Insert(int revisingUserId)
         {
-            this.AppointmentId = AppointmentSqlDataProvider.InsertAppointment(this, revisingUser);
+            this.AppointmentId = AppointmentSqlDataProvider.InsertAppointment(this, revisingUserId);
         }
 
         /// <summary>

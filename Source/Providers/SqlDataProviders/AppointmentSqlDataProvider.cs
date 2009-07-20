@@ -63,9 +63,9 @@ namespace Engage.Dnn.Booking
         /// Inserts the given <paramref name="appointment"/> into the ol' database.
         /// </summary>
         /// <param name="appointment">The appointment to insert.</param>
-        /// <param name="revisingUser">The ID of the user inserting.</param>
+        /// <param name="revisingUserId">The ID of the user inserting.</param>
         /// <returns>The ID of the new appointment record</returns>
-        public static int InsertAppointment(Appointment appointment, int revisingUser)
+        public static int InsertAppointment(Appointment appointment, int revisingUserId)
         {
             return (int)SqlDataProvider.Instance.ExecuteScalar(
                 "InsertAppointment",
@@ -96,16 +96,16 @@ namespace Engage.Dnn.Booking
                 Engage.Utility.CreateCharParam("@participantFlag", appointment.ParticipantFlag.ToString()),
                 Engage.Utility.CreateTextParam("@participantInstructions", appointment.ParticipantInstructions),
                 Engage.Utility.CreateIntegerParam("@numberOfSpecialParticipants", appointment.NumberOfSpecialParticipants),
-                Engage.Utility.CreateBitParam("@accepted", appointment.IsAccepted),
-                Engage.Utility.CreateIntegerParam("@revisingUser", revisingUser));
+                Engage.Utility.CreateBitParam("@isAccepted", appointment.IsAccepted),
+                Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
         }
 
         /// <summary>
         /// Updates the given <paramref name="appointment"/>'s record.
         /// </summary>
         /// <param name="appointment">The appointment to update.</param>
-        /// <param name="revisingUser">The ID of the user making this update.</param>
-        public static void UpdateAppointment(Appointment appointment, int revisingUser)
+        /// <param name="revisingUserId">The ID of the user making this update.</param>
+        public static void UpdateAppointment(Appointment appointment, int revisingUserId)
         {
             SqlDataProvider.Instance.ExecuteNonQuery(
                 "UpdateAppointment",
@@ -136,8 +136,23 @@ namespace Engage.Dnn.Booking
                 Engage.Utility.CreateCharParam("@participantFlag", appointment.ParticipantFlag.ToString()),
                 Engage.Utility.CreateTextParam("@participantInstructions", appointment.ParticipantInstructions),
                 Engage.Utility.CreateIntegerParam("@numberOfSpecialParticipants", appointment.NumberOfSpecialParticipants),
-                Engage.Utility.CreateBitParam("@accepted", appointment.IsAccepted),
-                Engage.Utility.CreateIntegerParam("@revisingUser", revisingUser));
+                Engage.Utility.CreateBitParam("@isAccepted", appointment.IsAccepted),
+                Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
+        }
+
+        /// <summary>
+        /// Accepts or declines the <see cref="Appointment"/> with the given <paramref name="appointmentId"/>.
+        /// </summary>
+        /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to accept or decline.</param>
+        /// <param name="isAccepted">if set to <c>true</c> accept the <see cref="Appointment"/>, otherwise decline it.</param>
+        /// <param name="revisingUserId">The ID of the user setting the acceptance the <see cref="Appointment"/>.</param>
+        public static void SetAppointmentAcceptance(int appointmentId, bool isAccepted, int revisingUserId)
+        {
+            SqlDataProvider.Instance.ExecuteNonQuery(
+                "SetAppointmentAcceptance",
+                Engage.Utility.CreateIntegerParam("@appointmentId", appointmentId),
+                Engage.Utility.CreateBitParam("@isAccepted", isAccepted),
+                Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
         }
     }
 }

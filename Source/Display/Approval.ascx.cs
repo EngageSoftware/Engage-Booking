@@ -30,7 +30,25 @@ namespace Engage.Dnn.Booking
         {
             base.OnInit(e);
             this.Load += this.Page_Load;
+            this.AppointmentsGrid.RowCommand += this.AppointmentsGrid_RowCommand;
             this.AppointmentsGrid.SelectedIndexChanging += this.AppointmentsGrid_SelectedIndexChanging;
+        }
+
+        /// <summary>
+        /// Localizes the <see cref="AppointmentsGrid"/>.
+        /// </summary>
+        private void LocalizeGrid()
+        {
+            if (!this.IsPostBack)
+            {
+                Localization.LocalizeGridView(ref this.AppointmentsGrid, this.LocalResourceFile);
+
+                var startDateField = this.AppointmentsGrid.Columns[3] as BoundField;
+                if (startDateField != null)
+                {
+                    startDateField.DataFormatString = Localization.GetString("DateAndTime.Format.Text", this.LocalResourceFile);
+                }
+            }
         }
 
         /// <summary>
@@ -54,19 +72,21 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Localizes the <see cref="AppointmentsGrid"/>.
+        /// Handles the <see cref="GridView.RowCommand"/> event of the <see cref="AppointmentsGrid"/> control.
         /// </summary>
-        private void LocalizeGrid()
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Web.UI.WebControls.GridViewCommandEventArgs"/> instance containing the event data.</param>
+        private void AppointmentsGrid_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (!this.IsPostBack)
+            int appointmentId = int.Parse((string)e.CommandArgument, NumberStyles.Integer, CultureInfo.InvariantCulture);
+            switch (e.CommandName)
             {
-                Localization.LocalizeGridView(ref this.AppointmentsGrid, this.LocalResourceFile);
-
-                var startDateField = this.AppointmentsGrid.Columns[3] as BoundField;
-                if (startDateField != null)
-                {
-                    startDateField.DataFormatString = Localization.GetString("DateAndTime.Format.Text", this.LocalResourceFile);
-                }
+                case "Accept":
+                    Appointment.Accept(appointmentId, this.UserId);
+                    break;
+                case "Decline":
+                    Appointment.Decline(appointmentId, this.UserId);
+                    break;
             }
         }
 

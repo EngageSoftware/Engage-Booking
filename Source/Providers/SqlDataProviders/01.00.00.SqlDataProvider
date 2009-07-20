@@ -46,7 +46,7 @@ CREATE TABLE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 	ParticipantFlag nchar(1) NOT NULL,
 	ParticipantInstructions ntext NULL,
 	NumberOfSpecialParticipants int NOT NULL DEFAULT 0,
-	Accepted bit NOT NULL DEFAULT 0,
+	IsAccepted bit NULL,
 	CreationDate datetime NOT NULL DEFAULT GETDATE(),
 	RevisionDate datetime NOT NULL DEFAULT GETDATE(),
 	RevisingUser int NOT NULL
@@ -141,7 +141,7 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spInsertAppointm
    ,@participantFlag nchar(1)
    ,@participantInstructions ntext
    ,@numberOfSpecialParticipants int
-   ,@accepted bit
+   ,@isAccepted bit
    ,@revisingUser int
 )
 AS
@@ -175,7 +175,7 @@ INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
            ,[ParticipantFlag]
            ,[ParticipantInstructions]
            ,[NumberOfSpecialParticipants]
-           ,[Accepted]
+           ,[IsAccepted]
            ,[CreationDate]
            ,[RevisionDate]
            ,[RevisingUser])
@@ -207,7 +207,7 @@ INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
            ,@participantFlag
            ,@participantInstructions
            ,@numberOfSpecialParticipants
-           ,@accepted
+           ,@isAccepted
            ,GETDATE()
            ,GETDATE()
            ,@revisingUser)
@@ -247,7 +247,7 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spUpdateAppointm
    ,@participantFlag nchar(1)
    ,@participantInstructions ntext
    ,@numberOfSpecialParticipants int
-   ,@accepted bit
+   ,@isAccepted bit
    ,@revisingUser int
 )
 AS
@@ -280,7 +280,7 @@ SET [AppointmentTypeId] = @appointmentTypeId
    ,[ParticipantFlag] = @participantFlag
    ,[ParticipantInstructions] = @participantInstructions
    ,[NumberOfSpecialParticipants] = @numberOfSpecialParticipants
-   ,[Accepted] = @accepted
+   ,[IsAccepted] = @isAccepted
    ,[RevisionDate] = GETDATE()
    ,[RevisingUser] = @revisingUser
 WHERE AppointmentId = @appointmentId
@@ -304,7 +304,7 @@ SELECT AppointmentId, AppointmentTypeId, ModuleId, Title, Description, Notes,
 	   RequestorPhoneType, RequestorPhone, RequestorEmail, RequestorAltPhoneType,
 	   RequestorAltPhone, StartDateTime, EndDateTime, 
 	   NumberOfParticipants, NumberOfSpecialParticipants,
-	   ParticipantGender, ParticipantFlag, Accepted, CreationDate, RevisionDate
+	   ParticipantGender, ParticipantFlag, IsAccepted, CreationDate, RevisionDate
 FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 WHERE AppointmentId = @appointmentId
 
