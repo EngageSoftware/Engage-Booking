@@ -13,6 +13,7 @@ namespace Engage.Dnn.Booking
 {
     using System;
     using System.Globalization;
+    using System.Web.UI;
     using System.Web.UI.WebControls;
     using DotNetNuke.Services.Exceptions;
     using DotNetNuke.Services.Localization;
@@ -32,6 +33,8 @@ namespace Engage.Dnn.Booking
             this.Load += this.Page_Load;
             this.AppointmentsGrid.RowCommand += this.AppointmentsGrid_RowCommand;
             this.AppointmentsGrid.SelectedIndexChanging += this.AppointmentsGrid_SelectedIndexChanging;
+            this.AcceptAppointmentsButton.Click += this.AcceptAppointmentsButton_Click;
+            this.DeclineAppointmentsButton.Click += this.DeclineAppointmentsButton_Click;
         }
 
         /// <summary>
@@ -62,7 +65,10 @@ namespace Engage.Dnn.Booking
             {
                 this.SetupSelectAllPlugin();
                 this.LocalizeGrid();
-                this.BindData();
+                if (!this.IsPostBack)
+                {
+                    this.BindData();
+                }
             }
             catch (Exception exc)
             {
@@ -112,6 +118,54 @@ namespace Engage.Dnn.Booking
 
             this.AppointmentDetailsPlaceHolder.Visible = true;
             this.FillDetailSection(appointment);
+        }
+
+        /// <summary>
+        /// Handles the <see cref="Button.Click"/> event of the <see cref="AcceptAppointmentsButton"/> control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void AcceptAppointmentsButton_Click(object sender, EventArgs e)
+        {
+            this.SetAcceptanceForSelectedRows(true);
+        }
+
+        /// <summary>
+        /// Handles the <see cref="Button.Click"/> event of the <see cref="DeclineAppointmentsButton"/> control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void DeclineAppointmentsButton_Click(object sender, EventArgs e)
+        {
+            this.SetAcceptanceForSelectedRows(false);
+        }
+
+        /// <summary>
+        /// Sets the <see cref="Appointment.IsAccepted"/> field to <paramref name="accept"/> for the selected rows in <see cref="AppointmentsGrid"/>.
+        /// </summary>
+        /// <param name="accept">if set to <c>true</c>, accept the selected Appointments, otherwise decline them.</param>
+        private void SetAcceptanceForSelectedRows(bool accept)
+        {
+            foreach (GridViewRow row in this.AppointmentsGrid.Rows)
+            {
+                var selectionCheckBox = (CheckBox)row.FindControl("SelectionCheckBox");
+                if (selectionCheckBox.Checked)
+                {
+                    var appointmentIdHiddenField = (HiddenField)row.FindControl("AppointmentIdHiddenField");
+                    int appointmentId = int.Parse(appointmentIdHiddenField.Value, NumberStyles.Integer, CultureInfo.InvariantCulture);
+
+                    if (accept)
+                    {
+                        Appointment.Accept(appointmentId, this.UserId);
+                    }
+                    else
+                    {
+                        Appointment.Decline(appointmentId, this.UserId);
+                    }
+                }
+            }
+
+            this.BindData();
         }
 
         /// <summary>
@@ -173,8 +227,9 @@ namespace Engage.Dnn.Booking
             string initScriptKey = string.Format(CultureInfo.InvariantCulture, "SelectAllPlugin {0} : {1}", SelectAllCheckBoxCssClass, CheckBoxesCssClass);
 
             this.AddJQueryReference();
-            this.Page.ClientScript.RegisterClientScriptResource(typeof(Approval), "Engage.Dnn.Booking.JavaScript.SelectAllPlugin.js");
-            this.Page.ClientScript.RegisterStartupScript(
+            ScriptManager.RegisterClientScriptResource(this, typeof(Approval), "Engage.Dnn.Booking.JavaScript.SelectAllPlugin.js");
+            ScriptManager.RegisterStartupScript(
+                    this,
                     typeof(Approval),
                     initScriptKey,
                     "jQuery(function($) { $('." + SelectAllCheckBoxCssClass + "').selectAll($('." + CheckBoxesCssClass + "')); });",

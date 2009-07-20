@@ -14,22 +14,22 @@ namespace Engage.Dnn.Booking {
     public partial class Approval {
         
         /// <summary>
-        /// AcceptItemsButton control.
+        /// AcceptAppointmentsButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton AcceptItemsButton;
+        protected global::System.Web.UI.WebControls.LinkButton AcceptAppointmentsButton;
         
         /// <summary>
-        /// DeclineItemsButton control.
+        /// DeclineAppointmentsButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton DeclineItemsButton;
+        protected global::System.Web.UI.WebControls.LinkButton DeclineAppointmentsButton;
         
         /// <summary>
         /// AppointmentsGrid control.
