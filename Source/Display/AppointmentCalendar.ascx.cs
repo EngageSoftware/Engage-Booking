@@ -171,7 +171,7 @@ namespace Engage.Dnn.Booking
         private void BindData()
         {
             this.AppointmentsCalendar.Culture = CultureInfo.CurrentCulture;
-            this.AppointmentsCalendar.DataSource = AppointmentCollection.Load(this.ModuleId);
+            this.AppointmentsCalendar.DataSource = AppointmentCollection.Load(this.ModuleId, true);
             this.AppointmentsCalendar.DataEndField = "EndDateTime";
             this.AppointmentsCalendar.DataKeyField = "AppointmentId";
             this.AppointmentsCalendar.DataStartField = "StartDateTime";

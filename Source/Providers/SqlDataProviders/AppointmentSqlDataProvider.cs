@@ -33,8 +33,37 @@ namespace Engage.Dnn.Booking
         public static IDataReader GetAppointments(int moduleId, string sortExpression, int? pageSize, int? pageIndex)
         {
             return SqlDataProvider.Instance.ExecuteReader(
+                    "GetAllAppointments",
+                    Engage.Utility.CreateIntegerParam("@moduleId", moduleId),
+                    sortExpression != null ? Engage.Utility.CreateVarcharParam("@sortExpression", sortExpression) : null,
+                    Engage.Utility.CreateIntegerParam("@pageSize", pageSize),
+                    Engage.Utility.CreateIntegerParam("@pageIndex", pageIndex));
+        }
+
+        /// <summary>
+        /// Gets a page of the appointments for a given <paramref name="moduleId"/>.
+        /// </summary>
+        /// <param name="moduleId">The ID of the module to which the appointments belong.</param>
+        /// <param name="isAccepted">
+        /// <c>true</c> to retrieve only accepted appointments, 
+        /// <c>false</c> to retrieve only declines appointments, 
+        /// or <c>null</c> to retrieve only those appointments which have been neither accepted nor declined.
+        /// Use <see cref="GetAppointments(int,string,System.Nullable{int},System.Nullable{int})"/> to retrieve appointments without regard to the IsAccepted field.
+        /// </param>
+        /// <param name="sortExpression">A comma-delimited list of the columns by which to sort.</param>
+        /// <param name="pageSize">Size of the page, or <c>null</c> to retrieve all appointments.</param>
+        /// <param name="pageIndex">Index of the page, or <c>null</c> to retrieve all appointments.</param>
+        /// <returns>
+        /// An <see cref="IDataReader"/> with two results;
+        /// the first being the total number of appointments with the given acceptance status (as a single integer),
+        /// the second being the appointments.
+        /// </returns>
+        public static IDataReader GetAppointments(int moduleId, bool? isAccepted, string sortExpression, int? pageSize, int? pageIndex)
+        {
+            return SqlDataProvider.Instance.ExecuteReader(
                     "GetAppointments",
                     Engage.Utility.CreateIntegerParam("@moduleId", moduleId),
+                    Engage.Utility.CreateBitParam("@isAccepted", isAccepted),
                     sortExpression != null ? Engage.Utility.CreateVarcharParam("@sortExpression", sortExpression) : null,
                     Engage.Utility.CreateIntegerParam("@pageSize", pageSize),
                     Engage.Utility.CreateIntegerParam("@pageIndex", pageIndex));

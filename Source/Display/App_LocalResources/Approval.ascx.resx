@@ -126,6 +126,9 @@
   <data name="Actions.Header" xml:space="preserve">
     <value>Actions</value>
   </data>
+  <data name="All Approved.Text" xml:space="preserve">
+    <value>There are no more appointments to approve</value>
+  </data>
   <data name="Date and Time.Header" xml:space="preserve">
     <value>Date and Time</value>
   </data>

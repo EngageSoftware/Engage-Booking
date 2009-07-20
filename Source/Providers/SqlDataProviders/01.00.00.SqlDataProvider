@@ -54,10 +54,10 @@ CREATE TABLE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 END
 GO
 
-IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments]', N'P') IS NOT NULL
-	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments]
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAllAppointments]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAllAppointments]
 GO
-CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments](
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAllAppointments](
 	@moduleId int,
 	@sortExpression nvarchar(255) = 'StartDateTime, EndDateTime, Title',
 	@pageSize int,
@@ -79,6 +79,51 @@ BEGIN
 	SET @sql = @sql + 'ORDER BY ' + @sortExpression
 
 	EXEC sp_executesql @sql, N'@moduleId int', @moduleId
+	
+	SELECT @@RowCount AS TotalRecords
+
+	IF (@pageSize = 0 OR @pageSize IS NULL OR @pageIndex IS NULL)
+	 	BEGIN
+	 		SELECT a.* FROM #allAppointments aa
+			JOIN {databaseOwner}[{objectQualifier}EngageBooking_Appointment] a on (aa.AppointmentId = a.AppointmentId)
+	 	END
+	ELSE
+	 	BEGIN
+	 		SELECT a.* FROM #allAppointments aa
+			JOIN {databaseOwner}[{objectQualifier}EngageBooking_Appointment] a on (aa.AppointmentId = a.AppointmentId)
+	 		WHERE (aa.RowIndex >= @pageIndex * @pageSize + 1) AND aa.RowIndex < (@pageIndex * @pageSize) + @pageSize + 1
+	 	END
+END
+GO
+
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments](
+	@moduleId int,
+	@isAccepted bit,
+	@sortExpression nvarchar(255) = 'StartDateTime, EndDateTime, Title',
+	@pageSize int,
+	@pageIndex int
+)
+AS
+BEGIN
+	CREATE TABLE #allAppointments
+	(
+		RowIndex int NOT NULL IDENTITY(1,1),
+		AppointmentId int
+	)
+	
+	DECLARE @sql nvarchar(4000)
+	SET @sql =        'INSERT INTO #allAppointments ([AppointmentId]) '
+	SET @sql = @sql + 'SELECT [AppointmentId] '
+	SET @sql = @sql + 'FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment] '
+	SET @sql = @sql + 'WHERE ModuleId = @moduleId '
+	SET @sql = @sql + 'AND ((@isAccepted IS NULL AND IsAccepted IS NULL) OR @isAccepted = IsAccepted) '
+	SET @sql = @sql + 'ORDER BY ' + @sortExpression
+
+	EXEC sp_executesql @sql, N'@moduleId int, @isAccepted bit', @moduleId, @isAccepted
 	
 	SELECT @@RowCount AS TotalRecords
 

@@ -82,6 +82,45 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Loads all appointments for a given module.
+        /// </summary>
+        /// <param name="moduleId">The ID of the module to which the appointments belong.</param>
+        /// <param name="isAccepted">
+        /// <c>true</c> to retrieve only accepted appointments, 
+        /// <c>false</c> to retrieve only declines appointments, 
+        /// or <c>null</c> to retrieve only those appointments which have been neither accepted nor declined.
+        /// </param>
+        /// <returns>
+        /// A collection of appointments.
+        /// </returns>
+        /// <exception cref="DBException">if there's an error while going to the database to retrieve the appointments</exception>
+        public static AppointmentCollection Load(int moduleId, bool? isAccepted)
+        {
+            return Load(moduleId, isAccepted, null, null, null);
+        }
+
+        /// <summary>
+        /// Loads a page of appointments.
+        /// </summary>
+        /// <param name="moduleId">The ID of the module to which the appointments belong.</param>
+        /// <param name="isAccepted">
+        /// <c>true</c> to retrieve only accepted appointments, 
+        /// <c>false</c> to retrieve only declines appointments, 
+        /// or <c>null</c> to retrieve only those appointments which have been neither accepted nor declined.
+        /// </param>
+        /// <param name="sortExpression">The property by which the appointments should be sorted.</param>
+        /// <param name="pageIndex">The index of the page of appointments.</param>
+        /// <param name="pageSize">Size of the page of appointments.</param>
+        /// <returns>
+        /// A page of appointments.
+        /// </returns>
+        /// <exception cref="DBException">if there's an error while going to the database to retrieve the appointments</exception>
+        public static AppointmentCollection Load(int moduleId, bool? isAccepted, string sortExpression, int pageIndex, int pageSize)
+        {
+            return Load(moduleId, isAccepted, sortExpression, (int?)pageIndex, pageSize);
+        }
+
+        /// <summary>
         /// Loads a page of appointments.
         /// </summary>
         /// <param name="moduleId">The ID of the module to which the appointments belong.</param>
@@ -95,6 +134,30 @@ namespace Engage.Dnn.Booking
         private static AppointmentCollection Load(int moduleId, string sortExpression, int? pageIndex, int? pageSize)
         {
             using (IDataReader reader = AppointmentSqlDataProvider.GetAppointments(moduleId, sortExpression, pageSize, pageIndex))
+            {
+                return FillAppointments(reader, pageSize);
+            }
+        }
+
+        /// <summary>
+        /// Loads a page of appointments.
+        /// </summary>
+        /// <param name="moduleId">The ID of the module to which the appointments belong.</param>
+        /// <param name="isAccepted">
+        /// <c>true</c> to retrieve only accepted appointments, 
+        /// <c>false</c> to retrieve only declines appointments, 
+        /// or <c>null</c> to retrieve only those appointments which have been neither accepted nor declined.
+        /// </param>
+        /// <param name="sortExpression">The property by which the appointments should be sorted.</param>
+        /// <param name="pageIndex">The index of the page of appointments.</param>
+        /// <param name="pageSize">Size of the page of appointments.</param>
+        /// <returns>
+        /// A page of appointments.
+        /// </returns>
+        /// <exception cref="DBException">if there's an error while going to the database to retrieve the appointments</exception>
+        private static AppointmentCollection Load(int moduleId, bool? isAccepted, string sortExpression, int? pageIndex, int? pageSize)
+        {
+            using (IDataReader reader = AppointmentSqlDataProvider.GetAppointments(moduleId, isAccepted, sortExpression, pageSize, pageIndex))
             {
                 return FillAppointments(reader, pageSize);
             }

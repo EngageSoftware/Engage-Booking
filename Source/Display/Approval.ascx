@@ -8,6 +8,9 @@
     <asp:LinkButton ID="DeclineItemsButton" runat="server" CssClass="approval-decline-link' ResourceKey="Decline Selected Items" />
     <asp:GridView ID="AppointmentsGrid" runat="server" GridLines="None" AutoGenerateColumns="false"
         CssClass="approval-grid" AlternatingRowStyle-CssClass="alternate" SelectedRowStyle-CssClass="selected">
+        <EmptyDataTemplate>
+            <div class="approval-empty"><%=Localize("All Approved.Text") %></div>
+        </EmptyDataTemplate>
         <Columns>
             <asp:BoundField DataField="AppointmentId" DataFormatString="{0:00}" />
             <asp:TemplateField>

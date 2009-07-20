@@ -63,7 +63,6 @@ namespace Engage.Dnn.Booking
                 this.SetupSelectAllPlugin();
                 this.LocalizeGrid();
                 this.BindData();
-                this.AppointmentsGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
             catch (Exception exc)
             {
@@ -88,6 +87,8 @@ namespace Engage.Dnn.Booking
                     Appointment.Decline(appointmentId, this.UserId);
                     break;
             }
+
+            this.BindData();
         }
 
         /// <summary>
@@ -187,11 +188,15 @@ namespace Engage.Dnn.Booking
         {
             this.PagingControl.PageSize = ModuleSettings.AppointmentsPerPage.GetValueAsInt32For(this).Value;
 
-            var appointments = AppointmentCollection.Load(this.ModuleId, null, this.CurrentPageIndex - 1, this.PagingControl.PageSize);
+            var appointments = AppointmentCollection.Load(this.ModuleId, null, null, this.CurrentPageIndex - 1, this.PagingControl.PageSize);
             this.AppointmentsGrid.DataSource = appointments;
             this.AppointmentsGrid.DataBind();
 
             this.SetupPagingControl(this.PagingControl, appointments.TotalRecords);
+            if (this.AppointmentsGrid.HeaderRow != null)
+            {
+                this.AppointmentsGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }
