@@ -17,6 +17,7 @@ namespace Engage.Dnn.Booking
     using System.Diagnostics;
     using System.Xml.Serialization;
     using Data;
+    using DotNetNuke.Common.Lists;
     using DotNetNuke.Common.Utilities;
 
     /// <summary>
@@ -141,8 +142,20 @@ namespace Engage.Dnn.Booking
         public string Region
         {
             [DebuggerStepThrough]
-            //// TODO: lookup using DNN mechanisms.
-                    get { return string.Empty; }
+            get
+            {
+                if (this.RegionId.HasValue)
+                {
+                    var listController = new ListController();
+                    var regionEntry = listController.GetListEntryInfo(this.RegionId.Value);
+                    if (regionEntry != null)
+                    {
+                        return regionEntry.Text;
+                    }
+                }
+
+                return string.Empty;
+            }
         }
 
         /// <summary>

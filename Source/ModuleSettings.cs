@@ -21,16 +21,19 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// The skin used for the Calendar display
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
         public static readonly Setting<TelerikSkin> CalendarSkin = new Setting<TelerikSkin>("CalendarSkin", SettingScope.TabModule, TelerikSkin.Default);
 
         /// <summary>
         /// The number of appointments to display on a single day in the calendar's month view
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
         public static readonly Setting<int> AppointmentsToDisplayPerDay = new Setting<int>("AppointmentsToDisplayPerDay", SettingScope.TabModule, 3);
 
         /// <summary>
         /// The number of appointments to display on a page in the approval control
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
         public static readonly Setting<int> AppointmentsPerPage = new Setting<int>("AppointmentsPerPage", SettingScope.TabModule, 10);
     }
 }
