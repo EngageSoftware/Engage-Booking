@@ -111,7 +111,7 @@ namespace Engage.Dnn.Booking
         {
             get
             {
-                // return "TRUE".Equals(Dnn.Utility.GetStringSetting(this.ModuleSettings, "AllowAppointments"), StringComparison.OrdinalIgnoreCase);
+                // return "TRUE".Equals(Dnn.Utility.GetStringSetting(this.Settings, "AllowAppointments"), StringComparison.OrdinalIgnoreCase);
                 return true;
             }
         }

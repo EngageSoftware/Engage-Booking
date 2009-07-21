@@ -16,7 +16,7 @@ namespace Engage.Dnn.Booking
     using DotNetNuke.Services.Exceptions;
 
     /// <summary>
-    /// This is the settings code behind for Event related ModuleSettings.
+    /// This is the settings code behind for Event related settings.
     /// </summary>
     public partial class Settings : SettingsBase
     {

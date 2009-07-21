@@ -1,5 +1,5 @@
 <%@ Import Namespace="System.Globalization"%>
-<%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Settings" CodeBehind="ModuleSettings.ascx.cs" %>
+<%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Settings" CodeBehind="Settings.ascx.cs" %>
 <%@ Register TagPrefix="dnn" TagName="label" Src="~/controls/labelControl.ascx" %>
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
