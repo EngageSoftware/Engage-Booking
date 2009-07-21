@@ -161,6 +161,7 @@
     </Compile>
     <Compile Include="Providers\SqlDataProviders\AppointmentSqlDataProvider.cs" />
     <Compile Include="Providers\SqlDataProviders\SqlDataProvider.cs" />
+    <Compile Include="Util\EmailService.cs" />
     <Compile Include="Util\TelerikSkin.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ModuleBase.cs">

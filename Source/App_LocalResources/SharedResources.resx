@@ -117,67 +117,116 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DailyRecurrence.Text" xml:space="preserve">
-    <value>&lt;span class="NormalBold"&gt;Occurs&lt;/span&gt; every {0} day(s)</value>
-    <comment>{0} is replaced by number of days</comment>
+  <data name="AcceptanceBody.Format" xml:space="preserve">
+    <value>Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was accepted by {23}.</value>
+    <comment>{0} = appointment.Title
+{1} = appointment.Description
+{2} = appointment.AppointmentType
+{3} = appointment.Notes
+{4} = appointment.Address1
+{5} = appointment.Address2
+{6} = appointment.City
+{7} = appointment.Region
+{8} = appointment.ContactStreet
+{9} = appointment.ContactPhone
+{10} = appointment.RequestorName
+{11} = appointment.RequestorPhoneType
+{12} = appointment.RequestorPhone
+{13} = appointment.RequestorAltPhoneType
+{14} = appointment.RequestorAltPhone
+{15} = appointment.RequestorEmail
+{16} = appointment.StartDateTime
+{17} = appointment.EndDateTime
+{18} = appointment.NumberOfSpecialParticipants
+{19} = appointment.NumberOfParticipants
+{20} = appointment.ParticipantGender
+{21} = appointment.ParticipantFlag
+{22} = appointment.ParticipantInstructions
+{23} = current user's display name
+{24} = portal name</comment>
   </data>
-  <data name="DailyRecurrenceWeekdays.Text" xml:space="preserve">
-    <value>&lt;span class="NormalBold"&gt;Occurs&lt;/span&gt; every weekday</value>
+  <data name="AcceptanceSubject.Format" xml:space="preserve">
+    <value>Your appointment request at {24} has been accepted!</value>
+    <comment>{0} = appointment.Title
+{1} = appointment.Description
+{2} = appointment.AppointmentType
+{3} = appointment.Notes
+{4} = appointment.Address1
+{5} = appointment.Address2
+{6} = appointment.City
+{7} = appointment.Region
+{8} = appointment.ContactStreet
+{9} = appointment.ContactPhone
+{10} = appointment.RequestorName
+{11} = appointment.RequestorPhoneType
+{12} = appointment.RequestorPhone
+{13} = appointment.RequestorAltPhoneType
+{14} = appointment.RequestorAltPhone
+{15} = appointment.RequestorEmail
+{16} = appointment.StartDateTime
+{17} = appointment.EndDateTime
+{18} = appointment.NumberOfSpecialParticipants
+{19} = appointment.NumberOfParticipants
+{20} = appointment.ParticipantGender
+{21} = appointment.ParticipantFlag
+{22} = appointment.ParticipantInstructions
+{23} = current user's display name
+{24} = portal name</comment>
   </data>
-  <data name="EveryDay.Text" xml:space="preserve">
-    <value>day</value>
+  <data name="DeclineBody.Format" xml:space="preserve">
+    <value>Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was declined by {23}.</value>
+    <comment>{0} = appointment.Title
+{1} = appointment.Description
+{2} = appointment.AppointmentType
+{3} = appointment.Notes
+{4} = appointment.Address1
+{5} = appointment.Address2
+{6} = appointment.City
+{7} = appointment.Region
+{8} = appointment.ContactStreet
+{9} = appointment.ContactPhone
+{10} = appointment.RequestorName
+{11} = appointment.RequestorPhoneType
+{12} = appointment.RequestorPhone
+{13} = appointment.RequestorAltPhoneType
+{14} = appointment.RequestorAltPhone
+{15} = appointment.RequestorEmail
+{16} = appointment.StartDateTime
+{17} = appointment.EndDateTime
+{18} = appointment.NumberOfSpecialParticipants
+{19} = appointment.NumberOfParticipants
+{20} = appointment.ParticipantGender
+{21} = appointment.ParticipantFlag
+{22} = appointment.ParticipantInstructions
+{23} = current user's display name
+{24} = portal name</comment>
   </data>
-  <data name="First.Text" xml:space="preserve">
-    <value>first</value>
-  </data>
-  <data name="Fourth.Text" xml:space="preserve">
-    <value>fourth</value>
-  </data>
-  <data name="Last.Text" xml:space="preserve">
-    <value>last</value>
-  </data>
-  <data name="MonthlyRecurrenceOnDate.Text" xml:space="preserve">
-    <value>&lt;span class="NormalBold"&gt;Occurs&lt;/span&gt; on day {0} of every {1} month(s)</value>
-    <comment>{0} is replaced by the day of the month, {1} is replaced by the number of months</comment>
-  </data>
-  <data name="MonthlyRecurrenceOnGivenDay.Text" xml:space="preserve">
-    <value>&lt;span class="NormalBold"&gt;Occurs&lt;/span&gt; the {0} {1} of every {2} month(s)</value>
-    <comment>{0} is replaced by the ordinal (first, second, last, etc), {1} is replaced by the day {weekday, Wednesday, etc), {2} is replaced by the number of months</comment>
-  </data>
-  <data name="Second.Text" xml:space="preserve">
-    <value>second</value>
-  </data>
-  <data name="Third.Text" xml:space="preserve">
-    <value>third</value>
-  </data>
-  <data name="Timespan.Text" xml:space="preserve">
-    <value>{0:dddd, MMMM d, yyyy, hh:mmtt} - {1:hh:mmtt}</value>
-  </data>
-  <data name="TimespanDifferentDay.Text" xml:space="preserve">
-    <value>{0:dddd, MMMM d, yyyy, hh:mmtt} - {1:dddd, MMMM d, hh:mmtt}</value>
-  </data>
-  <data name="TimespanDifferentMonth.Text" xml:space="preserve">
-    <value>{0:dddd, MMMM d, yyyy, hh:mmtt} - {1:dddd, MMMM d, hh:mmtt}</value>
-  </data>
-  <data name="TimespanDifferentYear.Text" xml:space="preserve">
-    <value>{0:dddd, MMMM d, yyyy, hh:mmtt} - {1:dddd, MMMM d, yyyy, hh:mmtt}</value>
-  </data>
-  <data name="WeekDays.Text" xml:space="preserve">
-    <value>weekday</value>
-  </data>
-  <data name="WeekendDays.Text" xml:space="preserve">
-    <value>weekend day</value>
-  </data>
-  <data name="WeeklyRecurrence.Text" xml:space="preserve">
-    <value>&lt;span class="NormalBold"&gt;Occurs&lt;/span&gt; every {0} week(s) on {1}</value>
-    <comment>{0} is replaced by number of weeks, {1} is replaced by list of days</comment>
-  </data>
-  <data name="YearlyRecurrenceOnDate.Text" xml:space="preserve">
-    <value>&lt;span class="NormalBold"&gt;Occurs&lt;/span&gt; every {0:MMMM} {1}</value>
-    <comment>{0:MMMM} is replaced by the month name (use %M for month number, MM for month number with leading zero, or MMM for abbreviated month name), {1} is replaced by the day of the month</comment>
-  </data>
-  <data name="YearlyRecurrenceOnGivenDay.Text" xml:space="preserve">
-    <value>&lt;span class="NormalBold"&gt;Occurs&lt;/span&gt; the {0} {1} of {2:MMMM}</value>
-    <comment>{0} is replaced by the ordinal (first, second, last, etc), {1} is replaced by the day {weekday, Wednesday, etc), {2:MMMM} is replaced by the month name (use %M for month number, MM for month number with leading zero, or MMM for abbreviated month name)</comment>
+  <data name="DeclineSubject.Format" xml:space="preserve">
+    <value>Your appointment request at {24} has been declined</value>
+    <comment>{0} = appointment.Title
+{1} = appointment.Description
+{2} = appointment.AppointmentType
+{3} = appointment.Notes
+{4} = appointment.Address1
+{5} = appointment.Address2
+{6} = appointment.City
+{7} = appointment.Region
+{8} = appointment.ContactStreet
+{9} = appointment.ContactPhone
+{10} = appointment.RequestorName
+{11} = appointment.RequestorPhoneType
+{12} = appointment.RequestorPhone
+{13} = appointment.RequestorAltPhoneType
+{14} = appointment.RequestorAltPhone
+{15} = appointment.RequestorEmail
+{16} = appointment.StartDateTime
+{17} = appointment.EndDateTime
+{18} = appointment.NumberOfSpecialParticipants
+{19} = appointment.NumberOfParticipants
+{20} = appointment.ParticipantGender
+{21} = appointment.ParticipantFlag
+{22} = appointment.ParticipantInstructions
+{23} = current user's display name
+{24} = portal name</comment>
   </data>
 </root>

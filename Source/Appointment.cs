@@ -424,7 +424,12 @@ namespace Engage.Dnn.Booking
         /// <param name="revisingUserId">The ID of the user accepting the <see cref="Appointment"/>.</param>
         public static void Accept(int appointmentId, int revisingUserId)
         {
-            AppointmentSqlDataProvider.SetAppointmentAcceptance(appointmentId, true, revisingUserId);
+            var appointment = Load(appointmentId);
+            if (appointment != null)
+            {
+                AppointmentSqlDataProvider.SetAppointmentAcceptance(appointment.AppointmentId, true, revisingUserId);
+                EmailService.SendAcceptanceEmail(appointment);
+            }
         }
 
         /// <summary>
@@ -434,7 +439,12 @@ namespace Engage.Dnn.Booking
         /// <param name="revisingUserId">The ID of the user declining the <see cref="Appointment"/>.</param>
         public static void Decline(int appointmentId, int revisingUserId)
         {
-            AppointmentSqlDataProvider.SetAppointmentAcceptance(appointmentId, false, revisingUserId);
+            var appointment = Load(appointmentId);
+            if (appointment != null)
+            {
+                AppointmentSqlDataProvider.SetAppointmentAcceptance(appointment.AppointmentId, false, revisingUserId);
+                EmailService.SendDeclineEmail(appointment);
+            }
         }
 
         #region IEditableObject Members
