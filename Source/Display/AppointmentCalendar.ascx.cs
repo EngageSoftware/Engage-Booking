@@ -137,7 +137,7 @@ namespace Engage.Dnn.Booking
             if (int.TryParse(e.Value.Split('_')[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out eventId))
             {
                 Appointment appointment = Appointment.Load(eventId);
-                EventToolTip toolTip = (EventToolTip)this.LoadControl("EventToolTip.ascx");
+                AppointmentToolTip toolTip = (AppointmentToolTip)this.LoadControl("AppointmentToolTip.ascx");
 
                 toolTip.ModuleConfiguration = this.ModuleConfiguration;
                 toolTip.SetAppointment(appointment);

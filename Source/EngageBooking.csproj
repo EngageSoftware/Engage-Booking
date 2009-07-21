@@ -156,12 +156,12 @@
     <Compile Include="Display\Approval.ascx.designer.cs">
       <DependentUpon>Approval.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Display\EventToolTip.ascx.cs">
-      <DependentUpon>EventToolTip.ascx</DependentUpon>
+    <Compile Include="Display\AppointmentToolTip.ascx.cs">
+      <DependentUpon>AppointmentToolTip.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Display\EventToolTip.ascx.designer.cs">
-      <DependentUpon>EventToolTip.ascx</DependentUpon>
+    <Compile Include="Display\AppointmentToolTip.ascx.designer.cs">
+      <DependentUpon>AppointmentToolTip.ascx</DependentUpon>
     </Compile>
     <Compile Include="Providers\DataProviders\SqlDataProvider\AppointmentSqlDataProvider.cs" />
     <Compile Include="Providers\DataProviders\SqlDataProvider\SqlDataProvider.cs" />
@@ -369,7 +369,7 @@
   <ItemGroup>
     <Content Include="Display\AppointmentRequest.ascx" />
     <Content Include="Display\Approval.ascx" />
-    <Content Include="Display\EventToolTip.ascx" />
+    <Content Include="Display\AppointmentToolTip.ascx" />
     <Content Include="Images\add-apntmnt-disabled.gif" />
     <Content Include="Images\add-apntmnt.gif" />
     <Content Include="Images\choose_display.gif" />
@@ -384,6 +384,8 @@
     <Content Include="References\Engage.Dnn.Framework.XML" />
     <Content Include="References\Engage.Framework.XML" />
     <Content Include="References\Telerik.Web.UI.XML" />
+    <Content Include="Display\App_LocalResources\AppointmentToolTip.ascx.resx">
+    </Content>
     <EmbeddedResource Include="JavaScript\SelectAllPlugin.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

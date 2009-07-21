@@ -1,4 +1,4 @@
-﻿// <copyright file="EventToolTip.ascx.cs" company="Engage Software">
+﻿// <copyright file="AppointmentToolTip.ascx.cs" company="Engage Software">
 // Engage: Booking
 // Copyright (c) 2004-2009
 // by Engage Software ( http://www.engagesoftware.com )
@@ -13,12 +13,13 @@ namespace Engage.Dnn.Booking
 {
     using System;
     using System.Diagnostics;
+    using System.Globalization;
     using System.Web.UI;
 
     /// <summary>
     /// Used to display a "tool tip" for an appointment.
     /// </summary>
-    public partial class EventToolTip : ModuleBase
+    public partial class AppointmentToolTip : ModuleBase
     {
         /// <summary>
         /// The backing field for <see cref="SetAppointment"/>.
@@ -52,6 +53,9 @@ namespace Engage.Dnn.Booking
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void Page_PreRender(object sender, EventArgs e)
         {
+            this.TitleLabel.Text = this.currentAppointment.Title;
+            this.StartsLabel.Text = this.currentAppointment.StartDateTime.ToString("g", CultureInfo.CurrentCulture);
+            this.EndsLabel.Text = this.currentAppointment.EndDateTime.ToString("g", CultureInfo.CurrentCulture);
         }
     }
 }
