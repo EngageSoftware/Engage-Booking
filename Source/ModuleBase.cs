@@ -104,15 +104,14 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Gets a value indicating whether [allow appointments]. THIS IS JUST A PLACEHOLDER FOR NOW. MAY NOT NEED.
+        /// Gets a value indicating whether this instance of the module allows users to submit appointment requests.
         /// </summary>
-        /// <value><c>true</c> if [allow appointments]; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if this instance of the module allows users to submit appointment requests; otherwise, <c>false</c>.</value>
         protected bool AllowAppointments
         {
             get
             {
-                // return "TRUE".Equals(Dnn.Utility.GetStringSetting(this.Settings, "AllowAppointments"), StringComparison.OrdinalIgnoreCase);
-                return true;
+                return ModuleSettings.AllowAppointmentRequests.GetValueAsBooleanFor(this).Value;
             }
         }
      

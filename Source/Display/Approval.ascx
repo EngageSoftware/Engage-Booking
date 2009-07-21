@@ -36,7 +36,7 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-    <asp:PlaceHolder ID="AppointmentDetailsPlaceHolder" runat="server" Visible="false">
+    <asp:PlaceHolder ID="AppointmentDetailsPlaceholder" runat="server" Visible="false">
         <fieldset>
             <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Date and Time" /> <asp:Label ID="DetailDateAndTimeLabel" runat="server" CssClass="approval-detail-value" />
             <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Full Name" /> <asp:Label ID="DetailFullNameLabel" runat="server" CssClass="approval-detail-value" />

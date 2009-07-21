@@ -377,6 +377,7 @@
     <None Include="EngageBooking.Build" />
   </ItemGroup>
   <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
     <Content Include="Display\App_LocalResources\Approval.ascx.resx">
       <SubType>Designer</SubType>
     </Content>

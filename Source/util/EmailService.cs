@@ -50,7 +50,7 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Sends an email to the given email address with the given <paramref name="subject"/> and HTML <see cref="body"/>.
+        /// Sends an email to the given email address with the given <paramref name="subject"/> and HTML <paramref name="body"/>.
         /// </summary>
         /// <param name="to">The comma-or-semicolon-delimited list of email address(es) to which the email should be sent.</param>
         /// <param name="subject">The subject.</param>

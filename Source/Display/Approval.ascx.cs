@@ -116,7 +116,7 @@ namespace Engage.Dnn.Booking
                 return;
             }
 
-            this.AppointmentDetailsPlaceHolder.Visible = true;
+            this.AppointmentDetailsPlaceholder.Visible = true;
             this.FillDetailSection(appointment);
         }
 
@@ -169,7 +169,7 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Fills the controls in <see cref="AppointmentDetailsPlaceHolder"/> with the information about the given <paramref name="appointment"/>.
+        /// Fills the controls in <see cref="AppointmentDetailsPlaceholder"/> with the information about the given <paramref name="appointment"/>.
         /// </summary>
         /// <param name="appointment">The appointment.</param>
         private void FillDetailSection(Appointment appointment)
