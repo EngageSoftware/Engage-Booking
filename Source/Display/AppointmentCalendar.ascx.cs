@@ -61,7 +61,7 @@ namespace Engage.Dnn.Booking
             {
                 this.AddJQueryReference();
                 this.LocalizeCalendar();
-                this.SetupApprovalControl();
+                this.SetupAdminView();
                 this.RequestAppointmentLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "AppointmentRequest");
                 this.BindData();
             }
@@ -72,11 +72,12 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Sets up the approval control.
+        /// Sets up the <see cref="ApprovalControl"/> and <see cref="CalendarHeader"/>.
         /// </summary>
-        private void SetupApprovalControl()
+        private void SetupAdminView()
         {
-            this.ApprovalControl.Visible = this.IsEditable;
+            this.ApprovalControl.Visible = this.CalendarHeader.Visible = this.IsEditable;
+            this.CalendarHeader.IsExpanded = !this.CalendarHeader.Visible;
             this.ApprovalControl.ModuleConfiguration = this.ModuleConfiguration;
         }
 

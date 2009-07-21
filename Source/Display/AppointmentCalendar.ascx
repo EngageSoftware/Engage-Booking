@@ -1,6 +1,7 @@
 <%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.AppointmentCalendar" CodeBehind="AppointmentCalendar.ascx.cs" %>
 <%@ Import Namespace="DotNetNuke.UI.Utilities" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
+<%@ Register TagPrefix="dnn" TagName="SectionHead" Src="~/controls/sectionheadcontrol.ascx" %>
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <%@ Register TagPrefix="engage" TagName="approval" Src="Approval.ascx" %>
 
@@ -85,12 +86,8 @@
 
 <engage:approval ID="ApprovalControl" runat="server" />
 
-<div class="EventHeader">
-    <h2 class="NormalBold">
-        <asp:Label runat="server" ResourceKey="EventsTitle" />
-    </h2>
-</div>
-<div class="EventCalendar">
+<dnn:sectionhead ID="CalendarHeader" runat="server" CssClass="approval-calendar-header" ResourceKey="CalendarHeader" Section="CalendarWrapper"  />
+<div id="CalendarWrapper" runat="server" class="EventCalendar">
     <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <telerik:radscheduler id="AppointmentsCalendar" runat="server" CssClass="booking-calendar" ReadOnly="True" 
