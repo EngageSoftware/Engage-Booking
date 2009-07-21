@@ -30,6 +30,7 @@ namespace Engage.Dnn.Booking
             {
                 if (!this.IsPostBack)
                 {
+                    this.NotificationEmailsListValidator.ValidationExpression = Engage.Utility.EmailsRegEx;
                     this.SetOptions();
                 }
             }
@@ -48,8 +49,10 @@ namespace Engage.Dnn.Booking
             {
                 try
                 {
+                    Booking.ModuleSettings.AllowAppointmentRequests.Set(this, this.AllowAppointmentRequestsCheckBox.Checked);
                     Booking.ModuleSettings.CalendarSkin.Set(this, this.SkinDropDownList.SelectedValue);
                     Booking.ModuleSettings.AppointmentsPerPage.Set(this, (int)this.RecordsPerPageTextBox.Value.Value);
+                    Booking.ModuleSettings.NotificationEmailAddresses.Set(this, this.NotificationEmailsListTextBox.Text);
 
                     if (this.AppointmentsPerDayTextBox.Value.HasValue)
                     {
@@ -78,8 +81,10 @@ namespace Engage.Dnn.Booking
                 li.Selected = true;
             }
 
+            this.AllowAppointmentRequestsCheckBox.Checked = Booking.ModuleSettings.AllowAppointmentRequests.GetValueAsBooleanFor(this).Value;
             this.AppointmentsPerDayTextBox.Value = Booking.ModuleSettings.AppointmentsToDisplayPerDay.GetValueAsInt32For(this).Value;
             this.RecordsPerPageTextBox.Value = Booking.ModuleSettings.AppointmentsPerPage.GetValueAsInt32For(this).Value;
+            this.NotificationEmailsListTextBox.Text = Booking.ModuleSettings.NotificationEmailAddresses.GetValueAsStringFor(this);
         }
     }
 }

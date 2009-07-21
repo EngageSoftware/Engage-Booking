@@ -35,5 +35,17 @@ namespace Engage.Dnn.Booking
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
         public static readonly Setting<int> AppointmentsPerPage = new Setting<int>("AppointmentsPerPage", SettingScope.TabModule, 10);
+
+        /// <summary>
+        /// A comma-delimited list of the email addresses to send notification to when a new appointment request is submitted
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
+        public static readonly Setting<string> NotificationEmailAddresses = new Setting<string>("NotificationEmailAddresses", SettingScope.TabModule, string.Empty);
+
+        /// <summary>
+        /// Whether this instance of the module allows users to submit requests for appointments on the calendar
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
+        public static readonly Setting<bool> AllowAppointmentRequests = new Setting<bool>("AllowAppointmentRequests", SettingScope.TabModule, true);
     }
 }

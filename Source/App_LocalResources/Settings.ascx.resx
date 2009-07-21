@@ -147,6 +147,15 @@
   <data name="Hay.Text" xml:space="preserve">
     <value>Hay</value>
   </data>
+  <data name="NotificationEmailsListLabel.Help" xml:space="preserve">
+    <value>A comma-delimited list of the email addresses which should receive a notification email when a new appointment request is submitted through this module.</value>
+  </data>
+  <data name="NotificationEmailsListLabel.Text" xml:space="preserve">
+    <value>Appointment Request Notifications Email Addresses: </value>
+  </data>
+  <data name="NotificationEmailsListValidator.Text" xml:space="preserve">
+    <value>One or more of the request notification emails is in an invalid format.</value>
+  </data>
   <data name="Office2007.Text" xml:space="preserve">
     <value>Office 2007</value>
   </data>
