@@ -159,8 +159,8 @@
     <Compile Include="Display\EventToolTip.ascx.designer.cs">
       <DependentUpon>EventToolTip.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Providers\SqlDataProviders\AppointmentSqlDataProvider.cs" />
-    <Compile Include="Providers\SqlDataProviders\SqlDataProvider.cs" />
+    <Compile Include="Providers\DataProviders\SqlDataProvider\AppointmentSqlDataProvider.cs" />
+    <Compile Include="Providers\DataProviders\SqlDataProvider\SqlDataProvider.cs" />
     <Compile Include="Util\EmailService.cs" />
     <Compile Include="Util\TelerikSkin.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -204,7 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="EngageBooking.4.dnn" />
-    <None Include="Providers\SqlDataProviders\01.00.00.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
     <None Include="Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
