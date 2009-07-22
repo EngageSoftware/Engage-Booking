@@ -37,7 +37,7 @@
           <desktopModule>
             <moduleName>Engage: Booking</moduleName>
             <foldername>EngageBooking</foldername>
-            <businessControllerClass>Engage.Dnn.Booking.Components.FeaturesController</businessControllerClass>
+            <businessControllerClass>Engage.Dnn.Booking.FeaturesController</businessControllerClass>
             <moduleDefinitions>
               <moduleDefinition>
                 <friendlyName>Engage: Booking</friendlyName>
