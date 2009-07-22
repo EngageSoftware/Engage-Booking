@@ -87,7 +87,8 @@
 <engage:approval ID="ApprovalControl" runat="server" />
 
 <%-- <dnn:sectionhead ID="CalendarHeader" runat="server" CssClass="approval-calendar-header" ResourceKey="CalendarHeader" Section="CalendarWrapper"  /> --%>
-<div id="CalendarWrapper" runat="server" class="EventCalendar">
+<%--<div id="CalendarWrapper" runat="server" class="EventCalendar">--%>
+<div class="EventCalendar">
     <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <telerik:radscheduler id="AppointmentsCalendar" runat="server" CssClass="booking-calendar" ReadOnly="True" 
