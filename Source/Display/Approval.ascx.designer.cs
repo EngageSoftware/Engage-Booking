@@ -14,6 +14,24 @@ namespace Engage.Dnn.Booking {
     public partial class Approval {
         
         /// <summary>
+        /// ApprovalMultiView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView ApprovalMultiView;
+        
+        /// <summary>
+        /// ApprovalsListView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View ApprovalsListView;
+        
+        /// <summary>
         /// AcceptAppointmentsButton control.
         /// </summary>
         /// <remarks>
@@ -111,5 +129,23 @@ namespace Engage.Dnn.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.UI.WebControls.PagingControl PagingControl;
+        
+        /// <summary>
+        /// ProvideDeclineReasonView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View ProvideDeclineReasonView;
+        
+        /// <summary>
+        /// DeclineReasonRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater DeclineReasonRepeater;
     }
 }

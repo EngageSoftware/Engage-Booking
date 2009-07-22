@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AcceptanceBody.Format" xml:space="preserve">
-    <value>Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was accepted by {23}.</value>
+    <value>&lt;p&gt;Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was accepted by {23}.&lt;/p&gt;</value>
     <comment>{0} = appointment.Title
 {1} = appointment.Description
 {2} = appointment.AppointmentType
@@ -174,7 +174,7 @@
 {24} = portal name</comment>
   </data>
   <data name="DeclineBody.Format" xml:space="preserve">
-    <value>Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was declined by {23}.</value>
+    <value>&lt;p&gt;Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was declined by {23}.&lt;/p&gt;</value>
     <comment>{0} = appointment.Title
 {1} = appointment.Description
 {2} = appointment.AppointmentType
@@ -200,6 +200,37 @@
 {22} = appointment.ParticipantInstructions
 {23} = current user's display name
 {24} = portal name</comment>
+  </data>
+  <data name="DeclineBodyWithReason.Format" xml:space="preserve">
+    <value>&lt;p&gt;Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was declined by {23}.&lt;/p&gt;
+&lt;p&gt;The reason provided for declining the appointment is as follows: &lt;/p&gt;
+&lt;p&gt;{25}&lt;/p&gt;</value>
+    <comment>{0} = appointment.Title
+{1} = appointment.Description
+{2} = appointment.AppointmentType
+{3} = appointment.Notes
+{4} = appointment.Address1
+{5} = appointment.Address2
+{6} = appointment.City
+{7} = appointment.Region
+{8} = appointment.ContactStreet
+{9} = appointment.ContactPhone
+{10} = appointment.RequestorName
+{11} = appointment.RequestorPhoneType
+{12} = appointment.RequestorPhone
+{13} = appointment.RequestorAltPhoneType
+{14} = appointment.RequestorAltPhone
+{15} = appointment.RequestorEmail
+{16} = appointment.StartDateTime
+{17} = appointment.EndDateTime
+{18} = appointment.NumberOfSpecialParticipants
+{19} = appointment.NumberOfParticipants
+{20} = appointment.ParticipantGender
+{21} = appointment.ParticipantFlag
+{22} = appointment.ParticipantInstructions
+{23} = current user's display name
+{24} = portal name
+{25} = decline reason</comment>
   </data>
   <data name="DeclineSubject.Format" xml:space="preserve">
     <value>Your appointment request at {24} has been declined</value>

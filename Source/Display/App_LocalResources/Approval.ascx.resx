@@ -139,11 +139,17 @@
     <value>{0:dddd, MMM dd, yyyy} at {0:h:mm tt}</value>
     <comment>{0} is start date and time</comment>
   </data>
+  <data name="Decline Reason For.Text" xml:space="preserve">
+    <value>Reason to Decline </value>
+  </data>
   <data name="Decline Selected Items.Text" xml:space="preserve">
     <value>Decline Selected Items</value>
   </data>
   <data name="Decline.Text" xml:space="preserve">
     <value>Decline</value>
+  </data>
+  <data name="Default Reason for Decline.Text" xml:space="preserve">
+    <value>Your request conflicted with another request on my calendar.  Please reschedule, if possible.</value>
   </data>
   <data name="DetailDateAndTime.Format.Text" xml:space="preserve">
     <value>{0:ddd, MMM dd, yyyy} at {0:h:mm tt}</value>
@@ -170,8 +176,14 @@
   <data name="Phone.Text" xml:space="preserve">
     <value>Phone: </value>
   </data>
+  <data name="Reason for Decline.Text" xml:space="preserve">
+    <value>Please provide the reason that this appointment was declined.  This will be included in the email sent to the requestor informing them that their request was declined.</value>
+  </data>
   <data name="Special Participants.Text" xml:space="preserve">
     <value>Deaf Participant(s)</value>
+  </data>
+  <data name="SubmitDeclineReasonButton.Text" xml:space="preserve">
+    <value>Confirm Decline</value>
   </data>
   <data name="Total Number of Participants.Text" xml:space="preserve">
     <value>Total Number of Participants: </value>

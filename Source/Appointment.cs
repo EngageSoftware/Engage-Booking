@@ -561,14 +561,15 @@ namespace Engage.Dnn.Booking
         /// Declines the <see cref="Appointment"/> with the given <paramref name="appointmentId"/>.
         /// </summary>
         /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to decline.</param>
+        /// <param name="declineReason">The reason for declining the appointment request.</param>
         /// <param name="revisingUserId">The ID of the user declining the <see cref="Appointment"/>.</param>
-        public static void Decline(int appointmentId, int revisingUserId)
+        public static void Decline(int appointmentId, string declineReason, int revisingUserId)
         {
             var appointment = Load(appointmentId);
             if (appointment != null)
             {
                 AppointmentSqlDataProvider.SetAppointmentAcceptance(appointment.AppointmentId, false, revisingUserId);
-                EmailService.SendDeclineEmail(appointment);
+                EmailService.SendDeclineEmail(appointment, declineReason);
             }
         }
 

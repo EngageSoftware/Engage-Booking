@@ -12,6 +12,7 @@
 namespace Engage.Dnn.Booking
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Web.UI;
     using System.Web.UI.WebControls;
@@ -35,23 +36,26 @@ namespace Engage.Dnn.Booking
             this.AppointmentsGrid.SelectedIndexChanging += this.AppointmentsGrid_SelectedIndexChanging;
             this.AcceptAppointmentsButton.Click += this.AcceptAppointmentsButton_Click;
             this.DeclineAppointmentsButton.Click += this.DeclineAppointmentsButton_Click;
+            this.DeclineReasonRepeater.ItemDataBound += this.DeclineReasonRepeater_ItemDataBound;
         }
 
         /// <summary>
-        /// Localizes the <see cref="AppointmentsGrid"/>.
+        /// Handles the <see cref="LinkButton.Click"/> event of the <c>SubmitDeclineReasonButton</c> control in the footer of the <see cref="DeclineReasonRepeater"/>.
         /// </summary>
-        private void LocalizeGrid()
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        protected void SubmitDeclineReasonButton_Click(object sender, EventArgs e)
         {
-            if (!this.IsPostBack)
+            foreach (RepeaterItem repeaterItem in this.DeclineReasonRepeater.Items)
             {
-                Localization.LocalizeGridView(ref this.AppointmentsGrid, this.LocalResourceFile);
+                var declinedAppointmentIdHiddenField = (HiddenField)repeaterItem.FindControl("DeclinedAppointmentIdHiddenField");
+                var declineReasonTextBox = (TextBox)repeaterItem.FindControl("DeclineReasonTextBox");
 
-                var startDateField = this.AppointmentsGrid.Columns[3] as BoundField;
-                if (startDateField != null)
-                {
-                    startDateField.DataFormatString = Localization.GetString("DateAndTime.Format.Text", this.LocalResourceFile);
-                }
+                int appointmentId = int.Parse(declinedAppointmentIdHiddenField.Value, NumberStyles.Integer, CultureInfo.InvariantCulture);
+                Appointment.Decline(appointmentId, declineReasonTextBox.Text, this.UserId);
             }
+
+            this.ApprovalMultiView.SetActiveView(this.ApprovalsListView);
         }
 
         /// <summary>
@@ -90,7 +94,9 @@ namespace Engage.Dnn.Booking
                     Appointment.Accept(appointmentId, this.UserId);
                     break;
                 case "Decline":
-                    Appointment.Decline(appointmentId, this.UserId);
+                    this.ApprovalMultiView.SetActiveView(this.ProvideDeclineReasonView);
+                    this.DeclineReasonRepeater.DataSource = new[] { Appointment.Load(appointmentId) };
+                    this.DeclineReasonRepeater.DataBind();
                     break;
             }
 
@@ -127,7 +133,13 @@ namespace Engage.Dnn.Booking
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void AcceptAppointmentsButton_Click(object sender, EventArgs e)
         {
-            this.SetAcceptanceForSelectedRows(true);
+            var appointmentIds = this.GetSelectedAppointmentIds();
+            foreach (var appointmentId in appointmentIds)
+            {
+                Appointment.Accept(appointmentId, this.UserId);   
+            }
+
+            this.BindData();
         }
 
         /// <summary>
@@ -137,35 +149,42 @@ namespace Engage.Dnn.Booking
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void DeclineAppointmentsButton_Click(object sender, EventArgs e)
         {
-            this.SetAcceptanceForSelectedRows(false);
+            this.ApprovalMultiView.SetActiveView(this.ProvideDeclineReasonView);
+            List<Appointment> selectedAppointments = this.GetSelectedAppointmentIds().ConvertAll(appointmentId => Appointment.Load(appointmentId));
+            this.DeclineReasonRepeater.DataSource = selectedAppointments;
+            this.DeclineReasonRepeater.DataBind();
         }
 
         /// <summary>
-        /// Sets the <see cref="Appointment.IsAccepted"/> field to <paramref name="accept"/> for the selected rows in <see cref="AppointmentsGrid"/>.
+        /// Handles the <see cref="Repeater.ItemDataBound"/> event of the <see cref="DeclineReasonRepeater"/> control.
         /// </summary>
-        /// <param name="accept">if set to <c>true</c>, accept the selected Appointments, otherwise decline them.</param>
-        private void SetAcceptanceForSelectedRows(bool accept)
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Web.UI.WebControls.RepeaterItemEventArgs"/> instance containing the event data.</param>
+        private void DeclineReasonRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            foreach (GridViewRow row in this.AppointmentsGrid.Rows)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var selectionCheckBox = (CheckBox)row.FindControl("SelectionCheckBox");
-                if (selectionCheckBox.Checked)
-                {
-                    var appointmentIdHiddenField = (HiddenField)row.FindControl("AppointmentIdHiddenField");
-                    int appointmentId = int.Parse(appointmentIdHiddenField.Value, NumberStyles.Integer, CultureInfo.InvariantCulture);
-
-                    if (accept)
-                    {
-                        Appointment.Accept(appointmentId, this.UserId);
-                    }
-                    else
-                    {
-                        Appointment.Decline(appointmentId, this.UserId);
-                    }
-                }
+                var declineReasonTextBox = (TextBox)e.Item.FindControl("DeclineReasonTextBox");
+                declineReasonTextBox.Text = Localization.GetString("Default Reason for Decline", this.LocalResourceFile);
             }
+        }
 
-            this.BindData();
+        /// <summary>
+        /// Binds the data.
+        /// </summary>
+        private void BindData()
+        {
+            this.PagingControl.PageSize = ModuleSettings.AppointmentsPerPage.GetValueAsInt32For(this).Value;
+
+            var appointments = AppointmentCollection.Load(this.ModuleId, null, null, this.CurrentPageIndex - 1, this.PagingControl.PageSize);
+            this.AppointmentsGrid.DataSource = appointments;
+            this.AppointmentsGrid.DataBind();
+
+            this.SetupPagingControl(this.PagingControl, appointments.TotalRecords);
+            if (this.AppointmentsGrid.HeaderRow != null)
+            {
+                this.AppointmentsGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
         /// <summary>
@@ -218,6 +237,43 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Gets the IDs of the <see cref="Appointment"/>s whose rows are selected in <see cref="AppointmentsGrid"/>.
+        /// </summary>
+        /// <returns>A list of the selected appointment IDs</returns>
+        private List<int> GetSelectedAppointmentIds()
+        {
+            List<int> selectedAppointmentIds = new List<int>(this.AppointmentsGrid.Rows.Count);
+            foreach (GridViewRow row in this.AppointmentsGrid.Rows)
+            {
+                var selectionCheckBox = (CheckBox)row.FindControl("SelectionCheckBox");
+                if (selectionCheckBox.Checked)
+                {
+                    var appointmentIdHiddenField = (HiddenField)row.FindControl("AppointmentIdHiddenField");
+                    selectedAppointmentIds.Add(int.Parse(appointmentIdHiddenField.Value, NumberStyles.Integer, CultureInfo.InvariantCulture));
+                }
+            }
+
+            return selectedAppointmentIds;
+        }
+
+        /// <summary>
+        /// Localizes the <see cref="AppointmentsGrid"/>.
+        /// </summary>
+        private void LocalizeGrid()
+        {
+            if (!this.IsPostBack)
+            {
+                Localization.LocalizeGridView(ref this.AppointmentsGrid, this.LocalResourceFile);
+
+                var startDateField = this.AppointmentsGrid.Columns[3] as BoundField;
+                if (startDateField != null)
+                {
+                    startDateField.DataFormatString = Localization.GetString("DateAndTime.Format.Text", this.LocalResourceFile);
+                }
+            }
+        }
+
+        /// <summary>
         /// Sets up the Select All jQuery plugin (to allow the header checkbox to select all other checkboxes).
         /// </summary>
         private void SetupSelectAllPlugin()
@@ -234,24 +290,6 @@ namespace Engage.Dnn.Booking
                     initScriptKey,
                     "jQuery(function($) { $('." + SelectAllCheckBoxCssClass + "').selectAll($('." + CheckBoxesCssClass + "')); });",
                     true);
-        }
-
-        /// <summary>
-        /// Binds the data.
-        /// </summary>
-        private void BindData()
-        {
-            this.PagingControl.PageSize = ModuleSettings.AppointmentsPerPage.GetValueAsInt32For(this).Value;
-
-            var appointments = AppointmentCollection.Load(this.ModuleId, null, null, this.CurrentPageIndex - 1, this.PagingControl.PageSize);
-            this.AppointmentsGrid.DataSource = appointments;
-            this.AppointmentsGrid.DataBind();
-
-            this.SetupPagingControl(this.PagingControl, appointments.TotalRecords);
-            if (this.AppointmentsGrid.HeaderRow != null)
-            {
-                this.AppointmentsGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
-            }
         }
     }
 }
