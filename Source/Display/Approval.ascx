@@ -68,7 +68,8 @@
                         </div>
                 </ItemTemplate>
                 <FooterTemplate>
-                        <asp:LinkButton ID="SubmitDeclineReasonButton" runat="server" CssClass="approval-decline-reason-button" ResourceKey="SubmitDeclineReasonButton" OnClick="SubmitDeclineReasonButton_Click" />
+                        <asp:LinkButton runat="server" CssClass="approval-decline-reason-button" ResourceKey="CancelDeclineButton" OnClick="CancelDeclineButton_Click" />
+                        <asp:LinkButton runat="server" CssClass="approval-decline-reason-button" ResourceKey="SubmitDeclineReasonButton" OnClick="SubmitDeclineReasonButton_Click" />
                     </div>
                 </FooterTemplate>
             </asp:Repeater>            

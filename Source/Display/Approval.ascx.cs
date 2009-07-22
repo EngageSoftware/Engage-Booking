@@ -40,6 +40,17 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Handles the <see cref="LinkButton.Click"/> event of the <c>CancelDeclineButton</c> control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        protected void CancelDeclineButton_Click(object sender, EventArgs e)
+        {
+            this.BindData();
+            this.ApprovalMultiView.SetActiveView(this.ApprovalsListView);
+        }
+
+        /// <summary>
         /// Handles the <see cref="LinkButton.Click"/> event of the <c>SubmitDeclineReasonButton</c> control in the footer of the <see cref="DeclineReasonRepeater"/>.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -55,6 +66,7 @@ namespace Engage.Dnn.Booking
                 Appointment.Decline(appointmentId, declineReasonTextBox.Text, this.UserId);
             }
 
+            this.BindData();
             this.ApprovalMultiView.SetActiveView(this.ApprovalsListView);
         }
 
