@@ -2,9 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A7429F0-BB4E-4881-8994-25F2DC070C75}"
-	ProjectSection(SolutionItems) = preProject
-		EngageBooking.sln = EngageBooking.sln
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSBuild", "MSBuild", "{37A69CBB-5A04-4D74-A16C-765FDE6BF9F3}"
 	ProjectSection(SolutionItems) = preProject
