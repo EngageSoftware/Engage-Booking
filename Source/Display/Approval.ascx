@@ -6,8 +6,8 @@
 <div class="approval">
     <asp:MultiView ID="ApprovalMultiView" runat="server" ActiveViewIndex="0">
         <asp:View ID="ApprovalsListView" runat="server">
-            <asp:LinkButton ID="AcceptAppointmentsButton" runat="server" CssClass="approval-accept-link' ResourceKey="Accept Selected Items" />
-            <asp:LinkButton ID="DeclineAppointmentsButton" runat="server" CssClass="approval-decline-link' ResourceKey="Decline Selected Items" />
+            <asp:LinkButton ID="AcceptAppointmentsButton" runat="server" CssClass="approval-accept-link" ResourceKey="Accept Selected Items" />
+            <asp:LinkButton ID="DeclineAppointmentsButton" runat="server" CssClass="approval-decline-link" ResourceKey="Decline Selected Items" />
             <asp:GridView ID="AppointmentsGrid" runat="server" GridLines="None" AutoGenerateColumns="false"
                 CssClass="approval-grid" AlternatingRowStyle-CssClass="alternate" SelectedRowStyle-CssClass="selected">
                 <EmptyDataTemplate>
