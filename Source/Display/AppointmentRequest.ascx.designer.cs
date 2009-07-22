@@ -59,6 +59,15 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox TitleTextBox;
         
         /// <summary>
+        /// TitleValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator TitleValidator;
+        
+        /// <summary>
         /// DescriptionLabel control.
         /// </summary>
         /// <remarks>
@@ -77,13 +86,13 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox DescriptionTextBox;
         
         /// <summary>
-        /// NotesLab control.
+        /// NotesLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NotesLab;
+        protected global::System.Web.UI.WebControls.Label NotesLabel;
         
         /// <summary>
         /// NotesTextBox control.
@@ -167,13 +176,13 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox ZipTextBox;
         
         /// <summary>
-        /// Nearest control.
+        /// AdditionaAddressInfoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Nearest;
+        protected global::System.Web.UI.WebControls.Label AdditionaAddressInfoLabel;
         
         /// <summary>
         /// AdditionaAddressInfoTextBox control.
@@ -185,13 +194,13 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox AdditionaAddressInfoTextBox;
         
         /// <summary>
-        /// OnSiteStreet control.
+        /// OnSiteStreetLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label OnSiteStreet;
+        protected global::System.Web.UI.WebControls.Label OnSiteStreetLabel;
         
         /// <summary>
         /// OnSiteStreetTextBox control.
@@ -203,13 +212,13 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox OnSiteStreetTextBox;
         
         /// <summary>
-        /// Phone control.
+        /// OnSitePhoneLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Phone;
+        protected global::System.Web.UI.WebControls.Label OnSitePhoneLabel;
         
         /// <summary>
         /// OnSitePhoneTextBox control.
@@ -221,13 +230,13 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox OnSitePhoneTextBox;
         
         /// <summary>
-        /// FullName control.
+        /// RequestorNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FullName;
+        protected global::System.Web.UI.WebControls.Label RequestorNameLabel;
         
         /// <summary>
         /// RequestorNameTextBox control.
@@ -239,13 +248,31 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox RequestorNameTextBox;
         
         /// <summary>
-        /// RequestorPhone control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label RequestorPhone;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
+        /// RequestorPhoneTypeDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList RequestorPhoneTypeDropDownList;
+        
+        /// <summary>
+        /// RequestorPhoneLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RequestorPhoneLabel;
         
         /// <summary>
         /// RequestorPhoneTextBox control.
@@ -257,33 +284,6 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox RequestorPhoneTextBox;
         
         /// <summary>
-        /// RequestorPhoneTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList RequestorPhoneDropDownList;
-
-        /// <summary>
-        /// GenderDropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList GenderDropDownList;
-        
-        /// <summary>
-        /// AltPhone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AltPhone;
-        
-        /// <summary>
         /// RequestorAltPhoneDropDownList control.
         /// </summary>
         /// <remarks>
@@ -293,13 +293,31 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.DropDownList RequestorAltPhoneDropDownList;
         
         /// <summary>
-        /// Email control.
+        /// RequestorAltPhoneLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Email;
+        protected global::System.Web.UI.WebControls.Label RequestorAltPhoneLabel;
+        
+        /// <summary>
+        /// RequestorAltPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RequestorAltPhone;
+        
+        /// <summary>
+        /// RequestorEmailLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RequestorEmailLabel;
         
         /// <summary>
         /// RequestorEmailTextBox control.
@@ -311,6 +329,15 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox RequestorEmailTextBox;
         
         /// <summary>
+        /// EmailValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailValidator;
+        
+        /// <summary>
         /// Start control.
         /// </summary>
         /// <remarks>
@@ -318,15 +345,6 @@ namespace Engage.Dnn.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Start;
-        
-        /// <summary>
-        /// StartBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StartBox;
         
         /// <summary>
         /// StartDateTimePicker control.
@@ -338,13 +356,13 @@ namespace Engage.Dnn.Booking {
         protected global::Telerik.Web.UI.RadDateTimePicker StartDateTimePicker;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// StartDateValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator StartDateValidator;
         
         /// <summary>
         /// End control.
@@ -354,15 +372,6 @@ namespace Engage.Dnn.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label End;
-        
-        /// <summary>
-        /// EndBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EndBox;
         
         /// <summary>
         /// EndDateTimePicker control.
@@ -383,13 +392,13 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// EndDateValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EndDateValidator;
         
         /// <summary>
         /// Label1 control.
@@ -419,13 +428,13 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.CheckBox InDaylightTimeCheckBox;
         
         /// <summary>
-        /// NumberDeaf control.
+        /// NumberOfSpecialParticipantsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NumberDeaf;
+        protected global::System.Web.UI.WebControls.Label NumberOfSpecialParticipantsLabel;
         
         /// <summary>
         /// NumberOfSpecialParticipantsTextBox control.
@@ -437,13 +446,13 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox NumberOfSpecialParticipantsTextBox;
         
         /// <summary>
-        /// TotalNumber control.
+        /// TotalNumberParticipantsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TotalNumber;
+        protected global::System.Web.UI.WebControls.Label TotalNumberParticipantsLabel;
         
         /// <summary>
         /// TotalNumberParticipantsTextBox control.
@@ -455,31 +464,31 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox TotalNumberParticipantsTextBox;
         
         /// <summary>
-        /// Male control.
+        /// GenderLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Male;
+        protected global::System.Web.UI.WebControls.Label GenderLabel;
         
         /// <summary>
-        /// MaleBox control.
+        /// GenderDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox MaleBox;
+        protected global::System.Web.UI.WebControls.DropDownList GenderDropDownList;
         
         /// <summary>
-        /// Female control.
+        /// PresenterLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Female;
+        protected global::System.Web.UI.WebControls.Label PresenterLabel;
         
         /// <summary>
         /// PresenterDropDownList control.
@@ -491,13 +500,13 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.DropDownList PresenterDropDownList;
         
         /// <summary>
-        /// Instructions control.
+        /// InstructionsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Instructions;
+        protected global::System.Web.UI.WebControls.Label InstructionsLabel;
         
         /// <summary>
         /// InstructionsTextBox control.
@@ -527,13 +536,13 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.ImageButton SaveAppointmentButton;
         
         /// <summary>
-        /// CancelAppointmentLink control.
+        /// CancelAppointmentButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink CancelAppointmentLink;
+        protected global::System.Web.UI.WebControls.ImageButton CancelAppointmentButton;
         
         /// <summary>
         /// SaveAndCreateNewAppointmentButton control.

@@ -73,7 +73,7 @@ namespace Engage.Dnn.Booking
             string city, int regionId, string postalCode, string phone, string additionalAddressInfo, string contactStreet, string contactPhone,
             string requestorName, string requestorPhoneType, string requestorPhone, string requestorEmail, string requestorAltPhoneType, string requestorAltPhone,
             DateTime start, DateTime end, TimeSpan timeZoneOffset, int numberOfParticipants, string participantGender, char participantFlag,
-            string participantInstructions, int numberOfSpecialParticipants, bool isAccepted)
+            string participantInstructions, int numberOfSpecialParticipants, bool ?isAccepted)
         {
             this.ModuleId = moduleId;
             this.AppointmentTypeId = appointmentTypeId;
@@ -525,7 +525,7 @@ namespace Engage.Dnn.Booking
             string city, int regionId, string postalCode, string phone, string additionalAddressInfo, string contactStreet, string contactPhone,
             string requestorName, string requestorPhoneType, string requestorPhone, string requestorEmail, string requestorAltPhoneType, string requestorAltPhone,
             DateTime start, DateTime end, TimeSpan timeZoneOffset, int numberOfParticipants, string participantGender, char participantFlag,
-            string participantInstructions, int numberOfSpecialParticipants, bool isAccepted)
+            string participantInstructions, int numberOfSpecialParticipants, bool ?isAccepted)
         {
             return new Appointment(moduleId, appointmentTypeId, title, description, notes, address1, address2, city, regionId, postalCode, phone, additionalAddressInfo,
                 contactStreet, contactPhone, requestorName, requestorPhoneType, requestorPhone, requestorEmail, requestorAltPhoneType,
@@ -604,7 +604,7 @@ namespace Engage.Dnn.Booking
         /// <param name="revisingUser">The user who is saving this event.</param>
         public void Save(int revisingUser)
         {
-            if (this.AppointmentId == Null.NullInteger)
+            if (this.AppointmentId == 0)
             {
                 this.Insert(revisingUser);
             }

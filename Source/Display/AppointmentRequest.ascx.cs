@@ -222,13 +222,13 @@ namespace Engage.Dnn.Booking
                         this.ModuleId, appointmentTypeId, this.TitleTextBox.Text, DescriptionTextBox.Text,
                         this.NotesTextBox.Text, StreetTextBox.Text, RoomTextBox.Text, CityTextBox.Text,
                         regionId, this.ZipTextBox.Text, this.OnSitePhoneTextBox.Text, AdditionaAddressInfoTextBox.Text,
-                        this.OnSiteStreetTextBox.Text, OnSitePhoneTextBox.Text, RequestorNameTextBox.Text, RequestorPhoneDropDownList.SelectedValue,
+                        this.OnSiteStreetTextBox.Text, OnSitePhoneTextBox.Text, RequestorNameTextBox.Text, RequestorPhoneTypeDropDownList.SelectedValue,
                         RequestorPhoneTextBox.Text,
-                        RequestorEmailTextBox.Text, this.RequestorAltPhoneDropDownList.SelectedValue, this.RequestorAltPhoneDropDownList.Text,
+                        RequestorEmailTextBox.Text, this.RequestorAltPhoneDropDownList.SelectedValue, this.RequestorAltPhone.Text,
                         eventStart, eventEnd, timeZoneOffset, total,
                         GenderDropDownList.SelectedValue,
                         Convert.ToChar(PresenterDropDownList.SelectedValue), InstructionsTextBox.Text,
-                        special, false);
+                        special, null);
 
                 appointment.Save(this.UserId);
             }
