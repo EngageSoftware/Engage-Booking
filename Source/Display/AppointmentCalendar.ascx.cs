@@ -171,8 +171,19 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void BindData()
         {
+            var appointments = AppointmentCollection.Load(this.ModuleId, true);
+            if (!this.IsEditable)
+            {
+                this.CalendarToolTipManager.Visible = false;
+
+                foreach (var appointment in appointments)
+                {
+                    appointment.Title = Localization.GetString("Timeslot Taken", this.LocalResourceFile);
+                }
+            }
+
             this.AppointmentsCalendar.Culture = CultureInfo.CurrentCulture;
-            this.AppointmentsCalendar.DataSource = AppointmentCollection.Load(this.ModuleId, true);
+            this.AppointmentsCalendar.DataSource = appointments;
             this.AppointmentsCalendar.DataEndField = "EndDateTime";
             this.AppointmentsCalendar.DataKeyField = "AppointmentId";
             this.AppointmentsCalendar.DataStartField = "StartDateTime";

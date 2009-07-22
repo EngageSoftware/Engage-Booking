@@ -153,4 +153,7 @@
   <data name="ShowMore.Text" xml:space="preserve">
     <value>Show more...</value>
   </data>
+  <data name="Timeslot Taken.Text" xml:space="preserve">
+    <value>This timeslot is unavailable</value>
+  </data>
 </root>
