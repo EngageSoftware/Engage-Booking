@@ -37,6 +37,75 @@ namespace Engage.Dnn.Booking
             this.AppointmentId = Null.NullInteger;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Appointment"/> class.
+        /// </summary>
+        /// <param name="moduleId">The module id.</param>
+        /// <param name="appointmentTypeId">The appointment type id.</param>
+        /// <param name="title">The title of the event.</param>
+        /// <param name="description">The event description.</param>
+        /// <param name="notes">The notes.</param>
+        /// <param name="address1">The address1.</param>
+        /// <param name="address2">The address2.</param>
+        /// <param name="city">The city.</param>
+        /// <param name="regionId">The region id.</param>
+        /// <param name="postalCode">The postal code.</param>
+        /// <param name="phone">The phone.</param>
+        /// <param name="additionalAddressInfo">The additional address info.</param>
+        /// <param name="contactStreet">The contact street.</param>
+        /// <param name="contactPhone">The contact phone.</param>
+        /// <param name="requestorName">Name of the requestor.</param>
+        /// <param name="requestorPhoneType">Type of the requestor phone.</param>
+        /// <param name="requestorPhone">The requestor phone.</param>
+        /// <param name="requestorEmail">The requestor email.</param>
+        /// <param name="requestorAltPhoneType">Type of the requestor alt phone.</param>
+        /// <param name="requestorAltPhone">The requestor alt phone.</param>
+        /// <param name="start">The start.</param>
+        /// <param name="end">The end.</param>
+        /// <param name="timeZoneOffset">The time zone offset.</param>
+        /// <param name="numberOfParticipants">The number of participants.</param>
+        /// <param name="participantGender">The participant gender.</param>
+        /// <param name="participantFlag">The participant flag.</param>
+        /// <param name="participantInstructions">The participant instructions.</param>
+        /// <param name="numberOfSpecialParticipants">The number of special participants.</param>
+        /// <param name="isAccepted">if set to <c>true</c> [is accepted].</param>
+        private Appointment(int moduleId, int appointmentTypeId, string title, string description, string notes, string address1, string address2,
+            string city, int regionId, string postalCode, string phone, string additionalAddressInfo, string contactStreet, string contactPhone,
+            string requestorName, string requestorPhoneType, string requestorPhone, string requestorEmail, string requestorAltPhoneType, string requestorAltPhone,
+            DateTime start, DateTime end, TimeSpan timeZoneOffset, int numberOfParticipants, string participantGender, char participantFlag,
+            string participantInstructions, int numberOfSpecialParticipants, bool isAccepted)
+        {
+            this.ModuleId = moduleId;
+            this.AppointmentTypeId = appointmentTypeId;
+            this.Title = title;
+            this.Description = description;
+            this.TimeZoneOffset = timeZoneOffset;
+            this.Notes = notes;
+            this.Address1 = address1;
+            this.Address2 = address2;
+            this.City = city;
+            this.RegionId = regionId;
+            this.PostalCode = postalCode;
+            this.Phone = phone;
+            this.AdditionalAddressInfo = additionalAddressInfo;
+            this.ContactStreet = contactStreet;
+            this.ContactPhone = contactPhone;
+            this.RequestorName = requestorName;
+            this.RequestorPhoneType = requestorPhoneType;
+            this.RequestorPhone = requestorPhone;
+            this.RequestorEmail = requestorEmail;
+            this.RequestorAltPhoneType = requestorAltPhoneType;
+            this.RequestorAltPhone = requestorAltPhone;
+            this.StartDateTime = start;
+            this.EndDateTime = end;
+            this.NumberOfParticipants = numberOfParticipants;
+            this.ParticipantGender = participantGender;
+            this.ParticipantFlag = participantFlag;
+            this.ParticipantInstructions = participantInstructions;
+            this.NumberOfSpecialParticipants = numberOfSpecialParticipants;
+            this.IsAccepted = isAccepted;
+        }
+
         #region INotifyPropertyChanged Members
 
         /// <summary>
@@ -391,6 +460,17 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Gets or sets the TimeZoneOffset.
+        /// </summary>
+        /// <value>The TimeZoneOffsetof this appointment.</value>
+        [XmlElement(Order = 29)]
+        public TimeSpan TimeZoneOffset
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Loads the <see cref="Appointment"/> with the specified <paramref name="appointmentId"/>.
         /// </summary>
         /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to load.</param>
@@ -406,6 +486,51 @@ namespace Engage.Dnn.Booking
 
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Creates the specified event.
+        /// </summary>
+        /// <param name="moduleId">The module id.</param>
+        /// <param name="appointmentTypeId">The appointment type id.</param>
+        /// <param name="title">The title of the event.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="notes">The notes.</param>
+        /// <param name="address1">The address1.</param>
+        /// <param name="address2">The address2.</param>
+        /// <param name="city">The city.</param>
+        /// <param name="regionId">The region id.</param>
+        /// <param name="postalCode">The postal code.</param>
+        /// <param name="phone">The phone.</param>
+        /// <param name="additionalAddressInfo">The additional address info.</param>
+        /// <param name="contactStreet">The contact street.</param>
+        /// <param name="contactPhone">The contact phone.</param>
+        /// <param name="requestorName">Name of the requestor.</param>
+        /// <param name="requestorPhoneType">Type of the requestor phone.</param>
+        /// <param name="requestorPhone">The requestor phone.</param>
+        /// <param name="requestorEmail">The requestor email.</param>
+        /// <param name="requestorAltPhoneType">Type of the requestor alt phone.</param>
+        /// <param name="requestorAltPhone">The requestor alt phone.</param>
+        /// <param name="start">The start.</param>
+        /// <param name="end">The end.</param>
+        /// <param name="timeZoneOffset">The time zone offset.</param>
+        /// <param name="numberOfParticipants">The number of participants.</param>
+        /// <param name="participantGender">The participant gender.</param>
+        /// <param name="participantFlag">The participant flag.</param>
+        /// <param name="participantInstructions">The participant instructions.</param>
+        /// <param name="numberOfSpecialParticipants">The number of special participants.</param>
+        /// <param name="isAccepted">if set to <c>true</c> [is accepted].</param>
+        /// <returns>A new event object.</returns>
+        public static Appointment Create(int moduleId, int appointmentTypeId, string title, string description, string notes, string address1, string address2, 
+            string city, int regionId, string postalCode, string phone, string additionalAddressInfo, string contactStreet, string contactPhone,
+            string requestorName, string requestorPhoneType, string requestorPhone, string requestorEmail, string requestorAltPhoneType, string requestorAltPhone,
+            DateTime start, DateTime end, TimeSpan timeZoneOffset, int numberOfParticipants, string participantGender, char participantFlag,
+            string participantInstructions, int numberOfSpecialParticipants, bool isAccepted)
+        {
+            return new Appointment(moduleId, appointmentTypeId, title, description, notes, address1, address2, city, regionId, postalCode, phone, additionalAddressInfo,
+                contactStreet, contactPhone, requestorName, requestorPhoneType, requestorPhone, requestorEmail, requestorAltPhoneType,
+                requestorAltPhone, start, end, timeZoneOffset, numberOfParticipants, participantGender, participantFlag, participantInstructions,
+                numberOfSpecialParticipants, isAccepted);
         }
 
         /// <summary>

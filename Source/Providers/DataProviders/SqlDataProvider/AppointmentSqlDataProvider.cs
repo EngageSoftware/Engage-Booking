@@ -183,5 +183,14 @@ namespace Engage.Dnn.Booking
                 Engage.Utility.CreateBitParam("@isAccepted", isAccepted),
                 Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
         }
+
+        /// <summary>
+        /// Gets the appointment types.
+        /// </summary>
+        /// <returns></returns>
+        public static IDataReader GetAppointmentTypes()
+        {
+            return SqlDataProvider.Instance.ExecuteReader("GetAppointmentTypes");
+        }
     }
 }

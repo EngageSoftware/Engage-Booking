@@ -26,3 +26,6 @@ IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointment]'
 	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointment]
 GO
 
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_GetAppointmentTypes]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_GetAppointmentTypes]
+GO

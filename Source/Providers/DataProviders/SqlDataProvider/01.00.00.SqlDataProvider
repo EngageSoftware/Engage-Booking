@@ -356,3 +356,62 @@ WHERE AppointmentId = @appointmentId
 END
 GO
 
+/*****************Appointment Types***************************/
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name] ,[CreationDate],[RevisionDate],[RevisingUser])
+VALUES ('Business', GETDATE(), GETDATE(), 0)
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name] ,[CreationDate],[RevisionDate],[RevisingUser])
+VALUES ('Community Event', GETDATE(), GETDATE(), 0)
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name] ,[CreationDate],[RevisionDate],[RevisingUser])
+VALUES ('Educational', GETDATE(), GETDATE(), 0)
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name] ,[CreationDate],[RevisionDate],[RevisingUser])
+VALUES ('Fed or State Govt', GETDATE(), GETDATE(), 0)
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name] ,[CreationDate],[RevisionDate],[RevisingUser])
+VALUES ('Local Govt', GETDATE(), GETDATE(), 0)
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name] ,[CreationDate],[RevisionDate],[RevisingUser])
+VALUES ('Medical', GETDATE(), GETDATE(), 0)
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name] ,[CreationDate],[RevisionDate],[RevisingUser])
+VALUES ('Musical', GETDATE(), GETDATE(), 0)
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name] ,[CreationDate],[RevisionDate],[RevisingUser])
+VALUES ('Psychiatric', GETDATE(), GETDATE(), 0)
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name] ,[CreationDate],[RevisionDate],[RevisingUser])
+VALUES ('Religious', GETDATE(), GETDATE(), 0)
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name] ,[CreationDate],[RevisionDate],[RevisingUser])
+VALUES ('Seminar', GETDATE(), GETDATE(), 0)
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name] ,[CreationDate],[RevisionDate],[RevisingUser])
+VALUES ('Theatrical', GETDATE(), GETDATE(), 0)
+GO
+
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name] ,[CreationDate],[RevisionDate],[RevisingUser])
+VALUES ('Other', GETDATE(), GETDATE(), 0)
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentTypes]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentTypes]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentTypes]
+AS
+BEGIN
+	 SELECT * FROM   {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]
+END
+GO
+

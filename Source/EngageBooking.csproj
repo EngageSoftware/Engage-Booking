@@ -132,6 +132,8 @@
     </Compile>
     <Compile Include="Appointment.cs" />
     <Compile Include="AppointmentCollection.cs" />
+    <Compile Include="AppointmentType.cs" />
+    <Compile Include="AppointmentTypeCollection.cs" />
     <Compile Include="Display\AppointmentRequest.ascx.cs">
       <DependentUpon>AppointmentRequest.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
