@@ -86,7 +86,7 @@
 
 <engage:approval ID="ApprovalControl" runat="server" />
 
-<dnn:sectionhead ID="CalendarHeader" runat="server" CssClass="approval-calendar-header" ResourceKey="CalendarHeader" Section="CalendarWrapper"  />
+<%-- <dnn:sectionhead ID="CalendarHeader" runat="server" CssClass="approval-calendar-header" ResourceKey="CalendarHeader" Section="CalendarWrapper"  /> --%>
 <div id="CalendarWrapper" runat="server" class="EventCalendar">
     <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>

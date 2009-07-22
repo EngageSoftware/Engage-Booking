@@ -72,12 +72,12 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Sets up the <see cref="ApprovalControl"/> and <see cref="CalendarHeader"/>.
+        /// Sets up the <see cref="ApprovalControl"/>
         /// </summary>
         private void SetupAdminView()
         {
-            this.ApprovalControl.Visible = this.CalendarHeader.Visible = this.IsEditable;
-            this.CalendarHeader.IsExpanded = !this.CalendarHeader.Visible;
+            this.ApprovalControl.Visible = /*this.CalendarHeader.Visible =*/ this.IsEditable;
+            ////this.CalendarHeader.IsExpanded = !this.CalendarHeader.Visible;
             this.ApprovalControl.ModuleConfiguration = this.ModuleConfiguration;
         }
 
