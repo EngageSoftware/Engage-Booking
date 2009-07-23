@@ -102,8 +102,7 @@
             <legend>Date of Assignment</legend>
             <ol class="date-assignment-form">
                 <li class="start">
-                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="start-label" runat="server" Text="Start" AssociatedControlId="StartBox" />
-                    <asp:TextBox ID="StartBox" CssClass="start-box medium" runat="server" />
+                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="start-label" runat="server" Text="Start" AssociatedControlId="StartDateTimePicker" />
                     <telerik:RadDateTimePicker runat="server" ID="StartDateTimePicker" Skin="WebBlue">
                         <TimeView Skin="WebBlue" />
                         <Calendar Skin="WebBlue" ShowRowHeaders="false" />
@@ -113,8 +112,7 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="StartDateTimePicker" ResourceKey="StartDateTimePickerRequired" Display="None" EnableClientScript="false" />
                 </li>
                 <li class="end">
-                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="end-label" runat="server" Text="End:" AssociatedControlId="EndBox" />
-                    <asp:TextBox ID="EndBox" CssClass="end-box medium" runat="server" />
+                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="end-label" runat="server" Text="End:" AssociatedControlId="EndDateTimePicker" />
                     <telerik:RadDateTimePicker runat="server" ID="EndDateTimePicker" Skin="WebBlue">
                         <TimeView Skin="WebBlue" />
                         <Calendar Skin="WebBlue" ShowRowHeaders="false" />
