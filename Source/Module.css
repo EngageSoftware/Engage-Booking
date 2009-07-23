@@ -32,7 +32,9 @@
 	.respond-wrap h2.Head, .respond-wrap h3.SubHead{margin:0;}
 
 /* event edit page */
-
+.approval th{color:#6e5112;font-size:14px;}
+.approval a{color:#0187e5;}
+	.approval a:hover{color:#0187e5;text-decoration:underline;}
 .approval-nav{text-align: left;}
 
 	.approval-nav a img{padding: 0 6px 0 0;}
@@ -190,8 +192,6 @@
 .ErrorBody {background: #fde0e0; border: 2px #ff0000 solid;}
 .ErrorBody .ErrorIcon{background:url(images/errorSmallIcon.png) no-repeat;}
 
-
-
 /*========================= Success ===============================*/
 
 /*.SuccessTop{background-image:url(images/greenTop.gif);}
@@ -212,110 +212,60 @@
 .InformationBody .InformationIcon{background-image:url(images/info.png);}
 
 /*** Engage Booking ***/
-
 .sb-request-form{}
 	#Form1{}
     .sb-request-form fieldset{}
     	.sb-request-form legend{}
     	.sb-request-form p{}
-		.short{width:75px;}
-		.medium{width:100px;}
-		.long{width:175px;}
-		.full{width:350px;}
+		
+		.full{width:45%;}
+		.long{width:35%;}
+		.medium{width:30%;}
+		.short{width:22%;}
+		.small{width:10%;}
+		
 		.required-label{color:#f00;}
-/*==============================================================================
-	Interpreting Event
-==============================================================================*/
-	.interpreting-form{}
-		.event-type{}
-			.event-type-label{}
-			.event-type-box{}
-		.Title{}
-			.phone-label{}
-			.phone-box{} 
-		.description{}
-			.description-label{}
-			.description-box{}
-		.considerations{}
-			.considerations-label{}
-			.considerations-box{}  
-	.interpreting-form-b{}
-		.street{}
-			.street-label{}
-			.street-box{}
-		.room{}
-			.room-box{}
-		.city{}
-			.city-label{}
-			.city-box{}
-		.state{}
-			.state-box{}
-		.zip{}
-			.zip-box{}
-		.nearest{}
-			.nearest-label{}
-			.nearest-box{}
-	.interpreting-form-c{}
-		.street{}
-			.street-label{}
-			.street-box{}
-		.phone{}
-			.phone-label{}
-			.phone-box{}
-/*==============================================================================
-	Person Requesting Interpreting Services
-==============================================================================*/
-	.requesting-form{}
-		.full-name{}
-			.full-name-label{}
-			.full-name-box{}
-		.phone{}
-			.phone-label{}
-			.phone-box{}
-		 .alt-phone{}
-			.alt-phone-label{}
-			.alt-phone-box{}
-		.email{}
-			.email-label{}
-			.email-box{}
-/*==============================================================================
-	Date of Assignment
-==============================================================================*/	
-	.date-assignment-form{}
-		.start{}
-			.start-label{}
-			.start-box{}
-		 .at-time{}
-			.at-time-label{}
-			.at-time-box{}
-		 .end{}
-			.end-label{}
-			.end-box{}
-		.at-time{}
-			.at-time-label{}
-			.at-time-box{}
-/*==============================================================================
-	Participants
-==============================================================================*/ 
-	.participants-form{}
-		.number-deaf{}
-			.number-deaf-label{}
-			.number-deaf-box{}
-		 .total-number{}
-			.total-number-label{}
-			.total-number-box{}
-		 .male{}
-			.male-label{}
-			.male-box{}
-		.female{}
-			.female-label{}
-			.female-box{}
-		.instructions{}
-			.instructions-label{}
-			.instructions-box{}
+		
+/*----- Interpreting Event  -----*/	
+
+h4{font-size:16px !important;color:#39c !important;}
+ol li{list-style:none;}
+
+	.interpreting-form{background:#fafafa;padding:15px;}
+		.event-type, .title, .description, .notes {width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.event-type-label, .title-label, .description-label, .considerations-label{width:20%;float:left;}
+			.event-type-box, .description-box, .notes-box{float:left;margin:0 2%}			
+		
+	.interpreting-form-b{background:#fafafa;padding:15px;}
+		.street, .city, .state, .zip, .nearest {width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.street-label, .city-label, .nearest-label{float:left;width:20%;}
+			.street-box, .room-box, .city-box, .state-list, .zip-box, .nearest-box{float:left;margin:0 2%}
+			.state-list{width:18%;}
+		
+	.interpreting-form-c{background:#fafafa;padding:15px;}
+		.phone {width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.phone-label{float:left;width:20%;}
+			.phone-box{float:left;margin:0 2%}
+			
+/*----- Person Requesting Interpreting Services -----*/	
+	.requesting-form{background:#fafafa;padding:15px;}
+		.full-name, .phone, .email {width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.full-name-label, .phone-label, .alt-phone-label, .email-label{float:left;width:20%;}
+			.full-name-box, .phone-box, .alt-phone-box, .email-box{float:left;margin:0 2%}
+			
+/*----- Date of Assignment -----*/	
+	.date-assignment-form{background:#fafafa;padding:15px;}
+		.start, .at-time, .end{width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.start-label, .at-time-label, .end-label{float:left;width:20%;}
+			.start-box, .at-time-box, .end-box{float:left;margin:0 2%}
+			
+/*----- Participants  -----*/	
+	.participants-form{background:#fafafa;padding:15px;}
+		.number-special, .total-number, .gender, .presenter, .instructions{width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.number-special-label, .total-number-label, .gender-label, .presenter-label, .instructions-label{float:left;width:20%;}
+			.number-special-box, .total-number-box, .gender-list, .presenter-box, .instructions-box{float:left;margin:0 2%}
 /*==============================================================================
 	Submit Button
 ==============================================================================*/
 	.submit{}
 		.send-button{}
-

@@ -14,12 +14,13 @@
             <ol class="interpreting-form">
                 <li class="event-type">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="event-type-label" runat="server" Text="Type of Event" AssociatedControlId="AppointmentTypeDropDownList" />
-                    <asp:DropDownList ID="AppointmentTypeDropDownList" CssClass="event-type-box medium" runat="server" />
+                    <asp:DropDownList ID="AppointmentTypeDropDownList" CssClass="event-type-box short" runat="server" />
                 </li>
                 <li class="title">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="title-label" runat="server" Text="Title" AssociatedControlId="TitleTextBox" />
-                    <asp:TextBox ID="TitleTextBox" CssClass="title-box long" runat="server" />
+                    <asp:TextBox ID="TitleTextBox" CssClass="title-box short" runat="server" />
                 </li>
+
                 <li class="description">
                     <asp:Label CssClass="description-label" runat="server" Text="Description of Event" AssociatedControlId="DescriptionTextBox" />
                     <asp:TextBox ID="DescriptionTextBox" CssClass="description-box full" runat="server" TextMode="MultiLine" Rows="4" Columns="40" />
@@ -29,31 +30,29 @@
                     <asp:TextBox ID="NotesTextBox" CssClass="notes-box full" runat="server" TextMode="MultiLine" Rows="4" Columns="40" />
                 </li>
             </ol>
+            
             <h4>Address</h4>
+            
             <ol class="interpreting-form-b">
                 <li class="street">
                     <asp:Label CssClass="street-label" runat="server" Text="Street" AssociatedControlId="StreetTextBox" />
                     <asp:TextBox ID="StreetTextBox" CssClass="street-box long" runat="server" />
                     <asp:TextBox ID="RoomTextBox" CssClass="room-box short" runat="server" />
                 </li>
-               
                 <li class="city">
                     <asp:Label CssClass="city-label" runat="server" Text="City" AssociatedControlId="CityTextBox" />
                     <asp:TextBox ID="CityTextBox" CssClass="city-box long" runat="server" />
-                </li>
-                <li class="state">
-                    <asp:Label CssClass="state-label" runat="server" />
-                    <asp:DropDownList ID="RegionDropDownList" runat="server" CssClass="state-list medium"></asp:DropDownList>
-                </li>
-                <li class="zip">
-                    <asp:TextBox ID="PostalCodeTextBox" CssClass="zip-box short" runat="server" />
+                    <asp:DropDownList ID="RegionDropDownList" runat="server" CssClass="state-list short"></asp:DropDownList>
+                    <asp:TextBox ID="PostalCodeTextBox" CssClass="zip-box small" runat="server" />
                 </li>
                 <li class="nearest">
                     <asp:Label CssClass="nearest-label" runat="server" Text="If DC/MD/VA, nearest Metro and nearest cross street" AssociatedControlId="AdditionalAddressInfoTextBox" />
                     <asp:TextBox ID="AdditionalAddressInfoTextBox" CssClass="nearest-box long" runat="server" />
                 </li>
             </ol>
+            
             <h4>On-site Contact</h4>
+            
             <ol class="interpreting-form-c">
                 <li class="street">
                     <asp:Label CssClass="street-label" runat="server" Text="Street" AssociatedControlId="OnsiteStreetTextBox" />
@@ -61,7 +60,7 @@
                 </li>
                 <li class="phone">
                     <asp:Label CssClass="phone-label" runat="server" Text="Phone" AssociatedControlId="OnsitePhoneTextBox" />
-                    <asp:TextBox ID="OnsitePhoneTextBox" CssClass="phone-box medium" runat="server" />
+                    <asp:TextBox ID="OnsitePhoneTextBox" CssClass="phone-box long" runat="server" />
                 </li>
             </ol>
         </fieldset>
@@ -90,7 +89,7 @@
                         <asp:ListItem>WebCam</asp:ListItem>
                     </asp:DropDownList>
                     <asp:Label CssClass="alt-phone-label" runat="server" Text="Alternate Phone" AssociatedControlId="RequestorAltPhoneTextBox" />
-                    <asp:TextBox ID="RequestorAltPhoneTextBox" CssClass="alt-phone-box" runat="server" />
+                    <asp:TextBox ID="RequestorAltPhoneTextBox" CssClass="alt-phone-box long" runat="server" />
                 </li>
                 <li class="email">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="email-label" runat="server" Text="Email Address" AssociatedControlId="RequestorEmailTextBox" />
@@ -124,7 +123,7 @@
                 <li class="AEEventTimeZone">
                     <asp:Label runat="server" ResourceKey="EventTimeZoneLabel" CssClass="NormalBold" AssociatedControlID="TimeZoneDropDownList" />
                     <div class="timezone_display">
-                        <asp:DropDownList runat="server" ID="TimeZoneDropDownList" />
+                        <asp:DropDownList runat="server" ID="TimeZoneDropDownList" CssClass="time-zone-dropdown full" />
                         <div class="Normal">
                             <asp:CheckBox runat="server" ID="InDaylightTimeCheckBox" ResourceKey="EventTimeZoneCheckBox" />
                         </div>
@@ -138,8 +137,6 @@
                 <li class="number-special">
                     <asp:Label CssClass="number-special-label" runat="server" Text="Number of Deaf Participants" AssociatedControlId="NumberOfSpecialParticipantsTextBox" />
                     <asp:TextBox ID="NumberOfSpecialParticipantsTextBox" CssClass="number-special-box short" runat="server" />
-                </li>
-                <li class="total-number">
                     <asp:Label CssClass="total-number-label" runat="server" Text="Total Number of Participants" AssociatedControlId="TotalNumberParticipantsTextBox" />
                     <asp:TextBox ID="TotalNumberParticipantsTextBox" CssClass="total-number-box short" runat="server" />
                 </li>
@@ -150,17 +147,15 @@
                         <asp:ListItem>Men</asp:ListItem>
                         <asp:ListItem>Women</asp:ListItem>
                     </asp:DropDownList>
-                </li>
-                <li class="presenter">
                     <asp:Label CssClass="presenter-label" runat="server" Text="Deaf Presenter" AssociatedControlId="PresenterDropDownList" />
-                    <asp:DropDownList ID="PresenterDropDownList" CssClass="female-box short" runat="server">
+                    <asp:DropDownList ID="PresenterDropDownList" CssClass="presenter-box short" runat="server">
                         <asp:ListItem>N</asp:ListItem>
                         <asp:ListItem>Y</asp:ListItem>
                     </asp:DropDownList>
                 </li>
                 <li class="instructions">
                     <asp:Label CssClass="instructions-label" runat="server" Text="Special Instructions" AssociatedControlId="InstructionsTextBox" />
-                    <asp:TextBox ID="InstructionsTextBox" CssClass="instructions-box full" runat="server" />
+                    <asp:TextBox ID="InstructionsTextBox" CssClass="instructions-box full" runat="server" TextMode="MultiLine" Rows="4" Columns="40" />
                 </li>
             </ol>
         </fieldset>
