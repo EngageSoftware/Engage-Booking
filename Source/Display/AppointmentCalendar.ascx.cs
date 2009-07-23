@@ -62,6 +62,7 @@ namespace Engage.Dnn.Booking
                 this.AddJQueryReference();
                 this.LocalizeCalendar();
                 this.SetupAdminView();
+                this.AppointmentsCalendar.SelectedView = this.IsEditable ? SchedulerViewType.DayView : SchedulerViewType.MonthView;
                 this.RequestAppointmentLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "AppointmentRequest");
                 this.BindData();
             }

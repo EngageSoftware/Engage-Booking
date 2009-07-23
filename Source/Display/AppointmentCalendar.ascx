@@ -16,10 +16,14 @@
     });
 
     function hideActiveToolTip() {
-        var controller = Telerik.Web.UI.RadToolTipController.getInstance();
-        var tooltip = controller.get_activeToolTip();
-        if (tooltip) {
-            tooltip.hide();
+        if (Telerik.Web.UI.ReadToolTipController) {
+            var controller = Telerik.Web.UI.RadToolTipController.getInstance();
+            if (controller) {
+                var tooltip = controller.get_activeToolTip();
+                if (tooltip) {
+                    tooltip.hide();
+                }
+            }
         }
     }
     
