@@ -129,6 +129,9 @@
   <data name="AppointmentRequestLabel.Text" xml:space="preserve">
     <value>Service Request Form</value>
   </data>
+  <data name="Business.Text" xml:space="preserve">
+    <value>Business</value>
+  </data>
   <data name="Cancel.Alt" xml:space="preserve">
     <value>Cancel</value>
   </data>
