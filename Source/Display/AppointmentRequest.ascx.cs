@@ -224,7 +224,7 @@ namespace Engage.Dnn.Booking
                     this.RoomTextBox.Text,
                     this.CityTextBox.Text,
                     regionId,
-                    this.ZipTextBox.Text,
+                    this.PostalCodeTextBox.Text,
                     this.OnsitePhoneTextBox.Text,
                     this.AdditionalAddressInfoTextBox.Text,
                     this.OnsiteStreetTextBox.Text,

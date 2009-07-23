@@ -225,6 +225,9 @@
   <data name="RegistrationLimitLabel.Text" xml:space="preserve">
     <value>Maximum Number of Registrants</value>
   </data>
+  <data name="Required Label.Text" xml:space="preserve">
+    <value>*</value>
+  </data>
   <data name="Save.Alt" xml:space="preserve">
     <value>Save</value>
   </data>
