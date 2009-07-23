@@ -87,6 +87,9 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void LocalizeCalendar()
         {
+            this.AppointmentsCalendar.Culture = CultureInfo.CurrentCulture;
+            this.AppointmentsCalendar.FirstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+
             this.AppointmentsCalendar.Localization.HeaderToday = Localization.GetString("HeaderToday.Text", this.LocalResourceFile);
             this.AppointmentsCalendar.Localization.HeaderPrevDay = Localization.GetString("HeaderPrevDay.Text", this.LocalResourceFile);
             this.AppointmentsCalendar.Localization.HeaderNextDay = Localization.GetString("HeaderNextDay.Text", this.LocalResourceFile);
@@ -183,7 +186,6 @@ namespace Engage.Dnn.Booking
                 }
             }
 
-            this.AppointmentsCalendar.Culture = CultureInfo.CurrentCulture;
             this.AppointmentsCalendar.DataSource = appointments;
             this.AppointmentsCalendar.DataEndField = "EndDateTime";
             this.AppointmentsCalendar.DataKeyField = "AppointmentId";
