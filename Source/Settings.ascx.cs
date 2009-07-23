@@ -13,6 +13,7 @@ namespace Engage.Dnn.Booking
 {
     using System;
     using System.Web.UI.WebControls;
+    using DotNetNuke.Security.Roles;
     using DotNetNuke.Services.Exceptions;
 
     /// <summary>
@@ -75,15 +76,14 @@ namespace Engage.Dnn.Booking
             this.SkinDropDownList.DataBind();
             Dnn.Utility.LocalizeListControl(this.SkinDropDownList, this.LocalResourceFile);
 
-            var objRoleController = new DotNetNuke.Security.Roles.RoleController();
-            this.AppointmentRequestsRoleDropDownList.DataSource = objRoleController.GetRoleNames(this.PortalId);
-            this.AppointmentRequestsRoleDropDownList.DataBind();
-
             ListItem li = this.SkinDropDownList.Items.FindByValue(Booking.ModuleSettings.CalendarSkin.GetValueAsStringFor(this));
             if (li != null)
             {
                 li.Selected = true;
             }
+
+            this.AppointmentRequestsRoleDropDownList.DataSource = new RoleController().GetRoleNames(this.PortalId);
+            this.AppointmentRequestsRoleDropDownList.DataBind();
 
             li = this.AppointmentRequestsRoleDropDownList.Items.FindByValue(Booking.ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this));
             if (li != null)

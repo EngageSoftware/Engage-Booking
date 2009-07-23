@@ -102,18 +102,6 @@ namespace Engage.Dnn.Booking
                 return true;
             }
         }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance of the module allows users to submit appointment requests.
-        /// </summary>
-        /// <value><c>true</c> if this instance of the module allows users to submit appointment requests; otherwise, <c>false</c>.</value>
-        protected bool AllowAppointments
-        {
-            get
-            {
-                return ModuleSettings.AllowAppointmentRequests.GetValueAsBooleanFor(this).Value;
-            }
-        }
      
         /// <summary>
         /// Gets the (one-based) index of the current page from the <see cref="HttpRequest.QueryString"/>.
