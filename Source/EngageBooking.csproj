@@ -134,7 +134,6 @@
     <Compile Include="AppointmentCollection.cs" />
     <Compile Include="AppointmentType.cs" />
     <Compile Include="AppointmentTypeCollection.cs" />
-    <Compile Include="Components\CsvWriter.cs" />
     <Compile Include="Display\AppointmentRequest.ascx.cs">
       <DependentUpon>AppointmentRequest.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -388,6 +387,7 @@
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+    <Compile Include="Components\CsvWriter.cs" />
     <Content Include="Display\App_LocalResources\Approval.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
