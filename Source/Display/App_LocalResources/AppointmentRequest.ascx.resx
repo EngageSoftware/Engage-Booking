@@ -138,6 +138,9 @@
   <data name="CapacityMetMessageLabel.Text" xml:space="preserve">
     <value>When Registration Cap Is Met, Show a</value>
   </data>
+  <data name="Community Event.Text" xml:space="preserve">
+    <value>Community Event</value>
+  </data>
   <data name="CreateAnother.Alt" xml:space="preserve">
     <value>Create Another Event</value>
   </data>
@@ -158,6 +161,9 @@
   </data>
   <data name="EditEventSuccess.Text" xml:space="preserve">
     <value>Your event has been successfully updated!</value>
+  </data>
+  <data name="Educational.Text" xml:space="preserve">
+    <value>Educational</value>
   </data>
   <data name="EndDateCompareValidator.Text" xml:space="preserve">
     <value>Your event cannot end before it begins</value>
@@ -210,11 +216,29 @@
   <data name="FeaturedEventLabel.Text" xml:space="preserve">
     <value>Featured Event</value>
   </data>
+  <data name="Fed or State Govt.Text" xml:space="preserve">
+    <value>Federal or State Government</value>
+  </data>
   <data name="InvalidRecurrence.Text" xml:space="preserve">
     <value>The selected recurrence pattern is invalid.  Please make sure all fields are filled in correctly.</value>
   </data>
   <data name="LimitRegistrationsLabel.Text" xml:space="preserve">
     <value>Set a Registration Cap</value>
+  </data>
+  <data name="Local Govt.Text" xml:space="preserve">
+    <value>Local Government</value>
+  </data>
+  <data name="Medical.Text" xml:space="preserve">
+    <value>Medical</value>
+  </data>
+  <data name="Musical.Text" xml:space="preserve">
+    <value>Musical</value>
+  </data>
+  <data name="Other.Text" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Psychiatric.Text" xml:space="preserve">
+    <value>Psychiatric</value>
   </data>
   <data name="RecurringEventLabel.Text" xml:space="preserve">
     <value>Recurring Event</value>
@@ -225,6 +249,9 @@
   <data name="RegistrationLimitLabel.Text" xml:space="preserve">
     <value>Maximum Number of Registrants</value>
   </data>
+  <data name="Religious.Text" xml:space="preserve">
+    <value>Religious</value>
+  </data>
   <data name="Required Label.Text" xml:space="preserve">
     <value>*</value>
   </data>
@@ -234,7 +261,13 @@
   <data name="SaveAndCreateNew.Alt" xml:space="preserve">
     <value>Save and Create New</value>
   </data>
+  <data name="Seminar.Text" xml:space="preserve">
+    <value>Seminar</value>
+  </data>
   <data name="StartDateTimePickerRequired.Text" xml:space="preserve">
     <value>You must specify when your event begins</value>
+  </data>
+  <data name="Theatrical.Text" xml:space="preserve">
+    <value>Theatrical</value>
   </data>
 </root>
