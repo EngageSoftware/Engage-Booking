@@ -102,7 +102,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:Hyperlink ID="RequestAppointmentLink" runat="server" CssClass="RequestAppointmentLink" ResourceKey="RequestAppointment.Text" />
-    <div class="NewAppointmentTooltip Normal">
+    <div ID="NewAppointmentToolTip" class="NewAppointmentTooltip Normal" Visible="false" runat="server">
         <asp:Hyperlink runat="server" ResourceKey="RequestAppointment.Text" />
     </div>
 </div>

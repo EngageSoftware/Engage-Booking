@@ -63,7 +63,12 @@ namespace Engage.Dnn.Booking
                 this.LocalizeCalendar();
                 this.SetupAdminView();
                 this.AppointmentsCalendar.SelectedView = this.IsEditable ? SchedulerViewType.DayView : SchedulerViewType.MonthView;
-                this.RequestAppointmentLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "AppointmentRequest");
+                if (this.UserInfo.IsInRole(Booking.ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this)))
+                {
+                    this.NewAppointmentToolTip.Visible = true;
+                    this.RequestAppointmentLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "AppointmentRequest");
+                }
+
                 this.BindData();
             }
             catch (Exception exc)

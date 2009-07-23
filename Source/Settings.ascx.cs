@@ -49,7 +49,7 @@ namespace Engage.Dnn.Booking
             {
                 try
                 {
-                    Booking.ModuleSettings.AllowAppointmentRequests.Set(this, this.AllowAppointmentRequestsCheckBox.Checked);
+                    Booking.ModuleSettings.AppointmentRequestsRole.Set(this, this.AppointmentRequestsRoleDropDownList.SelectedValue);
                     Booking.ModuleSettings.CalendarSkin.Set(this, this.SkinDropDownList.SelectedValue);
                     Booking.ModuleSettings.AppointmentsPerPage.Set(this, (int)this.RecordsPerPageTextBox.Value.Value);
                     Booking.ModuleSettings.NotificationEmailAddresses.Set(this, this.NotificationEmailsListTextBox.Text);
@@ -75,13 +75,22 @@ namespace Engage.Dnn.Booking
             this.SkinDropDownList.DataBind();
             Dnn.Utility.LocalizeListControl(this.SkinDropDownList, this.LocalResourceFile);
 
+            var objRoleController = new DotNetNuke.Security.Roles.RoleController();
+            this.AppointmentRequestsRoleDropDownList.DataSource = objRoleController.GetRoleNames(this.PortalId);
+            this.AppointmentRequestsRoleDropDownList.DataBind();
+
             ListItem li = this.SkinDropDownList.Items.FindByValue(Booking.ModuleSettings.CalendarSkin.GetValueAsStringFor(this));
             if (li != null)
             {
                 li.Selected = true;
             }
 
-            this.AllowAppointmentRequestsCheckBox.Checked = Booking.ModuleSettings.AllowAppointmentRequests.GetValueAsBooleanFor(this).Value;
+            li = this.AppointmentRequestsRoleDropDownList.Items.FindByValue(Booking.ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this));
+            if (li != null)
+            {
+                li.Selected = true;
+            }
+
             this.AppointmentsPerDayTextBox.Value = Booking.ModuleSettings.AppointmentsToDisplayPerDay.GetValueAsInt32For(this).Value;
             this.RecordsPerPageTextBox.Value = Booking.ModuleSettings.AppointmentsPerPage.GetValueAsInt32For(this).Value;
             this.NotificationEmailsListTextBox.Text = Booking.ModuleSettings.NotificationEmailAddresses.GetValueAsStringFor(this);

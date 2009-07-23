@@ -46,6 +46,6 @@ namespace Engage.Dnn.Booking
         /// Whether this instance of the module allows users to submit requests for appointments on the calendar
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
-        public static readonly Setting<bool> AllowAppointmentRequests = new Setting<bool>("AllowAppointmentRequests", SettingScope.TabModule, true);
+        public static readonly Setting<bool> AppointmentRequestsRole = new Setting<bool>("AppointmentRequestsRole", SettingScope.TabModule, true);
     }
 }

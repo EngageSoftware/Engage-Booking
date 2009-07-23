@@ -1,5 +1,5 @@
 <%@ Import Namespace="System.Globalization"%>
-<%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Settings" CodeBehind="Settings.ascx.cs" %>
+<%@ Control Language="c#" AutoEventWireup="True" Inherits="Engage.Dnn.Booking.Settings" CodeBehind="Settings.ascx.cs" %>
 <%@ Register TagPrefix="dnn" TagName="label" Src="~/controls/labelControl.ascx" %>
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
@@ -10,9 +10,9 @@
 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
     <ContentTemplate>        
         <div class="booking-setting">
-            <dnn:label ResourceKey="AllowAppointmentRequestsLabel" runat="server" CssClass="SubHead" ControlName="AllowAppointmentRequestsCheckBox" />
+            <dnn:label ResourceKey="AppointmentRequestsRoleLabel" runat="server" CssClass="SubHead" ControlName="AppointmentRequestsRoleCheckBox" />
             <span>
-                <asp:CheckBox ID="AllowAppointmentRequestsCheckBox" runat="server" />
+                <asp:DropDownList ID="AppointmentRequestsRoleDropDownList" runat="server" />
             </span>
         </div>
         <div class="booking-setting">
