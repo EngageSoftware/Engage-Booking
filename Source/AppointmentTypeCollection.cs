@@ -1,6 +1,6 @@
 ﻿// <copyright file="AppointmentTypeCollection.cs" company="Engage Software">
 // Engage: Booking - http://www.engagemodules.com
-// Copyright (c) 2004-2008
+// Copyright (c) 2004-2009
 // by Engage Software ( http://www.engagesoftware.com )
 // </copyright>
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
@@ -14,25 +14,22 @@ namespace Engage.Dnn.Booking
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
-    using Data;
 
     /// <summary>
-    /// A strongly-typed collection of <see cref="BindingList{T}"/> objects.
+    /// A strongly-typed collection of <see cref="Appointment"/> objects.
     /// </summary>
     /// <remarks>
-    /// This class inherits from <see cref="Appointment"/> for future support.
+    /// This class inherits from <see cref="BindingList{AppointmentType}"/> for future support.
     /// </remarks>
-    public class AppointmentTypeCollection : BindingList<AppointmentType>
+    public sealed class AppointmentTypeCollection : BindingList<AppointmentType>
     {
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="AppointmentCollection"/> class with the specified list.
+        /// Initializes a new instance of the <see cref="AppointmentTypeCollection"/> class with the specified list.
         /// </summary>
-        /// <param name="list">An <see cref="T:System.Collections.Generic.IList`1"/> of items to be contained in the <see cref="AppointmentCollection"/>.</param>
+        /// <param name="list">An <see cref="IList{AppointmentType}"/> of items to be contained in the <see cref="AppointmentCollection"/>.</param>
         private AppointmentTypeCollection(IList<AppointmentType> list)
             : base(list)
         {
-            
         }
 
         /// <summary>
@@ -41,7 +38,6 @@ namespace Engage.Dnn.Booking
         /// <returns>
         /// A collection of appointment types.
         /// </returns>
-        /// <exception cref="DBException">if there's an error while going to the database to retrieve the appointments</exception>
         internal static AppointmentTypeCollection Load()
         {
             using (IDataReader reader = AppointmentSqlDataProvider.GetAppointmentTypes())
@@ -50,17 +46,13 @@ namespace Engage.Dnn.Booking
             }
         }
 
-
         /// <summary>
-        /// Fills a collection of appointments from a <see cref="DataSet"/>.
+        /// Fills a collection of appointments.
         /// </summary>
-        /// <param name="reader">An un-initialized data reader with two records.
-        /// The first should be a single integer, representing the total number of appointments (non-paged) for the requested query.</param>
+        /// <param name="reader">An un-initialized data reader whose result set is a list of appointment types.</param>
         /// <returns>
-        /// A collection of instantiated <see cref="Appointment"/> object, as represented in <paramref name="reader"/>.
+        /// A collection of instantiated <see cref="AppointmentType"/> objects, as represented in <paramref name="reader"/>.
         /// </returns>
-        /// The second should be a collection of records representing the appointments requested.
-        /// <exception cref="DBException">Data reader did not have the expected structure.  An error must have occurred in the query.</exception>
         private static AppointmentTypeCollection FillAppointmentTypes(IDataReader reader)
         {
             List<AppointmentType> appointmentTypes = new List<AppointmentType>();

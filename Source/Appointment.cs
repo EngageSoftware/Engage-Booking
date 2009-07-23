@@ -1,6 +1,6 @@
 ﻿// <copyright file="Appointment.cs" company="Engage Software">
 // Engage: Booking - http://www.engagemodules.com
-// Copyright (c) 2004-2008
+// Copyright (c) 2004-2009
 // by Engage Software ( http://www.engagesoftware.com )
 // </copyright>
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
@@ -60,20 +60,48 @@ namespace Engage.Dnn.Booking
         /// <param name="requestorEmail">The requestor email.</param>
         /// <param name="requestorAltPhoneType">Type of the requestor alt phone.</param>
         /// <param name="requestorAltPhone">The requestor alt phone.</param>
-        /// <param name="start">The start.</param>
-        /// <param name="end">The end.</param>
+        /// <param name="start">The start of the appointment.</param>
+        /// <param name="end">The end of the appointment.</param>
         /// <param name="timeZoneOffset">The time zone offset.</param>
         /// <param name="numberOfParticipants">The number of participants.</param>
         /// <param name="participantGender">The participant gender.</param>
         /// <param name="participantFlag">The participant flag.</param>
         /// <param name="participantInstructions">The participant instructions.</param>
         /// <param name="numberOfSpecialParticipants">The number of special participants.</param>
-        /// <param name="isAccepted">if set to <c>true</c> [is accepted].</param>
-        private Appointment(int moduleId, int appointmentTypeId, string title, string description, string notes, string address1, string address2,
-            string city, int regionId, string postalCode, string phone, string additionalAddressInfo, string contactStreet, string contactPhone,
-            string requestorName, string requestorPhoneType, string requestorPhone, string requestorEmail, string requestorAltPhoneType, string requestorAltPhone,
-            DateTime start, DateTime end, TimeSpan timeZoneOffset, int numberOfParticipants, string participantGender, char participantFlag,
-            string participantInstructions, int numberOfSpecialParticipants, bool ?isAccepted)
+        /// <param name="isAccepted">
+        /// <c>null</c>if the <see cref="Appointment"/> has not bee accepted or declined yet, 
+        /// otherwise <c>true</c> for an accepted appointment, or <c>false</c> for a declined appointment.
+        /// </param>
+        private Appointment(
+                int moduleId,
+                int appointmentTypeId,
+                string title,
+                string description,
+                string notes,
+                string address1,
+                string address2,
+                string city,
+                int regionId,
+                string postalCode,
+                string phone,
+                string additionalAddressInfo,
+                string contactStreet,
+                string contactPhone,
+                string requestorName,
+                string requestorPhoneType,
+                string requestorPhone,
+                string requestorEmail,
+                string requestorAltPhoneType,
+                string requestorAltPhone,
+                DateTime start,
+                DateTime end,
+                TimeSpan timeZoneOffset,
+                int numberOfParticipants,
+                string participantGender,
+                char participantFlag,
+                string participantInstructions,
+                int numberOfSpecialParticipants,
+                bool? isAccepted)
         {
             this.ModuleId = moduleId;
             this.AppointmentTypeId = appointmentTypeId;
@@ -100,7 +128,7 @@ namespace Engage.Dnn.Booking
             this.EndDateTime = end;
             this.NumberOfParticipants = numberOfParticipants;
             this.ParticipantGender = participantGender;
-            this.ParticipantFlag = participantFlag;
+            this.IsPresenterSpecialYOrN = participantFlag;
             this.ParticipantInstructions = participantInstructions;
             this.NumberOfSpecialParticipants = numberOfSpecialParticipants;
             this.IsAccepted = isAccepted;
@@ -138,9 +166,9 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Gets or sets the Description.
+        /// Gets or sets the description.
         /// </summary>
-        /// <value>The Description.</value>
+        /// <value>The description.</value>
         [XmlElement(Order = 3)]
         public string Description
         {
@@ -250,9 +278,9 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Gets the module id.
+        /// Gets the module ID.
         /// </summary>
-        /// <value>The module id.</value>
+        /// <value>The module ID.</value>
         public int ModuleId
         {
             get;
@@ -449,11 +477,11 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Gets or sets the participant flag.
+        /// Gets or sets whether the presenter is "special" ('Y' if so, 'N' if not).
         /// </summary>
-        /// <value>The participant flag.</value>
+        /// <value>'Y' if the presenter is "special," otherwise 'N'.</value>
         [XmlElement(Order = 28)]
-        public char ParticipantFlag
+        public char IsPresenterSpecialYOrN
         {
             get;
             set;
@@ -462,7 +490,7 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// Gets or sets the TimeZoneOffset.
         /// </summary>
-        /// <value>The TimeZoneOffsetof this appointment.</value>
+        /// <value>The TimeZoneOffset of this appointment.</value>
         [XmlElement(Order = 29)]
         public TimeSpan TimeZoneOffset
         {
@@ -489,11 +517,11 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Creates the specified event.
+        /// Creates the specified <see cref="Appointment"/>.
         /// </summary>
-        /// <param name="moduleId">The module id.</param>
-        /// <param name="appointmentTypeId">The appointment type id.</param>
-        /// <param name="title">The title of the event.</param>
+        /// <param name="moduleId">The module ID.</param>
+        /// <param name="appointmentTypeId">The appointment type ID of this appointment.</param>
+        /// <param name="title">The title of this appointment.</param>
         /// <param name="description">The description.</param>
         /// <param name="notes">The notes.</param>
         /// <param name="address1">The address1.</param>
@@ -511,26 +539,80 @@ namespace Engage.Dnn.Booking
         /// <param name="requestorEmail">The requestor email.</param>
         /// <param name="requestorAltPhoneType">Type of the requestor alt phone.</param>
         /// <param name="requestorAltPhone">The requestor alt phone.</param>
-        /// <param name="start">The start.</param>
-        /// <param name="end">The end.</param>
+        /// <param name="start">The start of the appointment.</param>
+        /// <param name="end">The end of the appointment.</param>
         /// <param name="timeZoneOffset">The time zone offset.</param>
         /// <param name="numberOfParticipants">The number of participants.</param>
         /// <param name="participantGender">The participant gender.</param>
-        /// <param name="participantFlag">The participant flag.</param>
+        /// <param name="isPresenterSpecialYOrN">The participant flag.</param>
         /// <param name="participantInstructions">The participant instructions.</param>
         /// <param name="numberOfSpecialParticipants">The number of special participants.</param>
-        /// <param name="isAccepted">if set to <c>true</c> [is accepted].</param>
-        /// <returns>A new event object.</returns>
-        public static Appointment Create(int moduleId, int appointmentTypeId, string title, string description, string notes, string address1, string address2, 
-            string city, int regionId, string postalCode, string phone, string additionalAddressInfo, string contactStreet, string contactPhone,
-            string requestorName, string requestorPhoneType, string requestorPhone, string requestorEmail, string requestorAltPhoneType, string requestorAltPhone,
-            DateTime start, DateTime end, TimeSpan timeZoneOffset, int numberOfParticipants, string participantGender, char participantFlag,
-            string participantInstructions, int numberOfSpecialParticipants, bool ?isAccepted)
+        /// <param name="isAccepted">
+        /// <c>null</c>if the <see cref="Appointment"/> has not bee accepted or declined yet, 
+        /// otherwise <c>true</c> for an accepted appointment, or <c>false</c> for a declined appointment.
+        /// </param>
+        /// <returns>A new <see cref="Appointment"/> instance.</returns>
+        public static Appointment Create(
+            int moduleId,
+            int appointmentTypeId,
+            string title,
+            string description,
+            string notes,
+            string address1,
+            string address2,
+            string city,
+            int regionId,
+            string postalCode,
+            string phone,
+            string additionalAddressInfo,
+            string contactStreet,
+            string contactPhone,
+            string requestorName,
+            string requestorPhoneType,
+            string requestorPhone,
+            string requestorEmail,
+            string requestorAltPhoneType,
+            string requestorAltPhone,
+            DateTime start,
+            DateTime end,
+            TimeSpan timeZoneOffset,
+            int numberOfParticipants,
+            string participantGender,
+            char isPresenterSpecialYOrN,
+            string participantInstructions,
+            int numberOfSpecialParticipants,
+            bool? isAccepted)
         {
-            return new Appointment(moduleId, appointmentTypeId, title, description, notes, address1, address2, city, regionId, postalCode, phone, additionalAddressInfo,
-                contactStreet, contactPhone, requestorName, requestorPhoneType, requestorPhone, requestorEmail, requestorAltPhoneType,
-                requestorAltPhone, start, end, timeZoneOffset, numberOfParticipants, participantGender, participantFlag, participantInstructions,
-                numberOfSpecialParticipants, isAccepted);
+            return new Appointment(
+                    moduleId,
+                    appointmentTypeId,
+                    title,
+                    description,
+                    notes,
+                    address1,
+                    address2,
+                    city,
+                    regionId,
+                    postalCode,
+                    phone,
+                    additionalAddressInfo,
+                    contactStreet,
+                    contactPhone,
+                    requestorName,
+                    requestorPhoneType,
+                    requestorPhone,
+                    requestorEmail,
+                    requestorAltPhoneType,
+                    requestorAltPhone,
+                    start,
+                    end,
+                    timeZoneOffset,
+                    numberOfParticipants,
+                    participantGender,
+                    isPresenterSpecialYOrN,
+                    participantInstructions,
+                    numberOfSpecialParticipants,
+                    isAccepted);
         }
 
         /// <summary>
@@ -617,7 +699,7 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// Fills an Appointment with the data in the specified <paramref name="appointmentRecord"/>.
         /// </summary>
-        /// <param name="appointmentRecord">A pre-initialized data record that represents an Event instance.</param>
+        /// <param name="appointmentRecord">A pre-initialized data record that represents an <see cref="Appointment"/> instance.</param>
         /// <returns>An instantiated Appointment object.</returns>
         internal static Appointment Fill(IDataRecord appointmentRecord)
         {
@@ -649,7 +731,7 @@ namespace Engage.Dnn.Booking
             appointment.NumberOfParticipants = (int)appointmentRecord["NumberOfParticipants"];
             appointment.NumberOfSpecialParticipants = (int)appointmentRecord["NumberOfSpecialParticipants"];
             appointment.ParticipantGender = appointmentRecord["ParticipantGender"].ToString();
-            appointment.ParticipantFlag = appointmentRecord["ParticipantFlag"].ToString()[0];
+            appointment.IsPresenterSpecialYOrN = appointmentRecord["ParticipantFlag"].ToString()[0];
             appointment.IsAccepted = appointmentRecord["IsAccepted"] as bool?;
 
             return appointment;

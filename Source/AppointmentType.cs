@@ -1,6 +1,6 @@
 ﻿// <copyright file="AppointmentType.cs" company="Engage Software">
 // Engage: Booking - http://www.engagemodules.com
-// Copyright (c) 2004-2008
+// Copyright (c) 2004-2009
 // by Engage Software ( http://www.engagesoftware.com )
 // </copyright>
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
@@ -14,10 +14,20 @@ namespace Engage.Dnn.Booking
     using System.Data;
 
     /// <summary>
-    /// Instance of an AppointmentType
+    /// The type of an <see cref="Appointment"/>
     /// </summary>
     public class AppointmentType
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AppointmentType"/> class.
+        /// </summary>
+        /// <param name="id">The ID of this instance.</param>
+        /// <param name="name">The name of this type.</param>
+        private AppointmentType(int id, string name)
+        {
+            this.Id = id;
+            this.Name = name;
+        }
 
         /// <summary>
         /// Gets the id of the type
@@ -39,16 +49,14 @@ namespace Engage.Dnn.Booking
             private set;
         }
 
-        private AppointmentType(int id, string name)
+        /// <summary>
+        /// Fills an <see cref="AppointmentType"/> with the data in the specified <paramref name="appointmentTypeRecord"/>.
+        /// </summary>
+        /// <param name="appointmentTypeRecord">A pre-initialized data record that represents an <see cref="AppointmentType"/> instance.</param>
+        /// <returns>An instantiated <see cref="AppointmentType"/> object.</returns>
+        internal static AppointmentType Fill(IDataRecord appointmentTypeRecord)
         {
-            Id = id;
-            Name = name;
+            return new AppointmentType((int)appointmentTypeRecord["AppointmentTypeId"], (string)appointmentTypeRecord["Name"]);
         }
-
-        internal static AppointmentType Fill(IDataRecord record)
-        {
-            return new AppointmentType((int) record["AppointmentTypeId"], record["Name"].ToString());
-        }
-
     }
 }

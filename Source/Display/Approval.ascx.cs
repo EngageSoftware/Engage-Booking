@@ -47,7 +47,7 @@ namespace Engage.Dnn.Booking
         protected void CancelDeclineButton_Click(object sender, EventArgs e)
         {
             this.BindData();
-            this.ApprovalMultiView.SetActiveView(this.ApprovalsListView);
+            this.ApprovalMultiview.SetActiveView(this.ApprovalsListView);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Engage.Dnn.Booking
             }
 
             this.BindData();
-            this.ApprovalMultiView.SetActiveView(this.ApprovalsListView);
+            this.ApprovalMultiview.SetActiveView(this.ApprovalsListView);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Engage.Dnn.Booking
                     Appointment.Accept(appointmentId, this.UserId);
                     break;
                 case "Decline":
-                    this.ApprovalMultiView.SetActiveView(this.ProvideDeclineReasonView);
+                    this.ApprovalMultiview.SetActiveView(this.ProvideDeclineReasonView);
                     this.DeclineReasonRepeater.DataSource = new[] { Appointment.Load(appointmentId) };
                     this.DeclineReasonRepeater.DataBind();
                     break;
@@ -161,7 +161,7 @@ namespace Engage.Dnn.Booking
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void DeclineAppointmentsButton_Click(object sender, EventArgs e)
         {
-            this.ApprovalMultiView.SetActiveView(this.ProvideDeclineReasonView);
+            this.ApprovalMultiview.SetActiveView(this.ProvideDeclineReasonView);
             List<Appointment> selectedAppointments = this.GetSelectedAppointmentIds().ConvertAll(appointmentId => Appointment.Load(appointmentId));
             this.DeclineReasonRepeater.DataSource = selectedAppointments;
             this.DeclineReasonRepeater.DataBind();

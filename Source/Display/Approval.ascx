@@ -4,7 +4,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
 <div class="approval">
-    <asp:MultiView ID="ApprovalMultiView" runat="server" ActiveViewIndex="0">
+    <asp:MultiView ID="ApprovalMultiview" runat="server" ActiveViewIndex="0">
         <asp:View ID="ApprovalsListView" runat="server">
             <asp:LinkButton ID="AcceptAppointmentsButton" runat="server" CssClass="approval-accept-link" ResourceKey="Accept Selected Items" />
             <asp:LinkButton ID="DeclineAppointmentsButton" runat="server" CssClass="approval-decline-link" ResourceKey="Decline Selected Items" />

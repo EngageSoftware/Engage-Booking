@@ -42,25 +42,25 @@
                 </li>
                 <li class="state">
                     <asp:Label ID="StateLabel" CssClass="state-label" runat="server" />
-                    <asp:DropDownList ID="StateDropDownList" runat="server" CssClass="state-list medium"></asp:DropDownList>
+                    <asp:DropDownList ID="RegionDropDownList" runat="server" CssClass="state-list medium"></asp:DropDownList>
                 </li>
                 <li class="zip">
                     <asp:TextBox ID="ZipTextBox" CssClass="zip-box short" runat="server" />
                 </li>
                 <li class="nearest">
-                    <asp:Label ID="AdditionaAddressInfoLabel" CssClass="nearest-label" runat="server" Text="If DC/MD/VA, nearest Metro and nearest cross street" AssociatedControlId="AdditionaAddressInfoTextBox" />
-                    <asp:TextBox ID="AdditionaAddressInfoTextBox" CssClass="nearest-box long" runat="server" />
+                    <asp:Label ID="AdditionalAddressInfoLabel" CssClass="nearest-label" runat="server" Text="If DC/MD/VA, nearest Metro and nearest cross street" AssociatedControlId="AdditionalAddressInfoTextBox" />
+                    <asp:TextBox ID="AdditionalAddressInfoTextBox" CssClass="nearest-box long" runat="server" />
                 </li>
             </ol>
             <h4>On-site Contact</h4>
             <ol class="interpreting-form-c">
                 <li class="street">
-                    <asp:Label ID="OnSiteStreetLabel" CssClass="street-label" runat="server" Text="Street" AssociatedControlId="OnSiteStreetTextBox" />
-                    <asp:TextBox ID="OnSiteStreetTextBox" CssClass="street-box long" runat="server" />
+                    <asp:Label ID="OnsiteStreetLabel" CssClass="street-label" runat="server" Text="Street" AssociatedControlId="OnsiteStreetTextBox" />
+                    <asp:TextBox ID="OnsiteStreetTextBox" CssClass="street-box long" runat="server" />
                 </li>
                 <li class="phone">
-                    <asp:Label ID="OnSitePhoneLabel" CssClass="phone-label" runat="server" Text="Phone" AssociatedControlId="OnSitePhoneTextBox" />
-                    <asp:TextBox ID="OnSitePhoneTextBox" CssClass="phone-box medium" runat="server" />
+                    <asp:Label ID="OnsitePhoneLabel" CssClass="phone-label" runat="server" Text="Phone" AssociatedControlId="OnsitePhoneTextBox" />
+                    <asp:TextBox ID="OnsitePhoneTextBox" CssClass="phone-box medium" runat="server" />
                 </li>
             </ol>
         </fieldset>
@@ -170,7 +170,7 @@
 <engage:ValidationSummary ID="ValidationSummary1" runat="server" />
 <div class="AdminButtons FooterButtons">
     <asp:ImageButton ID="SaveAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save.gif" />
-    <asp:ImageButton ID="CancelAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/cancel_go_home.gif" onclick="CancelAppointmentButton_Click" />
+    <asp:HyperLink ID="CancelAppointmentLink" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/cancel_go_home.gif" />
     <asp:ImageButton ID="SaveAndCreateNewAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save_create_new.gif" />
 </div>
 

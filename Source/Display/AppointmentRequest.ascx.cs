@@ -14,6 +14,7 @@ namespace Engage.Dnn.Booking
     using System;
     using System.Globalization;
     using System.Web;
+    using System.Web.UI.WebControls;
     using DotNetNuke.Common;
     using DotNetNuke.Common.Lists;
     using DotNetNuke.Services.Exceptions;
@@ -25,6 +26,15 @@ namespace Engage.Dnn.Booking
     public partial class AppointmentRequest : ModuleBase
     {
         /// <summary>
+        /// Gets the URL to navigate to in order to add a new <see cref="Appointment"/>.
+        /// </summary>
+        /// <value>The URL to navigate to in order to add a new <see cref="Appointment"/></value>
+        private string NewAppintmentUrl
+        {
+            get { return this.BuildLinkUrl(this.ModuleId, "AppointmentRequest"); }
+        }
+
+        /// <summary>
         /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
         /// </summary>
         /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
@@ -33,7 +43,7 @@ namespace Engage.Dnn.Booking
             base.OnInit(e);
             this.Load += this.Page_Load;
             this.SaveAppointmentButton.Click += this.SaveAppointmentButton_OnClick;
-            this.SaveAndCreateNewAppointmentButton.Click += SaveAndCreateNewAppointmentButton_OnClick;
+            this.SaveAndCreateNewAppointmentButton.Click += this.SaveAndCreateNewAppointmentButton_OnClick;
         }
 
         /// <summary>
@@ -50,7 +60,6 @@ namespace Engage.Dnn.Booking
                     this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime");
                     this.EndDateTimePicker.SelectedDate = this.GetDateFromQueryString("endTime");
                     this.SetupControl();
-                    //// this.BindData();
                 }
 
                 this.SetButtonLinks();
@@ -62,32 +71,29 @@ namespace Engage.Dnn.Booking
             }
         }
 
+        /// <summary>
+        /// Fills the <see cref="RegionDropDownList"/>, <see cref="AppointmentTypeDropDownList"/>, and <see cref="TimeZoneDropDownList"/> controls.
+        /// </summary>
         private void SetupControl()
         {
-            ListController controller = new ListController();
-            ListEntryInfoCollection regions = controller.GetListEntryInfoCollection("Region");
+            ListEntryInfoCollection regions = new ListController().GetListEntryInfoCollection("Region");
 
-            StateDropDownList.DataTextField = "Text";
-            StateDropDownList.DataValueField = "EntryId";
-            StateDropDownList.DataSource = regions;
-            StateDropDownList.DataBind();
+            this.RegionDropDownList.DataTextField = "Text";
+            this.RegionDropDownList.DataValueField = "EntryId";
+            this.RegionDropDownList.DataSource = regions;
+            this.RegionDropDownList.DataBind();
 
-            AppointmentTypeDropDownList.DataSource = AppointmentTypeCollection.Load();
-            AppointmentTypeDropDownList.DataTextField = "Name";
-            AppointmentTypeDropDownList.DataValueField = "Id";
-            AppointmentTypeDropDownList.DataBind();
+            this.AppointmentTypeDropDownList.DataSource = AppointmentTypeCollection.Load();
+            this.AppointmentTypeDropDownList.DataTextField = "Name";
+            this.AppointmentTypeDropDownList.DataValueField = "Id";
+            this.AppointmentTypeDropDownList.DataBind();
+            Dnn.Utility.LocalizeListControl(this.AppointmentTypeDropDownList, this.LocalResourceFile);
             
             // TODO: Once we support .NET 3.5, replace this with TimeZoneInfo.GetSystemTimeZones
-            Localization.LoadTimeZoneDropDownList(this.TimeZoneDropDownList, CultureInfo.CurrentCulture.Name, ((int)Dnn.Utility.GetUserTimeZoneOffset(this.UserInfo, this.PortalSettings).TotalMinutes).ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// Gets the URL to navigate to in order to add a new event.
-        /// </summary>
-        /// <value>The URL to navigate to in order to add a new event</value>
-        private string AddAppintmentUrl
-        {
-            get { return this.BuildLinkUrl(this.ModuleId, "AppointmentRequest"); }
+            Localization.LoadTimeZoneDropDownList(
+                    this.TimeZoneDropDownList,
+                    CultureInfo.CurrentCulture.Name,
+                    ((int)Dnn.Utility.GetUserTimeZoneOffset(this.UserInfo, this.PortalSettings).TotalMinutes).ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -95,16 +101,14 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void SetButtonLinks()
         {
-            //this.CancelAppointmentLink.NavigateUrl = this.CancelEventLink.NavigateUrl = Globals.NavigateURL();
-            //this.SaveCreateAnotherEventLink.NavigateUrl = this.AddAppintmentUrl;
+            this.CancelAppointmentLink.NavigateUrl = Globals.NavigateURL();
         }
 
-
-        ///// <summary>
-        ///// Handles the OnClick event of the SaveAppointmentButton control.
-        ///// </summary>
-        ///// <param name="sender">The source of the event.</param>
-        ///// <param name="e">The <see cref="System.EventArgs"/> instance containing the appointment data.</param>
+        /// <summary>
+        /// Handles the <see cref="ImageButton.Click"/> event of the <see cref="SaveAppointmentButton"/> control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the appointment data.</param>
         private void SaveAppointmentButton_OnClick(object sender, EventArgs e)
         {
             try
@@ -122,7 +126,7 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Handles the OnClick event of the SaveAndCreateNewAppointmentButton control.
+        /// Handles the <see cref="ImageButton.Click"/> event of the <see cref="SaveAndCreateNewAppointmentButton"/> control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
@@ -133,7 +137,7 @@ namespace Engage.Dnn.Booking
                 if (this.Page.IsValid)
                 {
                     this.Save();
-                    this.Response.Redirect(this.AddAppintmentUrl, true);
+                    this.Response.Redirect(this.NewAppintmentUrl, true);
                 }
             }
             catch (Exception exc)
@@ -142,96 +146,106 @@ namespace Engage.Dnn.Booking
             }
         }
 
-        protected void CancelAppointmentButton_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            Response.Redirect(Globals.NavigateURL());
-        }
-
-        ///// <summary>
-        ///// Displays the final success.
-        ///// </summary>
+        /// <summary>
+        /// Displays the final success.
+        /// </summary>
         private void DisplayFinalSuccess()
         {
             this.SuccessModuleMessage.Visible = true;
-            ////this.AddNewEvent.Visible = false;
-            ////this.FooterMultiview.SetActiveView(this.FinalFooterView);
         }
 
-        ///// <summary>
-        ///// This method will either update or create an event based on the current context of EventId
-        ///// </summary>
+        /// <summary>
+        /// This method will either update or create an <see cref="Appointment"/>
+        /// </summary>
         private void Save()
         {
-            if (this.AppointmentId.HasValue)
-            {
-                this.Update();
-            }
-            else
-            {
+            ////if (this.AppointmentId.HasValue)
+            ////{
+            ////    this.Update();
+            ////}
+            ////else
+            ////{
                 this.Insert();
-            }
+            ////}
         }
 
-        ///// <summary>
-        ///// This method is responsible for updating an event which already exists in the data store.
-        ///// </summary>
-        private void Update()
-        {
-            int timeZoneOffsetMinutes;
-            int? appointmentId = this.AppointmentId;
-            if (appointmentId.HasValue && int.TryParse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out timeZoneOffsetMinutes))
-            {
-                TimeSpan timeZoneOffset = new TimeSpan(0, timeZoneOffsetMinutes, 0);
-                if (this.InDaylightTimeCheckBox.Checked)
-                {
-                    timeZoneOffset = timeZoneOffset.Add(new TimeSpan(1, 0, 0));
-                }
+        /////// <summary>
+        /////// This method is responsible for updating an <see cref="Appointment"/> which already exists.
+        /////// </summary>
+        ////private void Update()
+        ////{
+        ////    int? appointmentId = this.AppointmentId;
+        ////    if (appointmentId.HasValue)
+        ////    {
+        ////        int appointmentTypeId = int.Parse(this.AppointmentTypeDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+        ////        int regionId = int.Parse(this.RegionDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+        ////        int total = int.Parse(this.TotalNumberParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture);
+        ////        int special = int.Parse(this.NumberOfSpecialParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture);
+        ////        int timeZoneOffsetMinutes = int.Parse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+        ////        TimeSpan timeZoneOffset = new TimeSpan(0, timeZoneOffsetMinutes, 0);
+        ////        if (this.InDaylightTimeCheckBox.Checked)
+        ////        {
+        ////            timeZoneOffset = timeZoneOffset.Add(new TimeSpan(1, 0, 0));
+        ////        }
 
-                Appointment appointment = Appointment.Load(appointmentId.Value);
-                appointment.StartDateTime = this.StartDateTimePicker.SelectedDate.Value;
-                appointment.EndDateTime = this.EndDateTimePicker.SelectedDate.Value;
-                appointment.Title = this.TitleTextBox.Text;
-                appointment.Description = this.DescriptionTextBox.Text;
-                ////...
-                appointment.Save(this.UserId);
-            }
-        }
+        ////        Appointment appointment = Appointment.Load(appointmentId.Value);
+        ////        appointment.StartDateTime = this.StartDateTimePicker.SelectedDate.Value;
+        ////        appointment.EndDateTime = this.EndDateTimePicker.SelectedDate.Value;
+        ////        appointment.Title = this.TitleTextBox.Text;
+        ////        appointment.Description = this.DescriptionTextBox.Text;
+        ////        ////...
+        ////        appointment.Save(this.UserId);
+        ////    }
+        ////}
 
-        ///// <summary>
-        ///// Based on the values entered by the user for the event, this method will populate an event object and call the Event object's save method.
-        ///// </summary>
+        /// <summary>
+        /// Based on the values entered by the user for the event, this method will populate an <see cref="Appointment"/> and save it
+        /// </summary>
         private void Insert()
         {
-            int timeZoneOffsetMinutes;
-            if (int.TryParse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out timeZoneOffsetMinutes))
+            int appointmentTypeId = int.Parse(this.AppointmentTypeDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+            int regionId = int.Parse(this.RegionDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+            int totalNumberOfParticipants = int.Parse(this.TotalNumberParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture);
+            int numberOfSpecialParticipants = int.Parse(this.NumberOfSpecialParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture);
+            int timeZoneOffsetMinutes = int.Parse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+            TimeSpan timeZoneOffset = new TimeSpan(0, timeZoneOffsetMinutes, 0);
+            if (this.InDaylightTimeCheckBox.Checked)
             {
-                TimeSpan timeZoneOffset = new TimeSpan(0, timeZoneOffsetMinutes, 0);
-                if (this.InDaylightTimeCheckBox.Checked)
-                {
-                    timeZoneOffset = timeZoneOffset.Add(new TimeSpan(1, 0, 0));
-                }
-
-                DateTime eventStart = this.StartDateTimePicker.SelectedDate.Value;
-                DateTime eventEnd = this.EndDateTimePicker.SelectedDate.Value;
-                int appointmentTypeId = Convert.ToInt32(this.AppointmentTypeDropDownList.SelectedValue);
-                int regionId = Convert.ToInt32(this.StateDropDownList.SelectedValue);
-                int total = Convert.ToInt32(TotalNumberParticipantsTextBox.Text);
-                int special = Convert.ToInt32(TotalNumberParticipantsTextBox.Text);
-
-                Appointment appointment = Appointment.Create(
-                        this.ModuleId, appointmentTypeId, this.TitleTextBox.Text, DescriptionTextBox.Text,
-                        this.NotesTextBox.Text, StreetTextBox.Text, RoomTextBox.Text, CityTextBox.Text,
-                        regionId, this.ZipTextBox.Text, this.OnSitePhoneTextBox.Text, AdditionaAddressInfoTextBox.Text,
-                        this.OnSiteStreetTextBox.Text, OnSitePhoneTextBox.Text, RequestorNameTextBox.Text, RequestorPhoneTypeDropDownList.SelectedValue,
-                        RequestorPhoneTextBox.Text,
-                        RequestorEmailTextBox.Text, this.RequestorAltPhoneDropDownList.SelectedValue, this.RequestorAltPhone.Text,
-                        eventStart, eventEnd, timeZoneOffset, total,
-                        GenderDropDownList.SelectedValue,
-                        Convert.ToChar(PresenterDropDownList.SelectedValue), InstructionsTextBox.Text,
-                        special, null);
-
-                appointment.Save(this.UserId);
+                timeZoneOffset = timeZoneOffset.Add(new TimeSpan(1, 0, 0));
             }
+
+            Appointment appointment = Appointment.Create(
+                    this.ModuleId,
+                    appointmentTypeId,
+                    this.TitleTextBox.Text,
+                    this.DescriptionTextBox.Text,
+                    this.NotesTextBox.Text,
+                    this.StreetTextBox.Text,
+                    this.RoomTextBox.Text,
+                    this.CityTextBox.Text,
+                    regionId,
+                    this.ZipTextBox.Text,
+                    this.OnsitePhoneTextBox.Text,
+                    this.AdditionalAddressInfoTextBox.Text,
+                    this.OnsiteStreetTextBox.Text,
+                    this.OnsitePhoneTextBox.Text,
+                    this.RequestorNameTextBox.Text,
+                    this.RequestorPhoneTypeDropDownList.SelectedValue,
+                    this.RequestorPhoneTextBox.Text,
+                    this.RequestorEmailTextBox.Text,
+                    this.RequestorAltPhoneTypeDropDownList.SelectedValue,
+                    this.RequestorAltPhoneTextBox.Text,
+                    this.StartDateTimePicker.SelectedDate.Value,
+                    this.EndDateTimePicker.SelectedDate.Value,
+                    timeZoneOffset,
+                    totalNumberOfParticipants,
+                    this.GenderDropDownList.SelectedValue,
+                    this.PresenterDropDownList.SelectedValue[0],
+                    this.InstructionsTextBox.Text,
+                    numberOfSpecialParticipants,
+                    null);
+
+            appointment.Save(this.UserId);
         }
 
         /// <summary>
@@ -247,10 +261,12 @@ namespace Engage.Dnn.Booking
             {
                 return dateValue;
             }
+
             if (parameterName == "startTime")
             {
                 return DateTime.Now;
             }
+
             return DateTime.Now.AddMinutes(30);
         }
     }

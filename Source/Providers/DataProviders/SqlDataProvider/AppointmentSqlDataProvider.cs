@@ -122,7 +122,7 @@ namespace Engage.Dnn.Booking
                 Engage.Utility.CreateDateTimeParam("@endDateTime", appointment.EndDateTime),
                 Engage.Utility.CreateIntegerParam("@numberOfParticipants", appointment.NumberOfParticipants),
                 Engage.Utility.CreateVarcharParam("@participantGender", appointment.ParticipantGender),
-                Engage.Utility.CreateCharParam("@participantFlag", appointment.ParticipantFlag.ToString()),
+                Engage.Utility.CreateCharParam("@participantFlag", appointment.IsPresenterSpecialYOrN.ToString()),
                 Engage.Utility.CreateTextParam("@participantInstructions", appointment.ParticipantInstructions),
                 Engage.Utility.CreateIntegerParam("@numberOfSpecialParticipants", appointment.NumberOfSpecialParticipants),
                 Engage.Utility.CreateBitParam("@isAccepted", appointment.IsAccepted),
@@ -162,7 +162,7 @@ namespace Engage.Dnn.Booking
                 Engage.Utility.CreateDateTimeParam("@endDateTime", appointment.EndDateTime),
                 Engage.Utility.CreateIntegerParam("@numberOfParticipants", appointment.NumberOfParticipants),
                 Engage.Utility.CreateVarcharParam("@participantGender", appointment.ParticipantGender),
-                Engage.Utility.CreateCharParam("@participantFlag", appointment.ParticipantFlag.ToString()),
+                Engage.Utility.CreateCharParam("@participantFlag", appointment.IsPresenterSpecialYOrN.ToString()),
                 Engage.Utility.CreateTextParam("@participantInstructions", appointment.ParticipantInstructions),
                 Engage.Utility.CreateIntegerParam("@numberOfSpecialParticipants", appointment.NumberOfSpecialParticipants),
                 Engage.Utility.CreateBitParam("@isAccepted", appointment.IsAccepted),
@@ -187,7 +187,10 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// Gets the appointment types.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// An <see cref="IDataReader"/> with the list of appointment types for this module.
+        /// </returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Does not represent state")]
         public static IDataReader GetAppointmentTypes()
         {
             return SqlDataProvider.Instance.ExecuteReader("GetAppointmentTypes");
