@@ -205,8 +205,18 @@ namespace Engage.Dnn.Booking
         {
             int appointmentTypeId = int.Parse(this.AppointmentTypeDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
             int regionId = int.Parse(this.RegionDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
-            int totalNumberOfParticipants = int.Parse(this.TotalNumberParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture);
-            int numberOfSpecialParticipants = int.Parse(this.NumberOfSpecialParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture);
+            int totalNumberOfParticipants; 
+            if (!int.TryParse(this.TotalNumberParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture, out totalNumberOfParticipants))
+            {
+                totalNumberOfParticipants = 0;
+            }
+
+            int numberOfSpecialParticipants;
+            if (!int.TryParse(this.NumberOfSpecialParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture, out numberOfSpecialParticipants))
+            {
+                numberOfSpecialParticipants = 0;
+            }
+
             int timeZoneOffsetMinutes = int.Parse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
             TimeSpan timeZoneOffset = new TimeSpan(0, timeZoneOffsetMinutes, 0);
             if (this.InDaylightTimeCheckBox.Checked)

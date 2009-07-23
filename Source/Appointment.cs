@@ -686,7 +686,7 @@ namespace Engage.Dnn.Booking
         /// <param name="revisingUser">The user who is saving this event.</param>
         public void Save(int revisingUser)
         {
-            if (this.AppointmentId == 0)
+            if (this.AppointmentId == Null.NullInteger)
             {
                 this.Insert(revisingUser);
             }
