@@ -48,6 +48,7 @@ namespace Engage.Dnn.Booking
             get
             {
                 ModuleActionCollection actions = new ModuleActionCollection();
+                actions.Add(this.GetNextActionID(), Localization.GetString("ExportData.Text", this.LocalSharedResourceFile), ModuleActionType.ExportModule, string.Empty, string.Empty, EditUrl("ExportData"), false, SecurityAccessLevel.Edit, true, false);
 
                 if (HostSettings.GetHostSetting("EnableModuleOnLineHelp") == "Y" && Engage.Utility.HasValue(this.ModuleConfiguration.HelpUrl))
                 {
@@ -100,6 +101,18 @@ namespace Engage.Dnn.Booking
             get
             {
                 return true;
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance of the module allows users to submit appointment requests.
+        /// </summary>
+        /// <value><c>true</c> if this instance of the module allows users to submit appointment requests; otherwise, <c>false</c>.</value>
+        protected bool AllowAppointments
+        {
+            get
+            {
+                return ModuleSettings.AppointmentRequestsRole.GetValueAsBooleanFor(this).Value;
             }
         }
      

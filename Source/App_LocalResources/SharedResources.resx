@@ -265,4 +265,7 @@
 {23} = current user's display name
 {24} = portal name</comment>
   </data>
+  <data name="ExportData.Text" xml:space="preserve">
+    <value>Export Data</value>
+  </data>
 </root>

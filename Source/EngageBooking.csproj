@@ -134,9 +134,17 @@
     <Compile Include="AppointmentCollection.cs" />
     <Compile Include="AppointmentType.cs" />
     <Compile Include="AppointmentTypeCollection.cs" />
+    <Compile Include="Components\CsvWriter.cs" />
     <Compile Include="Display\AppointmentRequest.ascx.cs">
       <DependentUpon>AppointmentRequest.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExportData.ascx.cs">
+      <DependentUpon>ExportData.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExportData.ascx.designer.cs">
+      <DependentUpon>ExportData.ascx</DependentUpon>
     </Compile>
     <Compile Include="Settings.ascx.designer.cs">
       <DependentUpon>Settings.ascx</DependentUpon>
@@ -383,6 +391,7 @@
     <Content Include="Display\App_LocalResources\Approval.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="ExportData.ascx" />
     <Content Include="Images\request-appt-background.png" />
     <Content Include="References\Engage.Dnn.Framework.XML" />
     <Content Include="References\Engage.Framework.XML" />

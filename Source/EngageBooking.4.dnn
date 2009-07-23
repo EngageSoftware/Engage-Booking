@@ -27,6 +27,13 @@
               <type>Edit</type>
               <helpurl>http://www.EngageSoftware.com/Support.aspx</helpurl>
             </control>
+            <control>
+              <key>ExportData</key>
+              <title>Engage: Booking - Export Data</title>
+              <src>DesktopModules/EngageBooking/ExportData.ascx</src>
+              <type>Edit</type>
+              <helpurl>http://www.EngageSoftware.com/Support.aspx</helpurl>
+            </control>
           </controls>
         </module>
       </modules>
