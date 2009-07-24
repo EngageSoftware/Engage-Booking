@@ -19,9 +19,6 @@
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="title-label" runat="server" Text="Title" AssociatedControlId="TitleTextBox" />
                     <asp:TextBox ID="TitleTextBox" CssClass="title-box short" runat="server" />
                 </li>
-                <li class="title">
-                    
-                </li>
 
                 <li class="description">
                     <asp:Label CssClass="description-label" runat="server" Text="Description of Event" AssociatedControlId="DescriptionTextBox" />
@@ -170,9 +167,10 @@
     <asp:ImageButton ID="SaveAndCreateNewAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save_create_new.gif" />
 </div>
 
-<script type="text/ecmascript">
+<script type="text/javascript">
     function StartDateTimePicker_DateSelected(sender, eventArgs) {
         var EndDateTimePicker = $find("<%= EndDateTimePicker.ClientID %>");
+        
         // don't update end date if there's already an end date but not an old start date
         if (EndDateTimePicker.isEmpty() || eventArgs.get_oldDate() || EndDateTimePicker.get_selectedDate() <= eventArgs.get_newDate()) {
             var selectedDateSpan = 1800000; // 30 minutes
@@ -184,4 +182,3 @@
         }
     }
 </script>
-
