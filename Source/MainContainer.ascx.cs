@@ -85,13 +85,12 @@ namespace Engage.Dnn.Booking
         /// <returns>A dictionary mapping control keys to user controls.</returns>
         private static IDictionary<string, SubControlInfo> FillControlKeys()
         {
-            IDictionary<string, SubControlInfo> keyDictionary = new Dictionary<string, SubControlInfo>(11, StringComparer.OrdinalIgnoreCase);
-
-            keyDictionary.Add(DefaultControlKey, DefaultSubControl);
-            keyDictionary.Add("AppointmentRequest", new SubControlInfo("Display/AppointmentRequest.ascx", true));
-            keyDictionary.Add("Approval", new SubControlInfo("Display/AppointmentCalendar.ascx", true));
-            
-            return keyDictionary;
+            return new Dictionary<string, SubControlInfo>(11, StringComparer.OrdinalIgnoreCase)
+                       {
+                               { DefaultControlKey, DefaultSubControl },
+                               { "AppointmentRequest", new SubControlInfo("Display/AppointmentRequest.ascx", false) },
+                               { "Approval", new SubControlInfo("Display/AppointmentCalendar.ascx", true) }
+                       };
         }
 
         /// <summary>

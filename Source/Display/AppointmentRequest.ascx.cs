@@ -17,6 +17,7 @@ namespace Engage.Dnn.Booking
     using System.Web.UI.WebControls;
     using DotNetNuke.Common;
     using DotNetNuke.Common.Lists;
+    using DotNetNuke.Security;
     using DotNetNuke.Services.Exceptions;
     using DotNetNuke.Services.Localization;
 
@@ -40,10 +41,31 @@ namespace Engage.Dnn.Booking
         /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
         protected override void OnInit(EventArgs e)
         {
+            this.KickOutUnauthorizedUsers();
+
             base.OnInit(e);
             this.Load += this.Page_Load;
             this.SaveAppointmentButton.Click += this.SaveAppointmentButton_OnClick;
             this.SaveAndCreateNewAppointmentButton.Click += this.SaveAndCreateNewAppointmentButton_OnClick;
+        }
+
+        /// <summary>
+        /// Verifies that the current user can submit a request for an appointment.  
+        /// If not, redirects anonymous users to the login page, and other users to the home page of this module
+        /// </summary>
+        private void KickOutUnauthorizedUsers()
+        {
+            if (!this.UserInfo.IsInRole(ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this)))
+            {
+                if (Engage.Utility.IsLoggedIn)
+                {
+                    this.Response.Redirect(Globals.NavigateURL(), true);
+                }
+                else
+                {
+                    this.Response.Redirect(Dnn.Utility.GetLoginUrl(this.PortalSettings, this.Request));
+                }
+            }
         }
 
         /// <summary>
