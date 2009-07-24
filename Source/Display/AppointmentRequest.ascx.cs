@@ -80,6 +80,13 @@ namespace Engage.Dnn.Booking
                 {
                     this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime");
                     this.EndDateTimePicker.SelectedDate = this.GetDateFromQueryString("endTime");
+
+                    if (this.UserInfo.UserID > 0)
+                    {
+                        this.RequestorNameTextBox.Text = this.UserInfo.FullName;
+                        this.RequestorEmailTextBox.Text = this.UserInfo.Email;
+                    }
+
                     this.SetupControl();
                 }
 
