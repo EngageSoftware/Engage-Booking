@@ -17,7 +17,6 @@ namespace Engage.Dnn.Booking
     using System.Web.UI.WebControls;
     using DotNetNuke.Common;
     using DotNetNuke.Common.Lists;
-    using DotNetNuke.Security;
     using DotNetNuke.Services.Exceptions;
     using DotNetNuke.Services.Localization;
 
