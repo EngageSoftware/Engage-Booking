@@ -264,8 +264,8 @@
 		.approval-decline-reason-label{width:25%;float:left;padding-right:2%;font-weight:bold;}
 		.approval-decline-reason-value{width:65%;float:left;}
 		.approval-decline-reason-textbox{width:75%;float:left;margin-top:2%;}
-	.approval-decline-reason-button-cancel{padding-left:20px;background: url(/DesktopModules/EngageBooking/Images/decline.gif) no-repeat left center;}
-	.approval-decline-reason-button-submit{padding-left:20px;background: url(/DesktopModules/EngageBooking/Images/attending_icon.gif) no-repeat left center;}	
+	.approval-decline-reason-button-cancel{padding-left:20px;background: url(Images/decline.gif) no-repeat left center;}
+	.approval-decline-reason-button-submit{padding-left:20px;background: url(Images/attending_icon.gif) no-repeat left center;}	
 
 /*==============================================================================
 	Approval Request Form 
@@ -273,8 +273,8 @@
 .approval-decline-reasons{padding:10px 0;}
 
 .bulk-selection{padding:10px;text-align:right;width:95%;margin:0 auto;}
-	.approval-accept-link {padding-left:20px;background: url(/DesktopModules/EngageBooking/Images/attending_icon.gif) no-repeat left center;}
-	.approval-decline-link {padding-left:20px;background: url(/DesktopModules/EngageBooking/Images/decline.gif) no-repeat left center;}
+	.approval-accept-link {padding-left:20px;background: url(Images/attending_icon.gif) no-repeat left center;}
+	.approval-decline-link {padding-left:20px;background: url(Images/decline.gif) no-repeat left center;}
 
 .approval{width:95%;margin:0 auto;}
 .approval tr{border:solid 1px #ccc;}
