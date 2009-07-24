@@ -407,3 +407,24 @@ BEGIN
 END
 GO
 
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spSetAppointmentAcceptance]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spSetAppointmentAcceptance]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spSetAppointmentAcceptance]
+(  
+   @appointmentId int,  
+   @isAccepted bit,  
+   @revisingUser int  
+)  
+AS  
+BEGIN  
+  
+UPDATE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]  
+SET IsAccepted = @isAccepted,  
+ RevisingUser = @revisingUser,  
+ RevisionDate = GETDATE()  
+WHERE AppointmentId = @appointmentId  
+  
+END  
+GO
+
