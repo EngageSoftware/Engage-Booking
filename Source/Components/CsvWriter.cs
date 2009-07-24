@@ -22,7 +22,7 @@ namespace Engage.Dnn.Booking
     /// CsvWriter class
     /// (from http://knab.ws/blog/index.php?/archives/3-CSV-file-parser-and-writer-in-C-Part-1.html)
     /// </summary>
-    public class CsvWriter
+    public static class CsvWriter
     {
         /// <summary>
         /// Writes a DataTable to string.

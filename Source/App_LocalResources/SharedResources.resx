@@ -175,6 +175,9 @@
 {23} = current user's display name
 {24} = portal name</comment>
   </data>
+  <data name="AllUsers.Text" xml:space="preserve">
+    <value>All Users</value>
+  </data>
   <data name="DeclineBody.Format" xml:space="preserve">
     <value>&lt;p&gt;Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was declined by {23}.&lt;/p&gt;</value>
     <comment>{0} = appointment.Title

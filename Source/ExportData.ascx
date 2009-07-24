@@ -7,4 +7,5 @@
 </div>
 <div>
     <asp:Button ID="ExportButton" Text="Export Data" OnClick="ExportButton_Click" runat="server" />
+    <asp:CheckBox ID="HeaderRowCheckBox" Text="Include Header Row" runat="server" />
 </div>

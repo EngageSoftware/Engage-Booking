@@ -15,6 +15,7 @@ namespace Engage.Dnn.Booking
     using System.Web.UI.WebControls;
     using DotNetNuke.Security.Roles;
     using DotNetNuke.Services.Exceptions;
+    using DotNetNuke.Services.Localization;
 
     /// <summary>
     /// This is the settings code behind for Event related settings.
@@ -84,7 +85,7 @@ namespace Engage.Dnn.Booking
 
             this.AppointmentRequestsRoleDropDownList.DataSource = new RoleController().GetRoleNames(this.PortalId);
             this.AppointmentRequestsRoleDropDownList.DataBind();
-            this.AppointmentRequestsRoleDropDownList.Items.Insert(0, new ListItem("All Users", string.Empty));
+            this.AppointmentRequestsRoleDropDownList.Items.Insert(0, new ListItem(Localization.GetString("AllUsers.Text", this.LocalSharedResourceFile), string.Empty));
 
             li = this.AppointmentRequestsRoleDropDownList.Items.FindByValue(Booking.ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this));
             if (li != null)

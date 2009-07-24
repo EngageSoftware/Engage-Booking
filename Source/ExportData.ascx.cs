@@ -61,7 +61,7 @@ namespace Engage.Dnn.Booking
 
             // var outputStream = new StreamWriter(DotNetNuke.Common.Globals.ApplicationMapPath + "\\DesktopModules\\EngageBooking\\" + BaseFileName + ".csv");
             // outputStream.Write(CsvWriter.WriteToString(dt, false, false));
-            File.WriteAllText(DotNetNuke.Common.Globals.ApplicationMapPath + "\\DesktopModules\\EngageBooking\\" + BaseFileName + ".csv", CsvWriter.WriteToString(dt, false, false));
+            File.WriteAllText(DotNetNuke.Common.Globals.ApplicationMapPath + "\\DesktopModules\\EngageBooking\\" + BaseFileName + ".csv", CsvWriter.WriteToString(dt, this.HeaderRowCheckBox.Checked, false));
 
             Response.Redirect(this.ModulePath + BaseFileName + ".csv");
         }
