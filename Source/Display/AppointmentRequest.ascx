@@ -3,7 +3,7 @@
 <%@ Register TagPrefix="engage" TagName="ModuleMessage" Src="../Controls/ModuleMessage.ascx" %>
 <%@ Register TagPrefix="engage" Namespace="Engage.Controls" Assembly="Engage.Framework" %>
 <engage:ModuleMessage runat="server" ID="SuccessModuleMessage" MessageType="Success" TextResourceKey="AddEventSuccess" CssClass="AddEventSuccessMessage" />
-<div>
+<div class="approval-request">
     <fieldset>
         <legend><%=Localize("Service Request Form")%></legend>
         <p class="note">
@@ -13,12 +13,14 @@
             <legend>Interpreting Event</legend>
             <ol class="interpreting-form">
                 <li class="event-type">
-                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="event-type-label" runat="server" Text="Type of Event" AssociatedControlId="AppointmentTypeDropDownList" />
+                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" />
+                    <asp:Label CssClass="event-type-label" runat="server" Text="Type of Event" AssociatedControlId="AppointmentTypeDropDownList" />
                     <asp:DropDownList ID="AppointmentTypeDropDownList" CssClass="event-type-box short" runat="server" />
-                </li>
-                <li class="title">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="title-label" runat="server" Text="Title" AssociatedControlId="TitleTextBox" />
                     <asp:TextBox ID="TitleTextBox" CssClass="title-box short" runat="server" />
+                </li>
+                <li class="title">
+                    
                 </li>
 
                 <li class="description">
@@ -37,7 +39,7 @@
                 <li class="street">
                     <asp:Label CssClass="street-label" runat="server" Text="Street" AssociatedControlId="StreetTextBox" />
                     <asp:TextBox ID="StreetTextBox" CssClass="street-box long" runat="server" />
-                    <asp:TextBox ID="RoomTextBox" CssClass="room-box short" runat="server" />
+                    <asp:TextBox ID="RoomTextBox" CssClass="room-box small" runat="server" />
                 </li>
                 <li class="city">
                     <asp:Label CssClass="city-label" runat="server" Text="City" AssociatedControlId="CityTextBox" />
@@ -93,7 +95,7 @@
                 </li>
                 <li class="email">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="email-label" runat="server" Text="Email Address" AssociatedControlId="RequestorEmailTextBox" />
-                    <asp:TextBox ID="RequestorEmailTextBox" CssClass="email-box long" runat="server" />
+                    <asp:TextBox ID="RequestorEmailTextBox" CssClass="email-box full" runat="server" />
                 </li>
             </ol>
         </fieldset>
@@ -168,10 +170,9 @@
     <asp:ImageButton ID="SaveAndCreateNewAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save_create_new.gif" />
 </div>
 
-<script type="text/javascript">
+<script type="text/ecmascript">
     function StartDateTimePicker_DateSelected(sender, eventArgs) {
         var EndDateTimePicker = $find("<%= EndDateTimePicker.ClientID %>");
-        
         // don't update end date if there's already an end date but not an old start date
         if (EndDateTimePicker.isEmpty() || eventArgs.get_oldDate() || EndDateTimePicker.get_selectedDate() <= eventArgs.get_newDate()) {
             var selectedDateSpan = 1800000; // 30 minutes
@@ -183,3 +184,4 @@
         }
     }
 </script>
+

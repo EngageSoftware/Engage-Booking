@@ -6,8 +6,10 @@
 <div class="approval">
     <asp:MultiView ID="ApprovalMultiview" runat="server" ActiveViewIndex="0">
         <asp:View ID="ApprovalsListView" runat="server">
-            <asp:LinkButton ID="AcceptAppointmentsButton" runat="server" CssClass="approval-accept-link" ResourceKey="Accept Selected Items" />
-            <asp:LinkButton ID="DeclineAppointmentsButton" runat="server" CssClass="approval-decline-link" ResourceKey="Decline Selected Items" />
+        	<div class="bulk-selection">
+                <asp:LinkButton ID="AcceptAppointmentsButton" runat="server" CssClass="approval-accept-link" ResourceKey="Accept Selected Items" />
+                <asp:LinkButton ID="DeclineAppointmentsButton" runat="server" CssClass="approval-decline-link" ResourceKey="Decline Selected Items" />
+            </div>
             <asp:GridView ID="AppointmentsGrid" runat="server" GridLines="None" AutoGenerateColumns="false"
                 CssClass="approval-grid" AlternatingRowStyle-CssClass="alternate" SelectedRowStyle-CssClass="selected">
                 <EmptyDataTemplate>
@@ -40,16 +42,33 @@
             </asp:GridView>
             <asp:PlaceHolder ID="AppointmentDetailsPlaceholder" runat="server" Visible="false">
                 <fieldset>
-                    <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Date and Time" /> <asp:Label ID="DetailDateAndTimeLabel" runat="server" CssClass="approval-detail-value" />
-                    <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Full Name" /> <asp:Label ID="DetailFullNameLabel" runat="server" CssClass="approval-detail-value" />
-                    <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Phone" /> 
-                        <asp:Label runat="server" CssClass="approval-detail-value-label" ResourceKey="Type" /> <asp:Label ID="DetailPhoneTypeLabel" runat="server" CssClass="approval-detail-value" />
-                        <asp:Label runat="server" CssClass="approval-detail-value-label" ResourceKey="Number" /> <asp:Label ID="DetailPhoneNumberLabel" runat="server" CssClass="approval-detail-value" />
+                	<div class="datetime">
+                        <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Date and Time" /> 
+                        <asp:Label ID="DetailDateAndTimeLabel" runat="server" CssClass="approval-detail-value" />
+                    </div>
+                    <div class="name">
+                        <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Full Name" /> 
+                        <asp:Label ID="DetailFullNameLabel" runat="server" CssClass="approval-detail-value" />
+                    </div>
+                    <div class="phone">
+                        <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Phone" /> 
+                        <asp:Label runat="server" CssClass="approval-detail-value-label type-value" ResourceKey="Type" /> 
+                     	<asp:Label ID="DetailPhoneTypeLabel" runat="server" CssClass="approval-detail-value type-value" />
+                        <asp:Label runat="server" CssClass="approval-detail-value-label number-value" ResourceKey="Number" /> 
+                        <asp:Label ID="DetailPhoneNumberLabel" runat="server" CssClass="approval-detail-value" />
+                    </div> 
+                  
                 </fieldset>
                 <fieldset>
                     <legend><%=this.Localize("Special Participants") %></legend>
-                    <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Total Number of Participants" /> <asp:Label ID="DetailNumberOfParticipantsLabel" runat="server" CssClass="approval-detail-value" />
-                    <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Names" /> <asp:Label ID="DetailNamesLabel" runat="server" CssClass="approval-detail-value" Text="We don't keep track of this field..." />
+                    <div class="total">
+                    	<asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Total Number of Participants" /> 
+                        <asp:Label ID="DetailNumberOfParticipantsLabel" runat="server" CssClass="approval-detail-value" />
+                    </div>
+                    <div class="names">
+                        <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Names" /> 
+                        <asp:Label ID="DetailNamesLabel" runat="server" CssClass="approval-detail-value" Text="We don't keep track of this field..." />
+                    </div>
                 </fieldset>
             </asp:PlaceHolder>
             <dnn:PagingControl ID="PagingControl" runat="server" CssClass="approval-paging"/>
@@ -58,7 +77,7 @@
             <asp:Repeater ID="DeclineReasonRepeater" runat="server">
                 <HeaderTemplate>
                     <div class="approval-decline-reasons">
-                        <asp:Label runat="server" ResourceKey="Reason for Decline" CssClass="approval-decline-reason-label" />
+                        <asp:Label runat="server" ResourceKey="Reason for Decline" CssClass="approval-decline-instructions" />
                 </HeaderTemplate>
                 <ItemTemplate>
                         <div class="approval-decline-reason">
@@ -68,8 +87,8 @@
                         </div>
                 </ItemTemplate>
                 <FooterTemplate>
-                        <asp:LinkButton runat="server" CssClass="approval-decline-reason-button" ResourceKey="CancelDeclineButton" OnClick="CancelDeclineButton_Click" />
-                        <asp:LinkButton runat="server" CssClass="approval-decline-reason-button" ResourceKey="SubmitDeclineReasonButton" OnClick="SubmitDeclineReasonButton_Click" />
+                		<asp:LinkButton runat="server" CssClass="approval-decline-reason-button-submit" ResourceKey="SubmitDeclineReasonButton" OnClick="SubmitDeclineReasonButton_Click" />
+                        <asp:LinkButton runat="server" CssClass="approval-decline-reason-button-cancel" ResourceKey="CancelDeclineButton" OnClick="CancelDeclineButton_Click" />
                     </div>
                 </FooterTemplate>
             </asp:Repeater>            

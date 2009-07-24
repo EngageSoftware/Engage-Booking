@@ -1,7 +1,5 @@
 /*==============================================
-
 		1. Event Custom Listing Page
-
 ==============================================*/
 
 .EventHeader, .ResponseHeader, .ResponseRow{clear: both; width: 100%; overflow: hidden;  border-bottom: dotted 1px #ccc;}
@@ -32,11 +30,8 @@
 	.respond-wrap h2.Head, .respond-wrap h3.SubHead{margin:0;}
 
 /* event edit page */
-.approval th{color:#6e5112;font-size:14px;}
-.approval a{color:#0187e5;}
-	.approval a:hover{color:#0187e5;text-decoration:underline;}
-.approval-nav{text-align: left;}
 
+.approval-nav{text-align: left;}
 	.approval-nav a img{padding: 0 6px 0 0;}
 	.FooterButtons {padding-top: 3%; }
 	.AddEventSuccessMessage {padding-left: 10%; }
@@ -84,9 +79,7 @@
 		.AEEventFeature .NormalBold, .AEEventRecur .NormalBold, .AEEventRegister .MainLabel, .AEEventTimeZone .NormalBold
 		{float:left; width: 20%; margin-right: 3%; text-align: right;}
 		.AEEventEditor .Normal, .AEEventTitle .Normal, .AEEventStartDate .Normal, .AEEventLocationAdd .Normal, .AEEventEndDate .Normal, .AEEventFeature .Normal  {float: left; width: 81%;}
-/*		.AEEventRecur .Normal, .AEEventRegister .Normal, .AEEventTimeZone .Normal */
-
-		
+/*		.AEEventRecur .Normal, .AEEventRegister .Normal, .AEEventTimeZone .Normal */		
 
 .AEEventEditor li { list-style-type: none; }
 .registerSubmitBt, .registerMessage{margin-top: 0.675em;}
@@ -123,10 +116,8 @@
 	.ResponsesSummary ol li {}
 .ResponseDetailGrid table {width:100%;}
 
-/*========================================================
-
+/*=======================================================
 		2. Settings
-
 ========================================================*/
 
 .booking-setting label, .booking-setting .Help{float:left;width: 49%;}
@@ -170,9 +161,7 @@
 	.cd-buttons{float:left;clear:both;padding:15px 0;}
 				
 /*========================================================
-
 		3. Validation
-
 ========================================================*/
 .ModuleMessage{width:60%; padding-top: 1em; margin: 0 auto;}
 .mmTop{height: 5px; line-height: 0; background-color:transparent; background-repeat: no-repeat; background-attachment:scroll; background-position:left bottom;}
@@ -211,7 +200,7 @@
 .InformationBody {background:#e5f8ff; border: 2px #288abc solid;}
 .InformationBody .InformationIcon{background-image:url(images/info.png);}
 
-/*** Engage Booking ***/
+/*========================= Approval Request Form ===============================*/
 .sb-request-form{}
 	#Form1{}
     .sb-request-form fieldset{}
@@ -224,13 +213,11 @@
 		.short{width:22%;}
 		.small{width:10%;}
 		
-		.required-label{color:#f00;}
+		.required-label{float:left;color:#f00;}
+		.approval-request h4{font-size:16px;color:#39c;}
+		.approval-request ol li{list-style-type:none;}
 		
 /*----- Interpreting Event  -----*/	
-
-h4{font-size:16px !important;color:#39c !important;}
-ol li{list-style:none;}
-
 	.interpreting-form{background:#fafafa;padding:15px;}
 		.event-type, .title, .description, .notes {width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.event-type-label, .title-label, .description-label, .considerations-label{width:20%;float:left;}
@@ -252,6 +239,7 @@ ol li{list-style:none;}
 		.full-name, .phone, .email {width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.full-name-label, .phone-label, .alt-phone-label, .email-label{float:left;width:20%;}
 			.full-name-box, .phone-box, .alt-phone-box, .email-box{float:left;margin:0 2%}
+			.alt-phone-box{margin:0 2% 0 4%;}
 			
 /*----- Date of Assignment -----*/	
 	.date-assignment-form{background:#fafafa;padding:15px;}
@@ -264,8 +252,51 @@ ol li{list-style:none;}
 		.number-special, .total-number, .gender, .presenter, .instructions{width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.number-special-label, .total-number-label, .gender-label, .presenter-label, .instructions-label{float:left;width:20%;}
 			.number-special-box, .total-number-box, .gender-list, .presenter-box, .instructions-box{float:left;margin:0 2%}
-/*==============================================================================
-	Submit Button
-==============================================================================*/
+/*----- Submit Button  -----*/	
 	.submit{}
 		.send-button{}
+/*==============================================================================
+	Decline Screen
+==============================================================================*/
+.approval-decline-reasons{padding:10px 0;}
+	.approval-decline-instructions{width:100%;font-weight:normal;font-style:italic;}
+	.approval-decline-reason{width:100%;overflow:hidden;padding:6px 0;clear:both;}
+		.approval-decline-reason-label{width:25%;float:left;padding-right:2%;font-weight:bold;}
+		.approval-decline-reason-value{width:65%;float:left;}
+		.approval-decline-reason-textbox{width:75%;float:left;margin-top:2%;}
+	.approval-decline-reason-button-cancel{padding-left:20px;background: url(/DesktopModules/EngageBooking/Images/decline.gif) no-repeat left center;}
+	.approval-decline-reason-button-submit{padding-left:20px;background: url(/DesktopModules/EngageBooking/Images/attending_icon.gif) no-repeat left center;}	
+
+/*==============================================================================
+	Approval Request Form 
+==============================================================================*/
+.approval-decline-reasons{padding:10px 0;}
+
+.bulk-selection{padding:10px;text-align:right;width:95%;margin:0 auto;}
+	.approval-accept-link {padding-left:20px;background: url(/DesktopModules/EngageBooking/Images/attending_icon.gif) no-repeat left center;}
+	.approval-decline-link {padding-left:20px;background: url(/DesktopModules/EngageBooking/Images/decline.gif) no-repeat left center;}
+
+.approval{width:95%;margin:0 auto;}
+.approval tr{border:solid 1px #ccc;}
+.approval .alternate{background:#f3fbff;padding:5px;}
+	.approval td{padding:5px;}
+
+.approval th{color:#6e5112;font-size:13px;padding:10px;}
+.approval a{color:#0187e5;}
+	.approval a:hover{color:#0187e5;text-decoration:underline;}
+
+.approval-paging{width:95%;margin:0 auto;padding:10px 0;}
+	.approval a.CommandButton:link, .approval a.CommandButton:visited {color:#0187e5;text-decoration:none;border:solid 1px #0187e5;padding:1px 3px;font-weight:normal;}
+	.approval a.CommandButton:link:hover, .approval a.CommandButton:visited:hover{color:#999;text-decoration:none;border:solid 1px #ccc;}
+	.approval a.CommandButton:visited {color:#0187e5;text-decoration:none;font-weight:normal;}
+	.approval .NormalDisabled{color:#999 !important;text-decoration:none;border:solid 1px #ccc;padding:1px 3px;}
+
+.approval fieldset{border:none;border:none;border-top:1px #cce5f3 solid;margin-top:10px; }
+.datetime, .name, .phone, .total, .names{width:100%;clear:both;padding:6px 0;}
+	.approval-detail-label, .approval-detail-value-label{width:25%;float:left;font-weight:bold;text-align:right;}
+	.approval-detail-value{width:40%;float:left;padding-left:2%;}
+		.type-value{width:9%;}
+		.number-value{width:13%;}
+	.approval legend{color:#6e5112;padding:0 10px;font-weight:bold;font-size:14px;}
+	.total .approval-detail-label, .names .approval-detail-label, .total .approval-detail-value, .names .approval-detail-value{width:45%;}
+	total .approval-detail-label, .names .approval-detail-label{text-align:right;}
