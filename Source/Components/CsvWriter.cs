@@ -4,7 +4,7 @@ using System.Web;
 using System.IO;
 using System.Data;
 
-namespace Engage.Dnn.Booking.Components
+namespace Engage.Dnn.Booking
 {
     public class CsvWriter
     {

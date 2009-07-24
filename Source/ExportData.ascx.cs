@@ -31,15 +31,14 @@ namespace Engage.Dnn.Booking
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void ExportButton_Click(object sender, EventArgs e)
         {
-            //var AppointmentSqlDataProvider = new AppointmentSqlDataProvider();
             //var dt = new DataTable();
-            //dt.Load(AppointmentSqlDataProvider.GetAppointments(this.ModuleId, 'AppointmentId', null, null));
-            
+            //dt.Load(AppointmentSqlDataProvider.GetAppointments(this.ModuleId, "AppointmentId", null, null));
+
             ////string outputString = CsvWriter.WriteToString(dt, false, false);
-            //var outputFile = new FileStream(this.ModulePath + BaseFileName + ".csv", FileAccess.Write);
+            //var outputFile = new FileStream(DotNetNuke.Common.Globals.ApplicationMapPath + "DesktopModules\\EngageBooking\\" + BaseFileName + ".csv", FileMode.CreateNew);
             //CsvWriter.WriteToStream(outputFile, dt, false, false);
 
-            //Server.Transfer(FileName).
+            //Server.Transfer(this.ModulePath + BaseFileName + ".csv");
         }
     }
 }
