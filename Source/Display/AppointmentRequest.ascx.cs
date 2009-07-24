@@ -256,6 +256,13 @@ namespace Engage.Dnn.Booking
                     null);
 
             appointment.Save(this.UserId);
+
+            EmailService.SendNewRequestEmail(
+                    appointment,
+                    ModuleSettings.NotificationEmailAddresses.GetValueAsStringFor(this),
+                    Globals.NavigateURL(),
+                    Globals.NavigateURL(),
+                    this.BuildLinkUrl(this.ModuleId, "Approval"));
         }
 
         /// <summary>

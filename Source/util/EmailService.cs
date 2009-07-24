@@ -53,6 +53,14 @@ namespace Engage.Dnn.Booking
                 body);
         }
 
+        public static void SendNewRequestEmail(Appointment appointment, string toEmailAddresses, string approvalUrl, string declineUrl, string loginUrl)
+        {
+            SendEmail(
+                toEmailAddresses,
+                GetLocalizedFormattedText("NewRequestSubject.Format", appointment),
+                GetLocalizedFormattedText("NewRequestBody.Format", appointment, approvalUrl, declineUrl, loginUrl));
+        }
+
         /// <summary>
         /// Sends an email to the given email address with the given <paramref name="subject"/> and HTML <paramref name="body"/>.
         /// </summary>
@@ -103,6 +111,35 @@ namespace Engage.Dnn.Booking
         /// </returns>
         private static string GetLocalizedFormattedText(string localizationKey, Appointment appointment, string declineReason)
         {
+            return GetLocalizedFormattedText(localizationKey, appointment, declineReason, string.Empty, string.Empty, string.Empty);
+        }
+
+        /// <summary>
+        /// Gets the text for the given <paramref name="localizationKey"/> (from the <see cref="Utility.LocalSharedResourceFile"/>),
+        /// and fills in the <see cref="string.Format(System.IFormatProvider,string,object[])"/> placeholders in that text with appointment information.
+        /// </summary>
+        /// <param name="localizationKey">The localization key.</param>
+        /// <param name="appointment">The appointment.</param>
+        /// <returns>
+        /// The localized text with appointment-specific information inserted
+        /// </returns>
+        private static string GetLocalizedFormattedText(string localizationKey, Appointment appointment, string approvalUrl, string declineUrl, string loginUrl)
+        {
+            return GetLocalizedFormattedText(localizationKey, appointment, string.Empty, approvalUrl, declineUrl, loginUrl);
+        }
+
+        /// <summary>
+        /// Gets the text for the given <paramref name="localizationKey"/> (from the <see cref="Utility.LocalSharedResourceFile"/>),
+        /// and fills in the <see cref="string.Format(System.IFormatProvider,string,object[])"/> placeholders in that text with appointment information.
+        /// </summary>
+        /// <param name="localizationKey">The localization key.</param>
+        /// <param name="appointment">The appointment.</param>
+        /// <param name="declineReason">The reason for declining <paramref name="appointment"/>.</param>
+        /// <returns>
+        /// The localized text with appointment-specific information inserted
+        /// </returns>
+        private static string GetLocalizedFormattedText(string localizationKey, Appointment appointment, string declineReason, string approvalUrl, string declineUrl, string loginUrl)
+        {
             return string.Format(
                     CultureInfo.CurrentCulture,
                     Localization.GetString(localizationKey, Utility.LocalSharedResourceFile),
@@ -131,7 +168,10 @@ namespace Engage.Dnn.Booking
                     appointment.ParticipantInstructions,
                     UserController.GetCurrentUserInfo().DisplayName,
                     Globals.GetPortalSettings().PortalName,
-                    declineReason);
+                    declineReason,
+                    approvalUrl,
+                    declineUrl,
+                    loginUrl);
         }
     }
 }

@@ -89,7 +89,7 @@ namespace Engage.Dnn.Booking
 
             keyDictionary.Add(DefaultControlKey, DefaultSubControl);
             keyDictionary.Add("AppointmentRequest", new SubControlInfo("Display/AppointmentRequest.ascx", true));
-            keyDictionary.Add("Approval", new SubControlInfo("Display/Approval.ascx", true));
+            keyDictionary.Add("Approval", new SubControlInfo("Display/AppointmentCalendar.ascx", true));
             
             return keyDictionary;
         }

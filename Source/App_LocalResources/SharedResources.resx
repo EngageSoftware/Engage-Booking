@@ -268,4 +268,72 @@
   <data name="ExportData.Text" xml:space="preserve">
     <value>Export Data</value>
   </data>
+  <data name="NewRequestBody.Format" xml:space="preserve">
+    <value>&lt;p&gt;A new appointment request titled &lt;em&gt;{0}&lt;/em&gt; has been made at {24}.&lt;/p&gt;
+&lt;p&gt;You can: &lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;a href="{25}"&gt;Accept this Appointment Request&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="{26}"&gt;Decline this Appointment Request (without providing a reason)&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="{27}"&gt;Login to {24}&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</value>
+    <comment>{0} = appointment.Title
+{1} = appointment.Description
+{2} = appointment.AppointmentType
+{3} = appointment.Notes
+{4} = appointment.Address1
+{5} = appointment.Address2
+{6} = appointment.City
+{7} = appointment.Region
+{8} = appointment.ContactStreet
+{9} = appointment.ContactPhone
+
+{10} = appointment.RequestorName
+{11} = appointment.RequestorPhoneType
+{12} = appointment.RequestorPhone
+{13} = appointment.RequestorAltPhoneType
+{14} = appointment.RequestorAltPhone
+{15} = appointment.RequestorEmail
+{16} = appointment.StartDateTime
+{17} = appointment.EndDateTime
+{18} = appointment.NumberOfSpecialParticipants
+{19} = appointment.NumberOfParticipants
+{20} = appointment.ParticipantGender
+{21} = appointment.ParticipantFlag
+{22} = appointment.ParticipantInstructions
+{23} = current user's display name
+{24} = portal name
+{25} = nothing
+{26} = URL to approve the appointment request
+{27} = URL to decline the appointment request
+{28} = URL to log into approval control</comment>
+  </data>
+  <data name="NewRequestSubject.Format" xml:space="preserve">
+    <value>There has been a new appointment request at {24}</value>
+    <comment>{0} = appointment.Title
+{1} = appointment.Description
+{2} = appointment.AppointmentType
+{3} = appointment.Notes
+{4} = appointment.Address1
+{5} = appointment.Address2
+{6} = appointment.City
+{7} = appointment.Region
+{8} = appointment.ContactStreet
+{9} = appointment.ContactPhone
+
+{10} = appointment.RequestorName
+{11} = appointment.RequestorPhoneType
+{12} = appointment.RequestorPhone
+{13} = appointment.RequestorAltPhoneType
+{14} = appointment.RequestorAltPhone
+{15} = appointment.RequestorEmail
+{16} = appointment.StartDateTime
+{17} = appointment.EndDateTime
+{18} = appointment.NumberOfSpecialParticipants
+{19} = appointment.NumberOfParticipants
+{20} = appointment.ParticipantGender
+{21} = appointment.ParticipantFlag
+{22} = appointment.ParticipantInstructions
+{23} = current user's display name
+{24} = portal name</comment>
+  </data>
 </root>
