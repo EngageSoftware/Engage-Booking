@@ -66,6 +66,7 @@ namespace Engage.Dnn.Booking
                 if (this.UserInfo.IsInRole(Booking.ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this)))
                 {
                     this.NewAppointmentToolTip.Visible = true;
+                    this.RequestAppointmentLink.Visible = true;
                     this.RequestAppointmentLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "AppointmentRequest");
                 }
 
