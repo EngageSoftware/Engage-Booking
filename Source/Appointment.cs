@@ -102,6 +102,7 @@ namespace Engage.Dnn.Booking
                 string participantInstructions,
                 int numberOfSpecialParticipants,
                 bool? isAccepted)
+            : this()
         {
             this.ModuleId = moduleId;
             this.AppointmentTypeId = appointmentTypeId;

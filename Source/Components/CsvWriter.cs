@@ -14,6 +14,7 @@ namespace Engage.Dnn.Booking
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Globalization;
     using System.IO;
     using System.Web;
 
@@ -28,12 +29,12 @@ namespace Engage.Dnn.Booking
         /// </summary>
         /// <param name="table">A datatable.</param>
         /// <param name="header">if set to <c>true</c>, include a header row.</param>
-        /// <param name="quoteall">if set to <c>true</c> enclose all cells/fields in quotes.</param>
+        /// <param name="quoteAll">if set to <c>true</c> enclose all cells/fields in quotes.</param>
         /// <returns>The CSV-formatted output generated from a specified datatable.</returns>
-        public static string WriteToString(DataTable table, bool header, bool quoteall)
+        public static string WriteToString(DataTable table, bool header, bool quoteAll)
         {
-            StringWriter writer = new StringWriter();
-            WriteToStream(writer, table, header, quoteall);
+            StringWriter writer = new StringWriter(CultureInfo.InvariantCulture);
+            WriteToStream(writer, table, header, quoteAll);
             return writer.ToString();
         }
 
@@ -43,14 +44,14 @@ namespace Engage.Dnn.Booking
         /// <param name="stream">The stream.</param>
         /// <param name="table">The table.</param>
         /// <param name="header">if set to <c>true</c> [header].</param>
-        /// <param name="quoteall">if set to <c>true</c> [quoteall].</param>
-        public static void WriteToStream(TextWriter stream, DataTable table, bool header, bool quoteall)
+        /// <param name="quoteAll">if set to <c>true</c> [quoteAll].</param>
+        public static void WriteToStream(TextWriter stream, DataTable table, bool header, bool quoteAll)
         {
             if (header)
             {
                 for (int i = 0; i < table.Columns.Count; i++)
                 {
-                    WriteItem(stream, table.Columns[i].Caption, quoteall);
+                    WriteItem(stream, table.Columns[i].Caption, quoteAll);
                     if (i < table.Columns.Count - 1)
                     {
                         stream.Write(',');
@@ -66,7 +67,7 @@ namespace Engage.Dnn.Booking
             {
                 for (int i = 0; i < table.Columns.Count; i++)
                 {
-                    WriteItem(stream, row[i], quoteall);
+                    WriteItem(stream, row[i], quoteAll);
                     if (i < table.Columns.Count - 1)
                     {
                         stream.Write(',');
@@ -84,8 +85,8 @@ namespace Engage.Dnn.Booking
         /// </summary>
         /// <param name="stream">The TextWriter stream.</param>
         /// <param name="item">The datatable row.</param>
-        /// <param name="quoteall">if set to <c>true</c>, enclose all cells/fields in quotes.</param>
-        private static void WriteItem(TextWriter stream, object item, bool quoteall)
+        /// <param name="quoteAll">if set to <c>true</c>, enclose all cells/fields in quotes.</param>
+        private static void WriteItem(TextWriter stream, object item, bool quoteAll)
         {
             if (item == null)
             {
@@ -93,7 +94,7 @@ namespace Engage.Dnn.Booking
             }
 
             string s = item.ToString();
-            if (quoteall || s.IndexOfAny("\",\x0A\x0D".ToCharArray()) > -1)
+            if (quoteAll || s.IndexOfAny("\",\x0A\x0D".ToCharArray()) > -1)
             {
                 stream.Write("\"" + s.Replace("\"", "\"\"") + "\"");
             }

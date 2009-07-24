@@ -2,7 +2,7 @@
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
 <div>
-    <div>Begin Date: <telerik:RadDatePicker ID="BeginDatePicker" runat="server" /></div>
+    <div>Start Date: <telerik:RadDatePicker ID="StartDatePicker" runat="server" /></div>
     <div>End Date: <telerik:RadDatePicker ID="EndDatePicker" runat="server" /></div>
 </div>
 <div>

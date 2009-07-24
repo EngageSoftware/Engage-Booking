@@ -11,6 +11,7 @@
 
 namespace Engage.Dnn.Booking
 {
+    using System;
     using System.Data;
 
     /// <summary>
@@ -67,6 +68,26 @@ namespace Engage.Dnn.Booking
                     sortExpression != null ? Engage.Utility.CreateVarcharParam("@sortExpression", sortExpression) : null,
                     Engage.Utility.CreateIntegerParam("@pageSize", pageSize),
                     Engage.Utility.CreateIntegerParam("@pageIndex", pageIndex));
+        }
+
+        /// <summary>
+        /// Gets the appointments for a given date range.
+        /// </summary>
+        /// <param name="moduleId">The ID of the module to which the appointments belong.</param>
+        /// <param name="startDateTime">The beginning datetime of the range.</param>
+        /// <param name="endDateTime">The ending datetime of the range.</param>
+        /// <returns>
+        /// An <see cref="IDataReader"/> with two results;
+        /// the first being the total number of appointments with the given acceptance status (as a single integer),
+        /// the second being the appointments.
+        /// </returns>
+        public static IDataReader GetAppointmentsByDateRange(int moduleId, DateTime? startDateTime, DateTime? endDateTime)
+        {
+            return SqlDataProvider.Instance.ExecuteReader(
+                    "GetAppointmentsByDateRange",
+                    Engage.Utility.CreateIntegerParam("@moduleId", moduleId),
+                    Engage.Utility.CreateDateTimeParam("@startDateTime", startDateTime),
+                    Engage.Utility.CreateDateTimeParam("@endDateTime", endDateTime));
         }
 
         /// <summary>

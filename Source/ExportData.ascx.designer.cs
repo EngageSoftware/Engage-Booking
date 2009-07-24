@@ -14,13 +14,13 @@ namespace Engage.Dnn.Booking {
     public partial class ExportData {
         
         /// <summary>
-        /// BeginDatePicker control.
+        /// StartDatePicker control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker BeginDatePicker;
+        protected global::Telerik.Web.UI.RadDatePicker StartDatePicker;
         
         /// <summary>
         /// EndDatePicker control.
