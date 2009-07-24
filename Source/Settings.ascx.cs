@@ -84,6 +84,7 @@ namespace Engage.Dnn.Booking
 
             this.AppointmentRequestsRoleDropDownList.DataSource = new RoleController().GetRoleNames(this.PortalId);
             this.AppointmentRequestsRoleDropDownList.DataBind();
+            this.AppointmentRequestsRoleDropDownList.Items.Insert(0, new ListItem("All Users"));
 
             li = this.AppointmentRequestsRoleDropDownList.Items.FindByValue(Booking.ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this));
             if (li != null)
