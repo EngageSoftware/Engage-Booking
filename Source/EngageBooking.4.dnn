@@ -18,21 +18,21 @@
               <src>DesktopModules/EngageBooking/MainContainer.ascx</src>
               <type>View</type>
               <supportspartialrendering>true</supportspartialrendering>
-              <helpurl>http://www.EngageSoftware.com/Support.aspx</helpurl>
+              <helpurl></helpurl>
             </control>
             <control>
               <key>Settings</key>
               <title>Engage: Booking Settings</title>
               <src>DesktopModules/EngageBooking/Settings.ascx</src>
               <type>Edit</type>
-              <helpurl>http://www.EngageSoftware.com/Support.aspx</helpurl>
+              <helpurl></helpurl>
             </control>
             <control>
               <key>ExportData</key>
               <title>Engage: Booking - Export Data</title>
               <src>DesktopModules/EngageBooking/ExportData.ascx</src>
               <type>Edit</type>
-              <helpurl>http://www.EngageSoftware.com/Support.aspx</helpurl>
+              <helpurl></helpurl>
             </control>
           </controls>
         </module>
