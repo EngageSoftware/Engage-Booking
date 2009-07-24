@@ -125,7 +125,7 @@ namespace Engage.Dnn.Booking
             get
             {
                 int index;
-                if (!int.TryParse(this.Request.QueryString["page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out index))
+                if (!int.TryParse(this.Request.QueryString["currentpage"], NumberStyles.Integer, CultureInfo.InvariantCulture, out index))
                 {
                     index = 1;
                 }
