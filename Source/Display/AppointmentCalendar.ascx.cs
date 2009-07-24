@@ -36,6 +36,16 @@ namespace Engage.Dnn.Booking
             }
         }
 
+        private static DayOfWeek GetPreviousDayOfWeek(DayOfWeek dayOfWeek)
+        {
+            if (dayOfWeek == DayOfWeek.Sunday)
+            {
+                return DayOfWeek.Saturday;
+            }
+
+            return dayOfWeek - 1;
+        }
+
         /// <summary>
         /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
         /// </summary>
@@ -95,6 +105,7 @@ namespace Engage.Dnn.Booking
         {
             this.AppointmentsCalendar.Culture = CultureInfo.CurrentCulture;
             this.AppointmentsCalendar.FirstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+            this.AppointmentsCalendar.LastDayOfWeek = GetPreviousDayOfWeek(CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek);
 
             this.AppointmentsCalendar.Localization.HeaderToday = Localization.GetString("HeaderToday.Text", this.LocalResourceFile);
             this.AppointmentsCalendar.Localization.HeaderPrevDay = Localization.GetString("HeaderPrevDay.Text", this.LocalResourceFile);
