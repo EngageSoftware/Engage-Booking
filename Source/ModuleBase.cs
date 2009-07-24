@@ -50,21 +50,6 @@ namespace Engage.Dnn.Booking
                 ModuleActionCollection actions = new ModuleActionCollection();
                 actions.Add(this.GetNextActionID(), Localization.GetString("ExportData.Text", this.LocalSharedResourceFile), ModuleActionType.ExportModule, string.Empty, string.Empty, EditUrl("ExportData"), false, SecurityAccessLevel.Edit, true, false);
 
-                if (HostSettings.GetHostSetting("EnableModuleOnLineHelp") == "Y" && Engage.Utility.HasValue(this.ModuleConfiguration.HelpUrl))
-                {
-                    ModuleAction helpAction = new ModuleAction(this.GetNextActionID());
-                    helpAction.Title = Localization.GetString(ModuleActionType.OnlineHelp, Localization.GlobalResourceFile);
-                    helpAction.CommandName = ModuleActionType.OnlineHelp;
-                    helpAction.CommandArgument = string.Empty;
-                    helpAction.Icon = "action_help.gif";
-                    helpAction.Url = Globals.FormatHelpUrl(this.ModuleConfiguration.HelpUrl, this.PortalSettings, this.ModuleConfiguration.FriendlyName);
-                    helpAction.Secure = SecurityAccessLevel.Edit;
-                    helpAction.UseActionEvent = true;
-                    helpAction.Visible = true;
-                    helpAction.NewWindow = true;
-                    actions.Add(helpAction);
-                }
-
                 return actions;
             }
         }
