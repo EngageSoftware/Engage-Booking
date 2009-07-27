@@ -26,6 +26,11 @@ namespace Engage.Dnn.Booking
     public partial class AppointmentRequest : ModuleBase
     {
         /// <summary>
+        /// The default duration of an appointment in minutes
+        /// </summary>
+        private const int DefaultDurationInMinutes = 30;
+
+        /// <summary>
         /// Gets the URL to navigate to in order to add a new <see cref="Appointment"/>.
         /// </summary>
         /// <value>The URL to navigate to in order to add a new <see cref="Appointment"/></value>
@@ -46,6 +51,17 @@ namespace Engage.Dnn.Booking
             this.Load += this.Page_Load;
             this.SaveAppointmentButton.Click += this.SaveAppointmentButton_OnClick;
             this.SaveAndCreateNewAppointmentButton.Click += this.SaveAndCreateNewAppointmentButton_OnClick;
+        }
+
+        /// <summary>
+        /// Gets the next time that is a full half hour (i.e. if the time is currently 4:13, returns 4:30).
+        /// </summary>
+        /// <returns>The next full half hour from <see cref="DateTime.Now"/></returns>
+        private static DateTime GetNextHalfHour()
+        {
+            // TODO: Determine whether it is in any way worthwhile to zero-out the Seconds/Milliseconds/etc fields
+            var now = DateTime.Now;
+            return now.AddMinutes(DefaultDurationInMinutes - (now.Minute % DefaultDurationInMinutes));
         }
 
         /// <summary>
@@ -78,12 +94,12 @@ namespace Engage.Dnn.Booking
             {
                 if (!this.IsPostBack)
                 {
-                    this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime");
-                    this.EndDateTimePicker.SelectedDate = this.GetDateFromQueryString("endTime");
+                    this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime") ?? GetNextHalfHour();
+                    this.EndDateTimePicker.SelectedDate = this.GetDateFromQueryString("endTime") ?? this.StartDateTimePicker.SelectedDate.Value.AddMinutes(DefaultDurationInMinutes);
 
                     if (this.UserInfo.UserID > 0)
                     {
-                        this.RequestorNameTextBox.Text = this.UserInfo.FullName;
+                        this.RequestorNameTextBox.Text = this.UserInfo.DisplayName;
                         this.RequestorEmailTextBox.Text = this.UserInfo.Email;
                     }
 
@@ -298,8 +314,8 @@ namespace Engage.Dnn.Booking
             EmailService.SendNewRequestEmail(
                     appointment,
                     ModuleSettings.NotificationEmailAddresses.GetValueAsStringFor(this),
-                    Globals.NavigateURL(),
-                    Globals.NavigateURL(),
+                    this.BuildLinkUrl(this.ModuleId, "DirectApproval", "actionKey=" + appointment.AcceptKey),
+                    this.BuildLinkUrl(this.ModuleId, "DirectApproval", "actionKey=" + appointment.DeclineKey),
                     this.BuildLinkUrl(this.ModuleId, "Approval"));
         }
 
@@ -317,12 +333,7 @@ namespace Engage.Dnn.Booking
                 return dateValue;
             }
 
-            if (parameterName == "startTime")
-            {
-                return DateTime.Now;
-            }
-
-            return DateTime.Now.AddMinutes(30);
+            return null;
         }
     }
 }

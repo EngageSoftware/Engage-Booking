@@ -231,6 +231,7 @@ namespace Engage.Dnn.Booking
         /// and sends an email to the requestor of the <see cref="Appointment"/>.
         /// </summary>
         /// <param name="appointmentId">The ID of the appointment to accept.</param>
+        /// <returns>Whether the appointment was able to be successfully accepted</returns>
         private bool AcceptAppointment(int appointmentId)
         {
             var appointment = Appointment.Load(appointmentId);

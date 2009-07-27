@@ -36,16 +36,6 @@ namespace Engage.Dnn.Booking
             }
         }
 
-        private static DayOfWeek GetPreviousDayOfWeek(DayOfWeek dayOfWeek)
-        {
-            if (dayOfWeek == DayOfWeek.Sunday)
-            {
-                return DayOfWeek.Saturday;
-            }
-
-            return dayOfWeek - 1;
-        }
-
         /// <summary>
         /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
         /// </summary>
@@ -58,6 +48,21 @@ namespace Engage.Dnn.Booking
             this.AppointmentsCalendar.AppointmentCreated += this.EventsCalendarDisplay_AppointmentCreated;
             this.AppointmentsCalendar.AppointmentDataBound += this.EventsCalendarDisplay_AppointmentDataBound;
             this.CalendarToolTipManager.AjaxUpdate += this.EventsCalendarToolTipManager_AjaxUpdate;
+        }
+
+        /// <summary>
+        /// Gets the day of the week before the given <paramref name="dayOfWeek"/>.
+        /// </summary>
+        /// <param name="dayOfWeek">The day of week.</param>
+        /// <returns>The day of the week before <paramref name="dayOfWeek"/></returns>
+        private static DayOfWeek GetPreviousDayOfWeek(DayOfWeek dayOfWeek)
+        {
+            if (dayOfWeek == DayOfWeek.Sunday)
+            {
+                return DayOfWeek.Saturday;
+            }
+
+            return dayOfWeek - 1;
         }
 
         /// <summary>
@@ -89,39 +94,6 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Sets up the <see cref="ApprovalControl"/>
-        /// </summary>
-        private void SetupAdminView()
-        {
-            this.ApprovalControl.Visible = /*this.CalendarHeader.Visible =*/ this.IsEditable;
-            ////this.CalendarHeader.IsExpanded = !this.CalendarHeader.Visible;
-            this.ApprovalControl.ModuleConfiguration = this.ModuleConfiguration;
-        }
-
-        /// <summary>
-        /// Localizes the calendar.
-        /// </summary>
-        private void LocalizeCalendar()
-        {
-            this.AppointmentsCalendar.Culture = CultureInfo.CurrentCulture;
-            this.AppointmentsCalendar.FirstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-            this.AppointmentsCalendar.LastDayOfWeek = GetPreviousDayOfWeek(CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek);
-
-            this.AppointmentsCalendar.Localization.HeaderToday = Localization.GetString("HeaderToday.Text", this.LocalResourceFile);
-            this.AppointmentsCalendar.Localization.HeaderPrevDay = Localization.GetString("HeaderPrevDay.Text", this.LocalResourceFile);
-            this.AppointmentsCalendar.Localization.HeaderNextDay = Localization.GetString("HeaderNextDay.Text", this.LocalResourceFile);
-            this.AppointmentsCalendar.Localization.HeaderDay = Localization.GetString("HeaderDay.Text", this.LocalResourceFile);
-            this.AppointmentsCalendar.Localization.HeaderWeek = Localization.GetString("HeaderWeek.Text", this.LocalResourceFile);
-            this.AppointmentsCalendar.Localization.HeaderMonth = Localization.GetString("HeaderMonth.Text", this.LocalResourceFile);
-
-            this.AppointmentsCalendar.Localization.AllDay = Localization.GetString("AllDay.Text", this.LocalResourceFile);
-            this.AppointmentsCalendar.Localization.Show24Hours = Localization.GetString("Show24Hours.Text", this.LocalResourceFile);
-            this.AppointmentsCalendar.Localization.ShowBusinessHours = Localization.GetString("ShowBusinessHours.Text", this.LocalResourceFile);
-
-            this.AppointmentsCalendar.Localization.ShowMore = Localization.GetString("ShowMore.Text", this.LocalResourceFile);
-        }
-
-        /// <summary>
         /// Handles the <see cref="RadScheduler.AppointmentCreated"/> event of the <see cref="AppointmentCalendar"/> control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -146,6 +118,33 @@ namespace Engage.Dnn.Booking
         {
             this.CalendarToolTipManager.TargetControls.Clear();
             ScriptManager.RegisterStartupScript(this, typeof(AppointmentCalendar), "HideToolTip", "hideActiveToolTip();", true);
+        }
+
+        /// <summary>
+        /// Binds the data.
+        /// </summary>
+        private void BindData()
+        {
+            var appointments = AppointmentCollection.Load(this.ModuleId, true);
+            if (!this.IsEditable)
+            {
+                this.CalendarToolTipManager.Visible = false;
+
+                foreach (var appointment in appointments)
+                {
+                    appointment.Title = Localization.GetString("Timeslot Taken", this.LocalResourceFile);
+                }
+            }
+
+            this.AppointmentsCalendar.DataSource = appointments;
+            this.AppointmentsCalendar.DataEndField = "EndDateTime";
+            this.AppointmentsCalendar.DataKeyField = "AppointmentId";
+            this.AppointmentsCalendar.DataStartField = "StartDateTime";
+            this.AppointmentsCalendar.DataSubjectField = "Title";
+            this.AppointmentsCalendar.DataBind();
+
+            this.AppointmentsCalendar.Skin = this.CalendarToolTipManager.Skin = ModuleSettings.CalendarSkin.GetValueAsStringFor(this);
+            this.AppointmentsCalendar.MonthView.VisibleAppointmentsPerDay = ModuleSettings.AppointmentsToDisplayPerDay.GetValueAsInt32For(this).Value;
         }
 
         /// <summary>
@@ -188,30 +187,36 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Binds the data.
+        /// Localizes the calendar.
         /// </summary>
-        private void BindData()
+        private void LocalizeCalendar()
         {
-            var appointments = AppointmentCollection.Load(this.ModuleId, true);
-            if (!this.IsEditable)
-            {
-                this.CalendarToolTipManager.Visible = false;
+            this.AppointmentsCalendar.Culture = CultureInfo.CurrentCulture;
+            this.AppointmentsCalendar.FirstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+            this.AppointmentsCalendar.LastDayOfWeek = GetPreviousDayOfWeek(CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek);
 
-                foreach (var appointment in appointments)
-                {
-                    appointment.Title = Localization.GetString("Timeslot Taken", this.LocalResourceFile);
-                }
-            }
+            this.AppointmentsCalendar.Localization.HeaderToday = Localization.GetString("HeaderToday.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.HeaderPrevDay = Localization.GetString("HeaderPrevDay.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.HeaderNextDay = Localization.GetString("HeaderNextDay.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.HeaderDay = Localization.GetString("HeaderDay.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.HeaderWeek = Localization.GetString("HeaderWeek.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.HeaderMonth = Localization.GetString("HeaderMonth.Text", this.LocalResourceFile);
 
-            this.AppointmentsCalendar.DataSource = appointments;
-            this.AppointmentsCalendar.DataEndField = "EndDateTime";
-            this.AppointmentsCalendar.DataKeyField = "AppointmentId";
-            this.AppointmentsCalendar.DataStartField = "StartDateTime";
-            this.AppointmentsCalendar.DataSubjectField = "Title";
-            this.AppointmentsCalendar.DataBind();
+            this.AppointmentsCalendar.Localization.AllDay = Localization.GetString("AllDay.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.Show24Hours = Localization.GetString("Show24Hours.Text", this.LocalResourceFile);
+            this.AppointmentsCalendar.Localization.ShowBusinessHours = Localization.GetString("ShowBusinessHours.Text", this.LocalResourceFile);
 
-            this.AppointmentsCalendar.Skin = this.CalendarToolTipManager.Skin = ModuleSettings.CalendarSkin.GetValueAsStringFor(this);
-            this.AppointmentsCalendar.MonthView.VisibleAppointmentsPerDay = ModuleSettings.AppointmentsToDisplayPerDay.GetValueAsInt32For(this).Value;
+            this.AppointmentsCalendar.Localization.ShowMore = Localization.GetString("ShowMore.Text", this.LocalResourceFile);
+        }
+
+        /// <summary>
+        /// Sets up the <see cref="ApprovalControl"/>
+        /// </summary>
+        private void SetupAdminView()
+        {
+            this.ApprovalControl.Visible = /*this.CalendarHeader.Visible =*/ this.IsEditable;
+            ////this.CalendarHeader.IsExpanded = !this.CalendarHeader.Visible;
+            this.ApprovalControl.ModuleConfiguration = this.ModuleConfiguration;
         }
     }
 }

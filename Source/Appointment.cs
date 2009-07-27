@@ -68,10 +68,18 @@ namespace Engage.Dnn.Booking
         /// <param name="participantFlag">The participant flag.</param>
         /// <param name="participantInstructions">The participant instructions.</param>
         /// <param name="numberOfSpecialParticipants">The number of special participants.</param>
-        /// <param name="isAccepted">
-        /// <c>null</c>if the <see cref="Appointment"/> has not bee accepted or declined yet, 
-        /// otherwise <c>true</c> for an accepted appointment, or <c>false</c> for a declined appointment.
-        /// </param>
+        /// <param name="custom1">The first custom field.</param>
+        /// <param name="custom2">The second custom field.</param>
+        /// <param name="custom3">The third custom field.</param>
+        /// <param name="custom4">The fourth custom field.</param>
+        /// <param name="custom5">The fifth custom field.</param>
+        /// <param name="custom6">The sixth custom field.</param>
+        /// <param name="custom7">The seventh custom field.</param>
+        /// <param name="custom8">The eighth custom field.</param>
+        /// <param name="custom9">The ninth custom field.</param>
+        /// <param name="custom10">The tenth custom field.</param>
+        /// <param name="isAccepted"><c>null</c>if the <see cref="Appointment"/> has not bee accepted or declined yet,
+        /// otherwise <c>true</c> for an accepted appointment, or <c>false</c> for a declined appointment.</param>
         private Appointment(
                 int moduleId,
                 int appointmentTypeId,
@@ -630,6 +638,28 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Gets the key to use to auto-approve this instance through email.
+        /// </summary>
+        /// <value>The approve key.</value>
+        [XmlIgnore]
+        public Guid AcceptKey
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets the key to use to auto-decline this instance through email.
+        /// </summary>
+        /// <value>The decline key.</value>
+        [XmlIgnore]
+        public Guid DeclineKey
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
         /// Loads the <see cref="Appointment"/> with the specified <paramref name="appointmentId"/>.
         /// </summary>
         /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to load.</param>
@@ -678,11 +708,21 @@ namespace Engage.Dnn.Booking
         /// <param name="isPresenterSpecialYOrN">The participant flag.</param>
         /// <param name="participantInstructions">The participant instructions.</param>
         /// <param name="numberOfSpecialParticipants">The number of special participants.</param>
-        /// <param name="isAccepted">
-        /// <c>null</c>if the <see cref="Appointment"/> has not bee accepted or declined yet, 
-        /// otherwise <c>true</c> for an accepted appointment, or <c>false</c> for a declined appointment.
-        /// </param>
-        /// <returns>A new <see cref="Appointment"/> instance.</returns>
+        /// <param name="custom1">The first custom field.</param>
+        /// <param name="custom2">The second custom field.</param>
+        /// <param name="custom3">The third custom field.</param>
+        /// <param name="custom4">The fourth custom field.</param>
+        /// <param name="custom5">The fifth custom field.</param>
+        /// <param name="custom6">The sixth custom field.</param>
+        /// <param name="custom7">The seventh custom field.</param>
+        /// <param name="custom8">The eighth custom field.</param>
+        /// <param name="custom9">The ninth custom field.</param>
+        /// <param name="custom10">The tenth custom field.</param>
+        /// <param name="isAccepted"><c>null</c>if the <see cref="Appointment"/> has not bee accepted or declined yet,
+        /// otherwise <c>true</c> for an accepted appointment, or <c>false</c> for a declined appointment.</param>
+        /// <returns>
+        /// A new <see cref="Appointment"/> instance.
+        /// </returns>
         public static Appointment Create(
             int moduleId,
             int appointmentTypeId,
@@ -769,10 +809,28 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// Deletes the specified appointment id.
         /// </summary>
-        /// <param name="id">The appointment id.</param>
-        public static void Delete(int id)
+        /// <param name="appointmentId">The appointment id.</param>
+        public static void Delete(int appointmentId)
         {
-            AppointmentSqlDataProvider.DeleteAppointment(id);
+            AppointmentSqlDataProvider.DeleteAppointment(appointmentId);
+        }
+
+        /// <summary>
+        /// Accepts or declines an <see cref="Appointment"/> via the given <paramref name="actionKey"/>.
+        /// </summary>
+        /// <param name="actionKey">The key the corresponds to accepting or declining a specific <see cref="Appointment"/>.</param>
+        /// <returns><c>true</c> if the appointment was accepted, otherwise <c>false</c></returns>
+        public static Appointment ApproveByKey(Guid actionKey)
+        {
+            using (IDataReader reader = AppointmentSqlDataProvider.ApproveByKey(actionKey))
+            {
+                if (reader.Read())
+                {
+                    return Fill(reader);
+                }
+
+                return null;
+            }
         }
 
         /// <summary>
@@ -882,6 +940,8 @@ namespace Engage.Dnn.Booking
             appointment.ParticipantGender = appointmentRecord["ParticipantGender"].ToString();
             appointment.IsPresenterSpecialYOrN = appointmentRecord["ParticipantFlag"].ToString()[0];
             appointment.IsAccepted = appointmentRecord["IsAccepted"] as bool?;
+            appointment.AcceptKey = (Guid)appointmentRecord["AcceptKey"];
+            appointment.DeclineKey = (Guid)appointmentRecord["DeclineKey"];
 
             return appointment;
         }
@@ -893,7 +953,19 @@ namespace Engage.Dnn.Booking
         /// <exception cref="DBException">If an error occurs while going to the database to insert the event</exception>
         private void Insert(int revisingUserId)
         {
-            this.AppointmentId = AppointmentSqlDataProvider.InsertAppointment(this, revisingUserId);
+            using (var appointmentReader = AppointmentSqlDataProvider.InsertAppointment(this, revisingUserId))
+            {
+                if (appointmentReader.Read())
+                {
+                    this.AppointmentId = (int)appointmentReader["AppointmentId"];
+                    this.AcceptKey = (Guid)appointmentReader["AcceptKey"];
+                    this.DeclineKey = (Guid)appointmentReader["DeclineKey"];
+                }
+                else
+                {
+                    throw new DBException("Result set was expected", "InsertAppointment");
+                }
+            }
         }
 
         /// <summary>

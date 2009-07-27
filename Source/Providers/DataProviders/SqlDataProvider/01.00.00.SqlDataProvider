@@ -57,6 +57,8 @@ CREATE TABLE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 	Custom9 ntext NULL,
 	Custom10 ntext NULL,
 	IsAccepted bit NULL,
+	AcceptKey uniqueidentifier NOT NULL DEFAULT NEWID(),
+	DeclineKey uniqueidentifier NOT NULL DEFAULT NEWID(),
 	CreationDate datetime NOT NULL DEFAULT GETDATE(),
 	RevisionDate datetime NOT NULL DEFAULT GETDATE(),
 	RevisingUser int NOT NULL
@@ -169,13 +171,13 @@ SELECT AppointmentId, AppointmentTypeId, ModuleId, Title, Description, Notes,
 	   RequestorPhoneType, RequestorPhone, RequestorEmail, RequestorAltPhoneType,
 	   RequestorAltPhone, StartDateTime, EndDateTime, 
 	   NumberOfParticipants, NumberOfSpecialParticipants,
-	   ParticipantGender, ParticipantFlag, [Custom1], Custom2, Custom3, Custom4,
-	   Custom5, Custom6, Custom7, Custom8, Custom9, Custom10, IsAccepted,
-	   CreationDate, RevisionDate
-FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
-WHERE ModuleId = @moduleId
-  AND StartDateTime >= @startDateTime 
-  AND StartDateTime <= @endDateTime
+	   ParticipantGender, ParticipantFlag, IsAccepted, AcceptKey, DeclineKey, 
+       [Custom1], Custom2, Custom3, Custom4, Custom5, Custom6, Custom7, Custom8, 
+       Custom9, Custom10, CreationDate, RevisionDate
+FROM   {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+WHERE  ModuleId = @moduleId
+  AND  StartDateTime >= @startDateTime 
+  AND  StartDateTime <= @endDateTime
   
 END
 GO
@@ -326,7 +328,9 @@ INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
            ,GETDATE()
            ,@revisingUser)
 
-	SELECT SCOPE_IDENTITY()	
+	SELECT AppointmentId, AcceptKey, DeclineKey
+	FROM   {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+	WHERE  AppointmentId = SCOPE_IDENTITY()
 END
 GO
 
@@ -439,9 +443,9 @@ SELECT AppointmentId, AppointmentTypeId, ModuleId, Title, Description, Notes,
 	   RequestorPhoneType, RequestorPhone, RequestorEmail, RequestorAltPhoneType,
 	   RequestorAltPhone, StartDateTime, EndDateTime, 
 	   NumberOfParticipants, NumberOfSpecialParticipants,
-	   ParticipantGender, ParticipantFlag, Custom1, Custom2, Custom3, Custom4,
-	   Custom5, Custom6, Custom7, Custom8, Custom9, Custom10, IsAccepted,
-	   CreationDate, RevisionDate
+	   ParticipantGender, ParticipantFlag, IsAccepted, AcceptKey, DeclineKey, 
+       Custom1, Custom2, Custom3, Custom4, Custom5, Custom6, Custom7, Custom8, 
+       Custom9, Custom10, CreationDate, RevisionDate
 FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 WHERE AppointmentId = @appointmentId
 
@@ -524,7 +528,8 @@ GO
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointment]
 (  
    @appointmentId int,  
-   @revisingUser int  
+   @revisingUser int,
+   @returnSuccessBit bit = 1
 )  
 AS  
 BEGIN  
@@ -547,7 +552,45 @@ BEGIN
 	WHERE AppointmentId = @appointmentId  
 END
 
-SELECT CASE WHEN @numberOfConflictingAppointments = 0 THEN CAST(1 AS bit) ELSE CAST(0 AS bit) END
+IF @returnSuccessBit = 1
+	BEGIN
+		SELECT CASE WHEN @numberOfConflictingAppointments = 0 THEN CAST(1 AS bit) ELSE CAST(0 AS bit) END
+	END
+END  
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spApproveByKey]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spApproveByKey]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spApproveByKey]
+(  
+   @actionKey uniqueidentifier
+)  
+AS  
+BEGIN  
+
+DECLARE @appointmentId int
+SELECT @appointmentId = AppointmentId
+FROM   {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+WHERE  AcceptKey = @actionKey
+
+IF @appointmentId IS NOT NULL
+	BEGIN
+		EXEC {databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointment] @appointmentId, -2, 0
+	END
+ELSE 
+	BEGIN
+		SELECT @appointmentId = AppointmentId
+		FROM   {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+		WHERE  DeclineKey = @actionKey
+
+		IF @appointmentId IS NOT NULL
+		BEGIN
+			EXEC {databaseOwner}[{objectQualifier}EngageBooking_spDeclineAppointment] @appointmentId, -2
+		END
+	END
+
+EXEC {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointment] @appointmentId
 END  
 GO
 

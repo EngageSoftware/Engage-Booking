@@ -114,38 +114,38 @@ namespace Engage.Dnn.Booking
         /// </summary>
         /// <param name="appointment">The appointment to insert.</param>
         /// <param name="revisingUserId">The ID of the user inserting.</param>
-        /// <returns>The ID of the new appointment record</returns>
-        public static int InsertAppointment(Appointment appointment, int revisingUserId)
+        /// <returns>An <see cref="IDataReader"/> with a result set containing the fields set by the insert (AppointmentId, AcceptKey, and DeclineKey)</returns>
+        public static IDataReader InsertAppointment(Appointment appointment, int revisingUserId)
         {
-            return (int)SqlDataProvider.Instance.ExecuteScalar(
-                "InsertAppointment",
-                Engage.Utility.CreateIntegerParam("@appointmentTypeId", appointment.AppointmentTypeId),
-                Engage.Utility.CreateIntegerParam("@moduleId", appointment.ModuleId),
-                Engage.Utility.CreateVarcharParam("@title", appointment.Title),
-                Engage.Utility.CreateTextParam("@description", appointment.Description),
-                Engage.Utility.CreateTextParam("@notes", appointment.Notes),
-                Engage.Utility.CreateVarcharParam("@address1", appointment.Address1),
-                Engage.Utility.CreateVarcharParam("@address2", appointment.Address2),
-                Engage.Utility.CreateVarcharParam("@city", appointment.City),
-                Engage.Utility.CreateIntegerParam("@regionId", appointment.RegionId),
-                Engage.Utility.CreateVarcharParam("@postalCode", appointment.PostalCode),
-                Engage.Utility.CreateVarcharParam("@phone", appointment.Phone),
-                Engage.Utility.CreateVarcharParam("@additionalAddressInfo", appointment.AdditionalAddressInfo),
-                Engage.Utility.CreateVarcharParam("@contactStreet", appointment.ContactStreet),
-                Engage.Utility.CreateVarcharParam("@contactPhone", appointment.ContactPhone),
-                Engage.Utility.CreateVarcharParam("@requestorName", appointment.RequestorName),
-                Engage.Utility.CreateVarcharParam("@requestorPhoneType", appointment.RequestorPhoneType),
-                Engage.Utility.CreateVarcharParam("@requestorPhone", appointment.RequestorPhone),
-                Engage.Utility.CreateVarcharParam("@requestorEmail", appointment.RequestorEmail),
-                Engage.Utility.CreateVarcharParam("@requestorAltPhoneType", appointment.RequestorAltPhoneType),
-                Engage.Utility.CreateVarcharParam("@requestorAltPhone", appointment.RequestorAltPhone),
-                Engage.Utility.CreateDateTimeParam("@startDateTime", appointment.StartDateTime),
-                Engage.Utility.CreateDateTimeParam("@endDateTime", appointment.EndDateTime),
-                Engage.Utility.CreateIntegerParam("@numberOfParticipants", appointment.NumberOfParticipants),
-                Engage.Utility.CreateVarcharParam("@participantGender", appointment.ParticipantGender),
-                Engage.Utility.CreateCharParam("@participantFlag", appointment.IsPresenterSpecialYOrN.ToString()),
-                Engage.Utility.CreateTextParam("@participantInstructions", appointment.ParticipantInstructions),
-                Engage.Utility.CreateIntegerParam("@numberOfSpecialParticipants", appointment.NumberOfSpecialParticipants),
+            return SqlDataProvider.Instance.ExecuteReader(
+                    "InsertAppointment",
+                    Engage.Utility.CreateIntegerParam("@appointmentTypeId", appointment.AppointmentTypeId),
+                    Engage.Utility.CreateIntegerParam("@moduleId", appointment.ModuleId),
+                    Engage.Utility.CreateVarcharParam("@title", appointment.Title),
+                    Engage.Utility.CreateTextParam("@description", appointment.Description),
+                    Engage.Utility.CreateTextParam("@notes", appointment.Notes),
+                    Engage.Utility.CreateVarcharParam("@address1", appointment.Address1),
+                    Engage.Utility.CreateVarcharParam("@address2", appointment.Address2),
+                    Engage.Utility.CreateVarcharParam("@city", appointment.City),
+                    Engage.Utility.CreateIntegerParam("@regionId", appointment.RegionId),
+                    Engage.Utility.CreateVarcharParam("@postalCode", appointment.PostalCode),
+                    Engage.Utility.CreateVarcharParam("@phone", appointment.Phone),
+                    Engage.Utility.CreateVarcharParam("@additionalAddressInfo", appointment.AdditionalAddressInfo),
+                    Engage.Utility.CreateVarcharParam("@contactStreet", appointment.ContactStreet),
+                    Engage.Utility.CreateVarcharParam("@contactPhone", appointment.ContactPhone),
+                    Engage.Utility.CreateVarcharParam("@requestorName", appointment.RequestorName),
+                    Engage.Utility.CreateVarcharParam("@requestorPhoneType", appointment.RequestorPhoneType),
+                    Engage.Utility.CreateVarcharParam("@requestorPhone", appointment.RequestorPhone),
+                    Engage.Utility.CreateVarcharParam("@requestorEmail", appointment.RequestorEmail),
+                    Engage.Utility.CreateVarcharParam("@requestorAltPhoneType", appointment.RequestorAltPhoneType),
+                    Engage.Utility.CreateVarcharParam("@requestorAltPhone", appointment.RequestorAltPhone),
+                    Engage.Utility.CreateDateTimeParam("@startDateTime", appointment.StartDateTime),
+                    Engage.Utility.CreateDateTimeParam("@endDateTime", appointment.EndDateTime),
+                    Engage.Utility.CreateIntegerParam("@numberOfParticipants", appointment.NumberOfParticipants),
+                    Engage.Utility.CreateVarcharParam("@participantGender", appointment.ParticipantGender),
+                    Engage.Utility.CreateCharParam("@participantFlag", appointment.IsPresenterSpecialYOrN.ToString()),
+                    Engage.Utility.CreateTextParam("@participantInstructions", appointment.ParticipantInstructions),
+                    Engage.Utility.CreateIntegerParam("@numberOfSpecialParticipants", appointment.NumberOfSpecialParticipants),
                 Engage.Utility.CreateTextParam("@custom1", appointment.Custom1),
                 Engage.Utility.CreateTextParam("@custom2", appointment.Custom2),
                 Engage.Utility.CreateTextParam("@custom3", appointment.Custom3),
@@ -156,8 +156,8 @@ namespace Engage.Dnn.Booking
                 Engage.Utility.CreateTextParam("@custom8", appointment.Custom8),
                 Engage.Utility.CreateTextParam("@custom9", appointment.Custom9),
                 Engage.Utility.CreateTextParam("@custom10", appointment.Custom10),
-                Engage.Utility.CreateBitParam("@isAccepted", appointment.IsAccepted),
-                Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
+                    Engage.Utility.CreateBitParam("@isAccepted", appointment.IsAccepted),
+                    Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
         }
 
         /// <summary>
@@ -211,16 +211,15 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Accepts or declines the <see cref="Appointment"/> with the given <paramref name="appointmentId"/>.
+        /// Accepts or declines an <see cref="Appointment"/> via the given <paramref name="actionKey"/>.
         /// </summary>
-        /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to accept or decline.</param>
-        /// <param name="revisingUserId">The ID of the user setting the acceptance the <see cref="Appointment"/>.</param>
-        public static void DeclineAppointment(int appointmentId, int revisingUserId)
+        /// <param name="actionKey">The key the corresponds to accepting or declining a specific <see cref="Appointment"/>.</param>
+        /// <returns>An <see cref="IDataReader"/> with the appointment record of the appointment that was accepted or declined</returns>
+        public static IDataReader ApproveByKey(Guid actionKey)
         {
-            SqlDataProvider.Instance.ExecuteNonQuery(
-                "DeclineAppointment",
-                Engage.Utility.CreateIntegerParam("@appointmentId", appointmentId),
-                Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
+            return SqlDataProvider.Instance.ExecuteReader(
+                "ApproveByKey", 
+                Engage.Utility.CreateGuidParam("@actionKey", actionKey));
         }
 
         /// <summary>
@@ -232,7 +231,20 @@ namespace Engage.Dnn.Booking
         public static bool AcceptAppointment(int appointmentId, int revisingUserId)
         {
             return (bool)SqlDataProvider.Instance.ExecuteScalar(
-                "AcceptAppointment",
+                                 "AcceptAppointment",
+                                 Engage.Utility.CreateIntegerParam("@appointmentId", appointmentId),
+                                 Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
+        }
+
+        /// <summary>
+        /// Accepts or declines the <see cref="Appointment"/> with the given <paramref name="appointmentId"/>.
+        /// </summary>
+        /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to accept or decline.</param>
+        /// <param name="revisingUserId">The ID of the user setting the acceptance the <see cref="Appointment"/>.</param>
+        public static void DeclineAppointment(int appointmentId, int revisingUserId)
+        {
+            SqlDataProvider.Instance.ExecuteNonQuery(
+                "DeclineAppointment",
                 Engage.Utility.CreateIntegerParam("@appointmentId", appointmentId),
                 Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
         }

@@ -53,6 +53,14 @@ namespace Engage.Dnn.Booking
                 body);
         }
 
+        /// <summary>
+        /// Sends the email indicated to the module administrator that a new request has been made.
+        /// </summary>
+        /// <param name="appointment">The appointment.</param>
+        /// <param name="toEmailAddresses">To email addresses.</param>
+        /// <param name="approvalUrl">The approval URL.</param>
+        /// <param name="declineUrl">The decline URL.</param>
+        /// <param name="loginUrl">The login URL.</param>
         public static void SendNewRequestEmail(Appointment appointment, string toEmailAddresses, string approvalUrl, string declineUrl, string loginUrl)
         {
             SendEmail(
@@ -120,6 +128,9 @@ namespace Engage.Dnn.Booking
         /// </summary>
         /// <param name="localizationKey">The localization key.</param>
         /// <param name="appointment">The appointment.</param>
+        /// <param name="approvalUrl">The URL to use to approve the appointment.</param>
+        /// <param name="declineUrl">The URL to use to decline the appointment.</param>
+        /// <param name="loginUrl">The URL to use to log into the module.</param>
         /// <returns>
         /// The localized text with appointment-specific information inserted
         /// </returns>
@@ -135,6 +146,9 @@ namespace Engage.Dnn.Booking
         /// <param name="localizationKey">The localization key.</param>
         /// <param name="appointment">The appointment.</param>
         /// <param name="declineReason">The reason for declining <paramref name="appointment"/>.</param>
+        /// <param name="approvalUrl">The URL to use to approve the appointment.</param>
+        /// <param name="declineUrl">The URL to use to decline the appointment.</param>
+        /// <param name="loginUrl">The URL to use to log into the module.</param>
         /// <returns>
         /// The localized text with appointment-specific information inserted
         /// </returns>
