@@ -158,6 +158,51 @@
                 </li>
             </ol>
         </fieldset>
+        <fieldset class="customfields-fieldset">
+            <legend>Custom Fields</legend>
+            <ol class="customfields-form">
+                <li class="customfield1">
+                    <asp:Label CssClass="customfield1-label" runat="server" Text="Custom Field 1" AssociatedControlId="CustomField1TextBox" />
+                    <asp:TextBox ID="CustomField1TextBox" CssClass="customfield1-box full" runat="server" />
+                </li>
+                <li class="customfield2">
+                    <asp:Label CssClass="customfield2-label" runat="server" Text="Custom Field 2" AssociatedControlId="CustomField2TextBox" />
+                    <asp:TextBox ID="CustomField2TextBox" CssClass="customfield2-box full" runat="server" />
+                </li>
+                <li class="customfield3">
+                    <asp:Label CssClass="customfield3-label" runat="server" Text="Custom Field 3" AssociatedControlId="CustomField3TextBox" />
+                    <asp:TextBox ID="CustomField3TextBox" CssClass="customfield3-box full" runat="server" />
+                </li>
+                <li class="customfield4">
+                    <asp:Label CssClass="customfield4-label" runat="server" Text="Custom Field 4" AssociatedControlId="CustomField4TextBox" />
+                    <asp:TextBox ID="CustomField4TextBox" CssClass="customfield4-box full" runat="server" />
+                </li>
+                <li class="customfield5">
+                    <asp:Label CssClass="customfield5-label" runat="server" Text="Custom Field 5" AssociatedControlId="CustomField5TextBox" />
+                    <asp:TextBox ID="CustomField5TextBox" CssClass="customfield5-box full" runat="server" />
+                </li>
+                <li class="customfield6">
+                    <asp:Label CssClass="customfield6-label" runat="server" Text="Custom Field 6" AssociatedControlId="CustomField6TextBox" />
+                    <asp:TextBox ID="CustomField6TextBox" CssClass="customfield6-box full" runat="server" />
+                </li>
+                <li class="customfield7">
+                    <asp:Label CssClass="customfield7-label" runat="server" Text="Custom Field 7" AssociatedControlId="CustomField7TextBox" />
+                    <asp:TextBox ID="CustomField7TextBox" CssClass="customfield7-box full" runat="server" />
+                </li>
+                <li class="customfield8">
+                    <asp:Label CssClass="customfield8-label" runat="server" Text="Custom Field 8" AssociatedControlId="CustomField8TextBox" />
+                    <asp:TextBox ID="CustomField8TextBox" CssClass="customfield8-box full" runat="server" />
+                </li>
+                <li class="customfield9">
+                    <asp:Label CssClass="customfield9-label" runat="server" Text="Custom Field 9" AssociatedControlId="CustomField9TextBox" />
+                    <asp:TextBox ID="CustomField9TextBox" CssClass="customfield9-box full" runat="server" />
+                </li>
+                <li class="customfield10">
+                    <asp:Label CssClass="customfield10-label" runat="server" Text="Custom Field 10" AssociatedControlId="CustomField10TextBox" />
+                    <asp:TextBox ID="CustomField10TextBox" CssClass="customfield10-box full" runat="server" />
+                </li>
+            </ol>
+        </fieldset>
     </fieldset>
 </div>
 <engage:ValidationSummary runat="server" />

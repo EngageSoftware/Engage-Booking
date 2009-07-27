@@ -217,6 +217,8 @@
 		.approval-request h4{font-size:16px;color:#39c;}
 		.approval-request ol li{list-style-type:none;}
 		
+	.customfields-fieldset{display:none;}
+		
 /*----- Interpreting Event  -----*/	
 	.interpreting-form{background:#fafafa;padding:15px;}
 		.event-type, .title, .description, .notes {width:100%;overflow:hidden;padding:6px 0;clear:both;}

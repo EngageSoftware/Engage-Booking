@@ -46,6 +46,16 @@ CREATE TABLE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 	ParticipantFlag nchar(1) NOT NULL,
 	ParticipantInstructions ntext NULL,
 	NumberOfSpecialParticipants int NOT NULL DEFAULT 0,
+	Custom1 ntext NOT NULL,
+	Custom2 ntext NOT NULL,
+	Custom3 ntext NOT NULL,
+	Custom4 ntext NOT NULL,
+	Custom5 ntext NOT NULL,
+	Custom6 ntext NOT NULL,
+	Custom7 ntext NOT NULL,
+	Custom8 ntext NOT NULL,
+	Custom9 ntext NOT NULL,
+	Custom10 ntext NOT NULL,
 	IsAccepted bit NULL,
 	CreationDate datetime NOT NULL DEFAULT GETDATE(),
 	RevisionDate datetime NOT NULL DEFAULT GETDATE(),
@@ -159,7 +169,9 @@ SELECT AppointmentId, AppointmentTypeId, ModuleId, Title, Description, Notes,
 	   RequestorPhoneType, RequestorPhone, RequestorEmail, RequestorAltPhoneType,
 	   RequestorAltPhone, StartDateTime, EndDateTime, 
 	   NumberOfParticipants, NumberOfSpecialParticipants,
-	   ParticipantGender, ParticipantFlag, IsAccepted, CreationDate, RevisionDate
+	   ParticipantGender, ParticipantFlag, [Custom1], Custom2, Custom3, Custom4,
+	   Custom5, Custom6, Custom7, Custom8, Custom9, Custom10, IsAccepted,
+	   CreationDate, RevisionDate
 FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 WHERE ModuleId = @moduleId
   AND StartDateTime >= @startDateTime 
@@ -213,6 +225,16 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spInsertAppointm
    ,@participantFlag nchar(1)
    ,@participantInstructions ntext
    ,@numberOfSpecialParticipants int
+   ,@custom1 ntext
+   ,@custom2 ntext
+   ,@custom3 ntext
+   ,@custom4 ntext
+   ,@custom5 ntext
+   ,@custom6 ntext
+   ,@custom7 ntext
+   ,@custom8 ntext
+   ,@custom9 ntext
+   ,@custom10 ntext
    ,@isAccepted bit
    ,@revisingUser int
 )
@@ -247,6 +269,16 @@ INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
            ,[ParticipantFlag]
            ,[ParticipantInstructions]
            ,[NumberOfSpecialParticipants]
+           ,[Custom1]
+           ,[Custom2]
+           ,[Custom3]
+           ,[Custom4]
+           ,[Custom5]
+           ,[Custom6]
+           ,[Custom7]
+           ,[Custom8]
+           ,[Custom9]
+           ,[Custom10]
            ,[IsAccepted]
            ,[CreationDate]
            ,[RevisionDate]
@@ -279,6 +311,16 @@ INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
            ,@participantFlag
            ,@participantInstructions
            ,@numberOfSpecialParticipants
+           ,@custom1
+           ,@custom2
+           ,@custom3
+           ,@custom4
+           ,@custom5
+           ,@custom6
+           ,@custom7
+           ,@custom8
+           ,@custom9
+           ,@custom10
            ,@isAccepted
            ,GETDATE()
            ,GETDATE()
@@ -320,6 +362,16 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spUpdateAppointm
    ,@participantFlag nchar(1)
    ,@participantInstructions ntext
    ,@numberOfSpecialParticipants int
+   ,@custom1 ntext
+   ,@custom2 ntext
+   ,@custom3 ntext
+   ,@custom4 ntext
+   ,@custom5 ntext
+   ,@custom6 ntext
+   ,@custom7 ntext
+   ,@custom8 ntext
+   ,@custom9 ntext
+   ,@custom10 ntext
    ,@isAccepted bit
    ,@revisingUser int
 )
@@ -353,6 +405,16 @@ SET [AppointmentTypeId] = @appointmentTypeId
    ,[ParticipantFlag] = @participantFlag
    ,[ParticipantInstructions] = @participantInstructions
    ,[NumberOfSpecialParticipants] = @numberOfSpecialParticipants
+   ,[Custom1] = @custom1
+   ,[Custom2] = @custom2
+   ,[Custom3] = @custom3
+   ,[Custom4] = @custom4
+   ,[Custom5] = @custom5
+   ,[Custom6] = @custom6
+   ,[Custom7] = @custom7
+   ,[Custom8] = @custom8
+   ,[Custom9] = @custom9
+   ,[Custom10] = @custom10
    ,[IsAccepted] = @isAccepted
    ,[RevisionDate] = GETDATE()
    ,[RevisingUser] = @revisingUser
@@ -377,7 +439,9 @@ SELECT AppointmentId, AppointmentTypeId, ModuleId, Title, Description, Notes,
 	   RequestorPhoneType, RequestorPhone, RequestorEmail, RequestorAltPhoneType,
 	   RequestorAltPhone, StartDateTime, EndDateTime, 
 	   NumberOfParticipants, NumberOfSpecialParticipants,
-	   ParticipantGender, ParticipantFlag, IsAccepted, CreationDate, RevisionDate
+	   ParticipantGender, ParticipantFlag, Custom1, Custom2, Custom3, Custom4,
+	   Custom5, Custom6, Custom7, Custom8, Custom9, Custom10, IsAccepted,
+	   CreationDate, RevisionDate
 FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 WHERE AppointmentId = @appointmentId
 

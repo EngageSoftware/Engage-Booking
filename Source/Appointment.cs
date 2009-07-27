@@ -101,6 +101,16 @@ namespace Engage.Dnn.Booking
                 char participantFlag,
                 string participantInstructions,
                 int numberOfSpecialParticipants,
+                string custom1,
+                string custom2,
+                string custom3,
+                string custom4,
+                string custom5,
+                string custom6,
+                string custom7,
+                string custom8,
+                string custom9,
+                string custom10,
                 bool? isAccepted)
             : this()
         {
@@ -132,6 +142,16 @@ namespace Engage.Dnn.Booking
             this.IsPresenterSpecialYOrN = participantFlag;
             this.ParticipantInstructions = participantInstructions;
             this.NumberOfSpecialParticipants = numberOfSpecialParticipants;
+            this.Custom1 = custom1;
+            this.Custom2 = custom2;
+            this.Custom3 = custom3;
+            this.Custom4 = custom4;
+            this.Custom5 = custom5;
+            this.Custom6 = custom6;
+            this.Custom7 = custom7;
+            this.Custom8 = custom8;
+            this.Custom9 = custom9;
+            this.Custom10 = custom10;
             this.IsAccepted = isAccepted;
         }
 
@@ -454,10 +474,120 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Gets or sets the first custom field.
+        /// </summary>
+        /// <value>The first custom field.</value>
+        [XmlElement(Order = 26)]
+        public string Custom1
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the second custom field.
+        /// </summary>
+        /// <value>The second custom field.</value>
+        [XmlElement(Order = 27)]
+        public string Custom2
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the third custom field.
+        /// </summary>
+        /// <value>The third custom field.</value>
+        [XmlElement(Order = 28)]
+        public string Custom3
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the fourth custom field.
+        /// </summary>
+        /// <value>The fourth custom field.</value>
+        [XmlElement(Order = 29)]
+        public string Custom4
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the fifth custom field.
+        /// </summary>
+        /// <value>The fifth custom field.</value>
+        [XmlElement(Order = 30)]
+        public string Custom5
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the sixth custom field.
+        /// </summary>
+        /// <value>The sixth custom field.</value>
+        [XmlElement(Order = 31)]
+        public string Custom6
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the seventh custom field.
+        /// </summary>
+        /// <value>The seventh custom field.</value>
+        [XmlElement(Order = 32)]
+        public string Custom7
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the eighth custom field.
+        /// </summary>
+        /// <value>The eighth custom field.</value>
+        [XmlElement(Order = 33)]
+        public string Custom8
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the ninth custom field.
+        /// </summary>
+        /// <value>The ninth custom field.</value>
+        [XmlElement(Order = 34)]
+        public string Custom9
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the tenth custom field.
+        /// </summary>
+        /// <value>The tenth custom field.</value>
+        [XmlElement(Order = 35)]
+        public string Custom10
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the number of special participants.
         /// </summary>
         /// <value>The number of special participants.</value>
-        [XmlElement(Order = 26)]
+        [XmlElement(Order = 36)]
         public int NumberOfSpecialParticipants
         {
             get;
@@ -470,7 +600,7 @@ namespace Engage.Dnn.Booking
         /// <value>
         /// <c>true</c> if this instance is accepted; otherwise, <c>false</c>.
         /// </value>
-        [XmlElement(Order = 27)]
+        [XmlElement(Order = 37)]
         public bool? IsAccepted
         {
             get; 
@@ -481,7 +611,7 @@ namespace Engage.Dnn.Booking
         /// Gets or sets whether the presenter is "special" ('Y' if so, 'N' if not).
         /// </summary>
         /// <value>'Y' if the presenter is "special," otherwise 'N'.</value>
-        [XmlElement(Order = 28)]
+        [XmlElement(Order = 38)]
         public char IsPresenterSpecialYOrN
         {
             get;
@@ -492,7 +622,7 @@ namespace Engage.Dnn.Booking
         /// Gets or sets the TimeZoneOffset.
         /// </summary>
         /// <value>The TimeZoneOffset of this appointment.</value>
-        [XmlElement(Order = 29)]
+        [XmlElement(Order = 39)]
         public TimeSpan TimeZoneOffset
         {
             get;
@@ -582,6 +712,16 @@ namespace Engage.Dnn.Booking
             char isPresenterSpecialYOrN,
             string participantInstructions,
             int numberOfSpecialParticipants,
+            string custom1,
+            string custom2,
+            string custom3,
+            string custom4,
+            string custom5,
+            string custom6,
+            string custom7,
+            string custom8,
+            string custom9,
+            string custom10,
             bool? isAccepted)
         {
             return new Appointment(
@@ -613,6 +753,16 @@ namespace Engage.Dnn.Booking
                     isPresenterSpecialYOrN,
                     participantInstructions,
                     numberOfSpecialParticipants,
+                    custom1,
+                    custom2,
+                    custom3,
+                    custom4,
+                    custom5,
+                    custom6,
+                    custom7,
+                    custom8,
+                    custom9,
+                    custom10,
                     isAccepted);
         }
 
@@ -719,6 +869,16 @@ namespace Engage.Dnn.Booking
             appointment.EndDateTime = (DateTime)appointmentRecord["EndDateTime"];
             appointment.NumberOfParticipants = (int)appointmentRecord["NumberOfParticipants"];
             appointment.NumberOfSpecialParticipants = (int)appointmentRecord["NumberOfSpecialParticipants"];
+            appointment.Custom1 = appointmentRecord["Custom1"].ToString();
+            appointment.Custom2 = appointmentRecord["Custom2"].ToString();
+            appointment.Custom3 = appointmentRecord["Custom3"].ToString();
+            appointment.Custom4 = appointmentRecord["Custom4"].ToString();
+            appointment.Custom5 = appointmentRecord["Custom5"].ToString();
+            appointment.Custom6 = appointmentRecord["Custom6"].ToString();
+            appointment.Custom7 = appointmentRecord["Custom7"].ToString();
+            appointment.Custom8 = appointmentRecord["Custom8"].ToString();
+            appointment.Custom9 = appointmentRecord["Custom9"].ToString();
+            appointment.Custom10 = appointmentRecord["Custom10"].ToString();
             appointment.ParticipantGender = appointmentRecord["ParticipantGender"].ToString();
             appointment.IsPresenterSpecialYOrN = appointmentRecord["ParticipantFlag"].ToString()[0];
             appointment.IsAccepted = appointmentRecord["IsAccepted"] as bool?;

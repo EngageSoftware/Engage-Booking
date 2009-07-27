@@ -281,6 +281,16 @@ namespace Engage.Dnn.Booking
                     this.PresenterDropDownList.SelectedValue[0],
                     this.InstructionsTextBox.Text,
                     numberOfSpecialParticipants,
+                    this.CustomField1TextBox.Text,
+                    this.CustomField2TextBox.Text,
+                    this.CustomField3TextBox.Text,
+                    this.CustomField4TextBox.Text,
+                    this.CustomField5TextBox.Text,
+                    this.CustomField6TextBox.Text,
+                    this.CustomField7TextBox.Text,
+                    this.CustomField8TextBox.Text,
+                    this.CustomField9TextBox.Text,
+                    this.CustomField10TextBox.Text,
                     null);
 
             appointment.Save(this.UserId);
