@@ -141,6 +141,37 @@ BEGIN
 END
 GO
 
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentsByDateRange]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentsByDateRange]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentsByDateRange](
+	@moduleId int,
+	@startDateTime datetime,
+	@endDateTime datetime
+)
+AS
+BEGIN
+	CREATE TABLE #allAppointments
+	(
+		RowIndex int NOT NULL IDENTITY(1,1),
+		AppointmentId int
+	)
+	
+	DECLARE @sql nvarchar(4000)
+	SET @sql =        'INSERT INTO #allAppointments ([AppointmentId]) '
+	SET @sql = @sql + 'SELECT [AppointmentId] '
+	SET @sql = @sql + 'FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment] '
+	SET @sql = @sql + 'WHERE ModuleId = @moduleId '
+
+	EXEC sp_executesql @sql, N'@moduleId int', @moduleId
+	
+	SELECT a.* FROM #allAppointments aa
+	JOIN {databaseOwner}[{objectQualifier} a on (aa.AppointmentId = a.AppointmentId)
+	WHERE a.StartDateTime >= @startDateTime and a.StartDateTime <= @endDateTime
+END
+GO
+
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spDeleteAppointment]', N'P') IS NOT NULL
 	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spDeleteAppointment]
 GO
