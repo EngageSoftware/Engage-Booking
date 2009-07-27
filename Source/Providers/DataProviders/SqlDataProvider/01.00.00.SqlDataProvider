@@ -167,7 +167,7 @@ BEGIN
 	EXEC sp_executesql @sql, N'@moduleId int', @moduleId
 	
 	SELECT a.* FROM #allAppointments aa
-	JOIN {databaseOwner}[{objectQualifier} a on (aa.AppointmentId = a.AppointmentId)
+	JOIN {databaseOwner}[{objectQualifier}EngageBooking_Appointment] a on (aa.AppointmentId = a.AppointmentId)
 	WHERE a.StartDateTime >= @startDateTime and a.StartDateTime <= @endDateTime
 END
 GO
@@ -458,4 +458,3 @@ WHERE AppointmentId = @appointmentId
   
 END  
 GO
-
