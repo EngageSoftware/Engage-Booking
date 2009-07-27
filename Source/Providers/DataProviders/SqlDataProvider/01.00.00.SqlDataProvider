@@ -152,23 +152,19 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointment
 )
 AS
 BEGIN
-	CREATE TABLE #allAppointments
-	(
-		RowIndex int NOT NULL IDENTITY(1,1),
-		AppointmentId int
-	)
 	
-	DECLARE @sql nvarchar(4000)
-	SET @sql =        'INSERT INTO #allAppointments ([AppointmentId]) '
-	SET @sql = @sql + 'SELECT [AppointmentId] '
-	SET @sql = @sql + 'FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment] '
-	SET @sql = @sql + 'WHERE ModuleId = @moduleId '
-
-	EXEC sp_executesql @sql, N'@moduleId int', @moduleId
-	
-	SELECT a.* FROM #allAppointments aa
-	JOIN {databaseOwner}[{objectQualifier}EngageBooking_Appointment] a on (aa.AppointmentId = a.AppointmentId)
-	WHERE a.StartDateTime >= @startDateTime and a.StartDateTime <= @endDateTime
+SELECT AppointmentId, AppointmentTypeId, ModuleId, Title, Description, Notes,
+	   Address1, Address2, City, RegionId, PostalCode, Phone, 
+	   AdditionalAddressInfo, ContactStreet, ContactPhone, RequestorName,
+	   RequestorPhoneType, RequestorPhone, RequestorEmail, RequestorAltPhoneType,
+	   RequestorAltPhone, StartDateTime, EndDateTime, 
+	   NumberOfParticipants, NumberOfSpecialParticipants,
+	   ParticipantGender, ParticipantFlag, IsAccepted, CreationDate, RevisionDate
+FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+WHERE ModuleId = @moduleId
+  AND StartDateTime >= @startDateTime 
+  AND StartDateTime <= @endDateTime
+  
 END
 GO
 
