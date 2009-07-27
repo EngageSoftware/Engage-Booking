@@ -194,14 +194,26 @@ namespace Engage.Dnn.Booking
         /// Accepts or declines the <see cref="Appointment"/> with the given <paramref name="appointmentId"/>.
         /// </summary>
         /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to accept or decline.</param>
-        /// <param name="isAccepted">if set to <c>true</c> accept the <see cref="Appointment"/>, otherwise decline it.</param>
         /// <param name="revisingUserId">The ID of the user setting the acceptance the <see cref="Appointment"/>.</param>
-        public static void SetAppointmentAcceptance(int appointmentId, bool isAccepted, int revisingUserId)
+        public static void DeclineAppointment(int appointmentId, int revisingUserId)
         {
             SqlDataProvider.Instance.ExecuteNonQuery(
-                "SetAppointmentAcceptance",
+                "DeclineAppointment",
                 Engage.Utility.CreateIntegerParam("@appointmentId", appointmentId),
-                Engage.Utility.CreateBitParam("@isAccepted", isAccepted),
+                Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
+        }
+
+        /// <summary>
+        /// Accepts or declines the <see cref="Appointment"/> with the given <paramref name="appointmentId"/>.
+        /// </summary>
+        /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to accept or decline.</param>
+        /// <param name="revisingUserId">The ID of the user setting the acceptance the <see cref="Appointment"/>.</param>
+        /// <returns>Whether the appointment could be successfully accepted</returns>
+        public static bool AcceptAppointment(int appointmentId, int revisingUserId)
+        {
+            return (bool)SqlDataProvider.Instance.ExecuteScalar(
+                "AcceptAppointment",
+                Engage.Utility.CreateIntegerParam("@appointmentId", appointmentId),
                 Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
         }
 

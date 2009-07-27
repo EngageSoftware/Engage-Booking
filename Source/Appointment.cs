@@ -626,34 +626,22 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Accepts the <see cref="Appointment"/> with the given <paramref name="appointmentId"/>.
+        /// Accepts this <see cref="Appointment"/>.
         /// </summary>
-        /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to accept.</param>
         /// <param name="revisingUserId">The ID of the user accepting the <see cref="Appointment"/>.</param>
-        public static void Accept(int appointmentId, int revisingUserId)
+        /// <returns>Whether this appointment could be accepted</returns>
+        public bool Accept(int revisingUserId)
         {
-            var appointment = Load(appointmentId);
-            if (appointment != null)
-            {
-                AppointmentSqlDataProvider.SetAppointmentAcceptance(appointment.AppointmentId, true, revisingUserId);
-                EmailService.SendAcceptanceEmail(appointment);
-            }
+            return AppointmentSqlDataProvider.AcceptAppointment(this.AppointmentId, revisingUserId);
         }
 
         /// <summary>
-        /// Declines the <see cref="Appointment"/> with the given <paramref name="appointmentId"/>.
+        /// Declines this <see cref="Appointment"/>.
         /// </summary>
-        /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to decline.</param>
-        /// <param name="declineReason">The reason for declining the appointment request.</param>
         /// <param name="revisingUserId">The ID of the user declining the <see cref="Appointment"/>.</param>
-        public static void Decline(int appointmentId, string declineReason, int revisingUserId)
+        public void Decline(int revisingUserId)
         {
-            var appointment = Load(appointmentId);
-            if (appointment != null)
-            {
-                AppointmentSqlDataProvider.SetAppointmentAcceptance(appointment.AppointmentId, false, revisingUserId);
-                EmailService.SendDeclineEmail(appointment, declineReason);
-            }
+            AppointmentSqlDataProvider.DeclineAppointment(this.AppointmentId, revisingUserId);
         }
 
         #region IEditableObject Members

@@ -132,6 +132,12 @@
   <data name="CancelDeclineButton.Text" xml:space="preserve">
     <value>Cancel Decline</value>
   </data>
+  <data name="ConflictAcceptingAppointment.Text" xml:space="preserve">
+    <value>The appointment could not be accepted because it conflicts with another accepted appointment on your calendar.</value>
+  </data>
+  <data name="ConflictAcceptingAppointments.Text" xml:space="preserve">
+    <value>&lt;p&gt;The following appointments could not be accepted because they conflict with another accepted appointment on your calendar:&lt;/p&gt;</value>
+  </data>
   <data name="Date and Time.Header" xml:space="preserve">
     <value>Date and Time</value>
   </data>

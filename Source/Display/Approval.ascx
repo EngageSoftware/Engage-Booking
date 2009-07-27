@@ -2,8 +2,10 @@
 <%@ Import Namespace="Engage.Dnn.Booking"%>
 <%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Approval" CodeBehind="Approval.ascx.cs" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
+<%@ Register TagPrefix="engage" TagName="ModuleMessage" Src="../Controls/ModuleMessage.ascx" %>
 
 <div class="approval">
+    <engage:ModuleMessage ID="ApprovalMessage" runat="server" MessageType="Error" Visible="false" />
     <asp:MultiView ID="ApprovalMultiview" runat="server" ActiveViewIndex="0">
         <asp:View ID="ApprovalsListView" runat="server">
         	<div class="bulk-selection">

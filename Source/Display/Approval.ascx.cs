@@ -14,6 +14,7 @@ namespace Engage.Dnn.Booking
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Text;
     using System.Web.UI;
     using System.Web.UI.WebControls;
     using DotNetNuke.Services.Exceptions;
@@ -63,7 +64,12 @@ namespace Engage.Dnn.Booking
                 var declineReasonTextBox = (TextBox)repeaterItem.FindControl("DeclineReasonTextBox");
 
                 int appointmentId = int.Parse(declinedAppointmentIdHiddenField.Value, NumberStyles.Integer, CultureInfo.InvariantCulture);
-                Appointment.Decline(appointmentId, declineReasonTextBox.Text, this.UserId);
+                var appointment = Appointment.Load(appointmentId);
+                if (appointment != null)
+                {
+                    appointment.Decline(this.UserId);
+                    EmailService.SendDeclineEmail(appointment, declineReasonTextBox.Text);
+                }
             }
 
             this.BindData();
@@ -103,7 +109,12 @@ namespace Engage.Dnn.Booking
             switch (e.CommandName)
             {
                 case "Accept":
-                    Appointment.Accept(appointmentId, this.UserId);
+                    if (!this.AcceptAppointment(appointmentId))
+                    {
+                        this.ApprovalMessage.Visible = true;
+                        this.ApprovalMessage.TextResourceKey = "ConflictAcceptingAppointment.Text";
+                    }
+
                     break;
                 case "Decline":
                     this.ApprovalMultiview.SetActiveView(this.ProvideDeclineReasonView);
@@ -145,13 +156,47 @@ namespace Engage.Dnn.Booking
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void AcceptAppointmentsButton_Click(object sender, EventArgs e)
         {
+            var conflictingAppointments = new List<Appointment>();
             var appointmentIds = this.GetSelectedAppointmentIds();
             foreach (var appointmentId in appointmentIds)
             {
-                Appointment.Accept(appointmentId, this.UserId);   
+                var appointment = Appointment.Load(appointmentId);
+                if (appointment != null)
+                {
+                    if (appointment.Accept(this.UserId))
+                    {
+                        EmailService.SendAcceptanceEmail(appointment);
+                    }
+                    else
+                    {
+                        conflictingAppointments.Add(appointment);
+                    }
+                }
+            }
+
+            if (conflictingAppointments.Count > 0)
+            {
+                this.ApprovalMessage.Visible = true;
+                this.ApprovalMessage.Text = this.GenerateConflictingAppointmentsErrorMessage(conflictingAppointments);
             }
 
             this.BindData();
+        }
+
+        /// <summary>
+        /// Generates the error message when there are conflicts during accepting appointments.
+        /// </summary>
+        /// <param name="conflictingAppointments">The conflicting appointments.</param>
+        /// <returns>The error message</returns>
+        private string GenerateConflictingAppointmentsErrorMessage(IEnumerable<Appointment> conflictingAppointments)
+        {
+            StringBuilder errorMessageBuilder = new StringBuilder(Localization.GetString("ConflictAcceptingAppointments.Text", this.LocalResourceFile)).Append("<ul>");
+            foreach (var appointment in conflictingAppointments)
+            {
+                errorMessageBuilder.Append("<li>").Append(appointment.Title).Append("</li>");
+            }
+
+            return errorMessageBuilder.Append("</ul>").ToString();
         }
 
         /// <summary>
@@ -179,6 +224,26 @@ namespace Engage.Dnn.Booking
                 var declineReasonTextBox = (TextBox)e.Item.FindControl("DeclineReasonTextBox");
                 declineReasonTextBox.Text = Localization.GetString("Default Reason for Decline", this.LocalResourceFile);
             }
+        }
+
+        /// <summary>
+        /// Accepts the <see cref="Appointment"/> with the given <paramref name="appointmentId"/>,
+        /// and sends an email to the requestor of the <see cref="Appointment"/>.
+        /// </summary>
+        /// <param name="appointmentId">The ID of the appointment to accept.</param>
+        private bool AcceptAppointment(int appointmentId)
+        {
+            var appointment = Appointment.Load(appointmentId);
+            if (appointment != null)
+            {
+                if (appointment.Accept(this.UserId))
+                {
+                    EmailService.SendAcceptanceEmail(appointment);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>

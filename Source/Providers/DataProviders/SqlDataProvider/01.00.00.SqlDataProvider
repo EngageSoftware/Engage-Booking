@@ -438,23 +438,56 @@ BEGIN
 END
 GO
 
-IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spSetAppointmentAcceptance]', N'P') IS NOT NULL
-	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spSetAppointmentAcceptance]
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spDeclineAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spDeclineAppointment]
 GO
-CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spSetAppointmentAcceptance]
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spDeclineAppointment]
 (  
    @appointmentId int,  
-   @isAccepted bit,  
    @revisingUser int  
 )  
 AS  
 BEGIN  
   
 UPDATE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]  
-SET IsAccepted = @isAccepted,  
+SET IsAccepted = 0,  
  RevisingUser = @revisingUser,  
  RevisionDate = GETDATE()  
 WHERE AppointmentId = @appointmentId  
   
 END  
 GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointment]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointment]
+(  
+   @appointmentId int,  
+   @revisingUser int  
+)  
+AS  
+BEGIN  
+
+DECLARE @numberOfConflictingAppointments int
+SELECT @numberOfConflictingAppointments = COUNT(*)
+FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment] AS conflictingAppointment
+JOIN {databaseOwner}[{objectQualifier}EngageBooking_Appointment] AS appointmentToAccept ON (appointmentToAccept.AppointmentId <> conflictingAppointment.AppointmentId)
+WHERE appointmentToAccept.AppointmentId = @appointmentId
+ AND conflictingAppointment.IsAccepted = 1
+ AND (conflictingAppointment.StartDateTime BETWEEN appointmentToAccept.StartDateTime AND appointmentToAccept.EndDateTime
+ OR conflictingAppointment.EndDateTime BETWEEN appointmentToAccept.StartDateTime AND appointmentToAccept.EndDateTime)
+
+IF @numberOfConflictingAppointments = 0
+BEGIN
+	UPDATE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]  
+	SET IsAccepted = 1,  
+	 RevisingUser = @revisingUser,  
+	 RevisionDate = GETDATE()  
+	WHERE AppointmentId = @appointmentId  
+END
+
+SELECT CASE WHEN @numberOfConflictingAppointments = 0 THEN CAST(1 AS bit) ELSE CAST(0 AS bit) END
+END  
+GO
+
