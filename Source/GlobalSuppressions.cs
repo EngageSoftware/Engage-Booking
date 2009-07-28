@@ -20,3 +20,4 @@
 // You do not need to add suppressions to this file manually. 
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA2210:AssembliesShouldHaveValidStrongNames", Justification = "Does not work for Medium Trust modules")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1302:DoNotHardcodeLocaleSpecificStrings", MessageId = "All Users", Scope = "member", Target = "Engage.Dnn.Booking.ModuleSettings.#.cctor()", Justification = "'All Users' (glbRoleAllUsersName) does not refer to the system folder")]

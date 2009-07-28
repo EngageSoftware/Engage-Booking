@@ -13,6 +13,7 @@ namespace Engage.Dnn.Booking
 {
     using System;
     using System.Web.UI.WebControls;
+    using DotNetNuke.Common;
     using DotNetNuke.Security.Roles;
     using DotNetNuke.Services.Exceptions;
     using DotNetNuke.Services.Localization;
@@ -71,6 +72,7 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// Sets the options.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1302:DoNotHardcodeLocaleSpecificStrings", MessageId = "All Users", Justification = "'All Users' (glbRoleAllUsersName) does not refer to the system folder")]
         private void SetOptions()
         {
             this.SkinDropDownList.DataSource = Enum.GetNames(typeof(TelerikSkin));
@@ -85,7 +87,7 @@ namespace Engage.Dnn.Booking
 
             this.AppointmentRequestsRoleDropDownList.DataSource = new RoleController().GetRoleNames(this.PortalId);
             this.AppointmentRequestsRoleDropDownList.DataBind();
-            this.AppointmentRequestsRoleDropDownList.Items.Insert(0, new ListItem(Localization.GetString("AllUsers.Text", this.LocalSharedResourceFile), string.Empty));
+            this.AppointmentRequestsRoleDropDownList.Items.Insert(0, new ListItem(Localization.GetString("AllUsers.Text", this.LocalSharedResourceFile), Globals.glbRoleAllUsersName));
 
             li = this.AppointmentRequestsRoleDropDownList.Items.FindByValue(Booking.ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this));
             if (li != null)

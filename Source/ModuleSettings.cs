@@ -11,6 +11,7 @@
 
 namespace Engage.Dnn.Booking
 {
+    using DotNetNuke.Common;
     using Framework;
 
     /// <summary>
@@ -43,9 +44,9 @@ namespace Engage.Dnn.Booking
         public static readonly Setting<string> NotificationEmailAddresses = new Setting<string>("NotificationEmailAddresses", SettingScope.TabModule, string.Empty);
 
         /// <summary>
-        /// Whether this instance of the module allows users to submit requests for appointments on the calendar
+        /// Which roles users must be in order to submit requests for appointments on the calendar of this instance of the module
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
-        public static readonly Setting<string> AppointmentRequestsRole = new Setting<string>("AppointmentRequestsRole", SettingScope.TabModule, "Registered Users");
+        public static readonly Setting<string> AppointmentRequestsRole = new Setting<string>("AppointmentRequestsRole", SettingScope.TabModule, Globals.glbRoleAllUsersName);
     }
 }
