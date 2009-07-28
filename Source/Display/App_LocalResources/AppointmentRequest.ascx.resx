@@ -132,6 +132,9 @@
   <data name="AppointmentRequestLabel.Text" xml:space="preserve">
     <value>Service Request Form</value>
   </data>
+  <data name="AssignmentDateLabel.Text" xml:space="preserve">
+    <value>Date of Assignment</value>
+  </data>
   <data name="Business.Text" xml:space="preserve">
     <value>Business</value>
   </data>
@@ -159,6 +162,39 @@
   <data name="CustomCapacityMetMessageLabel.Text" xml:space="preserve">
     <value>Custom Message to Display When The Registation Cap Is Met</value>
   </data>
+  <data name="CustomField10Label.Text" xml:space="preserve">
+    <value>Custom Field 10</value>
+  </data>
+  <data name="CustomField1Label.Text" xml:space="preserve">
+    <value>Custom Field 1</value>
+  </data>
+  <data name="CustomField2Label.Text" xml:space="preserve">
+    <value>Custom Field 2</value>
+  </data>
+  <data name="CustomField3Label.Text" xml:space="preserve">
+    <value>Custom Field 3</value>
+  </data>
+  <data name="CustomField4Label.Text" xml:space="preserve">
+    <value>Custom Field 4</value>
+  </data>
+  <data name="CustomField5Label.Text" xml:space="preserve">
+    <value>Custom Field 5</value>
+  </data>
+  <data name="CustomField6Label.Text" xml:space="preserve">
+    <value>Custom Field 6</value>
+  </data>
+  <data name="CustomField7Label.Text" xml:space="preserve">
+    <value>Custom Field 7</value>
+  </data>
+  <data name="CustomField8Label.Text" xml:space="preserve">
+    <value>Custom Field 8</value>
+  </data>
+  <data name="CustomField9Label.Text" xml:space="preserve">
+    <value>Custom Field 9</value>
+  </data>
+  <data name="CustomFieldsLabel.Text" xml:space="preserve">
+    <value>Custom Fields</value>
+  </data>
   <data name="CustomMessage.Text" xml:space="preserve">
     <value>Custom Message</value>
   </data>
@@ -185,6 +221,9 @@
   </data>
   <data name="EndDateTimePickerRequired.Text" xml:space="preserve">
     <value>You must specify when your event ends</value>
+  </data>
+  <data name="EndLabel.Text" xml:space="preserve">
+    <value>End</value>
   </data>
   <data name="EventDescriptionLabel.Text" xml:space="preserve">
     <value>Description</value>
@@ -237,8 +276,17 @@
   <data name="Fed or State Govt.Text" xml:space="preserve">
     <value>Federal or State Government</value>
   </data>
+  <data name="GenderLabel.Text" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="InstructionsLabel.Text" xml:space="preserve">
+    <value>Special Instructions</value>
+  </data>
   <data name="Interpreting Event.Text" xml:space="preserve">
     <value>Interpreting Event</value>
+  </data>
+  <data name="InterpretingServicesLabel.Text" xml:space="preserve">
+    <value>Person Requesting Interpreting Services</value>
   </data>
   <data name="InvalidRecurrence.Text" xml:space="preserve">
     <value>The selected recurrence pattern is invalid.  Please make sure all fields are filled in correctly.</value>
@@ -258,14 +306,23 @@
   <data name="NearestLabel.Text" xml:space="preserve">
     <value>If DC/MD/VA, nearest Metro and nearest cross street</value>
   </data>
+  <data name="NumberSpecialLabel.Text" xml:space="preserve">
+    <value>Number of Deaf Participants</value>
+  </data>
   <data name="OnSiteContactLabel.Text" xml:space="preserve">
     <value>On-site Contact</value>
   </data>
   <data name="Other.Text" xml:space="preserve">
     <value>Other</value>
   </data>
+  <data name="ParticipantsLabel.Text" xml:space="preserve">
+    <value>Participants</value>
+  </data>
   <data name="PhoneLabel.Text" xml:space="preserve">
     <value>Phone</value>
+  </data>
+  <data name="PresenterLabel.Text" xml:space="preserve">
+    <value>Deaf Presenter</value>
   </data>
   <data name="Psychiatric.Text" xml:space="preserve">
     <value>Psychiatric</value>
@@ -300,6 +357,9 @@
   <data name="StartDateTimePickerRequired.Text" xml:space="preserve">
     <value>You must specify when your event begins</value>
   </data>
+  <data name="StartLabel.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
   <data name="StreetLabel.Text" xml:space="preserve">
     <value>Street</value>
   </data>
@@ -308,5 +368,8 @@
   </data>
   <data name="TitleLabel.Text" xml:space="preserve">
     <value>Title</value>
+  </data>
+  <data name="TotalNumberLabel.Text" xml:space="preserve">
+    <value>Total Number of Participants</value>
   </data>
 </root>

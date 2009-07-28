@@ -64,7 +64,7 @@
             </ol>
         </fieldset>
         <fieldset>
-            <legend>Person Requesting Interpreting Services</legend>
+            <legend><asp:Label ResourceKey="InterpretingServicesLabel.Text" runat="server" /></legend>
             <ol class="requesting-form">
                 <li class="full-name">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label ID="RequestorNameLabel" CssClass="full-name-label" runat="server" Text="Full Name" AssociatedControlId="RequestorNameTextBox" />
@@ -97,10 +97,10 @@
             </ol>
         </fieldset>
         <fieldset>
-            <legend>Date of Assignment</legend>
+            <legend><asp:Label ResourceKey="AssignmentDateLabel.Text" runat="server" /></legend>
             <ol class="date-assignment-form">
                 <li class="start">
-                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="start-label" runat="server" Text="Start" AssociatedControlId="StartDateTimePicker" />
+                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="start-label" runat="server" ResourceKey="StartLabel" AssociatedControlId="StartDateTimePicker" />
                     <telerik:RadDateTimePicker runat="server" ID="StartDateTimePicker" Skin="WebBlue">
                         <TimeView Skin="WebBlue" />
                         <Calendar Skin="WebBlue" ShowRowHeaders="false" />
@@ -110,7 +110,7 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="StartDateTimePicker" ResourceKey="StartDateTimePickerRequired" Display="None" EnableClientScript="false" />
                 </li>
                 <li class="end">
-                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="end-label" runat="server" Text="End:" AssociatedControlId="EndDateTimePicker" />
+                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="end-label" runat="server" ResourceKey="EndLabel" AssociatedControlId="EndDateTimePicker" />
                     <telerik:RadDateTimePicker runat="server" ID="EndDateTimePicker" Skin="WebBlue">
                         <TimeView Skin="WebBlue" />
                         <Calendar Skin="WebBlue" ShowRowHeaders="false" />
@@ -131,74 +131,74 @@
             </ol>
         </fieldset>
         <fieldset>
-            <legend>Participants</legend>
+            <legend><asp:Label ResourceKey="ParticipantsLabel.Text" runat="server" /></legend>
             <ol class="participants-form">
                 <li class="number-special">
-                    <asp:Label CssClass="number-special-label" runat="server" Text="Number of Deaf Participants" AssociatedControlId="NumberOfSpecialParticipantsTextBox" />
+                    <asp:Label CssClass="number-special-label" runat="server" ResourceKey="NumberSpecialLabel" AssociatedControlId="NumberOfSpecialParticipantsTextBox" />
                     <asp:TextBox ID="NumberOfSpecialParticipantsTextBox" CssClass="number-special-box short" runat="server" />
-                    <asp:Label CssClass="total-number-label" runat="server" Text="Total Number of Participants" AssociatedControlId="TotalNumberParticipantsTextBox" />
+                    <asp:Label CssClass="total-number-label" runat="server" ResourceKey="TotalNumberLabel" AssociatedControlId="TotalNumberParticipantsTextBox" />
                     <asp:TextBox ID="TotalNumberParticipantsTextBox" CssClass="total-number-box short" runat="server" />
                 </li>
                 <li class="gender">
-                    <asp:Label CssClass="gender-label" runat="server" Text="Gender" AssociatedControlId="GenderDropDownList" />
+                    <asp:Label CssClass="gender-label" runat="server" ResourceKey="GenderLabel" AssociatedControlId="GenderDropDownList" />
                     <asp:DropDownList ID="GenderDropDownList" runat="server" CssClass="gender-list short" runat="server">
                         <asp:ListItem>Mixed Group</asp:ListItem>
                         <asp:ListItem>Men</asp:ListItem>
                         <asp:ListItem>Women</asp:ListItem>
                     </asp:DropDownList>
-                    <asp:Label CssClass="presenter-label" runat="server" Text="Deaf Presenter" AssociatedControlId="PresenterDropDownList" />
+                    <asp:Label CssClass="presenter-label" runat="server" ResourceKey="PresenterLabel" AssociatedControlId="PresenterDropDownList" />
                     <asp:DropDownList ID="PresenterDropDownList" CssClass="presenter-box short" runat="server">
                         <asp:ListItem>N</asp:ListItem>
                         <asp:ListItem>Y</asp:ListItem>
                     </asp:DropDownList>
                 </li>
                 <li class="instructions">
-                    <asp:Label CssClass="instructions-label" runat="server" Text="Special Instructions" AssociatedControlId="InstructionsTextBox" />
+                    <asp:Label CssClass="instructions-label" runat="server" ResourceKey="InstructionsLabel" AssociatedControlId="InstructionsTextBox" />
                     <asp:TextBox ID="InstructionsTextBox" CssClass="instructions-box full" runat="server" TextMode="MultiLine" Rows="4" Columns="40" />
                 </li>
             </ol>
         </fieldset>
         <fieldset class="customfields-fieldset">
-            <legend>Custom Fields</legend>
+            <legend><asp:Label ResourceKey="CustomFieldsLabel.Text" runat="server" /></legend>
             <ol class="customfields-form">
                 <li class="customfield1">
-                    <asp:Label CssClass="customfield1-label" runat="server" Text="Custom Field 1" AssociatedControlId="CustomField1TextBox" />
+                    <asp:Label CssClass="customfield1-label" runat="server" ResourceKey="CustomField1Label.Text" AssociatedControlId="CustomField1TextBox" />
                     <asp:TextBox ID="CustomField1TextBox" CssClass="customfield1-box full" runat="server" />
                 </li>
                 <li class="customfield2">
-                    <asp:Label CssClass="customfield2-label" runat="server" Text="Custom Field 2" AssociatedControlId="CustomField2TextBox" />
+                    <asp:Label CssClass="customfield2-label" runat="server" ResourceKey="CustomField2Label.Text" AssociatedControlId="CustomField2TextBox" />
                     <asp:TextBox ID="CustomField2TextBox" CssClass="customfield2-box full" runat="server" />
                 </li>
                 <li class="customfield3">
-                    <asp:Label CssClass="customfield3-label" runat="server" Text="Custom Field 3" AssociatedControlId="CustomField3TextBox" />
+                    <asp:Label CssClass="customfield3-label" runat="server" ResourceKey="CustomField3Label.Text" AssociatedControlId="CustomField3TextBox" />
                     <asp:TextBox ID="CustomField3TextBox" CssClass="customfield3-box full" runat="server" />
                 </li>
                 <li class="customfield4">
-                    <asp:Label CssClass="customfield4-label" runat="server" Text="Custom Field 4" AssociatedControlId="CustomField4TextBox" />
+                    <asp:Label CssClass="customfield4-label" runat="server" ResourceKey="CustomField4Label.Text" AssociatedControlId="CustomField4TextBox" />
                     <asp:TextBox ID="CustomField4TextBox" CssClass="customfield4-box full" runat="server" />
                 </li>
                 <li class="customfield5">
-                    <asp:Label CssClass="customfield5-label" runat="server" Text="Custom Field 5" AssociatedControlId="CustomField5TextBox" />
+                    <asp:Label CssClass="customfield5-label" runat="server" ResourceKey="CustomField5Label.Text" AssociatedControlId="CustomField5TextBox" />
                     <asp:TextBox ID="CustomField5TextBox" CssClass="customfield5-box full" runat="server" />
                 </li>
                 <li class="customfield6">
-                    <asp:Label CssClass="customfield6-label" runat="server" Text="Custom Field 6" AssociatedControlId="CustomField6TextBox" />
+                    <asp:Label CssClass="customfield6-label" runat="server" ResourceKey="CustomField6Label.Text" AssociatedControlId="CustomField6TextBox" />
                     <asp:TextBox ID="CustomField6TextBox" CssClass="customfield6-box full" runat="server" />
                 </li>
                 <li class="customfield7">
-                    <asp:Label CssClass="customfield7-label" runat="server" Text="Custom Field 7" AssociatedControlId="CustomField7TextBox" />
+                    <asp:Label CssClass="customfield7-label" runat="server" ResourceKey="CustomField7Label.Text" AssociatedControlId="CustomField7TextBox" />
                     <asp:TextBox ID="CustomField7TextBox" CssClass="customfield7-box full" runat="server" />
                 </li>
                 <li class="customfield8">
-                    <asp:Label CssClass="customfield8-label" runat="server" Text="Custom Field 8" AssociatedControlId="CustomField8TextBox" />
+                    <asp:Label CssClass="customfield8-label" runat="server" ResourceKey="CustomField8Label.Text" AssociatedControlId="CustomField8TextBox" />
                     <asp:TextBox ID="CustomField8TextBox" CssClass="customfield8-box full" runat="server" />
                 </li>
                 <li class="customfield9">
-                    <asp:Label CssClass="customfield9-label" runat="server" Text="Custom Field 9" AssociatedControlId="CustomField9TextBox" />
+                    <asp:Label CssClass="customfield9-label" runat="server" ResourceKey="CustomField9Label.Text" AssociatedControlId="CustomField9TextBox" />
                     <asp:TextBox ID="CustomField9TextBox" CssClass="customfield9-box full" runat="server" />
                 </li>
                 <li class="customfield10">
-                    <asp:Label CssClass="customfield10-label" runat="server" Text="Custom Field 10" AssociatedControlId="CustomField10TextBox" />
+                    <asp:Label CssClass="customfield10-label" runat="server" ResourceKey="CustomField10Label.Text" AssociatedControlId="CustomField10TextBox" />
                     <asp:TextBox ID="CustomField10TextBox" CssClass="customfield10-box full" runat="server" />
                 </li>
             </ol>
