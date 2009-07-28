@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,82 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppointmentRequestsRoleLabel.Help" xml:space="preserve">
-    <value>Check this option if you want to allow appointment requests to your calendar.</value>
+  <data name="ControlTitle_exportdata.Text" xml:space="preserve">
+    <value>Export Data</value>
   </data>
-  <data name="AppointmentRequestsRoleLabel.Text" xml:space="preserve">
-    <value>Role which can submit requests for appointments</value>
+  <data name="EndDatePickerLabel.Text" xml:space="preserve">
+    <value>End Date</value>
   </data>
-  <data name="AppointmentsPerDayLabel.Help" xml:space="preserve">
-    <value>Choose how many appointments to display in each day of the calendar when it is in month view.  If there are more appointments on that day than can be shown, a "Show more..." link will be displayed which links to the calendar's view for that day.</value>
+  <data name="ExportDataButton.Text" xml:space="preserve">
+    <value>Export Data</value>
   </data>
-  <data name="AppointmentsPerDayLabel.Text" xml:space="preserve">
-    <value>Appointments to display per day</value>
+  <data name="HeaderRowCheckBox.Text" xml:space="preserve">
+    <value>Include Header Row</value>
   </data>
-  <data name="AppointmentsPerDayRequiredValidator.Text" xml:space="preserve">
-    <value>Appointments to display per day is Required</value>
-  </data>
-  <data name="Black.Text" xml:space="preserve">
-    <value>Black</value>
-  </data>
-  <data name="ControlTitle_settings.Text" xml:space="preserve">
-    <value>Booking Settings</value>
-  </data>
-  <data name="Default.Text" xml:space="preserve">
-    <value>Default</value>
-  </data>
-  <data name="Forest.Text" xml:space="preserve">
-    <value>Forest</value>
-  </data>
-  <data name="Hay.Text" xml:space="preserve">
-    <value>Hay</value>
-  </data>
-  <data name="NotificationEmailsListLabel.Help" xml:space="preserve">
-    <value>A comma-delimited list of the email addresses which should receive a notification email when a new appointment request is submitted through this module.</value>
-  </data>
-  <data name="NotificationEmailsListLabel.Text" xml:space="preserve">
-    <value>Appointment Request Notifications Email Addresses: </value>
-  </data>
-  <data name="NotificationEmailsListValidator.Text" xml:space="preserve">
-    <value>One or more of the request notification emails is in an invalid format.  Please make sure that the addresses are separated by commas (,).</value>
-  </data>
-  <data name="Office2007.Text" xml:space="preserve">
-    <value>Office 2007</value>
-  </data>
-  <data name="Outlook.Text" xml:space="preserve">
-    <value>Outlook</value>
-  </data>
-  <data name="PagingLabel.Help" xml:space="preserve">
-    <value>The number of appointments to display per page when viewing the approval table</value>
-  </data>
-  <data name="PagingLabel.Text" xml:space="preserve">
-    <value>Appointments per page</value>
-  </data>
-  <data name="RecordsPerPageRequiredValidator.Text" xml:space="preserve">
-    <value>Appointments per page is Required</value>
-  </data>
-  <data name="Simple.Text" xml:space="preserve">
-    <value>Simple</value>
-  </data>
-  <data name="SkinLabel.Help" xml:space="preserve">
-    <value>A skin determines the look of the calendar.  It will effect the colors (and, to a smaller degree, the layout) of the calendar, the tooltip, and the date picker.</value>
-  </data>
-  <data name="SkinLabel.Text" xml:space="preserve">
-    <value>Select a calendar skin</value>
-  </data>
-  <data name="Sunset.Text" xml:space="preserve">
-    <value>Sunset</value>
-  </data>
-  <data name="Telerik.Text" xml:space="preserve">
-    <value>Telerik</value>
-  </data>
-  <data name="Vista.Text" xml:space="preserve">
-    <value>Vista</value>
-  </data>
-  <data name="Web20.Text" xml:space="preserve">
-    <value>Web 2.0</value>
-  </data>
-  <data name="WebBlue.Text" xml:space="preserve">
-    <value>Web Blue</value>
+  <data name="StartDatePickerLabel.Text" xml:space="preserve">
+    <value>Start Date</value>
   </data>
 </root>

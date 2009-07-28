@@ -2,10 +2,10 @@
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
 <div>
-    <div>Start Date: <telerik:RadDatePicker ID="StartDatePicker" runat="server" /></div>
-    <div>End Date: <telerik:RadDatePicker ID="EndDatePicker" runat="server" /></div>
+    <div><asp:Label ResourceKey="StartDatePickerLabel" runat="server" /><telerik:RadDatePicker ID="StartDatePicker" ResourceKey="StartDatePicker" runat="server" /></div>
+    <div><asp:Label ResourceKey="EndDatePickerLabel" runat="server" /> <telerik:RadDatePicker ID="EndDatePicker" ResourceKey="EndDatePicker" runat="server" /></div>
 </div>
 <div>
-    <asp:Button ID="ExportButton" Text="Export Data" OnClick="ExportButton_Click" runat="server" />
-    <asp:CheckBox ID="HeaderRowCheckBox" Text="Include Header Row" runat="server" />
+    <asp:Button ID="ExportButton" ResourceKey="ExportDataButton" OnClick="ExportButton_Click" runat="server" />
+    <asp:CheckBox ID="HeaderRowCheckBox" ResourceKey="HeaderRowCheckBox" runat="server" />
 </div>

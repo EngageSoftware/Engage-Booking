@@ -10,55 +10,55 @@
             <strong>Note: </strong><asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" />Fields with asteriks (*) denote required fields.
         </p>
         <fieldset>
-            <legend>Interpreting Event</legend>
+            <legend><%=Localize("Interpreting Event")%></legend>
             <ol class="interpreting-form">
                 <li class="event-type">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" />
-                    <asp:Label CssClass="event-type-label" runat="server" Text="Type of Event" AssociatedControlId="AppointmentTypeDropDownList" />
+                    <asp:Label CssClass="event-type-label" ResourceKey="EventTypeLabel" runat="server" AssociatedControlId="AppointmentTypeDropDownList" />
                     <asp:DropDownList ID="AppointmentTypeDropDownList" CssClass="event-type-box short" runat="server" />
-                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="title-label" runat="server" Text="Title" AssociatedControlId="TitleTextBox" />
+                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="title-label" runat="server" ResourceKey="TitleLabel" AssociatedControlId="TitleTextBox" />
                     <asp:TextBox ID="TitleTextBox" CssClass="title-box short" runat="server" />
                 </li>
 
                 <li class="description">
-                    <asp:Label CssClass="description-label" runat="server" Text="Description of Event" AssociatedControlId="DescriptionTextBox" />
+                    <asp:Label CssClass="description-label" runat="server" ResourceKey="DescriptionLabel" AssociatedControlId="DescriptionTextBox" />
                     <asp:TextBox ID="DescriptionTextBox" CssClass="description-box full" runat="server" TextMode="MultiLine" Rows="4" Columns="40" />
                 </li>
                 <li class="notes">
-                    <asp:Label CssClass="considerations-label" runat="server" Text="Special Considerations" AssociatedControlId="NotesTextBox" />
+                    <asp:Label CssClass="considerations-label" runat="server" ResourceKey="ConsiderationsLabel" AssociatedControlId="NotesTextBox" />
                     <asp:TextBox ID="NotesTextBox" CssClass="notes-box full" runat="server" TextMode="MultiLine" Rows="4" Columns="40" />
                 </li>
             </ol>
             
-            <h4>Address</h4>
+            <h4><asp:Label ID="Label1" ResourceKey="AddressLabel" runat="server" /></h4>
             
             <ol class="interpreting-form-b">
                 <li class="street">
-                    <asp:Label CssClass="street-label" runat="server" Text="Street" AssociatedControlId="StreetTextBox" />
+                    <asp:Label CssClass="street-label" runat="server" ResourceKey="StreetLabel" AssociatedControlId="StreetTextBox" />
                     <asp:TextBox ID="StreetTextBox" CssClass="street-box long" runat="server" />
                     <asp:TextBox ID="RoomTextBox" CssClass="room-box small" runat="server" />
                 </li>
                 <li class="city">
-                    <asp:Label CssClass="city-label" runat="server" Text="City" AssociatedControlId="CityTextBox" />
+                    <asp:Label CssClass="city-label" runat="server" ResourceKey="CityLabel" AssociatedControlId="CityTextBox" />
                     <asp:TextBox ID="CityTextBox" CssClass="city-box long" runat="server" />
                     <asp:DropDownList ID="RegionDropDownList" runat="server" CssClass="state-list short"></asp:DropDownList>
                     <asp:TextBox ID="PostalCodeTextBox" CssClass="zip-box small" runat="server" />
                 </li>
                 <li class="nearest">
-                    <asp:Label CssClass="nearest-label" runat="server" Text="If DC/MD/VA, nearest Metro and nearest cross street" AssociatedControlId="AdditionalAddressInfoTextBox" />
+                    <asp:Label CssClass="nearest-label" runat="server" ResourceKey="NearestLabel" AssociatedControlId="AdditionalAddressInfoTextBox" />
                     <asp:TextBox ID="AdditionalAddressInfoTextBox" CssClass="nearest-box long" runat="server" />
                 </li>
             </ol>
             
-            <h4>On-site Contact</h4>
+            <h4><asp:Label ResourceKey="OnSiteContactLabel" runat="server" /></h4>
             
             <ol class="interpreting-form-c">
                 <li class="street">
-                    <asp:Label CssClass="street-label" runat="server" Text="Street" AssociatedControlId="OnsiteStreetTextBox" />
+                    <asp:Label CssClass="street-label" runat="server" ResourceKey="StreetLabel" AssociatedControlId="OnsiteStreetTextBox" />
                     <asp:TextBox ID="OnsiteStreetTextBox" CssClass="street-box long" runat="server" />
                 </li>
                 <li class="phone">
-                    <asp:Label CssClass="phone-label" runat="server" Text="Phone" AssociatedControlId="OnsitePhoneTextBox" />
+                    <asp:Label CssClass="phone-label" runat="server" ResourceKey="PhoneLabel" AssociatedControlId="OnsitePhoneTextBox" />
                     <asp:TextBox ID="OnsitePhoneTextBox" CssClass="phone-box long" runat="server" />
                 </li>
             </ol>
