@@ -129,6 +129,9 @@
   <data name="AllowRegistrationsLabel.Text" xml:space="preserve">
     <value>Allow Event Registrations</value>
   </data>
+  <data name="AltPhoneLabel.Text" xml:space="preserve">
+    <value>Alternate Phone</value>
+  </data>
   <data name="AppointmentRequestLabel.Text" xml:space="preserve">
     <value>Service Request Form</value>
   </data>

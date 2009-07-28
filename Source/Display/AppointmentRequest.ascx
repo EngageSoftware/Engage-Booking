@@ -87,7 +87,7 @@
                         <asp:ListItem>Fax</asp:ListItem>
                         <asp:ListItem>WebCam</asp:ListItem>
                     </asp:DropDownList>
-                    <asp:Label CssClass="alt-phone-label" runat="server" Text="Alternate Phone" AssociatedControlId="RequestorAltPhoneTextBox" />
+                    <asp:Label CssClass="alt-phone-label" runat="server" ResourceKey="AltPhoneLabel" AssociatedControlId="RequestorAltPhoneTextBox" />
                     <asp:TextBox ID="RequestorAltPhoneTextBox" CssClass="alt-phone-box long" runat="server" />
                 </li>
                 <li class="email">
