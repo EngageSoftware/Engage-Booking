@@ -29,60 +29,64 @@
     
     (function($) {
         var newAppointmentUrl = '<%=ClientAPI.GetSafeJSString(NewAppointmentUrlTemplate) %>',
-            radSchedulerId = '<%=this.AppointmentsCalendar.ClientID %>',
-            timeoutValue = null;
-        
+            radSchedulerId = '<%=this.AppointmentsCalendar.ClientID %>';
+
         function formatDateUrlParameter(date) {
             return encodeURIComponent(date.format("yyyy-MM-dd-HH-mm"));
+        }
+
+        function log(msg) {
+            if (window.console && console.log) {
+                console.log(msg);
+            }
+            else {
+                alert(msg);
+            }
+        }
+
+        function wireupCalendarHover() {
+            var otherToolTipManager = $find('<%=AppointmentToolTipManager.ClientID %>'),
+                appointmentControls = [];
+            if (otherToolTipManager) {
+                appointmentControls = otherToolTipManager.get_targetControls();
+            }
+            
+            $('.appointments-calendar .rsContentTable td').one('mouseenter', function(event) {
+                var toolTipManager = $find('<%=NewRequestToolTipManager.ClientID %>'),
+                    hasAppointments = false,
+                    $this = $(this);
+
+                $.each(appointmentControls, function(i, targetControl) {
+                    hasAppointments = $this.find('#' + targetControl[0]).length;
+
+                    // returning false is like 'break', true is like 'continue'
+                    // so, if it finds that an appointment is a child of this control, it sets hasAppointments to true and exits the loop
+                    return !hasAppointments;
+                });
+
+                if (toolTipManager && !hasAppointments) {
+                    var tooltip = toolTipManager.getToolTipByElement(this);
+                    log("tooltip is " + tooltip);
+                    log('element is '); log(this);
+
+                    if (!tooltip) {
+                        tooltip = toolTipManager.createToolTip(this);
+
+                        var timeSlot = $find(radSchedulerId).get_activeModel().getTimeSlotFromDomElement(this);
+                        tooltip.set_content("<a href='" + String.format(newAppointmentUrl, formatDateUrlParameter(timeSlot.get_startTime()), formatDateUrlParameter(timeSlot.get_endTime())) + "'>Request Appointment</a>");
+                    }
+
+                    tooltip.show();
+                }
+            });
         }
 
         pageRequestManager.add_endRequest(function() {
             wireupCalendarHover();
         });
 
-        function wireupCalendarHover() {
-            $('.appointments-calendar .rsContentTable td')
-                .unbind('mouseenter').unbind('mouseleave')
-                .hover(function(event) {
-                    clearTimeout(timeoutValue);
-
-                    if (!$('.NewAppointmentToolip').is(':visible')) {
-                        var timeSlotPosition = $(this).position(),
-                        timeSlot = $find(radSchedulerId).get_activeModel().getTimeSlotFromDomElement(this);
-                        
-                        $('.NewAppointmentTooltip')
-                            .show()
-                            .css('top', event.clientY)
-                            .css('left', event.clientX)
-                        .find('a')
-                            .attr('href', String.format(newAppointmentUrl, formatDateUrlParameter(timeSlot.get_startTime()), formatDateUrlParameter(timeSlot.get_endTime())));
-                    }
-                }, function() {
-                    if ($('.NewAppointmentToolip').is(':visible')) {
-                        timeoutValue = setTimeout(function() {
-                            $('.NewAppointmentTooltip')
-                                .hide();
-                        }
-                            , 100);
-                    }
-                    else {
-                        clearTimeout(timeoutValue);
-                    }
-                });
-        }
-
-        $(function() {
+        $(document).ready(function() {
             wireupCalendarHover();
-            $('.NewAppointmentTooltip').hover(function() {
-                clearTimeout(timeoutValue);
-            }, function() {
-                clearTimeout(timeoutValue);
-                timeoutValue = setTimeout(function() {
-                    $('.NewAppointmentTooltip')
-                        .hide();
-                }
-                    , 100);
-            });
         });
     })(jQuery);
 //]]>
@@ -97,12 +101,11 @@
         <ContentTemplate>
             <telerik:radscheduler id="AppointmentsCalendar" runat="server" CssClass="booking-calendar" ReadOnly="True" 
                 TimelineView-UserSelectable="False" OverflowBehavior="Expand" ShowAllDayRow="False" />
-            <telerik:radtooltipmanager runat="server" id="CalendarToolTipManager" width="300" height="150"
+            <telerik:radtooltipmanager runat="server" id="AppointmentToolTipManager" width="300" height="150"
                 animation="None" position="BottomRight" HideEvent="LeaveTooltip" text="Loading..." AutoTooltipify="false" />
+            <telerik:radtooltipmanager runat="server" id="NewRequestToolTipManager" width="150" height="75"
+                animation="None" position="BottomRight" HideEvent="LeaveTooltip" text="Loading..." AutoTooltipify="false" Visible="false" />
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:Hyperlink ID="RequestAppointmentLink" Visible="false" runat="server" CssClass="RequestAppointmentLink" ResourceKey="RequestAppointment.Text" />
-    <div ID="NewAppointmentToolTip" class="NewAppointmentTooltip Normal" Visible="false" runat="server">
-        <asp:Hyperlink runat="server" ResourceKey="RequestAppointment.Text" />
-    </div>
 </div>

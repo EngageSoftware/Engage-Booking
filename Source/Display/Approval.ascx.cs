@@ -75,7 +75,7 @@ namespace Engage.Dnn.Booking
             }
 
             this.ApprovalMessage.Visible = true;
-            this.ApprovalMessage.Text = GenerateAppointmentApprovalMessage(declinedAppointments, "DeclinedAppointments.Text");
+            this.ApprovalMessage.Text = this.GenerateAppointmentApprovalMessage(declinedAppointments, "DeclinedAppointments.Text");
 
             this.BindData(true);
             this.ApprovalMultiview.SetActiveView(this.ApprovalsListView);
@@ -202,6 +202,7 @@ namespace Engage.Dnn.Booking
         /// Generates the success message when appointments are accepted.
         /// </summary>
         /// <param name="acceptedAppointments">The accepted appointments.</param>
+        /// <param name="headerTextLocalizationKey">The localization key to use to get the header text for the message.</param>
         /// <returns>The success message</returns>
         private string GenerateAppointmentApprovalMessage(IEnumerable<Appointment> acceptedAppointments, string headerTextLocalizationKey)
         {

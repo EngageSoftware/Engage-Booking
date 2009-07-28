@@ -32,13 +32,22 @@ namespace Engage.Dnn.Booking {
         protected global::Telerik.Web.UI.RadScheduler AppointmentsCalendar;
         
         /// <summary>
-        /// CalendarToolTipManager control.
+        /// AppointmentToolTipManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadToolTipManager CalendarToolTipManager;
+        protected global::Telerik.Web.UI.RadToolTipManager AppointmentToolTipManager;
+        
+        /// <summary>
+        /// NewRequestToolTipManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadToolTipManager NewRequestToolTipManager;
         
         /// <summary>
         /// RequestAppointmentLink control.
@@ -48,14 +57,5 @@ namespace Engage.Dnn.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink RequestAppointmentLink;
-        
-        /// <summary>
-        /// NewAppointmentToolTip control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewAppointmentToolTip;
     }
 }

@@ -45,9 +45,9 @@ namespace Engage.Dnn.Booking
             base.OnInit(e);
 
             this.Load += this.Page_Load;
-            this.AppointmentsCalendar.AppointmentCreated += this.EventsCalendarDisplay_AppointmentCreated;
-            this.AppointmentsCalendar.AppointmentDataBound += this.EventsCalendarDisplay_AppointmentDataBound;
-            this.CalendarToolTipManager.AjaxUpdate += this.EventsCalendarToolTipManager_AjaxUpdate;
+            this.AppointmentsCalendar.AppointmentCreated += this.AppointmentsCalendar_AppointmentCreated;
+            this.AppointmentsCalendar.AppointmentDataBound += this.AppointmentsCalendar_AppointmentDataBound;
+            this.AppointmentToolTipManager.AjaxUpdate += this.AppointmentToolTipManager_AjaxUpdate;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Engage.Dnn.Booking
 
                 if (this.UserInfo.IsInRole(ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this)))
                 {
-                    this.NewAppointmentToolTip.Visible = true;
+                    this.NewRequestToolTipManager.Visible = true;
                     this.RequestAppointmentLink.Visible = true;
                     this.RequestAppointmentLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "AppointmentRequest");
                 }
@@ -102,13 +102,13 @@ namespace Engage.Dnn.Booking
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="Telerik.Web.UI.AppointmentCreatedEventArgs"/> instance containing the event data.</param>
-        private void EventsCalendarDisplay_AppointmentCreated(object sender, AppointmentCreatedEventArgs e)
+        private void AppointmentsCalendar_AppointmentCreated(object sender, AppointmentCreatedEventArgs e)
         {
             if (e.Appointment.Visible && !this.IsAppointmentRegisteredForTooltip(e.Appointment))
             {
                 foreach (AppointmentControl appointmentControl in e.Appointment.AppointmentControls)
                 {
-                    this.CalendarToolTipManager.TargetControls.Add(appointmentControl.ClientID, e.Appointment.ID.ToString(), true);                    
+                    this.AppointmentToolTipManager.TargetControls.Add(appointmentControl.ClientID, ((int)e.Appointment.ID).ToString(CultureInfo.InvariantCulture), true);                    
                 }
             }
         }
@@ -118,10 +118,29 @@ namespace Engage.Dnn.Booking
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="Telerik.Web.UI.SchedulerEventArgs"/> instance containing the event data.</param>
-        private void EventsCalendarDisplay_AppointmentDataBound(object sender, SchedulerEventArgs e)
+        private void AppointmentsCalendar_AppointmentDataBound(object sender, SchedulerEventArgs e)
         {
-            this.CalendarToolTipManager.TargetControls.Clear();
+            this.AppointmentToolTipManager.TargetControls.Clear();
             ScriptManager.RegisterStartupScript(this, typeof(AppointmentCalendar), "HideToolTip", "hideActiveToolTip();", true);
+        }
+
+        /// <summary>
+        /// Handles the <see cref="RadToolTipManager.AjaxUpdate"/> event of the <see cref="AppointmentToolTipManager"/> control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="Telerik.Web.UI.ToolTipUpdateEventArgs"/> instance containing the event data.</param>
+        private void AppointmentToolTipManager_AjaxUpdate(object sender, ToolTipUpdateEventArgs e)
+        {
+            int appointmentId;
+            if (int.TryParse(e.Value.Split('_')[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out appointmentId))
+            {
+                Appointment appointment = Appointment.Load(appointmentId);
+                AppointmentToolTip toolTip = (AppointmentToolTip)this.LoadControl("AppointmentToolTip.ascx");
+
+                toolTip.ModuleConfiguration = this.ModuleConfiguration;
+                toolTip.SetAppointment(appointment);
+                e.UpdatePanel.ContentTemplateContainer.Controls.Add(toolTip);
+            }
         }
 
         /// <summary>
@@ -132,7 +151,7 @@ namespace Engage.Dnn.Booking
             var appointments = AppointmentCollection.Load(this.ModuleId, true);
             if (!this.IsEditable)
             {
-                this.CalendarToolTipManager.Visible = false;
+                this.AppointmentToolTipManager.Visible = false;
 
                 foreach (var appointment in appointments)
                 {
@@ -147,27 +166,8 @@ namespace Engage.Dnn.Booking
             this.AppointmentsCalendar.DataSubjectField = "Title";
             this.AppointmentsCalendar.DataBind();
 
-            this.AppointmentsCalendar.Skin = this.CalendarToolTipManager.Skin = ModuleSettings.CalendarSkin.GetValueAsStringFor(this);
+            this.AppointmentsCalendar.Skin = this.NewRequestToolTipManager.Skin = this.AppointmentToolTipManager.Skin = ModuleSettings.CalendarSkin.GetValueAsStringFor(this);
             this.AppointmentsCalendar.MonthView.VisibleAppointmentsPerDay = ModuleSettings.AppointmentsToDisplayPerDay.GetValueAsInt32For(this).Value;
-        }
-
-        /// <summary>
-        /// Handles the <see cref="RadToolTipManager.AjaxUpdate"/> event of the <see cref="CalendarToolTipManager"/> control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="Telerik.Web.UI.ToolTipUpdateEventArgs"/> instance containing the event data.</param>
-        private void EventsCalendarToolTipManager_AjaxUpdate(object sender, ToolTipUpdateEventArgs e)
-        {
-            int eventId;
-            if (int.TryParse(e.Value.Split('_')[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out eventId))
-            {
-                Appointment appointment = Appointment.Load(eventId);
-                AppointmentToolTip toolTip = (AppointmentToolTip)this.LoadControl("AppointmentToolTip.ascx");
-
-                toolTip.ModuleConfiguration = this.ModuleConfiguration;
-                toolTip.SetAppointment(appointment);
-                e.UpdatePanel.ContentTemplateContainer.Controls.Add(toolTip);
-            }
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace Engage.Dnn.Booking
         /// </returns>
         private bool IsAppointmentRegisteredForTooltip(Telerik.Web.UI.Appointment apt)
         {
-            foreach (ToolTipTargetControl targetControl in this.CalendarToolTipManager.TargetControls)
+            foreach (ToolTipTargetControl targetControl in this.AppointmentToolTipManager.TargetControls)
             {
                 if (targetControl.TargetControlID == apt.ClientID)
                 {
