@@ -47,7 +47,7 @@ namespace Engage.Dnn.Booking
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void CancelDeclineButton_Click(object sender, EventArgs e)
         {
-            this.BindData();
+            this.BindData(true);
             this.ApprovalMultiview.SetActiveView(this.ApprovalsListView);
         }
 
@@ -72,7 +72,7 @@ namespace Engage.Dnn.Booking
                 }
             }
 
-            this.BindData();
+            this.BindData(true);
             this.ApprovalMultiview.SetActiveView(this.ApprovalsListView);
         }
 
@@ -87,10 +87,7 @@ namespace Engage.Dnn.Booking
             {
                 this.SetupSelectAllPlugin();
                 this.LocalizeGrid();
-                if (!this.IsPostBack)
-                {
-                    this.BindData();
-                }
+                this.BindData(false);
             }
             catch (Exception exc)
             {
@@ -123,7 +120,7 @@ namespace Engage.Dnn.Booking
                     break;
             }
 
-            this.BindData();
+            this.BindData(true);
         }
 
         /// <summary>
@@ -180,7 +177,7 @@ namespace Engage.Dnn.Booking
                 this.ApprovalMessage.Text = this.GenerateConflictingAppointmentsErrorMessage(conflictingAppointments);
             }
 
-            this.BindData();
+            this.BindData(true);
         }
 
         /// <summary>
@@ -250,15 +247,20 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// Binds the data.
         /// </summary>
-        private void BindData()
+        /// <param name="rebindInPostback">if set to <c>true</c> rebinds to the <see cref="AppointmentCollection"/> during a postback.</param>
+        private void BindData(bool rebindInPostback)
         {
             this.PagingControl.PageSize = ModuleSettings.AppointmentsPerPage.GetValueAsInt32For(this).Value;
 
             var appointments = AppointmentCollection.Load(this.ModuleId, null, null, this.CurrentPageIndex - 1, this.PagingControl.PageSize);
-            this.AppointmentsGrid.DataSource = appointments;
-            this.AppointmentsGrid.DataBind();
-
             this.SetupPagingControl(this.PagingControl, appointments.TotalRecords);
+
+            if (!this.IsPostBack || rebindInPostback)
+            {
+                this.AppointmentsGrid.DataSource = appointments;
+                this.AppointmentsGrid.DataBind();
+            }
+
             if (this.AppointmentsGrid.HeaderRow != null)
             {
                 this.AppointmentsGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
