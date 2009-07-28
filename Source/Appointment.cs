@@ -62,7 +62,6 @@ namespace Engage.Dnn.Booking
         /// <param name="requestorAltPhone">The requestor alt phone.</param>
         /// <param name="start">The start of the appointment.</param>
         /// <param name="end">The end of the appointment.</param>
-        /// <param name="timeZoneOffset">The time zone offset.</param>
         /// <param name="numberOfParticipants">The number of participants.</param>
         /// <param name="participantGender">The participant gender.</param>
         /// <param name="participantFlag">The participant flag.</param>
@@ -103,7 +102,7 @@ namespace Engage.Dnn.Booking
                 string requestorAltPhone,
                 DateTime start,
                 DateTime end,
-                TimeSpan timeZoneOffset,
+                ////TimeSpan timeZoneOffset,
                 int numberOfParticipants,
                 string participantGender,
                 char participantFlag,
@@ -126,7 +125,7 @@ namespace Engage.Dnn.Booking
             this.AppointmentTypeId = appointmentTypeId;
             this.Title = title;
             this.Description = description;
-            this.TimeZoneOffset = timeZoneOffset;
+            ////this.TimeZoneOffset = timeZoneOffset;
             this.Notes = notes;
             this.Address1 = address1;
             this.Address2 = address2;
@@ -626,16 +625,12 @@ namespace Engage.Dnn.Booking
             set;
         }
 
-        /// <summary>
-        /// Gets or sets the TimeZoneOffset.
-        /// </summary>
-        /// <value>The TimeZoneOffset of this appointment.</value>
-        [XmlElement(Order = 39)]
-        public TimeSpan TimeZoneOffset
-        {
-            get;
-            set;
-        }
+        ////[XmlElement(Order = 39)]
+        ////public TimeSpan TimeZoneOffset
+        ////{
+        ////    get;
+        ////    set;
+        ////}
 
         /// <summary>
         /// Gets the key to use to auto-approve this instance through email.
@@ -716,7 +711,6 @@ namespace Engage.Dnn.Booking
         /// <param name="requestorAltPhone">The requestor alt phone.</param>
         /// <param name="start">The start of the appointment.</param>
         /// <param name="end">The end of the appointment.</param>
-        /// <param name="timeZoneOffset">The time zone offset.</param>
         /// <param name="numberOfParticipants">The number of participants.</param>
         /// <param name="participantGender">The participant gender.</param>
         /// <param name="isPresenterSpecialYOrN">The participant flag.</param>
@@ -760,7 +754,7 @@ namespace Engage.Dnn.Booking
                 string requestorAltPhone,
                 DateTime start,
                 DateTime end,
-                TimeSpan timeZoneOffset,
+                ////TimeSpan timeZoneOffset,
                 int numberOfParticipants,
                 string participantGender,
                 char isPresenterSpecialYOrN,
@@ -801,7 +795,7 @@ namespace Engage.Dnn.Booking
                     requestorAltPhone,
                     start,
                     end,
-                    timeZoneOffset,
+                    ////timeZoneOffset,
                     numberOfParticipants,
                     participantGender,
                     isPresenterSpecialYOrN,

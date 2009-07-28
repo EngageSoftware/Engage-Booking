@@ -208,12 +208,12 @@ namespace Engage.Dnn.Booking
                 numberOfSpecialParticipants = 0;
             }
 
-            int timeZoneOffsetMinutes = int.Parse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
-            TimeSpan timeZoneOffset = new TimeSpan(0, timeZoneOffsetMinutes, 0);
-            if (this.InDaylightTimeCheckBox.Checked)
-            {
-                timeZoneOffset = timeZoneOffset.Add(new TimeSpan(1, 0, 0));
-            }
+            ////int timeZoneOffsetMinutes = int.Parse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+            ////TimeSpan timeZoneOffset = new TimeSpan(0, timeZoneOffsetMinutes, 0);
+            ////if (this.InDaylightTimeCheckBox.Checked)
+            ////{
+            ////    timeZoneOffset = timeZoneOffset.Add(new TimeSpan(1, 0, 0));
+            ////}
 
             Appointment appointment = Appointment.Create(
                     this.ModuleId,
@@ -238,7 +238,7 @@ namespace Engage.Dnn.Booking
                     this.RequestorAltPhoneTextBox.Text,
                     this.StartDateTimePicker.SelectedDate.Value,
                     this.EndDateTimePicker.SelectedDate.Value,
-                    timeZoneOffset,
+                    ////timeZoneOffset,
                     totalNumberOfParticipants,
                     this.GenderDropDownList.SelectedValue,
                     this.PresenterDropDownList.SelectedValue[0],
@@ -282,7 +282,7 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Fills the <see cref="RegionDropDownList"/>, <see cref="AppointmentTypeDropDownList"/>, and <see cref="TimeZoneDropDownList"/> controls.
+        /// Fills the <see cref="RegionDropDownList"/> and <see cref="AppointmentTypeDropDownList"/> controls.
         /// </summary>
         private void SetupControl()
         {
@@ -299,11 +299,11 @@ namespace Engage.Dnn.Booking
             this.AppointmentTypeDropDownList.DataBind();
             Dnn.Utility.LocalizeListControl(this.AppointmentTypeDropDownList, this.LocalResourceFile);
             
-            // TODO: Once we support .NET 3.5, replace this with TimeZoneInfo.GetSystemTimeZones
-            Localization.LoadTimeZoneDropDownList(
-                    this.TimeZoneDropDownList,
-                    CultureInfo.CurrentCulture.Name,
-                    ((int)Dnn.Utility.GetUserTimeZoneOffset(this.UserInfo, this.PortalSettings).TotalMinutes).ToString(CultureInfo.InvariantCulture));
+            ////// TODO: Once we support .NET 3.5, replace this with TimeZoneInfo.GetSystemTimeZones
+            ////Localization.LoadTimeZoneDropDownList(
+            ////        this.TimeZoneDropDownList,
+            ////        CultureInfo.CurrentCulture.Name,
+            ////        ((int)Dnn.Utility.GetUserTimeZoneOffset(this.UserInfo, this.PortalSettings).TotalMinutes).ToString(CultureInfo.InvariantCulture));
         }
 
         /////// <summary>
