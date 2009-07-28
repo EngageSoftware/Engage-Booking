@@ -180,3 +180,11 @@
 	.approval legend{color:#6e5112;padding:0 10px;font-weight:bold;font-size:14px;}
 	.total .approval-detail-label, .names .approval-detail-label, .total .approval-detail-value, .names .approval-detail-value{width:45%;}
 	.total .approval-detail-label, .names .approval-detail-label{text-align:right;}
+	
+/*==============================================================================
+	Export Data Form 
+==============================================================================*/
+	.exportdata-form{background:#fafafa;padding:15px;}
+		.startdate, .enddate, .exportbutton{width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.startdate-label, .enddate-label, .export-button{float:left;width:20%;}
+			.startdate-picker, .enddate-picker, .header-checkbox{float:left;margin:0 2%}
