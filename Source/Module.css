@@ -244,7 +244,14 @@
 		.number-special, .total-number, .gender, .presenter, .instructions{width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.number-special-label, .total-number-label, .gender-label, .presenter-label, .instructions-label{float:left;width:20%;}
 			.number-special-box, .total-number-box, .gender-list, .presenter-box, .instructions-box{float:left;margin:0 2%}
-/*----- Submit Button  -----*/	
+			
+/*----- Custom Fields -----*/
+	.customfields-form{background:#fafafa;padding:15px;}
+		.customfield1, .customfield2, .customfield3, .customfield4, .customfield5, .customfield6, .customfield7, .customfield8, .customfield9, .customfield10{width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.customfield1-label, .customfield2-label, .customfield3-label, .customfield4-label, .customfield5-label, .customfield6-label, .customfield7-label, .customfield8-label, .customfield9-label, .customfield10-label{float:left;width:20%;}
+			.customfield1-box, .customfield2-box, .customfield3-box, .customfield4-box, .customfield5-box, .customfield6-box, .customfield7-box, .customfield8-box, .customfield9-box, .customfield10-box{float:left;margin:0 2%}
+
+/*----- Submit Button -----*/	
 	.submit{}
 		.send-button{}
 /*==============================================================================
