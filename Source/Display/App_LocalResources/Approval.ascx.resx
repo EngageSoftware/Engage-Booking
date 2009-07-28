@@ -124,7 +124,7 @@
     <value>Accept</value>
   </data>
   <data name="AcceptedAppointments.Text" xml:space="preserve">
-    <value>&lt;p&gt;The following appointments were accepted:&lt;/p&gt;</value>
+    <value>&lt;p&gt;The following appointments were successfully accepted: &lt;/p&gt;</value>
   </data>
   <data name="Actions.Header" xml:space="preserve">
     <value>Actions</value>
@@ -159,6 +159,9 @@
   </data>
   <data name="Decline.Text" xml:space="preserve">
     <value>Decline</value>
+  </data>
+  <data name="DeclinedAppointments.Text" xml:space="preserve">
+    <value>&lt;p&gt;The following appointments were successfully declined: &lt;/p&gt;</value>
   </data>
   <data name="Default Reason for Decline.Text" xml:space="preserve">
     <value>Your request conflicted with another request on my calendar.  Please reschedule, if possible.</value>
@@ -196,6 +199,12 @@
   </data>
   <data name="SubmitDeclineReasonButton.Text" xml:space="preserve">
     <value>Confirm Decline</value>
+  </data>
+  <data name="SuccessfulAccept.Text" xml:space="preserve">
+    <value>The appointment was successfully accepted.</value>
+  </data>
+  <data name="SuccessfulDecline.Text" xml:space="preserve">
+    <value>The appointment was successfully declined.</value>
   </data>
   <data name="Total Number of Participants.Text" xml:space="preserve">
     <value>Total Number of Participants: </value>

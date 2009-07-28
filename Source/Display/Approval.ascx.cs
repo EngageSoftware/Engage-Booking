@@ -58,6 +58,7 @@ namespace Engage.Dnn.Booking
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void SubmitDeclineReasonButton_Click(object sender, EventArgs e)
         {
+            var declinedAppointments = new List<Appointment>();
             foreach (RepeaterItem repeaterItem in this.DeclineReasonRepeater.Items)
             {
                 var declinedAppointmentIdHiddenField = (HiddenField)repeaterItem.FindControl("DeclinedAppointmentIdHiddenField");
@@ -68,9 +69,13 @@ namespace Engage.Dnn.Booking
                 if (appointment != null)
                 {
                     appointment.Decline(this.UserId);
+                    declinedAppointments.Add(appointment);
                     EmailService.SendDeclineEmail(appointment, declineReasonTextBox.Text);
                 }
             }
+
+            this.ApprovalMessage.Visible = true;
+            this.ApprovalMessage.Text = GenerateAppointmentApprovalMessage(declinedAppointments, "DeclinedAppointments.Text");
 
             this.BindData(true);
             this.ApprovalMultiview.SetActiveView(this.ApprovalsListView);
@@ -110,6 +115,11 @@ namespace Engage.Dnn.Booking
                     {
                         this.ConflictingAppointmentsMessage.Visible = true;
                         this.ConflictingAppointmentsMessage.TextResourceKey = "ConflictAcceptingAppointment.Text";
+                    }
+                    else
+                    {
+                        this.ApprovalMessage.Visible = true;
+                        this.ApprovalMessage.TextResourceKey = "SuccessfulAccept.Text";
                     }
 
                     break;
@@ -175,14 +185,14 @@ namespace Engage.Dnn.Booking
                 if (acceptedAppointments.Count > 0)
                 {
                     this.ApprovalMessage.Visible = true;
-                    this.ApprovalMessage.Text = this.GenerateAppointmentApprovalMessage(acceptedAppointments);
+                    this.ApprovalMessage.Text = this.GenerateAppointmentApprovalMessage(acceptedAppointments, "AcceptedAppointments.Text");
                 }
             }
 
             if (conflictingAppointments.Count > 0)
             {
                 this.ConflictingAppointmentsMessage.Visible = true;
-                this.ConflictingAppointmentsMessage.Text = this.GenerateConflictingAppointmentsErrorMessage(conflictingAppointments);
+                this.ConflictingAppointmentsMessage.Text = this.GenerateAppointmentApprovalMessage(conflictingAppointments, "ConflictAcceptingAppointments.Text");
             }
 
             this.BindData(true);
@@ -193,31 +203,15 @@ namespace Engage.Dnn.Booking
         /// </summary>
         /// <param name="acceptedAppointments">The accepted appointments.</param>
         /// <returns>The success message</returns>
-        private string GenerateAppointmentApprovalMessage(IEnumerable<Appointment> acceptedAppointments)
+        private string GenerateAppointmentApprovalMessage(IEnumerable<Appointment> acceptedAppointments, string headerTextLocalizationKey)
         {
-            StringBuilder successMessageBuilder = new StringBuilder(Localization.GetString("AcceptedAppointments.Text", this.LocalResourceFile)).Append("<ul>");
+            StringBuilder successMessageBuilder = new StringBuilder(Localization.GetString(headerTextLocalizationKey, this.LocalResourceFile)).Append("<ul>");
             foreach (var appointment in acceptedAppointments)
             {
                 successMessageBuilder.Append("<li>").Append(appointment.Title).Append("</li>");
             }
 
             return successMessageBuilder.Append("</ul>").ToString();
-        }
-
-        /// <summary>
-        /// Generates the error message when there are conflicts during accepting appointments.
-        /// </summary>
-        /// <param name="conflictingAppointments">The conflicting appointments.</param>
-        /// <returns>The error message</returns>
-        private string GenerateConflictingAppointmentsErrorMessage(IEnumerable<Appointment> conflictingAppointments)
-        {
-            StringBuilder errorMessageBuilder = new StringBuilder(Localization.GetString("ConflictAcceptingAppointments.Text", this.LocalResourceFile)).Append("<ul>");
-            foreach (var appointment in conflictingAppointments)
-            {
-                errorMessageBuilder.Append("<li>").Append(appointment.Title).Append("</li>");
-            }
-
-            return errorMessageBuilder.Append("</ul>").ToString();
         }
 
         /// <summary>
@@ -261,10 +255,6 @@ namespace Engage.Dnn.Booking
                 if (appointment.Accept(this.UserId))
                 {
                     EmailService.SendAcceptanceEmail(appointment);
-                    this.ApprovalMessage.Visible = true;
-                    var acceptedAppointments = new List<Appointment>();
-                    acceptedAppointments.Add(appointment);
-                    this.ApprovalMessage.Text = this.GenerateAppointmentApprovalMessage(acceptedAppointments);
                     return true;
                 }
             }
