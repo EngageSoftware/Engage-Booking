@@ -372,6 +372,9 @@
   <data name="TitleLabel.Text" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="UniqueTimeslotValidator.Text" xml:space="preserve">
+    <value>The time that you have requested is unavailable.  Please refer to the calendar to find an available time.</value>
+  </data>
   <data name="TotalNumberLabel.Text" xml:space="preserve">
     <value>Total Number of Participants</value>
   </data>

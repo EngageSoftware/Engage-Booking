@@ -522,6 +522,28 @@ WHERE AppointmentId = @appointmentId
 END  
 GO
 
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spCanCreateAppointmentAt]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spCanCreateAppointmentAt]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spCanCreateAppointmentAt]
+(  
+	@moduleId int,
+    @start datetime,
+    @end datetime
+)  
+AS  
+BEGIN  
+
+SELECT CASE WHEN COUNT(*) > 0 THEN CAST(0 AS bit) ELSE CAST(1 AS bit) END
+FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+WHERE ModuleId = @moduleId
+ AND IsAccepted = 1
+ AND ((@start > StartDateTime  AND @start < EndDateTime)
+ OR (@end > StartDateTime AND @end < EndDateTime))
+
+END  
+GO
+
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointment]', N'P') IS NOT NULL
 	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointment]
 GO
@@ -534,16 +556,19 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointm
 AS  
 BEGIN  
 
-DECLARE @numberOfConflictingAppointments int
-SELECT @numberOfConflictingAppointments = COUNT(*)
-FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment] AS conflictingAppointment
-JOIN {databaseOwner}[{objectQualifier}EngageBooking_Appointment] AS appointmentToAccept ON (appointmentToAccept.AppointmentId <> conflictingAppointment.AppointmentId)
-WHERE appointmentToAccept.AppointmentId = @appointmentId
- AND conflictingAppointment.IsAccepted = 1
- AND (conflictingAppointment.StartDateTime BETWEEN appointmentToAccept.StartDateTime AND appointmentToAccept.EndDateTime
- OR conflictingAppointment.EndDateTime BETWEEN appointmentToAccept.StartDateTime AND appointmentToAccept.EndDateTime)
+DECLARE @moduleId int
+DECLARE @start datetime
+DECLARE @end datetime
 
-IF @numberOfConflictingAppointments = 0
+SELECT @moduleId = ModuleId, @start = StartDateTime, @end = EndDateTime 
+FROM {databaseOwner}{objectQualifier}EngageBooking_Appointment 
+WHERE AppointmentId = @appointmentId
+
+CREATE TABLE #StoredProcResult(CanCreate bit)
+INSERT INTO #StoredProcResult(CanCreate)
+EXEC {databaseOwner}{objectQualifier}EngageBooking_spCanCreateAppointmentAt @moduleId, @start, @end
+
+IF (SELECT CanCreate FROM #StoredProcResult) = 1
 BEGIN
 	UPDATE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]  
 	SET IsAccepted = 1,  
@@ -554,7 +579,7 @@ END
 
 IF @returnSuccessBit = 1
 	BEGIN
-		SELECT CASE WHEN @numberOfConflictingAppointments = 0 THEN CAST(1 AS bit) ELSE CAST(0 AS bit) END
+		SELECT CanCreate FROM #StoredProcResult
 	END
 END  
 GO

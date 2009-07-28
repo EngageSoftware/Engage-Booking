@@ -383,6 +383,15 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox CustomField10TextBox;
         
         /// <summary>
+        /// UniqueTimeslotValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator UniqueTimeslotValidator;
+        
+        /// <summary>
         /// SaveAppointmentButton control.
         /// </summary>
         /// <remarks>

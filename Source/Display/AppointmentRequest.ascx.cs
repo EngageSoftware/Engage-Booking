@@ -51,6 +51,7 @@ namespace Engage.Dnn.Booking
             this.Load += this.Page_Load;
             this.SaveAppointmentButton.Click += this.SaveAppointmentButton_OnClick;
             this.SaveAndCreateNewAppointmentButton.Click += this.SaveAndCreateNewAppointmentButton_OnClick;
+            this.UniqueTimeslotValidator.ServerValidate += this.UniqueTimeslotValidator_ServerValidate;
         }
 
         /// <summary>
@@ -116,36 +117,24 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Fills the <see cref="RegionDropDownList"/>, <see cref="AppointmentTypeDropDownList"/>, and <see cref="TimeZoneDropDownList"/> controls.
+        /// Handles the <see cref="ImageButton.Click"/> event of the <see cref="SaveAndCreateNewAppointmentButton"/> control.
         /// </summary>
-        private void SetupControl()
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void SaveAndCreateNewAppointmentButton_OnClick(object sender, EventArgs e)
         {
-            ListEntryInfoCollection regions = new ListController().GetListEntryInfoCollection("Region");
-
-            this.RegionDropDownList.DataTextField = "Text";
-            this.RegionDropDownList.DataValueField = "EntryId";
-            this.RegionDropDownList.DataSource = regions;
-            this.RegionDropDownList.DataBind();
-
-            this.AppointmentTypeDropDownList.DataSource = AppointmentTypeCollection.Load();
-            this.AppointmentTypeDropDownList.DataTextField = "Name";
-            this.AppointmentTypeDropDownList.DataValueField = "Id";
-            this.AppointmentTypeDropDownList.DataBind();
-            Dnn.Utility.LocalizeListControl(this.AppointmentTypeDropDownList, this.LocalResourceFile);
-            
-            // TODO: Once we support .NET 3.5, replace this with TimeZoneInfo.GetSystemTimeZones
-            Localization.LoadTimeZoneDropDownList(
-                    this.TimeZoneDropDownList,
-                    CultureInfo.CurrentCulture.Name,
-                    ((int)Dnn.Utility.GetUserTimeZoneOffset(this.UserInfo, this.PortalSettings).TotalMinutes).ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// Sets the <c>NavigateUrl</c> property for the button links.
-        /// </summary>
-        private void SetButtonLinks()
-        {
-            this.CancelAppointmentLink.NavigateUrl = Globals.NavigateURL();
+            try
+            {
+                if (this.Page.IsValid)
+                {
+                    this.Save();
+                    this.Response.Redirect(this.NewAppintmentUrl, true);
+                }
+            }
+            catch (Exception exc)
+            {
+                Exceptions.ProcessModuleLoadException(this, exc);
+            }
         }
 
         /// <summary>
@@ -170,24 +159,18 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Handles the <see cref="ImageButton.Click"/> event of the <see cref="SaveAndCreateNewAppointmentButton"/> control.
+        /// Handles the <see cref="CustomValidator.ServerValidate"/> event of the <see cref="UniqueTimeslotValidator"/> control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void SaveAndCreateNewAppointmentButton_OnClick(object sender, EventArgs e)
+        /// <param name="source">The source of the event.</param>
+        /// <param name="args">The <see cref="System.Web.UI.WebControls.ServerValidateEventArgs"/> instance containing the event data.</param>
+        private void UniqueTimeslotValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            try
+            if (!this.StartDateTimePicker.SelectedDate.HasValue || !this.EndDateTimePicker.SelectedDate.HasValue)
             {
-                if (this.Page.IsValid)
-                {
-                    this.Save();
-                    this.Response.Redirect(this.NewAppintmentUrl, true);
-                }
+                return;
             }
-            catch (Exception exc)
-            {
-                Exceptions.ProcessModuleLoadException(this, exc);
-            }
+
+            args.IsValid = Appointment.CanCreateAt(this.ModuleId, this.StartDateTimePicker.SelectedDate.Value, this.EndDateTimePicker.SelectedDate.Value);
         }
 
         /// <summary>
@@ -199,48 +182,12 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// This method will either update or create an <see cref="Appointment"/>
+        /// Sets the <c>NavigateUrl</c> property for the button links.
         /// </summary>
-        private void Save()
+        private void SetButtonLinks()
         {
-            ////if (this.AppointmentId.HasValue)
-            ////{
-            ////    this.Update();
-            ////}
-            ////else
-            ////{
-                this.Insert();
-            ////}
+            this.CancelAppointmentLink.NavigateUrl = Globals.NavigateURL();
         }
-
-        /////// <summary>
-        /////// This method is responsible for updating an <see cref="Appointment"/> which already exists.
-        /////// </summary>
-        ////private void Update()
-        ////{
-        ////    int? appointmentId = this.AppointmentId;
-        ////    if (appointmentId.HasValue)
-        ////    {
-        ////        int appointmentTypeId = int.Parse(this.AppointmentTypeDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
-        ////        int regionId = int.Parse(this.RegionDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
-        ////        int total = int.Parse(this.TotalNumberParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture);
-        ////        int special = int.Parse(this.NumberOfSpecialParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture);
-        ////        int timeZoneOffsetMinutes = int.Parse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
-        ////        TimeSpan timeZoneOffset = new TimeSpan(0, timeZoneOffsetMinutes, 0);
-        ////        if (this.InDaylightTimeCheckBox.Checked)
-        ////        {
-        ////            timeZoneOffset = timeZoneOffset.Add(new TimeSpan(1, 0, 0));
-        ////        }
-
-        ////        Appointment appointment = Appointment.Load(appointmentId.Value);
-        ////        appointment.StartDateTime = this.StartDateTimePicker.SelectedDate.Value;
-        ////        appointment.EndDateTime = this.EndDateTimePicker.SelectedDate.Value;
-        ////        appointment.Title = this.TitleTextBox.Text;
-        ////        appointment.Description = this.DescriptionTextBox.Text;
-        ////        ////...
-        ////        appointment.Save(this.UserId);
-        ////    }
-        ////}
 
         /// <summary>
         /// Based on the values entered by the user for the event, this method will populate an <see cref="Appointment"/> and save it
@@ -318,6 +265,75 @@ namespace Engage.Dnn.Booking
                     this.BuildLinkUrl(this.ModuleId, "DirectApproval", "actionKey=" + appointment.DeclineKey),
                     this.BuildLinkUrl(this.ModuleId, "Approval"));
         }
+
+        /// <summary>
+        /// This method will either update or create an <see cref="Appointment"/>
+        /// </summary>
+        private void Save()
+        {
+            ////if (this.AppointmentId.HasValue)
+            ////{
+            ////    this.Update();
+            ////}
+            ////else
+            ////{
+            this.Insert();
+            ////}
+        }
+
+        /// <summary>
+        /// Fills the <see cref="RegionDropDownList"/>, <see cref="AppointmentTypeDropDownList"/>, and <see cref="TimeZoneDropDownList"/> controls.
+        /// </summary>
+        private void SetupControl()
+        {
+            ListEntryInfoCollection regions = new ListController().GetListEntryInfoCollection("Region");
+
+            this.RegionDropDownList.DataTextField = "Text";
+            this.RegionDropDownList.DataValueField = "EntryId";
+            this.RegionDropDownList.DataSource = regions;
+            this.RegionDropDownList.DataBind();
+
+            this.AppointmentTypeDropDownList.DataSource = AppointmentTypeCollection.Load();
+            this.AppointmentTypeDropDownList.DataTextField = "Name";
+            this.AppointmentTypeDropDownList.DataValueField = "Id";
+            this.AppointmentTypeDropDownList.DataBind();
+            Dnn.Utility.LocalizeListControl(this.AppointmentTypeDropDownList, this.LocalResourceFile);
+            
+            // TODO: Once we support .NET 3.5, replace this with TimeZoneInfo.GetSystemTimeZones
+            Localization.LoadTimeZoneDropDownList(
+                    this.TimeZoneDropDownList,
+                    CultureInfo.CurrentCulture.Name,
+                    ((int)Dnn.Utility.GetUserTimeZoneOffset(this.UserInfo, this.PortalSettings).TotalMinutes).ToString(CultureInfo.InvariantCulture));
+        }
+
+        /////// <summary>
+        /////// This method is responsible for updating an <see cref="Appointment"/> which already exists.
+        /////// </summary>
+        ////private void Update()
+        ////{
+        ////    int? appointmentId = this.AppointmentId;
+        ////    if (appointmentId.HasValue)
+        ////    {
+        ////        int appointmentTypeId = int.Parse(this.AppointmentTypeDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+        ////        int regionId = int.Parse(this.RegionDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+        ////        int total = int.Parse(this.TotalNumberParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture);
+        ////        int special = int.Parse(this.NumberOfSpecialParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture);
+        ////        int timeZoneOffsetMinutes = int.Parse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+        ////        TimeSpan timeZoneOffset = new TimeSpan(0, timeZoneOffsetMinutes, 0);
+        ////        if (this.InDaylightTimeCheckBox.Checked)
+        ////        {
+        ////            timeZoneOffset = timeZoneOffset.Add(new TimeSpan(1, 0, 0));
+        ////        }
+
+        ////        Appointment appointment = Appointment.Load(appointmentId.Value);
+        ////        appointment.StartDateTime = this.StartDateTimePicker.SelectedDate.Value;
+        ////        appointment.EndDateTime = this.EndDateTimePicker.SelectedDate.Value;
+        ////        appointment.Title = this.TitleTextBox.Text;
+        ////        appointment.Description = this.DescriptionTextBox.Text;
+        ////        ////...
+        ////        appointment.Save(this.UserId);
+        ////    }
+        ////}
 
         /// <summary>
         /// Gets a date from the <see cref="HttpRequest.QueryString"/> (handling specific formatting requirements).

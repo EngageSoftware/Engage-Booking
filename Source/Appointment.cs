@@ -660,13 +660,13 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Loads the <see cref="Appointment"/> with the specified <paramref name="appointmentId"/>.
+        /// Accepts or declines an <see cref="Appointment"/> via the given <paramref name="actionKey"/>.
         /// </summary>
-        /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to load.</param>
-        /// <returns>The <see cref="Appointment"/> instance with the given <paramref name="appointmentId"/>, or <c>null</c> if no <see cref="Appointment"/> exists with that ID</returns>
-        public static Appointment Load(int appointmentId)
+        /// <param name="actionKey">The key the corresponds to accepting or declining a specific <see cref="Appointment"/>.</param>
+        /// <returns><c>true</c> if the appointment was accepted, otherwise <c>false</c></returns>
+        public static Appointment ApproveByKey(Guid actionKey)
         {
-            using (IDataReader reader = AppointmentSqlDataProvider.GetAppointment(appointmentId))
+            using (IDataReader reader = AppointmentSqlDataProvider.ApproveByKey(actionKey))
             {
                 if (reader.Read())
                 {
@@ -675,6 +675,20 @@ namespace Engage.Dnn.Booking
 
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Determines whether an <see cref="Appointment"/> can be created at the specified <paramref name="start"/> time until the specified <paramref name="end"/> time.
+        /// </summary>
+        /// <param name="moduleId">The ID of the module in which the appointment is to be created.</param>
+        /// <param name="start">The start of the new <see cref="Appointment"/>.</param>
+        /// <param name="end">The end of the new <see cref="Appointment"/>.</param>
+        /// <returns>
+        /// <c>true</c> if an <see cref="Appointment"/> can be created at the specified <paramref name="start"/> time until the specified <paramref name="end"/> time; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool CanCreateAt(int moduleId, DateTime start, DateTime end)
+        {
+            return AppointmentSqlDataProvider.CanCreateAppointmentAt(moduleId, start, end);
         }
 
         /// <summary>
@@ -724,45 +738,45 @@ namespace Engage.Dnn.Booking
         /// A new <see cref="Appointment"/> instance.
         /// </returns>
         public static Appointment Create(
-            int moduleId,
-            int appointmentTypeId,
-            string title,
-            string description,
-            string notes,
-            string address1,
-            string address2,
-            string city,
-            int regionId,
-            string postalCode,
-            string phone,
-            string additionalAddressInfo,
-            string contactStreet,
-            string contactPhone,
-            string requestorName,
-            string requestorPhoneType,
-            string requestorPhone,
-            string requestorEmail,
-            string requestorAltPhoneType,
-            string requestorAltPhone,
-            DateTime start,
-            DateTime end,
-            TimeSpan timeZoneOffset,
-            int numberOfParticipants,
-            string participantGender,
-            char isPresenterSpecialYOrN,
-            string participantInstructions,
-            int numberOfSpecialParticipants,
-            string custom1,
-            string custom2,
-            string custom3,
-            string custom4,
-            string custom5,
-            string custom6,
-            string custom7,
-            string custom8,
-            string custom9,
-            string custom10,
-            bool? isAccepted)
+                int moduleId,
+                int appointmentTypeId,
+                string title,
+                string description,
+                string notes,
+                string address1,
+                string address2,
+                string city,
+                int regionId,
+                string postalCode,
+                string phone,
+                string additionalAddressInfo,
+                string contactStreet,
+                string contactPhone,
+                string requestorName,
+                string requestorPhoneType,
+                string requestorPhone,
+                string requestorEmail,
+                string requestorAltPhoneType,
+                string requestorAltPhone,
+                DateTime start,
+                DateTime end,
+                TimeSpan timeZoneOffset,
+                int numberOfParticipants,
+                string participantGender,
+                char isPresenterSpecialYOrN,
+                string participantInstructions,
+                int numberOfSpecialParticipants,
+                string custom1,
+                string custom2,
+                string custom3,
+                string custom4,
+                string custom5,
+                string custom6,
+                string custom7,
+                string custom8,
+                string custom9,
+                string custom10,
+                bool? isAccepted)
         {
             return new Appointment(
                     moduleId,
@@ -816,13 +830,13 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Accepts or declines an <see cref="Appointment"/> via the given <paramref name="actionKey"/>.
+        /// Loads the <see cref="Appointment"/> with the specified <paramref name="appointmentId"/>.
         /// </summary>
-        /// <param name="actionKey">The key the corresponds to accepting or declining a specific <see cref="Appointment"/>.</param>
-        /// <returns><c>true</c> if the appointment was accepted, otherwise <c>false</c></returns>
-        public static Appointment ApproveByKey(Guid actionKey)
+        /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to load.</param>
+        /// <returns>The <see cref="Appointment"/> instance with the given <paramref name="appointmentId"/>, or <c>null</c> if no <see cref="Appointment"/> exists with that ID</returns>
+        public static Appointment Load(int appointmentId)
         {
-            using (IDataReader reader = AppointmentSqlDataProvider.ApproveByKey(actionKey))
+            using (IDataReader reader = AppointmentSqlDataProvider.GetAppointment(appointmentId))
             {
                 if (reader.Read())
                 {
@@ -831,25 +845,6 @@ namespace Engage.Dnn.Booking
 
                 return null;
             }
-        }
-
-        /// <summary>
-        /// Accepts this <see cref="Appointment"/>.
-        /// </summary>
-        /// <param name="revisingUserId">The ID of the user accepting the <see cref="Appointment"/>.</param>
-        /// <returns>Whether this appointment could be accepted</returns>
-        public bool Accept(int revisingUserId)
-        {
-            return AppointmentSqlDataProvider.AcceptAppointment(this.AppointmentId, revisingUserId);
-        }
-
-        /// <summary>
-        /// Declines this <see cref="Appointment"/>.
-        /// </summary>
-        /// <param name="revisingUserId">The ID of the user declining the <see cref="Appointment"/>.</param>
-        public void Decline(int revisingUserId)
-        {
-            AppointmentSqlDataProvider.DeclineAppointment(this.AppointmentId, revisingUserId);
         }
 
         #region IEditableObject Members
@@ -876,6 +871,25 @@ namespace Engage.Dnn.Booking
         }
 
         #endregion
+
+        /// <summary>
+        /// Accepts this <see cref="Appointment"/>.
+        /// </summary>
+        /// <param name="revisingUserId">The ID of the user accepting the <see cref="Appointment"/>.</param>
+        /// <returns>Whether this appointment could be accepted</returns>
+        public bool Accept(int revisingUserId)
+        {
+            return AppointmentSqlDataProvider.AcceptAppointment(this.AppointmentId, revisingUserId);
+        }
+
+        /// <summary>
+        /// Declines this <see cref="Appointment"/>.
+        /// </summary>
+        /// <param name="revisingUserId">The ID of the user declining the <see cref="Appointment"/>.</param>
+        public void Decline(int revisingUserId)
+        {
+            AppointmentSqlDataProvider.DeclineAppointment(this.AppointmentId, revisingUserId);
+        }
 
         /// <summary>
         /// Saves this event.

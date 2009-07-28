@@ -3,7 +3,7 @@
 <%@ Register TagPrefix="engage" TagName="ModuleMessage" Src="../Controls/ModuleMessage.ascx" %>
 <%@ Register TagPrefix="engage" Namespace="Engage.Controls" Assembly="Engage.Framework" %>
 <engage:ModuleMessage runat="server" ID="SuccessModuleMessage" MessageType="Success" TextResourceKey="AddEventSuccess" CssClass="AddEventSuccessMessage" />
-<div class="approval-request">
+<div class="approval-request Normal">
     <fieldset>
         <legend><%=Localize("Service Request Form")%></legend>
         <p class="note">
@@ -205,7 +205,8 @@
         </fieldset>
     </fieldset>
 </div>
-<engage:ValidationSummary runat="server" />
+<engage:ValidationSummary runat="server" CssClass="NormalRed" />
+<asp:CustomValidator ID="UniqueTimeslotValidator" runat="server" Display="None" ResourceKey="UniqueTimeslotValidator.Text" />
 <div class="AdminButtons FooterButtons">
     <asp:ImageButton ID="SaveAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save.gif" />
     <asp:HyperLink ID="CancelAppointmentLink" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/cancel_go_home.gif" />
