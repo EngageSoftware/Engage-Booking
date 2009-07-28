@@ -154,7 +154,7 @@
     <value>Appointment Request Notifications Email Addresses: </value>
   </data>
   <data name="NotificationEmailsListValidator.Text" xml:space="preserve">
-    <value>One or more of the request notification emails is in an invalid format.</value>
+    <value>One or more of the request notification emails is in an invalid format.  Please make sure that the addresses are separated by commas (,).</value>
   </data>
   <data name="Office2007.Text" xml:space="preserve">
     <value>Office 2007</value>
