@@ -41,7 +41,7 @@
         });
 
         function wireupCalendarHover() {
-            $('.EventCalendar .rsContentTable td')
+            $('.appointments-calendar .rsContentTable td')
                 .unbind('mouseenter').unbind('mouseleave')
                 .hover(function(event) {
                     clearTimeout(timeoutValue);
@@ -91,8 +91,8 @@
 <engage:approval ID="ApprovalControl" runat="server" />
 
 <%-- <dnn:sectionhead ID="CalendarHeader" runat="server" CssClass="approval-calendar-header" ResourceKey="CalendarHeader" Section="CalendarWrapper"  /> --%>
-<%--<div id="CalendarWrapper" runat="server" class="EventCalendar">--%>
-<div class="EventCalendar">
+<%--<div id="CalendarWrapper" runat="server" class="appointments-calendar">--%>
+<div class="appointments-calendar">
     <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <telerik:radscheduler id="AppointmentsCalendar" runat="server" CssClass="booking-calendar" ReadOnly="True" 
