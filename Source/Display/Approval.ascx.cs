@@ -108,8 +108,8 @@ namespace Engage.Dnn.Booking
                 case "Accept":
                     if (!this.AcceptAppointment(appointmentId))
                     {
-                        this.ApprovalMessage.Visible = true;
-                        this.ApprovalMessage.TextResourceKey = "ConflictAcceptingAppointment.Text";
+                        this.ConflictingAppointmentsMessage.Visible = true;
+                        this.ConflictingAppointmentsMessage.TextResourceKey = "ConflictAcceptingAppointment.Text";
                     }
 
                     break;
