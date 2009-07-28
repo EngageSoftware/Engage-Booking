@@ -77,8 +77,12 @@ namespace Engage.Dnn.Booking
                 this.AddJQueryReference();
                 this.LocalizeCalendar();
                 this.SetupAdminView();
-                this.AppointmentsCalendar.SelectedView = this.IsEditable ? SchedulerViewType.DayView : SchedulerViewType.MonthView;
-                if (this.UserInfo.IsInRole(Booking.ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this)))
+                if (!this.IsPostBack)
+                {
+                    this.AppointmentsCalendar.SelectedView = this.IsEditable ? SchedulerViewType.DayView : SchedulerViewType.MonthView;
+                }
+
+                if (this.UserInfo.IsInRole(ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this)))
                 {
                     this.NewAppointmentToolTip.Visible = true;
                     this.RequestAppointmentLink.Visible = true;
