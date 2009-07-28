@@ -154,6 +154,7 @@ namespace Engage.Dnn.Booking
         private void AcceptAppointmentsButton_Click(object sender, EventArgs e)
         {
             var conflictingAppointments = new List<Appointment>();
+            var acceptedAppointments = new List<Appointment>();
             var appointmentIds = this.GetSelectedAppointmentIds();
             foreach (var appointmentId in appointmentIds)
             {
@@ -163,21 +164,44 @@ namespace Engage.Dnn.Booking
                     if (appointment.Accept(this.UserId))
                     {
                         EmailService.SendAcceptanceEmail(appointment);
+                        acceptedAppointments.Add(appointment);
                     }
                     else
                     {
                         conflictingAppointments.Add(appointment);
                     }
                 }
+
+                if (acceptedAppointments.Count > 0)
+                {
+                    this.ApprovalMessage.Visible = true;
+                    this.ApprovalMessage.Text = this.GenerateAppointmentApprovalMessage(acceptedAppointments);
+                }
             }
 
             if (conflictingAppointments.Count > 0)
             {
-                this.ApprovalMessage.Visible = true;
-                this.ApprovalMessage.Text = this.GenerateConflictingAppointmentsErrorMessage(conflictingAppointments);
+                this.ConflictingAppointmentsMessage.Visible = true;
+                this.ConflictingAppointmentsMessage.Text = this.GenerateConflictingAppointmentsErrorMessage(conflictingAppointments);
             }
 
             this.BindData(true);
+        }
+
+        /// <summary>
+        /// Generates the success message when appointments are accepted.
+        /// </summary>
+        /// <param name="acceptedAppointments">The accepted appointments.</param>
+        /// <returns>The success message</returns>
+        private string GenerateAppointmentApprovalMessage(IEnumerable<Appointment> acceptedAppointments)
+        {
+            StringBuilder successMessageBuilder = new StringBuilder(Localization.GetString("AcceptedAppointments.Text", this.LocalResourceFile)).Append("<ul>");
+            foreach (var appointment in acceptedAppointments)
+            {
+                successMessageBuilder.Append("<li>").Append(appointment.Title).Append("</li>");
+            }
+
+            return successMessageBuilder.Append("</ul>").ToString();
         }
 
         /// <summary>
@@ -237,6 +261,10 @@ namespace Engage.Dnn.Booking
                 if (appointment.Accept(this.UserId))
                 {
                     EmailService.SendAcceptanceEmail(appointment);
+                    this.ApprovalMessage.Visible = true;
+                    var acceptedAppointments = new List<Appointment>();
+                    acceptedAppointments.Add(appointment);
+                    this.ApprovalMessage.Text = this.GenerateAppointmentApprovalMessage(acceptedAppointments);
                     return true;
                 }
             }

@@ -123,6 +123,9 @@
   <data name="Accept.Text" xml:space="preserve">
     <value>Accept</value>
   </data>
+  <data name="AcceptedAppointments.Text" xml:space="preserve">
+    <value>&lt;p&gt;The following appointments were accepted:&lt;/p&gt;</value>
+  </data>
   <data name="Actions.Header" xml:space="preserve">
     <value>Actions</value>
   </data>

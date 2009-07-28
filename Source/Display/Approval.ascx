@@ -5,7 +5,8 @@
 <%@ Register TagPrefix="engage" TagName="ModuleMessage" Src="../Controls/ModuleMessage.ascx" %>
 
 <div class="approval">
-    <engage:ModuleMessage ID="ApprovalMessage" runat="server" MessageType="Error" Visible="false" />
+    <engage:ModuleMessage ID="ConflictingAppointmentsMessage" runat="server" MessageType="Error" Visible="false" />
+    <engage:ModuleMessage ID="ApprovalMessage" runat="server" MessageType="Success" Visible="false" />
     <asp:MultiView ID="ApprovalMultiview" runat="server" ActiveViewIndex="0">
         <asp:View ID="ApprovalsListView" runat="server">
         	<div class="bulk-selection">
