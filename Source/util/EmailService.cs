@@ -61,6 +61,7 @@ namespace Engage.Dnn.Booking
         /// <param name="approvalUrl">The approval URL.</param>
         /// <param name="declineUrl">The decline URL.</param>
         /// <param name="loginUrl">The login URL.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "login", Justification = "No Thanks")]
         public static void SendNewRequestEmail(Appointment appointment, string toEmailAddresses, string approvalUrl, string declineUrl, string loginUrl)
         {
             SendEmail(
