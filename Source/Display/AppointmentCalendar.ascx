@@ -35,15 +35,6 @@
             return encodeURIComponent(date.format("yyyy-MM-dd-HH-mm"));
         }
 
-        function log(msg) {
-            if (window.console && console.log) {
-                console.log(msg);
-            }
-            else {
-                alert(msg);
-            }
-        }
-
         function wireupCalendarHover() {
             var otherToolTipManager = $find('<%=AppointmentToolTipManager.ClientID %>'),
                 appointmentControls = [];
@@ -66,14 +57,12 @@
 
                 if (toolTipManager && !hasAppointments) {
                     var tooltip = toolTipManager.getToolTipByElement(this);
-                    log("tooltip is " + tooltip);
-                    log('element is '); log(this);
 
                     if (!tooltip) {
                         tooltip = toolTipManager.createToolTip(this);
 
                         var timeSlot = $find(radSchedulerId).get_activeModel().getTimeSlotFromDomElement(this);
-                        tooltip.set_content("<a href='" + String.format(newAppointmentUrl, formatDateUrlParameter(timeSlot.get_startTime()), formatDateUrlParameter(timeSlot.get_endTime())) + "'>Request Appointment</a>");
+                        tooltip.set_content("<a href='" + String.format(newAppointmentUrl, formatDateUrlParameter(timeSlot.get_startTime()), formatDateUrlParameter(timeSlot.get_endTime())) + "'><%=ClientAPI.GetSafeJSString(Localize("Request Appointment.Text")) %></a>");
                     }
 
                     tooltip.show();
