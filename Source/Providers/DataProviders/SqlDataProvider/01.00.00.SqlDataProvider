@@ -66,6 +66,22 @@ CREATE TABLE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 END
 GO
 
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_PendingEmail]', N'U') IS NULL
+BEGIN
+CREATE TABLE {databaseOwner}[{objectQualifier}EngageBooking_PendingEmail]
+	(
+		PendingEmailId int NOT NULL IDENTITY(1,1) 
+			CONSTRAINT {objectQualifier}PK_EngageBooking_PendingEmail PRIMARY KEY,
+		Recipient nvarchar(500) NOT NULL,
+		Subject nvarchar(500) NOT NULL,
+		Body ntext NOT NULL,
+		CreationDate datetime NOT NULL DEFAULT GETDATE(),
+		RevisionDate datetime NOT NULL DEFAULT GETDATE(),
+		RevisingUser int NOT NULL
+	)
+END
+GO
+
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAllAppointments]', N'P') IS NOT NULL
 	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAllAppointments]
 GO
