@@ -96,5 +96,5 @@
                 animation="None" position="BottomRight" HideEvent="LeaveTooltip" text="Loading..." AutoTooltipify="false" Visible="false" />
         </ContentTemplate>
     </asp:UpdatePanel>
-    <asp:Hyperlink ID="RequestAppointmentLink" Visible="false" runat="server" CssClass="RequestAppointmentLink" ResourceKey="RequestAppointment.Text" />
+    <asp:Hyperlink ID="RequestAppointmentLink" Visible="false" runat="server" CssClass="RequestAppointmentLink" ResourceKey="Request Appointment.Text" />
 </div>

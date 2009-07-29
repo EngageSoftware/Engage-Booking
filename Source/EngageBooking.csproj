@@ -388,13 +388,6 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
     <Compile Include="Components\CsvWriter.cs" />
-    <Compile Include="Display\AppointmentRequestToolTip.ascx.cs">
-      <DependentUpon>AppointmentRequestToolTip.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Display\AppointmentRequestToolTip.ascx.designer.cs">
-      <DependentUpon>AppointmentRequestToolTip.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Display\DirectApproval.ascx.cs">
       <DependentUpon>DirectApproval.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -405,7 +398,6 @@
     <Content Include="Display\App_LocalResources\Approval.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Display\AppointmentRequestToolTip.ascx" />
     <Content Include="Display\DirectApproval.ascx" />
     <Content Include="ExportData.ascx" />
     <Content Include="Images\decline.gif" />
