@@ -14,6 +14,7 @@ namespace Engage.Dnn.Booking
     using System.Text;
     using DotNetNuke.Common;
     using DotNetNuke.Services.Localization;
+    using Telerik.Web.UI;
 
     /// <summary>
     /// All common, shared functionality for the Engage: Booking module.
@@ -53,6 +54,32 @@ namespace Engage.Dnn.Booking
         public static string LocalSharedResourceFile
         {
             get { return "~" + DesktopModuleFolderName + Localization.LocalResourceDirectory + "/" + Localization.LocalSharedResourceFile; }
+        }
+
+        /// <summary>
+        /// Localizes the text within the given <paramref name="dateTimePicker"/>.
+        /// </summary>
+        /// <param name="dateTimePicker">The <see cref="RadDateTimePicker"/> to localize the text for.</param>
+        public static void LocalizeDateTimePicker(RadDateTimePicker dateTimePicker)
+        {
+            dateTimePicker.TimeView.HeaderText = Localization.GetString("Time Picker", LocalSharedResourceFile);
+            dateTimePicker.TimePopupButton.ToolTip = Localization.GetString("Time Picker ToolTip", LocalSharedResourceFile);
+            dateTimePicker.DatePopupButton.ToolTip = Localization.GetString("Date Picker ToolTip", LocalSharedResourceFile);
+            LocalizeCalendar(dateTimePicker.Calendar);
+        }
+
+        /// <summary>
+        /// Localizes the calendar.
+        /// </summary>
+        /// <param name="calendar">The calendar.</param>
+        public static void LocalizeCalendar(RadCalendar calendar)
+        {
+            if (calendar != null)
+            {
+                calendar.FastNavigationSettings.CancelButtonCaption = Localization.GetString("Date Picker Cancel", LocalSharedResourceFile);
+                calendar.FastNavigationSettings.OkButtonCaption = Localization.GetString("Date Picker OK", LocalSharedResourceFile);
+                calendar.FastNavigationSettings.TodayButtonCaption = Localization.GetString("Date Picker Today", LocalSharedResourceFile);
+            }
         }
     }
 }

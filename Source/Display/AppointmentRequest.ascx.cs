@@ -19,6 +19,7 @@ namespace Engage.Dnn.Booking
     using DotNetNuke.Common.Lists;
     using DotNetNuke.Services.Exceptions;
     using DotNetNuke.Services.Localization;
+    using Telerik.Web.UI;
 
     /// <summary>
     /// Appointment Request Form
@@ -282,15 +283,17 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Fills the <see cref="RegionDropDownList"/> and <see cref="AppointmentTypeDropDownList"/> controls.
+        /// Fills the list controls on the form.
         /// </summary>
         private void SetupControl()
         {
-            ListEntryInfoCollection regions = new ListController().GetListEntryInfoCollection("Region");
+            this.StartDateTimePicker.Skin = this.EndDateTimePicker.Skin = ModuleSettings.CalendarSkin.GetValueAsStringFor(this);
+            Utility.LocalizeDateTimePicker(this.StartDateTimePicker);
+            Utility.LocalizeDateTimePicker(this.EndDateTimePicker);
 
             this.RegionDropDownList.DataTextField = "Text";
             this.RegionDropDownList.DataValueField = "EntryId";
-            this.RegionDropDownList.DataSource = regions;
+            this.RegionDropDownList.DataSource = new ListController().GetListEntryInfoCollection("Region");
             this.RegionDropDownList.DataBind();
 
             this.AppointmentTypeDropDownList.DataSource = AppointmentTypeCollection.Load();
@@ -298,6 +301,20 @@ namespace Engage.Dnn.Booking
             this.AppointmentTypeDropDownList.DataValueField = "Id";
             this.AppointmentTypeDropDownList.DataBind();
             Dnn.Utility.LocalizeListControl(this.AppointmentTypeDropDownList, this.LocalResourceFile);
+
+            this.RequestorPhoneTypeDropDownList.DataSource = Enum.GetNames(typeof(PhoneType));
+            this.RequestorPhoneTypeDropDownList.DataBind();
+            this.RequestorPhoneTypeDropDownList.Items.Remove(PhoneType.None.ToString());
+            Dnn.Utility.LocalizeListControl(this.RequestorPhoneTypeDropDownList, this.LocalResourceFile);
+
+            this.RequestorAltPhoneTypeDropDownList.DataSource = Enum.GetNames(typeof(PhoneType));
+            this.RequestorAltPhoneTypeDropDownList.DataBind();
+            this.RequestorAltPhoneTypeDropDownList.SelectedValue = PhoneType.None.ToString();
+            Dnn.Utility.LocalizeListControl(this.RequestorAltPhoneTypeDropDownList, this.LocalResourceFile);
+
+            this.GenderDropDownList.DataSource = Enum.GetNames(typeof(GroupGender));
+            this.GenderDropDownList.DataBind();
+            Dnn.Utility.LocalizeListControl(this.GenderDropDownList, this.LocalResourceFile);
             
             ////// TODO: Once we support .NET 3.5, replace this with TimeZoneInfo.GetSystemTimeZones
             ////Localization.LoadTimeZoneDropDownList(

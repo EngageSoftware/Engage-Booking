@@ -378,4 +378,43 @@
   <data name="TotalNumberLabel.Text" xml:space="preserve">
     <value>Total Number of Participants</value>
   </data>
+  <data name="EmailAddressLabel.Text" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="Fax.Text" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="Female.Text" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="FullNameLabel.Text" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="Male.Text" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="MixedGroup.Text" xml:space="preserve">
+    <value>Mixed Group</value>
+  </data>
+  <data name="None.Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="RequestorPhoneLabel.Text" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="RequiredLabelEnd.Text" xml:space="preserve">
+    <value>) denote required fields.</value>
+  </data>
+  <data name="RequiredLabelStart.Text" xml:space="preserve">
+    <value>&lt;strong&gt;Note: &lt;/strong&gt; Fields with asteriks (</value>
+  </data>
+  <data name="Tty.Text" xml:space="preserve">
+    <value>TTY</value>
+  </data>
+  <data name="Voice.Text" xml:space="preserve">
+    <value>Voice</value>
+  </data>
+  <data name="Webcam.Text" xml:space="preserve">
+    <value>WebCam</value>
+  </data>
 </root>

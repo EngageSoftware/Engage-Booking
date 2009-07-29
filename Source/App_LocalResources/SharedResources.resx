@@ -178,6 +178,18 @@
   <data name="AllUsers.Text" xml:space="preserve">
     <value>All Users</value>
   </data>
+  <data name="Date Picker Cancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Date Picker OK.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Date Picker Today.Text" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Date Picker ToolTip.Text" xml:space="preserve">
+    <value>Open the calendar popup.</value>
+  </data>
   <data name="DeclineBody.Format" xml:space="preserve">
     <value>&lt;p&gt;Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was declined by {23}.&lt;/p&gt;</value>
     <comment>{0} = appointment.Title
@@ -338,5 +350,11 @@
 {22} = appointment.ParticipantInstructions
 {23} = current user's display name
 {24} = portal name</comment>
+  </data>
+  <data name="Time Picker ToolTip.Text" xml:space="preserve">
+    <value>Open the time view popup.</value>
+  </data>
+  <data name="Time Picker.Text" xml:space="preserve">
+    <value>Time Picker</value>
   </data>
 </root>

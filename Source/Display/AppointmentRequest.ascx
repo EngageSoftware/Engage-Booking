@@ -7,7 +7,7 @@
     <fieldset>
         <legend><%=Localize("Service Request Form")%></legend>
         <p class="note">
-            <strong>Note: </strong><asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" />Fields with asteriks (*) denote required fields.
+            <%=Localize("RequiredLabelStart.Text") %><asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><%=Localize("RequiredLabelEnd.Text") %>
         </p>
         <fieldset>
             <legend><%=Localize("Interpreting Event")%></legend>
@@ -67,31 +67,21 @@
             <legend><asp:Label ResourceKey="InterpretingServicesLabel.Text" runat="server" /></legend>
             <ol class="requesting-form">
                 <li class="full-name">
-                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label ID="RequestorNameLabel" CssClass="full-name-label" runat="server" Text="Full Name" AssociatedControlId="RequestorNameTextBox" />
+                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label ID="RequestorNameLabel" CssClass="full-name-label" runat="server" ResourceKey="FullNameLabel.Text" AssociatedControlId="RequestorNameTextBox" />
                     <asp:TextBox ID="RequestorNameTextBox" CssClass="full-name-box long" runat="server" />
                 </li>
                 <li class="phone">
-                    <asp:DropDownList ID="RequestorPhoneTypeDropDownList" runat="server">
-                        <asp:ListItem>Voice</asp:ListItem>
-                        <asp:ListItem>TTY</asp:ListItem>
-                        <asp:ListItem>Fax</asp:ListItem>
-                        <asp:ListItem>WebCam</asp:ListItem>
-                    </asp:DropDownList>
-                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="phone-label" runat="server" Text="Phone" AssociatedControlId="RequestorPhoneTextBox" />
+                    <asp:DropDownList ID="RequestorPhoneTypeDropDownList" runat="server"/>
+                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="phone-label" runat="server" ResourceKey="RequestorPhoneLabel.Text" AssociatedControlId="RequestorPhoneTextBox" />
                     <asp:TextBox ID="RequestorPhoneTextBox" CssClass="phone-box long" runat="server" />
                 </li>
                 <li class="alt-phone">
-                    <asp:DropDownList ID="RequestorAltPhoneTypeDropDownList" runat="server">
-                        <asp:ListItem>Voice</asp:ListItem>
-                        <asp:ListItem>TTY</asp:ListItem>
-                        <asp:ListItem>Fax</asp:ListItem>
-                        <asp:ListItem>WebCam</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="RequestorAltPhoneTypeDropDownList" runat="server"/>
                     <asp:Label CssClass="alt-phone-label" runat="server" ResourceKey="AltPhoneLabel" AssociatedControlId="RequestorAltPhoneTextBox" />
                     <asp:TextBox ID="RequestorAltPhoneTextBox" CssClass="alt-phone-box long" runat="server" />
                 </li>
                 <li class="email">
-                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="email-label" runat="server" Text="Email Address" AssociatedControlId="RequestorEmailTextBox" />
+                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="email-label" runat="server" ResourceKey="EmailAddressLabel" AssociatedControlId="RequestorEmailTextBox" />
                     <asp:TextBox ID="RequestorEmailTextBox" CssClass="email-box full" runat="server" />
                 </li>
             </ol>
@@ -102,8 +92,7 @@
                 <li class="start">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="start-label" runat="server" ResourceKey="StartLabel" AssociatedControlId="StartDateTimePicker" />
                     <telerik:RadDateTimePicker runat="server" ID="StartDateTimePicker" Skin="WebBlue">
-                        <TimeView Skin="WebBlue" />
-                        <Calendar Skin="WebBlue" ShowRowHeaders="false" />
+                        <Calendar ShowRowHeaders="false" />
                         <DateInput InvalidStyleDuration="100" />
                         <ClientEvents OnDateSelected="StartDateTimePicker_DateSelected" />
                     </telerik:RadDateTimePicker>
@@ -112,8 +101,7 @@
                 <li class="end">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="end-label" runat="server" ResourceKey="EndLabel" AssociatedControlId="EndDateTimePicker" />
                     <telerik:RadDateTimePicker runat="server" ID="EndDateTimePicker" Skin="WebBlue">
-                        <TimeView Skin="WebBlue" />
-                        <Calendar Skin="WebBlue" ShowRowHeaders="false" />
+                        <Calendar ShowRowHeaders="false" />
                         <DateInput InvalidStyleDuration="100" />
                     </telerik:RadDateTimePicker>
                     <asp:CompareValidator runat="server" Display="None" EnableClientScript="false" ControlToCompare="StartDateTimePicker" ControlToValidate="EndDateTimePicker" ResourceKey="EndDateCompareValidator" Operator="GreaterThan" />
@@ -141,11 +129,7 @@
                 </li>
                 <li class="gender">
                     <asp:Label CssClass="gender-label" runat="server" ResourceKey="GenderLabel" AssociatedControlId="GenderDropDownList" />
-                    <asp:DropDownList ID="GenderDropDownList" runat="server" CssClass="gender-list short" runat="server">
-                        <asp:ListItem>Mixed Group</asp:ListItem>
-                        <asp:ListItem>Men</asp:ListItem>
-                        <asp:ListItem>Women</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="GenderDropDownList" runat="server" CssClass="gender-list short" runat="server"/>
                     <asp:Label CssClass="presenter-label" runat="server" ResourceKey="PresenterLabel" AssociatedControlId="PresenterDropDownList" />
                     <asp:DropDownList ID="PresenterDropDownList" CssClass="presenter-box short" runat="server">
                         <asp:ListItem>N</asp:ListItem>

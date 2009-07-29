@@ -388,6 +388,8 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
     <Compile Include="Components\CsvWriter.cs" />
+    <Compile Include="Components\GroupGender.cs" />
+    <Compile Include="Components\PhoneType.cs" />
     <Compile Include="Display\DirectApproval.ascx.cs">
       <DependentUpon>DirectApproval.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

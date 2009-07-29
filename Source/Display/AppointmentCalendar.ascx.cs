@@ -168,6 +168,9 @@ namespace Engage.Dnn.Booking
 
             this.AppointmentsCalendar.Skin = this.NewRequestToolTipManager.Skin = this.AppointmentToolTipManager.Skin = ModuleSettings.CalendarSkin.GetValueAsStringFor(this);
             this.AppointmentsCalendar.MonthView.VisibleAppointmentsPerDay = ModuleSettings.AppointmentsToDisplayPerDay.GetValueAsInt32For(this).Value;
+
+            // Since we have to use FindControl to access the RadCalendar, it only works after DataBind has occurred.
+            Utility.LocalizeCalendar(this.AppointmentsCalendar.FindControl("SelectedDateCalendar") as RadCalendar);
         }
 
         /// <summary>
