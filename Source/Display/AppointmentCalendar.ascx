@@ -43,29 +43,21 @@
             }
             
             $('.appointments-calendar .rsContentTable td').one('mouseenter', function(event) {
-                var toolTipManager = $find('<%=NewRequestToolTipManager.ClientID %>'),
-                    hasAppointments = false,
-                    $this = $(this);
+                var $this = $(this);    
+                if (!$this.find('div.rsApt').length) {
+                    var toolTipManager = $find('<%=NewRequestToolTipManager.ClientID %>');
+                    if (toolTipManager) {
+                        var tooltip = toolTipManager.getToolTipByElement(this);
 
-                $.each(appointmentControls, function(i, targetControl) {
-                    hasAppointments = $this.find('#' + targetControl[0]).length;
+                        if (!tooltip) {
+                            tooltip = toolTipManager.createToolTip(this);
 
-                    // returning false is like 'break', true is like 'continue'
-                    // so, if it finds that an appointment is a child of this control, it sets hasAppointments to true and exits the loop
-                    return !hasAppointments;
-                });
+                            var timeSlot = $find(radSchedulerId).get_activeModel().getTimeSlotFromDomElement(this);
+                            tooltip.set_content("<a href='" + String.format(newAppointmentUrl, formatDateUrlParameter(timeSlot.get_startTime()), formatDateUrlParameter(timeSlot.get_endTime())) + "'><%=ClientAPI.GetSafeJSString(Localize("Request Appointment.Text")) %></a>");
+                        }
 
-                if (toolTipManager && !hasAppointments) {
-                    var tooltip = toolTipManager.getToolTipByElement(this);
-
-                    if (!tooltip) {
-                        tooltip = toolTipManager.createToolTip(this);
-
-                        var timeSlot = $find(radSchedulerId).get_activeModel().getTimeSlotFromDomElement(this);
-                        tooltip.set_content("<a href='" + String.format(newAppointmentUrl, formatDateUrlParameter(timeSlot.get_startTime()), formatDateUrlParameter(timeSlot.get_endTime())) + "'><%=ClientAPI.GetSafeJSString(Localize("Request Appointment.Text")) %></a>");
+                        tooltip.show();
                     }
-
-                    tooltip.show();
                 }
             });
         }
