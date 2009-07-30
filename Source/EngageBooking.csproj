@@ -138,11 +138,11 @@
       <DependentUpon>AppointmentRequest.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExportData.ascx.cs">
+    <Compile Include="Display\ExportData.ascx.cs">
       <DependentUpon>ExportData.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExportData.ascx.designer.cs">
+    <Compile Include="Display\ExportData.ascx.designer.cs">
       <DependentUpon>ExportData.ascx</DependentUpon>
     </Compile>
     <Compile Include="Settings.ascx.designer.cs">
@@ -177,8 +177,8 @@
     </Compile>
     <Compile Include="Providers\DataProviders\SqlDataProvider\AppointmentSqlDataProvider.cs" />
     <Compile Include="Providers\DataProviders\SqlDataProvider\SqlDataProvider.cs" />
-    <Compile Include="Util\EmailService.cs" />
-    <Compile Include="Util\TelerikSkin.cs" />
+    <Compile Include="Components\EmailService.cs" />
+    <Compile Include="Components\TelerikSkin.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ModuleBase.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -213,7 +213,7 @@
       <DependentUpon>Settings.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Util\Utility.cs" />
+    <Compile Include="Components\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="EngageBooking.4.dnn" />
@@ -390,6 +390,14 @@
     <Compile Include="Components\CsvWriter.cs" />
     <Compile Include="Components\GroupGender.cs" />
     <Compile Include="Components\PhoneType.cs" />
+    <Compile Include="Components\ControlKey.cs" />
+    <Compile Include="Display\AppointmentDetails.ascx.cs">
+      <DependentUpon>AppointmentDetails.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display\AppointmentDetails.ascx.designer.cs">
+      <DependentUpon>AppointmentDetails.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Display\DirectApproval.ascx.cs">
       <DependentUpon>DirectApproval.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -400,8 +408,9 @@
     <Content Include="Display\App_LocalResources\Approval.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Display\AppointmentDetails.ascx" />
     <Content Include="Display\DirectApproval.ascx" />
-    <Content Include="ExportData.ascx" />
+    <Content Include="Display\ExportData.ascx" />
     <Content Include="Images\decline.gif" />
     <Content Include="Images\request-appt-background.png" />
     <Content Include="References\Engage.Dnn.Framework.XML" />
@@ -412,9 +421,12 @@
     <Content Include="Display\App_LocalResources\DirectApproval.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_LocalResources\ExportData.ascx.resx">
+    <Content Include="Display\App_LocalResources\ExportData.ascx.resx">
     </Content>
     <EmbeddedResource Include="JavaScript\SelectAllPlugin.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Util\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v8.0\WebApplications\Microsoft.WebApplication.targets" Condition="'$(Solutions.VSVersion)' == '8.0'" />
