@@ -11,6 +11,7 @@
 
 namespace Engage.Dnn.Booking
 {
+    using System;
     using System.Data;
 
     /// <summary>
@@ -47,6 +48,24 @@ namespace Engage.Dnn.Booking
         {
             get;
             private set;
+        }
+
+        /// <summary>
+        /// Gets the appointment type with the given <paramref name="appointmentTypeId"/>.
+        /// </summary>
+        /// <param name="appointmentTypeId">The ID of the appointment type.</param>
+        /// <returns>An <see cref="AppointmentType"/> instance</returns>
+        public static AppointmentType Load(int appointmentTypeId)
+        {
+            using (IDataReader appointmentTypeReader = AppointmentSqlDataProvider.GetAppointmentType(appointmentTypeId))
+            {
+                if (appointmentTypeReader.Read())
+                {
+                    return Fill(appointmentTypeReader);
+                }
+            }
+
+            return null;
         }
 
         /// <summary>

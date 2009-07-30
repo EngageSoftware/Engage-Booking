@@ -161,26 +161,3 @@
         </fieldset>
     </fieldset>
 </div>
-<engage:ValidationSummary runat="server" CssClass="NormalRed" />
-<asp:CustomValidator ID="UniqueTimeslotValidator" runat="server" Display="None" ResourceKey="UniqueTimeslotValidator.Text" />
-<div class="AdminButtons FooterButtons">
-    <asp:ImageButton ID="SaveAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save.gif" />
-    <asp:HyperLink ID="CancelAppointmentLink" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/cancel_go_home.gif" />
-    <asp:ImageButton ID="SaveAndCreateNewAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save_create_new.gif" />
-</div>
-
-<script type="text/javascript">
-    function StartDateTimePicker_DateSelected(sender, eventArgs) {
-        var EndDateTimePicker = $find("<%= this.EndDateTimeLabel.ClientID %>");
-
-        // don't update end date if there's already an end date but not an old start date
-        if (EndDateTimePicker.isEmpty() || eventArgs.get_oldDate() || EndDateTimePicker.get_selectedDate() <= eventArgs.get_newDate()) {
-            var selectedDateSpan = 1800000; // 30 minutes
-            if (!EndDateTimePicker.isEmpty() && EndDateTimePicker.get_selectedDate() > eventArgs.get_newDate()) {
-                selectedDateSpan = EndDateTimePicker.get_selectedDate() - eventArgs.get_oldDate();
-            }
-
-            EndDateTimePicker.set_selectedDate(new Date(eventArgs.get_newDate().getTime() + selectedDateSpan));
-        }
-    }
-</script>

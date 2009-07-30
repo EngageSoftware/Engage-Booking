@@ -645,8 +645,8 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spQueueEmail]
    @body ntext
 )  
 AS  
-INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue] (PortalId, RecipientList, Subject, Body)
-VALUES (@portalId, @recipientList, @subject, @body)
+	INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue] (PortalId, RecipientList, Subject, Body)
+	VALUES (@portalId, @recipientList, @subject, @body)
 GO
 
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spClearQueuedEmail]', N'P') IS NOT NULL
@@ -657,8 +657,8 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spClearQueuedEma
 	@queueId int 
 )
 AS
-DELETE FROM {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
-WHERE QueueID = @queueId
+	DELETE FROM {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
+	WHERE QueueID = @queueId
 GO
 
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetQueuedEmails]', N'P') IS NOT NULL
@@ -666,5 +666,18 @@ IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetQueuedEmails]
 GO
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetQueuedEmails]
 AS
-SELECT PortalId, RecipientList, Subject, Body FROM {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
+	SELECT PortalId, RecipientList, Subject, Body FROM {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentType]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentType]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentType]
+(
+	@appointmentTypeId int
+)
+AS
+	SELECT AppointmentTypeId, Name 
+	FROM {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]
+	WHERE AppointmentTypeId = @appointmentTypeId
 GO

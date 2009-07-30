@@ -14,121 +14,112 @@ namespace Engage.Dnn.Booking {
     public partial class AppointmentDetails {
         
         /// <summary>
-        /// AppointmentTypeDropDownList control.
+        /// AppointmentTypeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AppointmentTypeLabel;
+        protected global::System.Web.UI.WebControls.Label AppointmentTypeLabel;
         
         /// <summary>
-        /// TitleTextBox control.
+        /// TitleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TitleLabel;
+        protected global::System.Web.UI.WebControls.Label TitleLabel;
         
         /// <summary>
-        /// DescriptionTextBox control.
+        /// DescriptionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DescriptionLabel;
+        protected global::System.Web.UI.WebControls.Label DescriptionLabel;
         
         /// <summary>
-        /// NotesTextBox control.
+        /// NotesLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NotesLabel;
+        protected global::System.Web.UI.WebControls.Label NotesLabel;
         
         /// <summary>
-        /// Label1 control.
+        /// StreetLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label StreetLabel;
         
         /// <summary>
-        /// StreetTextBox control.
+        /// RoomLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StreetLabel;
+        protected global::System.Web.UI.WebControls.Label RoomLabel;
         
         /// <summary>
-        /// RoomTextBox control.
+        /// CityLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RoomLabel;
+        protected global::System.Web.UI.WebControls.Label CityLabel;
         
         /// <summary>
-        /// CityTextBox control.
+        /// RegionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CityLabel;
+        protected global::System.Web.UI.WebControls.Label RegionLabel;
         
         /// <summary>
-        /// RegionDropDownList control.
+        /// PostalCodeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList RegionLabel;
+        protected global::System.Web.UI.WebControls.Label PostalCodeLabel;
         
         /// <summary>
-        /// PostalCodeTextBox control.
+        /// AdditionalAddressInfoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PostalCodeLabel;
+        protected global::System.Web.UI.WebControls.Label AdditionalAddressInfoLabel;
         
         /// <summary>
-        /// AdditionalAddressInfoTextBox control.
+        /// OnsiteStreetLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AdditionalAddressInfoLabel;
+        protected global::System.Web.UI.WebControls.Label OnsiteStreetLabel;
         
         /// <summary>
-        /// OnsiteStreetTextBox control.
+        /// OnsitePhoneLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox OnsiteStreetLabel;
-        
-        /// <summary>
-        /// OnsitePhoneTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox OnsitePhoneLabel;
+        protected global::System.Web.UI.WebControls.Label OnsitePhoneLabel;
         
         /// <summary>
         /// RequestorNameLabel control.
@@ -140,246 +131,201 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.Label RequestorNameLabel;
         
         /// <summary>
-        /// RequestorPhoneTypeDropDownList control.
+        /// RequestorPhoneTypeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList RequestorPhoneTypeLabel;
+        protected global::System.Web.UI.WebControls.Label RequestorPhoneTypeLabel;
         
         /// <summary>
-        /// RequestorPhoneTextBox control.
+        /// RequestorPhoneLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RequestorPhoneLabel;
+        protected global::System.Web.UI.WebControls.Label RequestorPhoneLabel;
         
         /// <summary>
-        /// RequestorAltPhoneTypeDropDownList control.
+        /// RequestorAltPhoneTypeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList RequestorAltPhoneTypeLabel;
+        protected global::System.Web.UI.WebControls.Label RequestorAltPhoneTypeLabel;
         
         /// <summary>
-        /// RequestorAltPhoneTextBox control.
+        /// RequestorAltPhoneLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RequestorAltPhoneLabel;
+        protected global::System.Web.UI.WebControls.Label RequestorAltPhoneLabel;
         
         /// <summary>
-        /// RequestorEmailTextBox control.
+        /// RequestorEmailLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RequestorEmailLabel;
+        protected global::System.Web.UI.WebControls.Label RequestorEmailLabel;
         
         /// <summary>
-        /// RequestorEmailFormatValidator control.
+        /// StartDateTimeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RequestorEmailFormatValidator;
+        protected global::System.Web.UI.WebControls.Label StartDateTimeLabel;
         
         /// <summary>
-        /// StartDateTimePicker control.
+        /// EndDateTimeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDateTimePicker StartDateTimeLabel;
+        protected global::System.Web.UI.WebControls.Label EndDateTimeLabel;
         
         /// <summary>
-        /// EndDateTimePicker control.
+        /// NumberOfSpecialParticipantsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDateTimePicker EndDateTimeLabel;
+        protected global::System.Web.UI.WebControls.Label NumberOfSpecialParticipantsLabel;
         
         /// <summary>
-        /// NumberOfSpecialParticipantsTextBox control.
+        /// TotalNumberParticipantsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NumberOfSpecialParticipantsLabel;
+        protected global::System.Web.UI.WebControls.Label TotalNumberParticipantsLabel;
         
         /// <summary>
-        /// TotalNumberParticipantsTextBox control.
+        /// GenderLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TotalNumberParticipantsLabel;
+        protected global::System.Web.UI.WebControls.Label GenderLabel;
         
         /// <summary>
-        /// GenderDropDownList control.
+        /// PresenterLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList GenderLabel;
+        protected global::System.Web.UI.WebControls.Label PresenterLabel;
         
         /// <summary>
-        /// PresenterDropDownList control.
+        /// InstructionsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList PresenterLabel;
+        protected global::System.Web.UI.WebControls.Label InstructionsLabel;
         
         /// <summary>
-        /// InstructionsTextBox control.
+        /// CustomField1Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox InstructionsLabel;
+        protected global::System.Web.UI.WebControls.Label CustomField1Label;
         
         /// <summary>
-        /// CustomField1TextBox control.
+        /// CustomField2Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomField1Label;
+        protected global::System.Web.UI.WebControls.Label CustomField2Label;
         
         /// <summary>
-        /// CustomField2TextBox control.
+        /// CustomField3Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomField2Label;
+        protected global::System.Web.UI.WebControls.Label CustomField3Label;
         
         /// <summary>
-        /// CustomField3TextBox control.
+        /// CustomField4Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomField3Label;
+        protected global::System.Web.UI.WebControls.Label CustomField4Label;
         
         /// <summary>
-        /// CustomField4TextBox control.
+        /// CustomField5Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomField4Label;
+        protected global::System.Web.UI.WebControls.Label CustomField5Label;
         
         /// <summary>
-        /// CustomField5TextBox control.
+        /// CustomField6Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomField5Label;
+        protected global::System.Web.UI.WebControls.Label CustomField6Label;
         
         /// <summary>
-        /// CustomField6TextBox control.
+        /// CustomField7Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomField6Label;
+        protected global::System.Web.UI.WebControls.Label CustomField7Label;
         
         /// <summary>
-        /// CustomField7TextBox control.
+        /// CustomField8Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomField7Label;
+        protected global::System.Web.UI.WebControls.Label CustomField8Label;
         
         /// <summary>
-        /// CustomField8TextBox control.
+        /// CustomField9Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomField8Label;
+        protected global::System.Web.UI.WebControls.Label CustomField9Label;
         
         /// <summary>
-        /// CustomField9TextBox control.
+        /// CustomField10Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomField9Label;
-        
-        /// <summary>
-        /// CustomField10TextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomField10Label;
-        
-        /// <summary>
-        /// UniqueTimeslotValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator UniqueTimeslotValidator;
-        
-        /// <summary>
-        /// SaveAppointmentButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton SaveAppointmentButton;
-        
-        /// <summary>
-        /// CancelAppointmentLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink CancelAppointmentLink;
-        
-        /// <summary>
-        /// SaveAndCreateNewAppointmentButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton SaveAndCreateNewAppointmentButton;
+        protected global::System.Web.UI.WebControls.Label CustomField10Label;
     }
 }

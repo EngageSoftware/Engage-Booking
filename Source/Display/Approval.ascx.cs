@@ -34,7 +34,6 @@ namespace Engage.Dnn.Booking
             base.OnInit(e);
             this.Load += this.Page_Load;
             this.AppointmentsGrid.RowCommand += this.AppointmentsGrid_RowCommand;
-            this.AppointmentsGrid.SelectedIndexChanging += this.AppointmentsGrid_SelectedIndexChanging;
             this.AcceptAppointmentsButton.Click += this.AcceptAppointmentsButton_Click;
             this.DeclineAppointmentsButton.Click += this.DeclineAppointmentsButton_Click;
             this.DeclineReasonRepeater.ItemDataBound += this.DeclineReasonRepeater_ItemDataBound;
@@ -131,29 +130,6 @@ namespace Engage.Dnn.Booking
             }
 
             this.BindData(true);
-        }
-
-        /// <summary>
-        /// Handles the <see cref="GridView.SelectedIndexChanging"/> event of the <see cref="AppointmentsGrid"/> control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Web.UI.WebControls.GridViewSelectEventArgs"/> instance containing the event data.</param>
-        private void AppointmentsGrid_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-            var appointmentId = this.GetAppointmentIdFromRowIndex(e.NewSelectedIndex);
-            if (appointmentId == null)
-            {
-                return;
-            }
-
-            var appointment = Appointment.Load(appointmentId.Value);
-            if (appointment == null)
-            {
-                return;
-            }
-
-            this.AppointmentDetailsPlaceholder.Visible = true;
-            this.FillDetailSection(appointment);
         }
 
         /// <summary>
@@ -284,55 +260,6 @@ namespace Engage.Dnn.Booking
             {
                 this.AppointmentsGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
-        }
-
-        /// <summary>
-        /// Fills the controls in <see cref="AppointmentDetailsPlaceholder"/> with the information about the given <paramref name="appointment"/>.
-        /// </summary>
-        /// <param name="appointment">The appointment.</param>
-        private void FillDetailSection(Appointment appointment)
-        {
-            this.DetailDateAndTimeLabel.Text = string.Format(
-                    CultureInfo.CurrentCulture,
-                    Localization.GetString("DetailDateAndTime.Format.Text", this.LocalResourceFile),
-                    appointment.StartDateTime,
-                    appointment.EndDateTime);
-            this.DetailFullNameLabel.Text = appointment.RequestorName;
-            this.DetailPhoneTypeLabel.Text = Localization.GetString(appointment.RequestorPhoneType.ToString(), Utility.LocalSharedResourceFile);
-            this.DetailPhoneNumberLabel.Text = appointment.RequestorPhone;
-            this.DetailNumberOfParticipantsLabel.Text = this.GetNumberOfParticipantsText(appointment);
-            ////this.DetailNamesLabel.Text = 
-        }
-
-        /// <summary>
-        /// Gets the ID of the <see cref="Appointment"/> represented by the row in the <see cref="AppointmentsGrid"/> with the given <paramref name="rowIndex"/>.
-        /// </summary>
-        /// <param name="rowIndex">Index of the row in the <see cref="AppointmentsGrid"/>.</param>
-        /// <returns>The Appointment ID</returns>
-        private int? GetAppointmentIdFromRowIndex(int rowIndex)
-        {
-            int appointmentId;
-            var selectLink = (LinkButton)this.AppointmentsGrid.Rows[rowIndex].FindControl("SelectLink");
-            if (int.TryParse(selectLink.CommandArgument, NumberStyles.Integer, CultureInfo.InvariantCulture, out appointmentId))
-            {
-                return appointmentId;
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the text for <see cref="DetailNumberOfParticipantsLabel"/>.
-        /// </summary>
-        /// <param name="appointment">The appointment.</param>
-        /// <returns>A formatted string displaying the number of participants compared with the number of special participants</returns>
-        private string GetNumberOfParticipantsText(Appointment appointment)
-        {
-            return string.Format(
-                    CultureInfo.CurrentCulture,
-                    Localization.GetString("NumberOfParticipants.Format.Text", this.LocalResourceFile),
-                    appointment.NumberOfParticipants,
-                    appointment.NumberOfSpecialParticipants);
         }
 
         /// <summary>

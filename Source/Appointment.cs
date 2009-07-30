@@ -349,6 +349,19 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Gets the type of this appointment.
+        /// </summary>
+        /// <value>The type of this appointment.</value>
+        [XmlIgnore]
+        public AppointmentType AppointmentType
+        {
+            get
+            {
+                return AppointmentType.Load(this.AppointmentTypeId);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the additional address info.
         /// </summary>
         /// <value>The additional address info.</value>
@@ -910,50 +923,49 @@ namespace Engage.Dnn.Booking
         /// <returns>An instantiated Appointment object.</returns>
         internal static Appointment Fill(IDataRecord appointmentRecord)
         {
-            Appointment appointment = new Appointment();
-
-            appointment.AppointmentId = (int)appointmentRecord["AppointmentId"];
-            appointment.AppointmentTypeId = (int)appointmentRecord["AppointmentTypeId"];
-            appointment.ModuleId = (int)appointmentRecord["ModuleId"];
-            appointment.Title = appointmentRecord["Title"].ToString();
-            appointment.Description = appointmentRecord["Description"].ToString();
-            appointment.Notes = appointmentRecord["Notes"].ToString();
-            appointment.Address1 = appointmentRecord["Address1"].ToString();
-            appointment.Address2 = appointmentRecord["Address2"].ToString();
-            appointment.City = appointmentRecord["City"].ToString();
-            appointment.RegionId = appointmentRecord["RegionId"] as int?;
-            appointment.PostalCode = appointmentRecord["PostalCode"].ToString();
-            appointment.Phone = appointmentRecord["Phone"].ToString();
-            appointment.AdditionalAddressInfo = appointmentRecord["AdditionalAddressInfo"].ToString();
-            appointment.ContactStreet = appointmentRecord["ContactStreet"].ToString();
-            appointment.ContactPhone = appointmentRecord["ContactPhone"].ToString();
-            appointment.RequestorName = appointmentRecord["RequestorName"].ToString();
-            appointment.RequestorPhoneType = Utility.ConvertToEnum(appointmentRecord["RequestorPhoneType"].ToString(), PhoneType.None);
-            appointment.RequestorPhone = appointmentRecord["RequestorPhone"].ToString();
-            appointment.RequestorEmail = appointmentRecord["RequestorEmail"].ToString();
-            appointment.RequestorAltPhoneType = Utility.ConvertToEnum(appointmentRecord["RequestorAltPhoneType"].ToString(), PhoneType.None);
-            appointment.RequestorAltPhone = appointmentRecord["RequestorAltPhone"].ToString();
-            appointment.StartDateTime = (DateTime)appointmentRecord["StartDateTime"];
-            appointment.EndDateTime = (DateTime)appointmentRecord["EndDateTime"];
-            appointment.NumberOfParticipants = (int)appointmentRecord["NumberOfParticipants"];
-            appointment.NumberOfSpecialParticipants = (int)appointmentRecord["NumberOfSpecialParticipants"];
-            appointment.Custom1 = appointmentRecord["Custom1"].ToString();
-            appointment.Custom2 = appointmentRecord["Custom2"].ToString();
-            appointment.Custom3 = appointmentRecord["Custom3"].ToString();
-            appointment.Custom4 = appointmentRecord["Custom4"].ToString();
-            appointment.Custom5 = appointmentRecord["Custom5"].ToString();
-            appointment.Custom6 = appointmentRecord["Custom6"].ToString();
-            appointment.Custom7 = appointmentRecord["Custom7"].ToString();
-            appointment.Custom8 = appointmentRecord["Custom8"].ToString();
-            appointment.Custom9 = appointmentRecord["Custom9"].ToString();
-            appointment.Custom10 = appointmentRecord["Custom10"].ToString();
-            appointment.ParticipantGender = Utility.ConvertToEnum(appointmentRecord["ParticipantGender"].ToString(), GroupGender.MixedGroup);
-            appointment.IsPresenterSpecial = appointmentRecord["ParticipantFlag"].ToString()[0] == 'Y';
-            appointment.IsAccepted = appointmentRecord["IsAccepted"] as bool?;
-            appointment.AcceptKey = (Guid)appointmentRecord["AcceptKey"];
-            appointment.DeclineKey = (Guid)appointmentRecord["DeclineKey"];
-
-            return appointment;
+            return new Appointment
+                       {
+                               AppointmentId = (int)appointmentRecord["AppointmentId"],
+                               AppointmentTypeId = (int)appointmentRecord["AppointmentTypeId"],
+                               ModuleId = (int)appointmentRecord["ModuleId"],
+                               Title = appointmentRecord["Title"].ToString(),
+                               Description = appointmentRecord["Description"].ToString(),
+                               Notes = appointmentRecord["Notes"].ToString(),
+                               Address1 = appointmentRecord["Address1"].ToString(),
+                               Address2 = appointmentRecord["Address2"].ToString(),
+                               City = appointmentRecord["City"].ToString(),
+                               RegionId = appointmentRecord["RegionId"] as int?,
+                               PostalCode = appointmentRecord["PostalCode"].ToString(),
+                               Phone = appointmentRecord["Phone"].ToString(),
+                               AdditionalAddressInfo = appointmentRecord["AdditionalAddressInfo"].ToString(),
+                               ContactStreet = appointmentRecord["ContactStreet"].ToString(),
+                               ContactPhone = appointmentRecord["ContactPhone"].ToString(),
+                               RequestorName = appointmentRecord["RequestorName"].ToString(),
+                               RequestorPhoneType = Utility.ConvertToEnum(appointmentRecord["RequestorPhoneType"].ToString(), PhoneType.None),
+                               RequestorPhone = appointmentRecord["RequestorPhone"].ToString(),
+                               RequestorEmail = appointmentRecord["RequestorEmail"].ToString(),
+                               RequestorAltPhoneType = Utility.ConvertToEnum(appointmentRecord["RequestorAltPhoneType"].ToString(), PhoneType.None),
+                               RequestorAltPhone = appointmentRecord["RequestorAltPhone"].ToString(),
+                               StartDateTime = (DateTime)appointmentRecord["StartDateTime"],
+                               EndDateTime = (DateTime)appointmentRecord["EndDateTime"],
+                               NumberOfParticipants = (int)appointmentRecord["NumberOfParticipants"],
+                               NumberOfSpecialParticipants = (int)appointmentRecord["NumberOfSpecialParticipants"],
+                               Custom1 = appointmentRecord["Custom1"].ToString(),
+                               Custom2 = appointmentRecord["Custom2"].ToString(),
+                               Custom3 = appointmentRecord["Custom3"].ToString(),
+                               Custom4 = appointmentRecord["Custom4"].ToString(),
+                               Custom5 = appointmentRecord["Custom5"].ToString(),
+                               Custom6 = appointmentRecord["Custom6"].ToString(),
+                               Custom7 = appointmentRecord["Custom7"].ToString(),
+                               Custom8 = appointmentRecord["Custom8"].ToString(),
+                               Custom9 = appointmentRecord["Custom9"].ToString(),
+                               Custom10 = appointmentRecord["Custom10"].ToString(),
+                               ParticipantGender = Utility.ConvertToEnum(appointmentRecord["ParticipantGender"].ToString(), GroupGender.MixedGroup),
+                               IsPresenterSpecial = appointmentRecord["ParticipantFlag"].ToString()[0] == 'Y',
+                               IsAccepted = appointmentRecord["IsAccepted"] as bool?,
+                               AcceptKey = (Guid)appointmentRecord["AcceptKey"],
+                               DeclineKey = (Guid)appointmentRecord["DeclineKey"]
+                       };
         }
 
         /// <summary>

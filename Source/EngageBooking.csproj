@@ -217,7 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="EngageBooking.4.dnn" />
-    <None Include="Providers\DataProviders\SqlDataProvider\01.00.00.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\1.0.0.SqlDataProvider" />
     <None Include="Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
@@ -423,6 +423,7 @@
     </Content>
     <Content Include="Display\App_LocalResources\ExportData.ascx.resx">
     </Content>
+    <Content Include="Display\App_LocalResources\AppointmentDetails.ascx.resx" />
     <EmbeddedResource Include="JavaScript\SelectAllPlugin.js" />
   </ItemGroup>
   <ItemGroup>

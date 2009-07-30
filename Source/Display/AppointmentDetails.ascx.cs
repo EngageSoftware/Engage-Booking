@@ -15,7 +15,7 @@ namespace Engage.Dnn.Booking
     using DotNetNuke.Services.Exceptions;
 
     /// <summary>
-    /// Appointment Details Form
+    /// Displays the details of a specific appointment
     /// </summary>
     public partial class AppointmentDetails : ModuleBase
     {
@@ -38,11 +38,28 @@ namespace Engage.Dnn.Booking
         {
             try
             {
+                if (this.AppointmentId.HasValue)
+                {
+                    var appointment = Appointment.Load(this.AppointmentId.Value);
+                    if (appointment != null)
+                    {
+                        this.FillAppointmentInformation(appointment);
+                    }
+                }
             }
             catch (Exception exc)
             {
                 Exceptions.ProcessModuleLoadException(this, exc);
             }
+        }
+
+        /// <summary>
+        /// Fills the control with the information about the given <paramref name="appointment"/>.
+        /// </summary>
+        /// <param name="appointment">The appointment for which to display information.</param>
+        private void FillAppointmentInformation(Appointment appointment)
+        {
+            this.AppointmentTypeLabel.Text = appointment.AppointmentType.Name;
         }
     }
 }

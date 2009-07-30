@@ -179,6 +179,18 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Gets the appointment type with the given <paramref name="appointmentTypeId"/>.
+        /// </summary>
+        /// <param name="appointmentTypeId">The ID of the appointment type.</param>
+        /// <returns>An <see cref="AppointmentType"/> instance</returns>
+        public static IDataReader GetAppointmentType(int appointmentTypeId)
+        {
+            return SqlDataProvider.Instance.ExecuteReader(
+                "GetAppointmentType",
+                Engage.Utility.CreateIntegerParam("@appointmentTypeId", appointmentTypeId));
+        }
+
+        /// <summary>
         /// Gets the appointment types.
         /// </summary>
         /// <returns>

@@ -19,7 +19,11 @@
                     <div class="approval-empty"><%=Localize("All Approved.Text") %></div>
                 </EmptyDataTemplate>
                 <Columns>
-                    <asp:BoundField DataField="AppointmentId" DataFormatString="{0:00}" />
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <%#(Container.DataItemIndex + 1).ToString("00", CultureInfo.CurrentCulture) %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField>
                         <HeaderTemplate>
                             <asp:CheckBox runat="server" CssClass="header-checkbox" />
@@ -31,7 +35,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Name">
                         <ItemTemplate>
-                            <asp:LinkButton ID="SelectLink" runat="server" CommandName="Select" CommandArgument='<%# ((int)Eval("AppointmentId")).ToString(CultureInfo.InvariantCulture) %>' CssClass="approval-select-link" Text='<%#Eval("Title") %>' />
+                            <asp:HyperLink ID="SelectLink" runat="server" CssClass="approval-select-link" Text='<%#Eval("Title") %>' NavigateUrl='<%#this.BuildLinkUrl(this.ModuleId, ControlKey.AppointmentDetails, "appointmentId=" + ((int)Eval("AppointmentId")).ToString(CultureInfo.InvariantCulture)) %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="StartDateTime" HeaderText="Date and Time" DataFormatString="{0:dddd, MMM dd, yyyy} at {0:h:mm tt}" />
@@ -43,37 +47,6 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-            <asp:PlaceHolder ID="AppointmentDetailsPlaceholder" runat="server" Visible="false">
-                <fieldset>
-                	<div class="datetime">
-                        <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Date and Time" /> 
-                        <asp:Label ID="DetailDateAndTimeLabel" runat="server" CssClass="approval-detail-value" />
-                    </div>
-                    <div class="name">
-                        <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Full Name" /> 
-                        <asp:Label ID="DetailFullNameLabel" runat="server" CssClass="approval-detail-value" />
-                    </div>
-                    <div class="phone">
-                        <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Phone" /> 
-                        <asp:Label runat="server" CssClass="approval-detail-value-label type-value" ResourceKey="Type" /> 
-                     	<asp:Label ID="DetailPhoneTypeLabel" runat="server" CssClass="approval-detail-value type-value" />
-                        <asp:Label runat="server" CssClass="approval-detail-value-label number-value" ResourceKey="Number" /> 
-                        <asp:Label ID="DetailPhoneNumberLabel" runat="server" CssClass="approval-detail-value" />
-                    </div> 
-                  
-                </fieldset>
-                <fieldset>
-                    <legend><%=this.Localize("Special Participants") %></legend>
-                    <div class="total">
-                    	<asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Total Number of Participants" /> 
-                        <asp:Label ID="DetailNumberOfParticipantsLabel" runat="server" CssClass="approval-detail-value" />
-                    </div>
-                    <div class="names">
-                        <asp:Label runat="server" CssClass="approval-detail-label" ResourceKey="Names" /> 
-                        <asp:Label ID="DetailNamesLabel" runat="server" CssClass="approval-detail-value" Text="We don't keep track of this field..." />
-                    </div>
-                </fieldset>
-            </asp:PlaceHolder>
             <dnn:PagingControl ID="PagingControl" runat="server" CssClass="approval-paging"/>
         </asp:View>
         <asp:View ID="ProvideDeclineReasonView" runat="server">
