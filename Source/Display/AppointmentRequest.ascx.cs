@@ -54,14 +54,13 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Gets the next time that is a full half hour (i.e. if the time is currently 4:13, returns 4:30).
+        /// Gets the next time that is a full duration (currently half hour) from now (i.e. if the time is currently 4:13, returns 4:30).
         /// </summary>
-        /// <returns>The next full half hour from <see cref="DateTime.Now"/></returns>
-        private static DateTime GetNextHalfHour()
+        /// <returns>The next full duration from <see cref="DateTime.Now"/></returns>
+        private static DateTime GetNextDuration()
         {
-            // TODO: Determine whether it is in any way worthwhile to zero-out the Seconds/Milliseconds/etc fields
             var now = DateTime.Now;
-            return now.AddMinutes(DefaultDurationInMinutes - (now.Minute % DefaultDurationInMinutes));
+            return now.Subtract(now.TimeOfDay).AddHours(now.Hour).AddMinutes(now.Minute + DefaultDurationInMinutes - (now.Minute % DefaultDurationInMinutes));
         }
 
         /// <summary>
@@ -94,7 +93,7 @@ namespace Engage.Dnn.Booking
             {
                 if (!this.IsPostBack)
                 {
-                    this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime") ?? GetNextHalfHour();
+                    this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime") ?? GetNextDuration();
                     this.EndDateTimePicker.SelectedDate = this.GetDateFromQueryString("endTime") ?? this.StartDateTimePicker.SelectedDate.Value.AddMinutes(DefaultDurationInMinutes);
 
                     if (this.UserInfo.UserID > 0)
