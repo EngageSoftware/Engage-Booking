@@ -55,6 +55,11 @@ namespace Engage.Dnn.Booking
         /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
         protected override void OnInit(EventArgs e)
         {
+            if (!this.IsEditable)
+            {
+                this.ModuleConfiguration.DisplayPrint = false;
+            }
+
             SubControlInfo controlToLoad;
             try
             {
