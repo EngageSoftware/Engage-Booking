@@ -11,7 +11,6 @@
 
 namespace Engage.Dnn.Booking
 {
-    using System.Collections;
     using DotNetNuke.Entities.Modules;
     using DotNetNuke.Services.Scheduling;
     
@@ -31,18 +30,20 @@ namespace Engage.Dnn.Booking
             switch (version)
             {
                 case "1.0.0":
-                    var scheduleItem = new ScheduleItem();
-                    scheduleItem.TypeFullName = "Engage.Dnn.Booking.EmailScheduler, EngageBooking";
-                    scheduleItem.TimeLapse = 30;
-                    scheduleItem.TimeLapseMeasurement = "m";
-                    scheduleItem.RetryTimeLapse = 10;
-                    scheduleItem.RetryTimeLapseMeasurement = "m";
-                    scheduleItem.RetainHistoryNum = 50;
-                    scheduleItem.AttachToEvent = "None";
-                    scheduleItem.CatchUpEnabled = true;
-                    scheduleItem.Enabled = true;
-                    scheduleItem.ObjectDependencies = string.Empty;
-                    scheduleItem.Servers = string.Empty;
+                    var scheduleItem = new ScheduleItem
+                                           {
+                                                   TypeFullName = "Engage.Dnn.Booking.EmailScheduler, EngageBooking",
+                                                   TimeLapse = 5,
+                                                   TimeLapseMeasurement = "m",
+                                                   RetryTimeLapse = 10,
+                                                   RetryTimeLapseMeasurement = "m",
+                                                   RetainHistoryNum = 50,
+                                                   AttachToEvent = "None",
+                                                   CatchUpEnabled = true,
+                                                   Enabled = true,
+                                                   ObjectDependencies = string.Empty,
+                                                   Servers = string.Empty
+                                           };
 
                     SchedulingProvider.Instance().AddSchedule(scheduleItem);
 

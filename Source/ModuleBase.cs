@@ -100,23 +100,23 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Sends an <c>iCalendar</c> to the client to download.
+        /// Sends a file to the client to download.
         /// </summary>
-        /// <param name="response">The response to use to send the <c>iCalendar</c>.</param>
-        /// <param name="content">The content of the <c>iCalendar</c>.</param>
-        /// <param name="name">The name of the file.</param>
-        protected static void SendICalendarToClient(HttpResponse response, string content, string name)
+        /// <param name="response">The response to use to send the content.</param>
+        /// <param name="contentType">The MIME content type of the <paramref name="content"/>.</param>
+        /// <param name="content">The content of the file.</param>
+        /// <param name="fileName">The name of the file.</param>
+        protected static void SendContentToClient(HttpResponse response, string contentType, string content, string fileName)
         {
             response.Clear();
 
-            // Stream The ICalendar 
             response.Buffer = true;
 
-            response.ContentType = "text/calendar";
+            response.ContentType = contentType;
             response.ContentEncoding = Encoding.UTF8;
             response.Charset = "utf-8";
 
-            response.AddHeader("Content-Disposition", "attachment;filename=\"" + HttpUtility.UrlEncode(name) + ".ics" + "\"");
+            response.AddHeader("Content-Disposition", "attachment;filename=\"" + HttpUtility.UrlEncode(fileName) + "\"");
 
             response.Write(content);
             response.End();
@@ -147,6 +147,48 @@ namespace Engage.Dnn.Booking
             }
 
             return queryString.ToString();
+        }
+
+        /// <summary>
+        /// Builds a URL for this TabId, using the given queryString parameters.
+        /// </summary>
+        /// <param name="moduleId">The module id of the module for which the control key is being used.</param>
+        /// <param name="controlKey">The control key to determine which control to load.</param>
+        /// <returns>
+        /// A URL to the current TabId, with the given queryString parameters
+        /// </returns>
+        protected string BuildLinkUrl(int moduleId, ControlKey controlKey)
+        {
+            return this.BuildLinkUrl(moduleId, controlKey.ToString());
+        }
+
+        /// <summary>
+        /// Builds a URL for this TabId, using the given queryString parameters.
+        /// </summary>
+        /// <param name="moduleId">The module id of the module for which the control key is being used.</param>
+        /// <param name="controlKey">The control key to determine which control to load.</param>
+        /// <param name="queryStringParameters">Any other queryString parameters.</param>
+        /// <returns>
+        /// A URL to the current TabId, with the given queryString parameters
+        /// </returns>
+        protected string BuildLinkUrl(int moduleId, ControlKey controlKey, params string[] queryStringParameters)
+        {
+            return this.BuildLinkUrl(moduleId, controlKey.ToString(), queryStringParameters);
+        }
+
+        /// <summary>
+        /// Builds a URL for the given <paramref name="tabId"/>, using the given queryString parameters.
+        /// </summary>
+        /// <param name="tabId">The tab id of the page to navigate to.</param>
+        /// <param name="moduleId">The module id of the module for which the control key is being used.</param>
+        /// <param name="controlKey">The control key to determine which control to load.</param>
+        /// <param name="queryStringParameters">Any other queryString parameters.</param>
+        /// <returns>
+        /// A URL to the given <paramref name="tabId"/>, with the given queryString parameters
+        /// </returns>
+        protected string BuildLinkUrl(int tabId, int moduleId, ControlKey controlKey, params string[] queryStringParameters)
+        {
+            return this.BuildLinkUrl(tabId, moduleId, controlKey.ToString(), queryStringParameters);
         }
 
         /// <summary>

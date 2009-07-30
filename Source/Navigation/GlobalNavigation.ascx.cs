@@ -14,13 +14,12 @@ namespace Engage.Dnn.Booking
     using System;
     using System.ComponentModel;
     using System.Globalization;
-    using DotNetNuke.Common;
     using DotNetNuke.Entities.Modules;
     using DotNetNuke.Security.Permissions;
     using DotNetNuke.Services.Exceptions;
 
     /// <summary>
-    /// A navigation control that is always displayed at the top of the module.  Currently only for admins.
+    /// A navigation control that is always displayed at the top of the module.  Currently only for administrators.
     /// </summary>
     public partial class GlobalNavigation : ModuleBase
     {
@@ -71,10 +70,10 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void SetupLinks()
         {
-            this.HomeLink.NavigateUrl = Globals.NavigateURL();
+            this.HomeLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.Home);
             this.SettingsLink.NavigateUrl = this.EditUrl("ModuleId", this.ModuleId.ToString(CultureInfo.InvariantCulture), "Module");
-            this.AddAnEventLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "AppointmentRequest");
-            this.ExportLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "ExportData");
+            this.AddAnEventLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.AppointmentRequest);
+            this.ExportLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.ExportData);
         }
 
         /// <summary>

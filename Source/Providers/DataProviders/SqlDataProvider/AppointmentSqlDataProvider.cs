@@ -169,9 +169,9 @@ namespace Engage.Dnn.Booking
         /// <returns>
         /// An <see cref="IDataReader"/> with a list of appointments.
         /// </returns>
-        public static IDataReader GetAppointmentsByDateRange(int moduleId, DateTime? startDateTime, DateTime? endDateTime)
+        public static DataTable GetAppointmentsByDateRange(int moduleId, DateTime? startDateTime, DateTime? endDateTime)
         {
-            return SqlDataProvider.Instance.ExecuteReader(
+            return SqlDataProvider.Instance.ExecuteDataTable(
                     "GetAppointmentsByDateRange",
                     Engage.Utility.CreateIntegerParam("@moduleId", moduleId),
                     Engage.Utility.CreateDateTimeParam("@startDateTime", startDateTime),

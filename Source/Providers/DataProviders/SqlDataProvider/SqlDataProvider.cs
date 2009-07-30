@@ -149,6 +149,29 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Executes a SQL stored procedure, returning the results as a <see cref="SqlDataReader"/>.
+        /// </summary>
+        /// <param name="storedProcedureName">Name of the stored procedure.  Does not include any prefix, for example "GetAppointment" is translated to "dnn_EngageBooking_spGetAppointment."</param>
+        /// <param name="parameters">The parameters for this query.</param>
+        /// <returns>A <see cref="SqlDataReader"/> with the results of the stored procedure call</returns>
+        /// <exception cref="DBException">if there's an error while going to the database to retrieve the appointments</exception>
+        public DataTable ExecuteDataTable(string storedProcedureName, params SqlParameter[] parameters)
+        {
+            try
+            {
+                return SqlHelper.ExecuteDataset(
+                        this.connectionString,
+                        CommandType.StoredProcedure,
+                        this.NamePrefix + "sp" + storedProcedureName,
+                        parameters).Tables[0];
+            }
+            catch (SqlException exc)
+            {
+                throw new DBException(exc);
+            }
+        }
+
+        /// <summary>
         /// Executes a SQL stored procedure, returning a single value.
         /// </summary>
         /// <param name="storedProcedureName">Name of the stored procedure.  Does not include any prefix, for example "InsertAppointment" is translated to "dnn_EngageBooking_spInsertAppointment."</param>

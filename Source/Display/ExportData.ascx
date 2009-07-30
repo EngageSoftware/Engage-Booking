@@ -1,5 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ExportData.ascx.cs"
-    Inherits="Engage.Dnn.Booking.ExportData" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="ExportData.ascx.cs" Inherits="Engage.Dnn.Booking.ExportData" %>
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <div class="exportdata">
     <ol class="exportdata-form">
@@ -12,8 +11,8 @@
             <telerik:RadDatePicker ID="EndDatePicker" ResourceKey="EndDatePicker" CssClass="enddate-picker" runat="server" />
         </li>
         <li class="exportbutton"
-            <asp:Button ID="ExportButton" ResourceKey="ExportDataButton" CssClass="export-button" OnClick="ExportButton_Click" runat="server" />
-            <asp:CheckBox ID="HeaderRowCheckBox" ResourceKey="HeaderRowCheckBox" CssClass="header-checkbox" runat="server" />
+            <asp:Button ID="ExportButton" ResourceKey="ExportDataButton" CssClass="export-button" runat="server" />
+            <asp:CheckBox ID="HeaderRowCheckBox" ResourceKey="HeaderRowCheckBox" CssClass="header-checkbox" runat="server" Checked="true" />
         </li>
     </ol>
 </div>

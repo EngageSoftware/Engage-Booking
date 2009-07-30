@@ -15,6 +15,8 @@ namespace Engage.Dnn.Booking
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
+    using System.Web;
+    using System.Web.UI;
     using DotNetNuke.Common;
     using DotNetNuke.Entities.Modules;
     using DotNetNuke.Security;
@@ -30,7 +32,7 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// The control key for the <see cref="DefaultSubControl"/>
         /// </summary>
-        protected internal const string DefaultControlKey = "EventListing";
+        protected internal const ControlKey DefaultControlKey = ControlKey.Home;
 
         /// <summary>
         /// The default sub-control to load when no control key is provided
@@ -45,7 +47,7 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// A dictionary mapping control keys to user controls.
         /// </summary>
-        private static readonly IDictionary<string, SubControlInfo> ControlKeys = FillControlKeys();
+        private static readonly IDictionary<ControlKey, SubControlInfo> ControlKeys = FillControlKeys();
 
         /// <summary>
         /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
@@ -83,16 +85,18 @@ namespace Engage.Dnn.Booking
         /// Fills <see cref="ControlKeys"/>.
         /// </summary>
         /// <returns>A dictionary mapping control keys to user controls.</returns>
-        private static IDictionary<string, SubControlInfo> FillControlKeys()
+        private static IDictionary<ControlKey, SubControlInfo> FillControlKeys()
         {
-            return new Dictionary<string, SubControlInfo>(11, StringComparer.OrdinalIgnoreCase)
+            return new Dictionary<ControlKey, SubControlInfo>(6)
                        {
                                { DefaultControlKey, DefaultSubControl },
-                               { "AppointmentRequest", new SubControlInfo("Display/AppointmentRequest.ascx", false) },
-                               { "Approval", new SubControlInfo("Display/AppointmentCalendar.ascx", true) },
-                               { "DirectApproval", new SubControlInfo("Display/DirectApproval.ascx", false) },
-                               { "ExportData", new SubControlInfo("ExportData.ascx", true) },
-                               { "AppointmentDetails", new SubControlInfo("Display/AppointmentDetails.ascx", true) }
+                               { ControlKey.AppointmentRequest, new SubControlInfo("Display/AppointmentRequest.ascx", false) },
+
+                               // The Approval control just causes the user to login before showing the default page, so that they see pending appointments
+                               { ControlKey.Approval, new SubControlInfo("Display/AppointmentCalendar.ascx", true) },
+                               { ControlKey.DirectApproval, new SubControlInfo("Display/DirectApproval.ascx", false) },
+                               { ControlKey.ExportData, new SubControlInfo("Display/ExportData.ascx", true) },
+                               { ControlKey.AppointmentDetails, new SubControlInfo("Display/AppointmentDetails.ascx", true) }
                        };
         }
 
@@ -107,13 +111,32 @@ namespace Engage.Dnn.Booking
                 return new SubControlInfo("Admin/NotConfigured.ascx", false);
             }
 
-            string keyParam = this.GetCurrentControlKey();
-            if (Engage.Utility.HasValue(keyParam))
+            ControlKey? keyParam = this.GetControlKey();
+            return keyParam.HasValue ? ControlKeys[keyParam.Value] : DefaultSubControl;
+        }
+
+        /// <summary>
+        /// Gets the <see cref="HttpRequest.QueryString"/> control key for the current <see cref="Page.Request"/>.
+        /// </summary>
+        /// <returns>The <see cref="HttpRequest.QueryString"/> control key for the current <see cref="Page.Request"/></returns>
+        private ControlKey? GetControlKey()
+        {
+            string currentControlKey = this.GetCurrentControlKey();
+            if (!string.IsNullOrEmpty(currentControlKey))
             {
-                return ControlKeys[keyParam];
+                try
+                {
+                    return (ControlKey)Enum.Parse(typeof(ControlKey), currentControlKey, true);
+                }
+                catch (ArgumentException)
+                {
+                }
+                catch (OverflowException)
+                {
+                }
             }
 
-            return DefaultSubControl;
+            return null;
         }
 
         /// <summary>

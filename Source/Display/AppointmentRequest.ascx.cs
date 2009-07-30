@@ -36,7 +36,7 @@ namespace Engage.Dnn.Booking
         /// <value>The URL to navigate to in order to add a new <see cref="Appointment"/></value>
         private string NewAppintmentUrl
         {
-            get { return this.BuildLinkUrl(this.ModuleId, "AppointmentRequest"); }
+            get { return this.BuildLinkUrl(this.ModuleId, ControlKey.AppointmentRequest); }
         }
 
         /// <summary>
@@ -260,9 +260,9 @@ namespace Engage.Dnn.Booking
             EmailService.SendNewRequestEmail(
                     appointment,
                     ModuleSettings.NotificationEmailAddresses.GetValueAsStringFor(this),
-                    this.BuildLinkUrl(this.ModuleId, "DirectApproval", "actionKey=" + appointment.AcceptKey),
-                    this.BuildLinkUrl(this.ModuleId, "DirectApproval", "actionKey=" + appointment.DeclineKey),
-                    this.BuildLinkUrl(this.ModuleId, "Approval"));
+                    this.BuildLinkUrl(this.ModuleId, ControlKey.DirectApproval, "actionKey=" + appointment.AcceptKey),
+                    this.BuildLinkUrl(this.ModuleId, ControlKey.DirectApproval, "actionKey=" + appointment.DeclineKey),
+                    this.BuildLinkUrl(this.ModuleId, ControlKey.Approval));
         }
 
         /// <summary>
