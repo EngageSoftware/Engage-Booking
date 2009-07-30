@@ -639,14 +639,14 @@ IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spQueueEmail]', N'
 GO
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spQueueEmail]
 (  
-   @portalId [int],
-   @emailAddressList [nvarchar](500),
-   @subject	[nvarchar](500),
-   @body [ntext]
+   @portalId int,
+   @recipientList ntext,
+   @subject	nvarchar(998),
+   @body ntext
 )  
 AS  
-INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue] (PortalId, EmailAddressList, Subject, Body)
-VALUES (@portalId, @emailAddressList, @subject, @body)
+INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue] (PortalId, RecipientList, Subject, Body)
+VALUES (@portalId, @recipientList, @subject, @body)
 GO
 
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spClearQueuedEmail]', N'P') IS NOT NULL
@@ -666,5 +666,5 @@ IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetQueuedEmails]
 GO
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetQueuedEmails]
 AS
-SELECT * FROM {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
+SELECT PortalId, RecipientList, Subject, Body FROM {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
 GO
