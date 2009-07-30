@@ -64,7 +64,7 @@ namespace Engage.Dnn.Booking
         /// <param name="end">The end of the appointment.</param>
         /// <param name="numberOfParticipants">The number of participants.</param>
         /// <param name="participantGender">The participant gender.</param>
-        /// <param name="participantFlag">The participant flag.</param>
+        /// <param name="isPresenterSpecial">The participant flag.</param>
         /// <param name="participantInstructions">The participant instructions.</param>
         /// <param name="numberOfSpecialParticipants">The number of special participants.</param>
         /// <param name="custom1">The first custom field.</param>
@@ -105,7 +105,7 @@ namespace Engage.Dnn.Booking
                 ////TimeSpan timeZoneOffset,
                 int numberOfParticipants,
                 GroupGender participantGender,
-                char participantFlag,
+                bool isPresenterSpecial,
                 string participantInstructions,
                 int numberOfSpecialParticipants,
                 string custom1,
@@ -146,7 +146,7 @@ namespace Engage.Dnn.Booking
             this.EndDateTime = end;
             this.NumberOfParticipants = numberOfParticipants;
             this.ParticipantGender = participantGender;
-            this.IsPresenterSpecialYOrN = participantFlag;
+            this.IsPresenterSpecial = isPresenterSpecial;
             this.ParticipantInstructions = participantInstructions;
             this.NumberOfSpecialParticipants = numberOfSpecialParticipants;
             this.Custom1 = custom1;
@@ -615,11 +615,13 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Gets or sets whether the presenter is "special" ('Y' if so, 'N' if not).
+        /// Gets or sets a value indicating whether the presenter is "special."
         /// </summary>
-        /// <value>'Y' if the presenter is "special," otherwise 'N'.</value>
+        /// <value>
+        /// <c>true</c> if the presenter is "special;" otherwise, <c>false</c>.
+        /// </value>
         [XmlElement(Order = 38)]
-        public char IsPresenterSpecialYOrN
+        public bool IsPresenterSpecial
         {
             get;
             set;
@@ -713,7 +715,7 @@ namespace Engage.Dnn.Booking
         /// <param name="end">The end of the appointment.</param>
         /// <param name="numberOfParticipants">The number of participants.</param>
         /// <param name="participantGender">The participant gender.</param>
-        /// <param name="isPresenterSpecialYOrN">The participant flag.</param>
+        /// <param name="isPresenterSpecial">The participant flag.</param>
         /// <param name="participantInstructions">The participant instructions.</param>
         /// <param name="numberOfSpecialParticipants">The number of special participants.</param>
         /// <param name="custom1">The first custom field.</param>
@@ -757,7 +759,7 @@ namespace Engage.Dnn.Booking
                 ////TimeSpan timeZoneOffset,
                 int numberOfParticipants,
                 GroupGender participantGender,
-                char isPresenterSpecialYOrN,
+                bool isPresenterSpecial,
                 string participantInstructions,
                 int numberOfSpecialParticipants,
                 string custom1,
@@ -798,7 +800,7 @@ namespace Engage.Dnn.Booking
                     ////timeZoneOffset,
                     numberOfParticipants,
                     participantGender,
-                    isPresenterSpecialYOrN,
+                    isPresenterSpecial,
                     participantInstructions,
                     numberOfSpecialParticipants,
                     custom1,
@@ -946,7 +948,7 @@ namespace Engage.Dnn.Booking
             appointment.Custom9 = appointmentRecord["Custom9"].ToString();
             appointment.Custom10 = appointmentRecord["Custom10"].ToString();
             appointment.ParticipantGender = Utility.ConvertToEnum(appointmentRecord["ParticipantGender"].ToString(), GroupGender.MixedGroup);
-            appointment.IsPresenterSpecialYOrN = appointmentRecord["ParticipantFlag"].ToString()[0];
+            appointment.IsPresenterSpecial = appointmentRecord["ParticipantFlag"].ToString()[0] == 'Y';
             appointment.IsAccepted = appointmentRecord["IsAccepted"] as bool?;
             appointment.AcceptKey = (Guid)appointmentRecord["AcceptKey"];
             appointment.DeclineKey = (Guid)appointmentRecord["DeclineKey"];

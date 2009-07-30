@@ -141,10 +141,7 @@
                     <asp:Label CssClass="gender-label" runat="server" ResourceKey="GenderLabel" AssociatedControlId="GenderDropDownList" />
                     <asp:DropDownList ID="GenderDropDownList" runat="server" CssClass="gender-list short" runat="server"/>
                     <asp:Label CssClass="presenter-label" runat="server" ResourceKey="PresenterLabel" AssociatedControlId="PresenterDropDownList" />
-                    <asp:DropDownList ID="PresenterDropDownList" CssClass="presenter-box short" runat="server">
-                        <asp:ListItem>N</asp:ListItem>
-                        <asp:ListItem>Y</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="PresenterDropDownList" CssClass="presenter-box short" runat="server"/>
                 </li>
                 <li class="instructions">
                     <asp:Label CssClass="instructions-label" runat="server" ResourceKey="InstructionsLabel" AssociatedControlId="InstructionsTextBox" />

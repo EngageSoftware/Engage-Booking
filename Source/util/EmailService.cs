@@ -166,7 +166,7 @@ namespace Engage.Dnn.Booking
                     appointment.NumberOfSpecialParticipants,
                     appointment.NumberOfParticipants,
                     appointment.ParticipantGender,
-                    appointment.IsPresenterSpecialYOrN,
+                    appointment.IsPresenterSpecial,
                     appointment.ParticipantInstructions,
                     UserController.GetCurrentUserInfo().DisplayName,
                     Globals.GetPortalSettings().PortalName,

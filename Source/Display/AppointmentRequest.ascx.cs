@@ -18,6 +18,7 @@ namespace Engage.Dnn.Booking
     using DotNetNuke.Common;
     using DotNetNuke.Common.Lists;
     using DotNetNuke.Services.Exceptions;
+    using DotNetNuke.Services.Localization;
 
     /// <summary>
     /// Appointment Request Form
@@ -239,7 +240,7 @@ namespace Engage.Dnn.Booking
                     ////timeZoneOffset,
                     totalNumberOfParticipants,
                     Utility.ConvertToEnum(this.GenderDropDownList.SelectedValue, GroupGender.MixedGroup),
-                    this.PresenterDropDownList.SelectedValue[0],
+                    bool.Parse(this.PresenterDropDownList.SelectedValue),
                     this.InstructionsTextBox.Text,
                     numberOfSpecialParticipants,
                     this.CustomField1TextBox.Text,
@@ -314,6 +315,10 @@ namespace Engage.Dnn.Booking
             this.GenderDropDownList.DataSource = Enum.GetNames(typeof(GroupGender));
             this.GenderDropDownList.DataBind();
             Dnn.Utility.LocalizeListControl(this.GenderDropDownList, Utility.LocalSharedResourceFile);
+
+            this.PresenterDropDownList.Items.Clear();
+            this.PresenterDropDownList.Items.Add(new ListItem(Localization.GetString(true.ToString(CultureInfo.InvariantCulture), this.LocalResourceFile), true.ToString(CultureInfo.InvariantCulture)));
+            this.PresenterDropDownList.Items.Add(new ListItem(Localization.GetString(false.ToString(CultureInfo.InvariantCulture), this.LocalResourceFile), false.ToString(CultureInfo.InvariantCulture)));
             
             ////// TODO: Once we support .NET 3.5, replace this with TimeZoneInfo.GetSystemTimeZones
             ////Localization.LoadTimeZoneDropDownList(
