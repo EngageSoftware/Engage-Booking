@@ -95,16 +95,16 @@ namespace Engage.Dnn.Booking
                 string contactStreet,
                 string contactPhone,
                 string requestorName,
-                string requestorPhoneType,
+                PhoneType requestorPhoneType,
                 string requestorPhone,
                 string requestorEmail,
-                string requestorAltPhoneType,
+                PhoneType requestorAltPhoneType,
                 string requestorAltPhone,
                 DateTime start,
                 DateTime end,
                 ////TimeSpan timeZoneOffset,
                 int numberOfParticipants,
-                string participantGender,
+                GroupGender participantGender,
                 char participantFlag,
                 string participantInstructions,
                 int numberOfSpecialParticipants,
@@ -397,7 +397,7 @@ namespace Engage.Dnn.Booking
         /// </summary>
         /// <value>The type of <see cref="RequestorPhone"/>.</value>
         [XmlElement(Order = 18)]
-        public string RequestorPhoneType
+        public PhoneType RequestorPhoneType
         {
             get;
             set;
@@ -430,7 +430,7 @@ namespace Engage.Dnn.Booking
         /// </summary>
         /// <value>The type of <see cref="RequestorAltPhone"/>.</value>
         [XmlElement(Order = 21)]
-        public string RequestorAltPhoneType
+        public PhoneType RequestorAltPhoneType
         {
             get;
             set;
@@ -463,7 +463,7 @@ namespace Engage.Dnn.Booking
         /// </summary>
         /// <value>The gender of the participant group.</value>
         [XmlElement(Order = 24)]
-        public string ParticipantGender
+        public GroupGender ParticipantGender
         {
             get;
             set;
@@ -747,16 +747,16 @@ namespace Engage.Dnn.Booking
                 string contactStreet,
                 string contactPhone,
                 string requestorName,
-                string requestorPhoneType,
+                PhoneType requestorPhoneType,
                 string requestorPhone,
                 string requestorEmail,
-                string requestorAltPhoneType,
+                PhoneType requestorAltPhoneType,
                 string requestorAltPhone,
                 DateTime start,
                 DateTime end,
                 ////TimeSpan timeZoneOffset,
                 int numberOfParticipants,
-                string participantGender,
+                GroupGender participantGender,
                 char isPresenterSpecialYOrN,
                 string participantInstructions,
                 int numberOfSpecialParticipants,
@@ -926,10 +926,10 @@ namespace Engage.Dnn.Booking
             appointment.ContactStreet = appointmentRecord["ContactStreet"].ToString();
             appointment.ContactPhone = appointmentRecord["ContactPhone"].ToString();
             appointment.RequestorName = appointmentRecord["RequestorName"].ToString();
-            appointment.RequestorPhoneType = appointmentRecord["RequestorPhoneType"].ToString();
+            appointment.RequestorPhoneType = Utility.ConvertToEnum(appointmentRecord["RequestorPhoneType"].ToString(), PhoneType.None);
             appointment.RequestorPhone = appointmentRecord["RequestorPhone"].ToString();
             appointment.RequestorEmail = appointmentRecord["RequestorEmail"].ToString();
-            appointment.RequestorAltPhoneType = appointmentRecord["RequestorAltPhoneType"].ToString();
+            appointment.RequestorAltPhoneType = Utility.ConvertToEnum(appointmentRecord["RequestorAltPhoneType"].ToString(), PhoneType.None);
             appointment.RequestorAltPhone = appointmentRecord["RequestorAltPhone"].ToString();
             appointment.StartDateTime = (DateTime)appointmentRecord["StartDateTime"];
             appointment.EndDateTime = (DateTime)appointmentRecord["EndDateTime"];
@@ -945,7 +945,7 @@ namespace Engage.Dnn.Booking
             appointment.Custom8 = appointmentRecord["Custom8"].ToString();
             appointment.Custom9 = appointmentRecord["Custom9"].ToString();
             appointment.Custom10 = appointmentRecord["Custom10"].ToString();
-            appointment.ParticipantGender = appointmentRecord["ParticipantGender"].ToString();
+            appointment.ParticipantGender = Utility.ConvertToEnum(appointmentRecord["ParticipantGender"].ToString(), GroupGender.MixedGroup);
             appointment.IsPresenterSpecialYOrN = appointmentRecord["ParticipantFlag"].ToString()[0];
             appointment.IsAccepted = appointmentRecord["IsAccepted"] as bool?;
             appointment.AcceptKey = (Guid)appointmentRecord["AcceptKey"];

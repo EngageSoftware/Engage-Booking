@@ -283,6 +283,18 @@
   <data name="ExportData.Text" xml:space="preserve">
     <value>Export Data</value>
   </data>
+  <data name="Fax.Text" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="Female.Text" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="Male.Text" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="MixedGroup.Text" xml:space="preserve">
+    <value>Mixed Group</value>
+  </data>
   <data name="NewRequestBody.Format" xml:space="preserve">
     <value>&lt;p&gt;A new appointment request titled &lt;em&gt;{0}&lt;/em&gt; has been made at {24}.&lt;/p&gt;
 &lt;p&gt;You can: &lt;/p&gt;
@@ -351,10 +363,22 @@
 {23} = current user's display name
 {24} = portal name</comment>
   </data>
+  <data name="None.Text" xml:space="preserve">
+    <value>None</value>
+  </data>
   <data name="Time Picker ToolTip.Text" xml:space="preserve">
     <value>Open the time view popup.</value>
   </data>
   <data name="Time Picker.Text" xml:space="preserve">
     <value>Time Picker</value>
+  </data>
+  <data name="Tty.Text" xml:space="preserve">
+    <value>TTY</value>
+  </data>
+  <data name="Voice.Text" xml:space="preserve">
+    <value>Voice</value>
+  </data>
+  <data name="Webcam.Text" xml:space="preserve">
+    <value>WebCam</value>
   </data>
 </root>

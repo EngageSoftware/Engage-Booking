@@ -298,7 +298,7 @@ namespace Engage.Dnn.Booking
                     appointment.StartDateTime,
                     appointment.EndDateTime);
             this.DetailFullNameLabel.Text = appointment.RequestorName;
-            this.DetailPhoneTypeLabel.Text = appointment.RequestorPhoneType;
+            this.DetailPhoneTypeLabel.Text = Localization.GetString(appointment.RequestorPhoneType.ToString(), Utility.LocalSharedResourceFile);
             this.DetailPhoneNumberLabel.Text = appointment.RequestorPhone;
             this.DetailNumberOfParticipantsLabel.Text = this.GetNumberOfParticipantsText(appointment);
             ////this.DetailNamesLabel.Text = 

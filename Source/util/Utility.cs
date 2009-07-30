@@ -11,6 +11,7 @@
 
 namespace Engage.Dnn.Booking
 {
+    using System;
     using System.Text;
     using DotNetNuke.Common;
     using DotNetNuke.Services.Localization;
@@ -79,6 +80,27 @@ namespace Engage.Dnn.Booking
                 calendar.FastNavigationSettings.CancelButtonCaption = Localization.GetString("Date Picker Cancel", LocalSharedResourceFile);
                 calendar.FastNavigationSettings.OkButtonCaption = Localization.GetString("Date Picker OK", LocalSharedResourceFile);
                 calendar.FastNavigationSettings.TodayButtonCaption = Localization.GetString("Date Picker Today", LocalSharedResourceFile);
+            }
+        }
+
+        /// <summary>
+        /// Converts to given value to an enum value of type <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the enum to which the value is being converted</typeparam>
+        /// <param name="value">The value to convert.</param>
+        /// <param name="defaultValue">The default value to return if <paramref name="value"/> is not a value of <typeparamref name="T"/>.</param>
+        /// <returns>
+        /// The value converted to an enum value of type <typeparamref name="T"/>
+        /// </returns>
+        public static T ConvertToEnum<T>(string value, T defaultValue)
+        {
+            try
+            {
+                return (T)Enum.Parse(typeof(T), value);
+            }
+            catch (Exception)
+            {
+                return defaultValue;
             }
         }
     }
