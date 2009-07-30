@@ -16,8 +16,10 @@
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" />
                     <asp:Label CssClass="event-type-label" ResourceKey="EventTypeLabel" runat="server" AssociatedControlId="AppointmentTypeDropDownList" />
                     <asp:DropDownList ID="AppointmentTypeDropDownList" CssClass="event-type-box short" runat="server" />
+                    
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="title-label" runat="server" ResourceKey="TitleLabel" AssociatedControlId="TitleTextBox" />
                     <asp:TextBox ID="TitleTextBox" CssClass="title-box short" runat="server" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="TitleTextBox" ResourceKey="TitleRequiredValidator" Display="None" EnableClientScript="false" />
                 </li>
 
                 <li class="description">
@@ -69,11 +71,13 @@
                 <li class="full-name">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label ID="RequestorNameLabel" CssClass="full-name-label" runat="server" ResourceKey="FullNameLabel.Text" AssociatedControlId="RequestorNameTextBox" />
                     <asp:TextBox ID="RequestorNameTextBox" CssClass="full-name-box long" runat="server" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="RequestorNameTextBox" ResourceKey="FullNameRequiredValidator" Display="None" EnableClientScript="false" />
                 </li>
                 <li class="phone">
                     <asp:DropDownList ID="RequestorPhoneTypeDropDownList" runat="server"/>
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="phone-label" runat="server" ResourceKey="RequestorPhoneLabel.Text" AssociatedControlId="RequestorPhoneTextBox" />
                     <asp:TextBox ID="RequestorPhoneTextBox" CssClass="phone-box long" runat="server" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="RequestorPhoneTextBox" ResourceKey="RequestorPhoneRequiredValidator" Display="None" EnableClientScript="false" />
                 </li>
                 <li class="alt-phone">
                     <asp:DropDownList ID="RequestorAltPhoneTypeDropDownList" runat="server"/>
@@ -83,6 +87,8 @@
                 <li class="email">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="email-label" runat="server" ResourceKey="EmailAddressLabel" AssociatedControlId="RequestorEmailTextBox" />
                     <asp:TextBox ID="RequestorEmailTextBox" CssClass="email-box full" runat="server" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="RequestorEmailTextBox" ResourceKey="RequestorEmailRequiredValidator" Display="None" EnableClientScript="false" />
+                    <asp:RegularExpressionValidator ID="RequestorEmailFormatValidator" runat="server" ControlToValidate="RequestorEmailTextBox" ResourceKey="RequestorEmailFormatValidator" Display="None" EnableClientScript="false" />
                 </li>
             </ol>
         </fieldset>
@@ -91,16 +97,16 @@
             <ol class="date-assignment-form">
                 <li class="start">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="start-label" runat="server" ResourceKey="StartLabel" AssociatedControlId="StartDateTimePicker" />
-                    <telerik:RadDateTimePicker runat="server" ID="StartDateTimePicker" Skin="WebBlue">
+                    <telerik:RadDateTimePicker runat="server" ID="StartDateTimePicker">
                         <Calendar ShowRowHeaders="false" />
                         <DateInput InvalidStyleDuration="100" />
                         <ClientEvents OnDateSelected="StartDateTimePicker_DateSelected" />
                     </telerik:RadDateTimePicker>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="StartDateTimePicker" ResourceKey="StartDateTimePickerRequired" Display="None" EnableClientScript="false" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StartDateTimePicker" ResourceKey="StartDateTimePickerRequired" Display="None" EnableClientScript="false" />
                 </li>
                 <li class="end">
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><asp:Label CssClass="end-label" runat="server" ResourceKey="EndLabel" AssociatedControlId="EndDateTimePicker" />
-                    <telerik:RadDateTimePicker runat="server" ID="EndDateTimePicker" Skin="WebBlue">
+                    <telerik:RadDateTimePicker runat="server" ID="EndDateTimePicker">
                         <Calendar ShowRowHeaders="false" />
                         <DateInput InvalidStyleDuration="100" />
                     </telerik:RadDateTimePicker>

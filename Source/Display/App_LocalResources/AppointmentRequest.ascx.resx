@@ -147,9 +147,6 @@
   <data name="CancelGoHomeLink.Alt" xml:space="preserve">
     <value>Cancel &amp; Go Home</value>
   </data>
-  <data name="CapacityMetMessageLabel.Text" xml:space="preserve">
-    <value>When Registration Cap Is Met, Show a</value>
-  </data>
   <data name="CityLabel.Text" xml:space="preserve">
     <value>City</value>
   </data>
@@ -158,12 +155,6 @@
   </data>
   <data name="ConsiderationsLabel.Text" xml:space="preserve">
     <value>Special Considerations</value>
-  </data>
-  <data name="CreateAnother.Alt" xml:space="preserve">
-    <value>Create Another Event</value>
-  </data>
-  <data name="CustomCapacityMetMessageLabel.Text" xml:space="preserve">
-    <value>Custom Message to Display When The Registation Cap Is Met</value>
   </data>
   <data name="CustomField10Label.Text" xml:space="preserve">
     <value>Custom Field 10</value>
@@ -392,5 +383,20 @@
   </data>
   <data name="RequiredLabelStart.Text" xml:space="preserve">
     <value>&lt;strong&gt;Note: &lt;/strong&gt; Fields with asteriks (</value>
+  </data>
+  <data name="FullNameRequiredValidator.Text" xml:space="preserve">
+    <value>Full Name is required</value>
+  </data>
+  <data name="RequestorEmailFormatValidator.Text" xml:space="preserve">
+    <value>Email Address is in an invalid format</value>
+  </data>
+  <data name="RequestorEmailRequiredValidator.Text" xml:space="preserve">
+    <value>Email Address is required</value>
+  </data>
+  <data name="RequestorPhoneRequiredValidator.Text" xml:space="preserve">
+    <value>Phone is required</value>
+  </data>
+  <data name="TitleRequiredValidator.Text" xml:space="preserve">
+    <value>Title is required</value>
   </data>
 </root>

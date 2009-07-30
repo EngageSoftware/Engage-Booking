@@ -414,7 +414,6 @@
     </Content>
     <Content Include="App_LocalResources\ExportData.ascx.resx">
     </Content>
-    <Content Include="Display\App_LocalResources\AppointmentRequestToolTip.ascx.resx" />
     <EmbeddedResource Include="JavaScript\SelectAllPlugin.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

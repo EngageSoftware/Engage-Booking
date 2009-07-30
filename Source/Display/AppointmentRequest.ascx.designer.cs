@@ -203,6 +203,15 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox RequestorEmailTextBox;
         
         /// <summary>
+        /// RequestorEmailFormatValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RequestorEmailFormatValidator;
+        
+        /// <summary>
         /// StartDateTimePicker control.
         /// </summary>
         /// <remarks>
@@ -210,15 +219,6 @@ namespace Engage.Dnn.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadDateTimePicker StartDateTimePicker;
-        
-        /// <summary>
-        /// RequiredFieldValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
         /// EndDateTimePicker control.

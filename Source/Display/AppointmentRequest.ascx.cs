@@ -284,6 +284,8 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void SetupControl()
         {
+            this.RequestorEmailFormatValidator.ValidationExpression = Engage.Utility.EmailRegEx;
+
             this.StartDateTimePicker.Skin = this.EndDateTimePicker.Skin = ModuleSettings.CalendarSkin.GetValueAsStringFor(this);
             Utility.LocalizeDateTimePicker(this.StartDateTimePicker);
             Utility.LocalizeDateTimePicker(this.EndDateTimePicker);
