@@ -12,8 +12,17 @@
 namespace Engage.Dnn.Booking
 {
     using System;
+    using System.Data;
+    using System.Globalization;
+    using System.Text;
+    using DotNetNuke.Common;
+    using DotNetNuke.Entities.Host;
+    using DotNetNuke.Entities.Portals;
+    using DotNetNuke.Services.Log.EventLog;
+    using DotNetNuke.Services.Mail;
     using DotNetNuke.Services.Scheduling;
     using Routing;
+    using DotNetNuke.Services.Exceptions;
 
     /// <summary>
     /// A scheduler client for running scheduled email tasks.
@@ -30,16 +39,48 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Does the work.
+        /// Does the EmailScheduler work.
         /// </summary>
         public override void DoWork()
         {
-            RoutingManager rm = RoutingManager.Instance;
             try
             {
-                rm.RunServiceEvents(0);
+                int successCount = 0;
+                using (IDataReader queuedEmails = AppointmentSqlDataProvider.GetQueuedEmails())
+                {
+                    while(queuedEmails.Read())
+                    {
+                        string result = Mail.SendMail(
+                            new PortalController().GetPortal((int)queuedEmails["PortalId"]).Email,
+                            queuedEmails["EmailAddressList"].ToString(),
+                            string.Empty,
+                            string.Empty,
+                            MailPriority.Normal,
+                            queuedEmails["Subject"].ToString(),
+                            MailFormat.Html,
+                            Encoding.UTF8,
+                            queuedEmails["Body"].ToString(),
+                            new string[] { },
+                            string.Empty,
+                            string.Empty,
+                            string.Empty,
+                            string.Empty,
+                            "Y".Equals(HostSettings.GetHostSetting("SMTPEnableSSL"), StringComparison.Ordinal));
+
+                        if (result == string.Empty)
+                        {
+                            AppointmentSqlDataProvider.ClearQueuedEmail((int)queuedEmails["QueueID"]);
+                            successCount++;
+                        }
+                        else
+                        {
+                            this.ScheduleHistoryItem.AddLogNote("QueueID " + queuedEmails["QueueID"].ToString() + " failed to send.  SendMail error: " + result + "<br />");
+                        }
+                    }
+                }
+
                 this.ScheduleHistoryItem.Succeeded = true;
-                this.ScheduleHistoryItem.AddLogNote("Email Scheduler completed successfully.<br />");
+                this.ScheduleHistoryItem.AddLogNote("Email Scheduler completed successfully. " + successCount + " emails sent.<br />");
             }
             catch (Exception e)
             {

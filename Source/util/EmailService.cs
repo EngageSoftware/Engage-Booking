@@ -16,6 +16,7 @@ namespace Engage.Dnn.Booking
     using System.Text;
     using DotNetNuke.Common;
     using DotNetNuke.Entities.Host;
+    using DotNetNuke.Entities.Portals;
     using DotNetNuke.Entities.Users;
     using DotNetNuke.Services.Localization;
     using DotNetNuke.Services.Mail;
@@ -73,27 +74,13 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// Sends an email to the given email address with the given <paramref name="subject"/> and HTML <paramref name="body"/>.
         /// </summary>
-        /// <param name="to">The comma-or-semicolon-delimited list of email address(es) to which the email should be sent.</param>
+        /// <param name="portalId">The current portalId.</param>
+        /// <param name="toList">The comma-or-semicolon-delimited list of email address(es) to which the email should be sent.</param>
         /// <param name="subject">The subject.</param>
         /// <param name="body">The HTML body.</param>
-        private static void SendEmail(string to, string subject, string body)
+        private static void SendEmail(string toList, string subject, string body)
         {
-            Mail.SendMail(
-                    Globals.GetPortalSettings().Email,
-                    to,
-                    string.Empty,
-                    string.Empty,
-                    MailPriority.Normal,
-                    subject,
-                    MailFormat.Html,
-                    Encoding.UTF8,
-                    body,
-                    new string[] { },
-                    string.Empty,
-                    string.Empty,
-                    string.Empty,
-                    string.Empty,
-                    "Y".Equals(HostSettings.GetHostSetting("SMTPEnableSSL"), StringComparison.Ordinal));
+            AppointmentSqlDataProvider.QueueEmail(PortalController.GetCurrentPortalSettings().PortalId, toList, subject, body);
         }
 
         /// <summary>

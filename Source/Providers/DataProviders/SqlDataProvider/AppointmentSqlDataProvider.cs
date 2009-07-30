@@ -63,6 +63,17 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Clears a queued email.
+        /// </summary>
+        /// <param name="queueId">The queueId.</param>
+        public static void ClearQueuedEmail(int queueId)
+        {
+            SqlDataProvider.Instance.ExecuteNonQuery(
+                "ClearQueuedEmail",
+                Engage.Utility.CreateIntegerParam("@queueId", queueId));
+        }
+
+        /// <summary>
         /// Accepts or declines the <see cref="Appointment"/> with the given <paramref name="appointmentId"/>.
         /// </summary>
         /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to accept or decline.</param>
@@ -70,9 +81,9 @@ namespace Engage.Dnn.Booking
         public static void DeclineAppointment(int appointmentId, int revisingUserId)
         {
             SqlDataProvider.Instance.ExecuteNonQuery(
-                    "DeclineAppointment",
-                    Engage.Utility.CreateIntegerParam("@appointmentId", appointmentId),
-                    Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
+                "DeclineAppointment",
+                Engage.Utility.CreateIntegerParam("@appointmentId", appointmentId),
+                Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
         }
 
         /// <summary>
@@ -180,6 +191,16 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Gets the queued emails.
+        /// </summary>
+        /// <returns>An <see cref="IDataReader"/> with the list of queued emails.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Does not represent state")]
+        public static IDataReader GetQueuedEmails()
+        {
+            return SqlDataProvider.Instance.ExecuteReader("GetQueuedEmails");
+        }
+
+        /// <summary>
         /// Inserts the given <paramref name="appointment"/> into the ol' database.
         /// </summary>
         /// <param name="appointment">The appointment to insert.</param>
@@ -228,6 +249,23 @@ namespace Engage.Dnn.Booking
                     Engage.Utility.CreateTextParam("@custom10", appointment.Custom10),
                     Engage.Utility.CreateBitParam("@isAccepted", appointment.IsAccepted),
                     Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
+        }
+
+        /// <summary>
+        /// Queues an email.
+        /// </summary>
+        /// <param name="portalId">The current portalId.</param>
+        /// <param name="toList">The comma-or-semicolon-delimited list of email address(es) to which the email should be sent.</param>
+        /// <param name="subject">The subject.</param>
+        /// <param name="body">The HTML body.</param>
+        public static void QueueEmail(int portalId, string toList, string subject, string body)
+        {
+            SqlDataProvider.Instance.ExecuteNonQuery(
+                "QueueEmail",
+                Engage.Utility.CreateIntegerParam("@portalId", portalId),
+                Engage.Utility.CreateVarcharParam("@emailAddressList", toList),
+                Engage.Utility.CreateVarcharParam("@subject", subject),
+                Engage.Utility.CreateVarcharParam("@body", body));
         }
 
         /// <summary>

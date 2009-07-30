@@ -11,11 +11,45 @@
 
 namespace Engage.Dnn.Booking
 {
+    using System.Collections;
+    using DotNetNuke.Entities.Modules;
+    using DotNetNuke.Services.Scheduling;
+    
     /// <summary>
     /// Controls which DNN features are available for this module.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated through reflection by DNN")]
-    internal class FeaturesController
+    internal class FeaturesController : IUpgradeable
     {
+        /// <summary>
+        /// Upgrades the module.
+        /// </summary>
+        /// <param name="version">The version.</param>
+        /// <returns>A success or failure message.</returns>
+        public string UpgradeModule(string version)
+        {
+            switch (version)
+            {
+                case "1.0.0":
+                    var scheduleItem = new ScheduleItem();
+                    scheduleItem.TypeFullName = "Engage.Dnn.Booking.EmailScheduler, EngageBooking";
+                    scheduleItem.TimeLapse = 30;
+                    scheduleItem.TimeLapseMeasurement = "m";
+                    scheduleItem.RetryTimeLapse = 10;
+                    scheduleItem.RetryTimeLapseMeasurement = "m";
+                    scheduleItem.RetainHistoryNum = 50;
+                    scheduleItem.AttachToEvent = "None";
+                    scheduleItem.CatchUpEnabled = true;
+                    scheduleItem.Enabled = true;
+                    scheduleItem.ObjectDependencies = string.Empty;
+                    scheduleItem.Servers = string.Empty;
+
+                    SchedulingProvider.Instance().AddSchedule(scheduleItem);
+
+                    return "Added EmailScheduler task.";
+                default:
+                    return "No tasks to perform for upgrade to version " + version;
+            }
+        }
     }
 }
