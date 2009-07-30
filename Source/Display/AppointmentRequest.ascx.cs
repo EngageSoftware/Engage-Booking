@@ -178,7 +178,6 @@ namespace Engage.Dnn.Booking
         private void DisplayFinalSuccess()
         {
             this.SuccessModuleMessage.Visible = true;
-            this.SuccessModuleMessage.Focus();
         }
 
         /// <summary>
