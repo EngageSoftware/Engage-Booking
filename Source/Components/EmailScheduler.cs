@@ -13,16 +13,11 @@ namespace Engage.Dnn.Booking
 {
     using System;
     using System.Data;
-    using System.Globalization;
     using System.Text;
-    using DotNetNuke.Common;
     using DotNetNuke.Entities.Host;
     using DotNetNuke.Entities.Portals;
-    using DotNetNuke.Services.Log.EventLog;
     using DotNetNuke.Services.Mail;
     using DotNetNuke.Services.Scheduling;
-    using Routing;
-    using DotNetNuke.Services.Exceptions;
 
     /// <summary>
     /// A scheduler client for running scheduled email tasks.
@@ -48,7 +43,7 @@ namespace Engage.Dnn.Booking
                 int successCount = 0;
                 using (IDataReader queuedEmails = AppointmentSqlDataProvider.GetQueuedEmails())
                 {
-                    while(queuedEmails.Read())
+                    while (queuedEmails.Read())
                     {
                         string result = Mail.SendMail(
                             new PortalController().GetPortal((int)queuedEmails["PortalId"]).Email,
@@ -67,7 +62,7 @@ namespace Engage.Dnn.Booking
                             string.Empty,
                             "Y".Equals(HostSettings.GetHostSetting("SMTPEnableSSL"), StringComparison.Ordinal));
 
-                        if (result == string.Empty)
+                        if (string.IsNullOrEmpty(result))
                         {
                             AppointmentSqlDataProvider.ClearQueuedEmail((int)queuedEmails["QueueID"]);
                             successCount++;

@@ -74,7 +74,6 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// Sends an email to the given email address with the given <paramref name="subject"/> and HTML <paramref name="body"/>.
         /// </summary>
-        /// <param name="portalId">The current portalId.</param>
         /// <param name="toList">The comma-or-semicolon-delimited list of email address(es) to which the email should be sent.</param>
         /// <param name="subject">The subject.</param>
         /// <param name="body">The HTML body.</param>
