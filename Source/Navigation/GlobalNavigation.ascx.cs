@@ -74,6 +74,7 @@ namespace Engage.Dnn.Booking
             this.HomeLink.NavigateUrl = Globals.NavigateURL();
             this.SettingsLink.NavigateUrl = this.EditUrl("ModuleId", this.ModuleId.ToString(CultureInfo.InvariantCulture), "Module");
             this.AddAnEventLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "AppointmentRequest");
+            this.ExportLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, "ExportData");
         }
 
         /// <summary>

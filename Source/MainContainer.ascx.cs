@@ -90,7 +90,9 @@ namespace Engage.Dnn.Booking
                                { DefaultControlKey, DefaultSubControl },
                                { "AppointmentRequest", new SubControlInfo("Display/AppointmentRequest.ascx", false) },
                                { "Approval", new SubControlInfo("Display/AppointmentCalendar.ascx", true) },
-                               { "DirectApproval", new SubControlInfo("Display/DirectApproval.ascx", false) }
+                               { "DirectApproval", new SubControlInfo("Display/DirectApproval.ascx", false) },
+                               { "ExportData", new SubControlInfo("ExportData.ascx", true) },
+                               { "AppointmentDetails", new SubControlInfo("Display/AppointmentDetails.ascx", true) }
                        };
         }
 

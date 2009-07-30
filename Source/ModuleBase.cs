@@ -17,18 +17,13 @@ namespace Engage.Dnn.Booking
     using System.Text;
     using System.Web;
     using System.Web.UI;
-    using DotNetNuke.Common;
-    using DotNetNuke.Entities.Host;
-    using DotNetNuke.Entities.Modules;
-    using DotNetNuke.Entities.Modules.Actions;
-    using DotNetNuke.Security;
     using DotNetNuke.Services.Localization;
     using DotNetNuke.UI.WebControls;
 
     /// <summary>
     /// This class extends the framework version in order for developers to add on any specific methods/behavior.
     /// </summary>
-    public class ModuleBase : Framework.ModuleBase, IActionable
+    public class ModuleBase : Framework.ModuleBase
     {
         /// <summary>
         /// Gets the name of the this module's desktop module record in DNN.
@@ -37,21 +32,6 @@ namespace Engage.Dnn.Booking
         public override string DesktopModuleName
         {
             get { return Utility.DesktopModuleName; }
-        }
-
-        /// <summary>
-        /// Gets the module actions.
-        /// </summary>
-        /// <value>The module actions.</value>
-        public ModuleActionCollection ModuleActions
-        {
-            get
-            {
-                ModuleActionCollection actions = new ModuleActionCollection();
-                actions.Add(this.GetNextActionID(), Localization.GetString("ExportData.Text", this.LocalSharedResourceFile), ModuleActionType.ExportModule, string.Empty, string.Empty, EditUrl("ExportData"), false, SecurityAccessLevel.Edit, true, false);
-
-                return actions;
-            }
         }
 
         /// <summary>

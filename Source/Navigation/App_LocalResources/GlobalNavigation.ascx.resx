@@ -120,6 +120,9 @@
   <data name="Add Appointment.Text" xml:space="preserve">
     <value>Add Appointment</value>
   </data>
+  <data name="Export.Text" xml:space="preserve">
+    <value>Export Data</value>
+  </data>
   <data name="Home.Text" xml:space="preserve">
     <value>Home</value>
   </data>
