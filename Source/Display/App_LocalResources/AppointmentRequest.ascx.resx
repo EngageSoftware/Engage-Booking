@@ -399,4 +399,13 @@
   <data name="TitleRequiredValidator.Text" xml:space="preserve">
     <value>Title is required</value>
   </data>
+  <data name="NumberOfSpecialParticipantsFormatValidator.Text" xml:space="preserve">
+    <value>The number of deaf participants must be a whole number</value>
+  </data>
+  <data name="TotalNumberOfParticipantsCompareValidator.Text" xml:space="preserve">
+    <value>The total number of participants must be at least as many as the number of deaf participants</value>
+  </data>
+  <data name="TotalNumberOfParticipantsFormatValidator.Text" xml:space="preserve">
+    <value>The total number of participants must be a whole number</value>
+  </data>
 </root>
