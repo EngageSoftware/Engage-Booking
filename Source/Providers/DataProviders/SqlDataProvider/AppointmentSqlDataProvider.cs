@@ -263,7 +263,7 @@ namespace Engage.Dnn.Booking
             SqlDataProvider.Instance.ExecuteNonQuery(
                 "QueueEmail",
                 Engage.Utility.CreateIntegerParam("@portalId", portalId),
-                Engage.Utility.CreateVarcharParam("@emailAddressList", toList),
+                Engage.Utility.CreateVarcharParam("@recipientList", toList),
                 Engage.Utility.CreateVarcharParam("@subject", subject),
                 Engage.Utility.CreateVarcharParam("@body", body));
         }
