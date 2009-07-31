@@ -56,6 +56,11 @@ namespace Engage.Dnn.Booking
             this.TitleLabel.Text = this.currentAppointment.Title;
             this.StartsLabel.Text = this.currentAppointment.StartDateTime.ToString("g", CultureInfo.CurrentCulture);
             this.EndsLabel.Text = this.currentAppointment.EndDateTime.ToString("g", CultureInfo.CurrentCulture);
+
+            this.DetailsLink.NavigateUrl = this.BuildLinkUrl(
+                    this.ModuleId,
+                    ControlKey.AppointmentDetails,
+                    "appointmentId=" + this.currentAppointment.AppointmentId.ToString(CultureInfo.InvariantCulture));
         }
     }
 }

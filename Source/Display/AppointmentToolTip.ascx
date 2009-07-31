@@ -4,4 +4,5 @@
     <asp:Label ID="TitleLabel" runat="server" CssClass="title" />
     <asp:Label runat="server" CssClass="label" ResourceKey="Starts" /><asp:Label ID="StartsLabel" runat="server" CssClass="value" />
     <asp:Label runat="server" CssClass="label" ResourceKey="Ends" /><asp:Label ID="EndsLabel" runat="server" CssClass="value" />
+    <asp:HyperLink ID="DetailsLink" runat="server" ResourceKey="Details" />
 </div>

@@ -42,12 +42,13 @@ namespace Engage.Dnn.Booking
         /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
         protected override void OnInit(EventArgs e)
         {
-            base.OnInit(e);
-
+            this.SetupAdminView();
             this.Load += this.Page_Load;
             this.AppointmentsCalendar.AppointmentCreated += this.AppointmentsCalendar_AppointmentCreated;
             this.AppointmentsCalendar.AppointmentDataBound += this.AppointmentsCalendar_AppointmentDataBound;
             this.AppointmentToolTipManager.AjaxUpdate += this.AppointmentToolTipManager_AjaxUpdate;
+
+            base.OnInit(e);
         }
 
         /// <summary>
@@ -76,7 +77,6 @@ namespace Engage.Dnn.Booking
             {
                 this.AddJQueryReference();
                 this.LocalizeCalendar();
-                this.SetupAdminView();
                 if (!this.IsPostBack)
                 {
                     this.AppointmentsCalendar.SelectedView = this.IsEditable ? SchedulerViewType.DayView : SchedulerViewType.MonthView;

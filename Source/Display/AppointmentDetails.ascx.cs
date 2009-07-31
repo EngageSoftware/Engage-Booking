@@ -79,8 +79,8 @@ namespace Engage.Dnn.Booking
             this.RequestorAltPhoneTypeLabel.Text = Localization.GetString(appointment.RequestorAltPhoneType.ToString(), Utility.LocalSharedResourceFile);
             this.RequestorAltPhoneLabel.Text = appointment.RequestorAltPhone; 
             this.RequestorEmailLabel.Text = appointment.RequestorEmail;
-            this.StartDateTimeLabel.Text = appointment.StartDateTime.ToString(CultureInfo.CurrentCulture);
-            this.EndDateTimeLabel.Text = appointment.EndDateTime.ToString(CultureInfo.CurrentCulture);
+            this.StartDateTimeLabel.Text = appointment.StartDateTime.ToString("g", CultureInfo.CurrentCulture);
+            this.EndDateTimeLabel.Text = appointment.EndDateTime.ToString("g", CultureInfo.CurrentCulture);
             this.NumberOfSpecialParticipantsLabel.Text = appointment.NumberOfSpecialParticipants.ToString(CultureInfo.CurrentCulture);
             this.TotalNumberParticipantsLabel.Text = appointment.NumberOfParticipants.ToString(CultureInfo.CurrentCulture);
             this.GenderLabel.Text = Localization.GetString(appointment.ParticipantGender.ToString(), Utility.LocalSharedResourceFile);
