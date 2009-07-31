@@ -17,6 +17,7 @@ namespace Engage.Dnn.Booking
     using System.Diagnostics;
     using System.Xml.Serialization;
     using Data;
+    using DotNetNuke.Common;
     using DotNetNuke.Common.Lists;
     using DotNetNuke.Common.Utilities;
 
@@ -648,6 +649,15 @@ namespace Engage.Dnn.Booking
             set;
         }
 
+        [XmlElement(Order = 40)]
+        public string FullAddress
+        {
+            get
+            {
+                return Globals.FormatAddress(this.Title, this.Address1 + ", " + this.Address2, this.City, this.RegionName, null, this.PostalCode);
+            }
+        }
+
         /// <summary>
         /// Gets the key to use to auto-approve this instance through email.
         /// </summary>
@@ -1000,7 +1010,7 @@ namespace Engage.Dnn.Booking
         /// <returns>An iCal representation of this appointment</returns>
         public string ToICal()
         {
-            return ICalUtil.Export(this.Title, "Location", this, this.TimeZoneOffset);
+            return ICalUtil.Export(this.Description, this.FullAddress, this, this.TimeZoneOffset);
         }
 
         /// <summary>

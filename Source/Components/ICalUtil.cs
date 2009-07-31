@@ -68,6 +68,9 @@ namespace Engage.Dnn.Booking
         /// <exception cref="InvalidOperationException">Invalid recurrence rule.</exception>
         private static void WriteTask(string description, string location, StringBuilder output, Appointment app, TimeSpan timeZoneOffset)
         {
+            output.AppendLine("BEGIN:VEVENT");
+            output.AppendLine("DESCRIPTION:" + description.Replace("\n", "\\n").Replace("\r", "\\r"));
+            output.AppendLine("LOCATION:" + location);
             output.AppendFormat("DTSTART:{0}\r\n", FormatDate(ClientToUtc(app.StartDateTime, timeZoneOffset)));
             output.AppendFormat("DTEND:{0}\r\n", FormatDate(ClientToUtc(app.EndDateTime, timeZoneOffset)));
 
