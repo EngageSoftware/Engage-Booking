@@ -62,6 +62,7 @@ namespace Engage.Dnn.Booking
         /// <param name="requestorAltPhone">The requestor alt phone.</param>
         /// <param name="start">The start of the appointment.</param>
         /// <param name="end">The end of the appointment.</param>
+        /// <param name="timeZoneOffset">The time zone offset.</param>
         /// <param name="numberOfParticipants">The number of participants.</param>
         /// <param name="participantGender">The participant gender.</param>
         /// <param name="isPresenterSpecial">The participant flag.</param>
@@ -102,7 +103,7 @@ namespace Engage.Dnn.Booking
                 string requestorAltPhone,
                 DateTime start,
                 DateTime end,
-                ////TimeSpan timeZoneOffset,
+                TimeSpan timeZoneOffset,
                 int numberOfParticipants,
                 GroupGender participantGender,
                 bool isPresenterSpecial,
@@ -125,7 +126,6 @@ namespace Engage.Dnn.Booking
             this.AppointmentTypeId = appointmentTypeId;
             this.Title = title;
             this.Description = description;
-            ////this.TimeZoneOffset = timeZoneOffset;
             this.Notes = notes;
             this.Address1 = address1;
             this.Address2 = address2;
@@ -147,6 +147,7 @@ namespace Engage.Dnn.Booking
             this.NumberOfParticipants = numberOfParticipants;
             this.ParticipantGender = participantGender;
             this.IsPresenterSpecial = isPresenterSpecial;
+            this.TimeZoneOffset = timeZoneOffset;
             this.ParticipantInstructions = participantInstructions;
             this.NumberOfSpecialParticipants = numberOfSpecialParticipants;
             this.Custom1 = custom1;
@@ -640,12 +641,12 @@ namespace Engage.Dnn.Booking
             set;
         }
 
-        ////[XmlElement(Order = 39)]
-        ////public TimeSpan TimeZoneOffset
-        ////{
-        ////    get;
-        ////    set;
-        ////}
+        [XmlElement(Order = 39)]
+        public TimeSpan TimeZoneOffset
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Gets the key to use to auto-approve this instance through email.
@@ -726,6 +727,7 @@ namespace Engage.Dnn.Booking
         /// <param name="requestorAltPhone">The requestor alt phone.</param>
         /// <param name="start">The start of the appointment.</param>
         /// <param name="end">The end of the appointment.</param>
+        /// <param name="timeZoneOffset">The time zone offset.</param>
         /// <param name="numberOfParticipants">The number of participants.</param>
         /// <param name="participantGender">The participant gender.</param>
         /// <param name="isPresenterSpecial">The participant flag.</param>
@@ -769,7 +771,7 @@ namespace Engage.Dnn.Booking
                 string requestorAltPhone,
                 DateTime start,
                 DateTime end,
-                ////TimeSpan timeZoneOffset,
+                TimeSpan timeZoneOffset,
                 int numberOfParticipants,
                 GroupGender participantGender,
                 bool isPresenterSpecial,
@@ -810,7 +812,7 @@ namespace Engage.Dnn.Booking
                     requestorAltPhone,
                     start,
                     end,
-                    ////timeZoneOffset,
+                    timeZoneOffset,
                     numberOfParticipants,
                     participantGender,
                     isPresenterSpecial,
@@ -948,6 +950,7 @@ namespace Engage.Dnn.Booking
                                RequestorAltPhone = appointmentRecord["RequestorAltPhone"].ToString(),
                                StartDateTime = (DateTime)appointmentRecord["StartDateTime"],
                                EndDateTime = (DateTime)appointmentRecord["EndDateTime"],
+                               TimeZoneOffset = (TimeSpan)appointmentRecord["TimeZoneOffset"],
                                NumberOfParticipants = (int)appointmentRecord["NumberOfParticipants"],
                                NumberOfSpecialParticipants = (int)appointmentRecord["NumberOfSpecialParticipants"],
                                ParticipantInstructions = appointmentRecord["ParticipantInstructions"].ToString(),
@@ -989,6 +992,15 @@ namespace Engage.Dnn.Booking
                     throw new DBException("Result set was expected", "InsertAppointment");
                 }
             }
+        }
+
+        /// <summary>
+        /// Creates an iCal representation of this appointment.
+        /// </summary>
+        /// <returns>An iCal representation of this appointment</returns>
+        public string ToICal()
+        {
+            return ICalUtil.Export(this.Title, "Location", this, this.TimeZoneOffset);
         }
 
         /// <summary>

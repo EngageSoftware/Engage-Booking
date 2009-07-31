@@ -113,15 +113,15 @@
                     <asp:CompareValidator runat="server" Display="None" EnableClientScript="false" ControlToCompare="StartDateTimePicker" ControlToValidate="EndDateTimePicker" ResourceKey="EndDateCompareValidator" Operator="GreaterThan" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="EndDateTimePicker" ResourceKey="EndDateTimePickerRequired" Display="None" EnableClientScript="false" />
                 </li>
-                <%--<li class="AEEventTimeZone">
-                    <asp:Label runat="server" ResourceKey="EventTimeZoneLabel" CssClass="NormalBold" AssociatedControlID="TimeZoneDropDownList" />
+                <li class="timezone">
+                    <asp:Label runat="server" ResourceKey="EventTimeZoneLabel" CssClass="timezone-label" AssociatedControlID="TimeZoneDropDownList" />
                     <div class="timezone_display">
-                        <asp:DropDownList runat="server" ID="TimeZoneDropDownList" CssClass="time-zone-dropdown full" />
+                        <asp:DropDownList runat="server" ID="TimeZoneDropDownList" CssClass="timezone-dropdown full" />
                         <div class="Normal">
-                            <asp:CheckBox runat="server" ID="InDaylightTimeCheckBox" ResourceKey="EventTimeZoneCheckBox" />
+                            <asp:CheckBox runat="server" ID="InDaylightTimeCheckBox" CssClass="timezone-checkbox" ResourceKey="EventTimeZoneCheckBox" />
                         </div>
                     </div>
-                </li>--%>
+                </li>
             </ol>
         </fieldset>
         <fieldset>

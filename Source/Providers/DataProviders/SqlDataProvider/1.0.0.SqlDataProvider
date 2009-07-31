@@ -41,6 +41,7 @@ CREATE TABLE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 	RequestorAltPhone nvarchar(13) NULL,
 	StartDateTime datetime NOT NULL,
 	EndDateTime datetime NOT NULL,
+	TimeZoneOffset int NOT NULL DEFAULT 0,
 	NumberOfParticipants int NOT NULL DEFAULT 0,
 	ParticipantGender nvarchar(25) NULL,
 	ParticipantFlag nchar(1) NOT NULL,
@@ -182,9 +183,9 @@ BEGIN
 	
 SELECT AppointmentId, AppointmentTypeId, ModuleId, Title, Description, Notes,
 	   Address1, Address2, City, RegionId, PostalCode, Phone, 
-	   AdditionalAddressInfo, ContactStreet, ContactPhone, RequestorName,
+	   AdditionalAddressInfo, ContactStreet, ContactPhone, RequestorName, 
 	   RequestorPhoneType, RequestorPhone, RequestorEmail, RequestorAltPhoneType,
-	   RequestorAltPhone, StartDateTime, EndDateTime, 
+	   RequestorAltPhone, StartDateTime, EndDateTime, TimeZoneOffset,  
 	   NumberOfParticipants, NumberOfSpecialParticipants, ParticipantInstructions,
 	   ParticipantGender, ParticipantFlag, IsAccepted, AcceptKey, DeclineKey, 
        [Custom1], Custom2, Custom3, Custom4, Custom5, Custom6, Custom7, Custom8, 
@@ -237,6 +238,7 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spInsertAppointm
    ,@requestorAltPhone nvarchar(13)
    ,@startDateTime datetime
    ,@endDateTime datetime
+   ,@timeZoneOffset int
    ,@numberOfParticipants int
    ,@participantGender nvarchar(25)
    ,@participantFlag nchar(1)
@@ -281,6 +283,7 @@ INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
            ,[RequestorAltPhone]
            ,[StartDateTime]
            ,[EndDateTime]
+           ,[TimeZoneOffset]
            ,[NumberOfParticipants]
            ,[ParticipantGender]
            ,[ParticipantFlag]
@@ -323,6 +326,7 @@ INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
            ,@requestorAltPhone
            ,@startDateTime
            ,@endDateTime
+           ,@timeZoneOffset
            ,@numberOfParticipants
            ,@participantGender
            ,@participantFlag
@@ -376,6 +380,7 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spUpdateAppointm
    ,@requestorAltPhone nvarchar(13)
    ,@startDateTime datetime
    ,@endDateTime datetime
+   ,@timeZoneOffset int
    ,@numberOfParticipants int
    ,@participantGender nvarchar(25)
    ,@participantFlag nchar(1)
@@ -419,6 +424,7 @@ SET [AppointmentTypeId] = @appointmentTypeId
    ,[RequestorAltPhone] = @requestorAltPhone
    ,[StartDateTime] = @startDateTime
    ,[EndDateTime] = @endDateTime
+   ,[TimeZoneOffset] = @timeZoneOffset
    ,[NumberOfParticipants] = @numberOfParticipants
    ,[ParticipantGender] = @participantGender
    ,[ParticipantFlag] = @participantFlag
@@ -456,7 +462,7 @@ SELECT AppointmentId, AppointmentTypeId, ModuleId, Title, Description, Notes,
 	   Address1, Address2, City, RegionId, PostalCode, Phone, 
 	   AdditionalAddressInfo, ContactStreet, ContactPhone, RequestorName,
 	   RequestorPhoneType, RequestorPhone, RequestorEmail, RequestorAltPhoneType,
-	   RequestorAltPhone, StartDateTime, EndDateTime, 
+	   RequestorAltPhone, StartDateTime, EndDateTime, TimeZoneOffset,
 	   NumberOfParticipants, NumberOfSpecialParticipants, ParticipantInstructions,
 	   ParticipantGender, ParticipantFlag, IsAccepted, AcceptKey, DeclineKey, 
        Custom1, Custom2, Custom3, Custom4, Custom5, Custom6, Custom7, Custom8, 

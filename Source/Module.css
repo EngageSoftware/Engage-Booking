@@ -116,9 +116,9 @@
 			
 /*----- Date of Assignment -----*/	
 	.date-assignment-form{background:#fafafa;padding:15px;}
-		.start, .at-time, .end{width:100%;overflow:hidden;padding:6px 0;clear:both;}
-			.start-label, .at-time-label, .end-label{float:left;width:20%;}
-			.start-box, .at-time-box, .end-box{float:left;margin:0 2%}
+		.start, .at-time, .end, .timezone{width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.start-label, .at-time-label, .end-label, .timezone-label{float:left;width:20%;}
+			.start-box, .at-time-box, .end-box, .timezone-dropdown, .timezone-checkbox{float:left;margin:0 2%}
 		.timezone_display{float:left; width:70%;}
 			
 /*----- Participants  -----*/	
