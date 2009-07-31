@@ -260,11 +260,11 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Gets the Region.
+        /// Gets the name of the region in which this appointment is to take place.
         /// </summary>
         /// <value>The name of the region in which this appointment takes place.</value>
         [XmlIgnore]
-        public string Region
+        public string RegionName
         {
             [DebuggerStepThrough]
             get
@@ -950,6 +950,7 @@ namespace Engage.Dnn.Booking
                                EndDateTime = (DateTime)appointmentRecord["EndDateTime"],
                                NumberOfParticipants = (int)appointmentRecord["NumberOfParticipants"],
                                NumberOfSpecialParticipants = (int)appointmentRecord["NumberOfSpecialParticipants"],
+                               ParticipantInstructions = appointmentRecord["ParticipantInstructions"].ToString(),
                                Custom1 = appointmentRecord["Custom1"].ToString(),
                                Custom2 = appointmentRecord["Custom2"].ToString(),
                                Custom3 = appointmentRecord["Custom3"].ToString(),

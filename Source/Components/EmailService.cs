@@ -151,7 +151,7 @@ namespace Engage.Dnn.Booking
                     appointment.Address1,
                     appointment.Address2,
                     appointment.City,
-                    appointment.Region,
+                    appointment.RegionName,
                     appointment.ContactStreet,
                     appointment.ContactPhone,
                     appointment.RequestorName,

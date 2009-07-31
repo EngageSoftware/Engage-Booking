@@ -110,7 +110,7 @@
                 </li>
                 <li class="instructions">
                     <asp:Label CssClass="instructions-label" runat="server" ResourceKey="InstructionsLabel" AssociatedControlId="InstructionsLabel" />
-                    <asp:Label ID="InstructionsLabel" CssClass="instructions-box full" runat="server" TextMode="MultiLine" Rows="4" Columns="40" />
+                    <asp:Label ID="InstructionsLabel" CssClass="instructions-box full" runat="server"/>
                 </li>
             </ol>
         </fieldset>
