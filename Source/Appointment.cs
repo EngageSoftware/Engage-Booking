@@ -950,7 +950,7 @@ namespace Engage.Dnn.Booking
                                RequestorAltPhone = appointmentRecord["RequestorAltPhone"].ToString(),
                                StartDateTime = (DateTime)appointmentRecord["StartDateTime"],
                                EndDateTime = (DateTime)appointmentRecord["EndDateTime"],
-                               TimeZoneOffset = (TimeSpan)appointmentRecord["TimeZoneOffset"],
+                               TimeZoneOffset = new TimeSpan(0, (int)appointmentRecord["TimeZoneOffset"], 0),
                                NumberOfParticipants = (int)appointmentRecord["NumberOfParticipants"],
                                NumberOfSpecialParticipants = (int)appointmentRecord["NumberOfSpecialParticipants"],
                                ParticipantInstructions = appointmentRecord["ParticipantInstructions"].ToString(),
