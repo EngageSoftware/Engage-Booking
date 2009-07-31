@@ -3,18 +3,40 @@
 <%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.Approval" CodeBehind="Approval.ascx.cs" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 <%@ Register TagPrefix="engage" TagName="ModuleMessage" Src="../Controls/ModuleMessage.ascx" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
 <div class="approval">
     <engage:ModuleMessage ID="ConflictingAppointmentsMessage" runat="server" MessageType="Error" Visible="false" />
     <engage:ModuleMessage ID="ApprovalMessage" runat="server" MessageType="Success" Visible="false" />
     <asp:MultiView ID="ApprovalMultiview" runat="server" ActiveViewIndex="0">
         <asp:View ID="ApprovalsListView" runat="server">
+            <script type="text/javascript">
+                var pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
+                pageRequestManager.add_beginRequest(function(sender, args) {
+                    var prm = Sys.WebForms.PageRequestManager.getInstance();
+                    if (args.get_postBackElement().id.indexOf('Approval') != -1) {
+                        hideActiveToolTip();
+                    }
+                });
+
+                function hideActiveToolTip() {
+                    if (Telerik.Web.UI.ReadToolTipController) {
+                        var controller = Telerik.Web.UI.RadToolTipController.getInstance();
+                        if (controller) {
+                            var tooltip = controller.get_activeToolTip();
+                            if (tooltip) {
+                                tooltip.hide();
+                            }
+                        }
+                    }
+                }
+            </script>
         	<div class="bulk-selection">
                 <asp:LinkButton ID="AcceptAppointmentsButton" runat="server" CssClass="approval-accept-link" ResourceKey="Accept Selected Items" />
                 <asp:LinkButton ID="DeclineAppointmentsButton" runat="server" CssClass="approval-decline-link" ResourceKey="Decline Selected Items" />
             </div>
             <asp:GridView ID="AppointmentsGrid" runat="server" GridLines="None" AutoGenerateColumns="false"
-                CssClass="approval-grid" AlternatingRowStyle-CssClass="alternate" SelectedRowStyle-CssClass="selected">
+                CssClass="approval-grid" AlternatingRowStyle-CssClass="alternate">
                 <EmptyDataTemplate>
                     <div class="approval-empty"><%=Localize("All Approved.Text") %></div>
                 </EmptyDataTemplate>
@@ -48,6 +70,8 @@
                 </Columns>
             </asp:GridView>
             <dnn:PagingControl ID="PagingControl" runat="server" CssClass="approval-paging"/>
+            <telerik:radtooltipmanager runat="server" id="PendingAppointmentToolTipManager" width="300" height="150"
+                animation="None" position="BottomRight" HideEvent="LeaveTooltip" text="Loading..." AutoTooltipify="false" />
         </asp:View>
         <asp:View ID="ProvideDeclineReasonView" runat="server">
             <asp:Repeater ID="DeclineReasonRepeater" runat="server">

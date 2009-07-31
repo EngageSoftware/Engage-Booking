@@ -19,6 +19,7 @@ namespace Engage.Dnn.Booking
     using System.Web.UI.WebControls;
     using DotNetNuke.Services.Exceptions;
     using DotNetNuke.Services.Localization;
+    using Telerik.Web.UI;
 
     /// <summary>
     /// Displays a list of the <see cref="Appointment"/>s waiting to be approved
@@ -34,9 +35,11 @@ namespace Engage.Dnn.Booking
             base.OnInit(e);
             this.Load += this.Page_Load;
             this.AppointmentsGrid.RowCommand += this.AppointmentsGrid_RowCommand;
+            this.AppointmentsGrid.RowDataBound += this.AppointmentsGrid_RowDataBound;
             this.AcceptAppointmentsButton.Click += this.AcceptAppointmentsButton_Click;
             this.DeclineAppointmentsButton.Click += this.DeclineAppointmentsButton_Click;
             this.DeclineReasonRepeater.ItemDataBound += this.DeclineReasonRepeater_ItemDataBound;
+            this.PendingAppointmentToolTipManager.AjaxUpdate += this.PendingAppointmentToolTipManager_AjaxUpdate;
         }
 
         /// <summary>
@@ -130,6 +133,44 @@ namespace Engage.Dnn.Booking
             }
 
             this.BindData(true);
+        }
+
+        /// <summary>
+        /// Handles the <see cref="GridView.RowDataBound"/> event of the <see cref="AppointmentsGrid"/> control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="Telerik.Web.UI.SchedulerEventArgs"/> instance containing the event data.</param>
+        private void AppointmentsGrid_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                var selectLink = (HyperLink)e.Row.FindControl("SelectLink");
+                var appointmentIdHiddenField = (HiddenField)e.Row.FindControl("AppointmentIdHiddenField");
+
+                if (!this.IsControlRegisteredForTooltip(selectLink.ClientID))
+                {
+                    this.PendingAppointmentToolTipManager.TargetControls.Add(selectLink.ClientID, appointmentIdHiddenField.Value, true);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Handles the <see cref="RadToolTipManager.AjaxUpdate"/> event of the <see cref="PendingAppointmentToolTipManager"/> control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="Telerik.Web.UI.ToolTipUpdateEventArgs"/> instance containing the event data.</param>
+        private void PendingAppointmentToolTipManager_AjaxUpdate(object sender, ToolTipUpdateEventArgs e)
+        {
+            int appointmentId;
+            if (int.TryParse(e.Value.Split('_')[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out appointmentId))
+            {
+                Appointment appointment = Appointment.Load(appointmentId);
+                AppointmentToolTip toolTip = (AppointmentToolTip)this.LoadControl("AppointmentToolTip.ascx");
+
+                toolTip.ModuleConfiguration = this.ModuleConfiguration;
+                toolTip.SetAppointment(appointment);
+                e.UpdatePanel.ContentTemplateContainer.Controls.Add(toolTip);
+            }
         }
 
         /// <summary>
@@ -252,6 +293,9 @@ namespace Engage.Dnn.Booking
 
             if (!this.IsPostBack || rebindInPostback)
             {
+                this.PendingAppointmentToolTipManager.TargetControls.Clear();
+                ScriptManager.RegisterStartupScript(this, typeof(AppointmentCalendar), "HideToolTip", "hideActiveToolTip();", true);
+
                 this.AppointmentsGrid.DataSource = appointments;
                 this.AppointmentsGrid.DataBind();
             }
@@ -280,6 +324,26 @@ namespace Engage.Dnn.Booking
             }
 
             return selectedAppointmentIds;
+        }
+
+        /// <summary>
+        /// Determines whether the specified control is registered with the tooltip manager.
+        /// </summary>
+        /// <param name="clientId">The client ID of the control</param>
+        /// <returns>
+        /// <c>true</c> if the specified control is registered with the tooltip manager; otherwise, <c>false</c>.
+        /// </returns>
+        private bool IsControlRegisteredForTooltip(string clientId)
+        {
+            foreach (ToolTipTargetControl targetControl in this.PendingAppointmentToolTipManager.TargetControls)
+            {
+                if (targetControl.TargetControlID == clientId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
