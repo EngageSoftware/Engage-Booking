@@ -32,7 +32,7 @@ namespace Engage.Dnn.Booking
         /// <param name="appointment">The appointment which was approved.</param>
         public static void SendAcceptanceEmail(Appointment appointment)
         {
-            SendEmail(
+            QueueEmail(
                     appointment.RequestorEmail,
                     GetLocalizedFormattedText("AcceptanceSubject.Format", appointment),
                     GetLocalizedFormattedText("AcceptanceBody.Format", appointment));
@@ -48,7 +48,7 @@ namespace Engage.Dnn.Booking
             string body = string.IsNullOrEmpty(declineReason) || string.IsNullOrEmpty(declineReason.Trim())
                                   ? GetLocalizedFormattedText("DeclineBody.Format", appointment)
                                   : GetLocalizedFormattedText("DeclineBodyWithReason.Format", appointment, declineReason);
-            SendEmail(
+            QueueEmail(
                 appointment.RequestorEmail, 
                 GetLocalizedFormattedText("DeclineSubject.Format", appointment), 
                 body);
@@ -65,19 +65,19 @@ namespace Engage.Dnn.Booking
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "login", Justification = "No Thanks")]
         public static void SendNewRequestEmail(Appointment appointment, string toEmailAddresses, string approvalUrl, string declineUrl, string loginUrl)
         {
-            SendEmail(
+            QueueEmail(
                 toEmailAddresses,
                 GetLocalizedFormattedText("NewRequestSubject.Format", appointment),
                 GetLocalizedFormattedText("NewRequestBody.Format", appointment, approvalUrl, declineUrl, loginUrl));
         }
 
         /// <summary>
-        /// Sends an email to the given email address with the given <paramref name="subject"/> and HTML <paramref name="body"/>.
+        /// Queues an email to be sent later to the given email address with the given <paramref name="subject"/> and HTML <paramref name="body"/>.
         /// </summary>
         /// <param name="toList">The comma-or-semicolon-delimited list of email address(es) to which the email should be sent.</param>
         /// <param name="subject">The subject.</param>
         /// <param name="body">The HTML body.</param>
-        private static void SendEmail(string toList, string subject, string body)
+        private static void QueueEmail(string toList, string subject, string body)
         {
             AppointmentSqlDataProvider.QueueEmail(PortalController.GetCurrentPortalSettings().PortalId, toList, subject, body);
         }

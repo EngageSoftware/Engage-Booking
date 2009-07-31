@@ -70,9 +70,9 @@ IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]', N'U'
 BEGIN
 CREATE TABLE {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
 	(
-	QueueID int NOT NULL IDENTITY(1,1)
+	QueueId int NOT NULL IDENTITY(1,1)
 		CONSTRAINT {objectQualifier}PK_EngageBooking_EmailQueue PRIMARY KEY,
-	PortalID int NOT NULL,
+	PortalId int NOT NULL,
 	RecipientList ntext NOT NULL,
 	Subject nvarchar(998) NOT NULL,
 	Body ntext NOT NULL,
@@ -658,7 +658,7 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spClearQueuedEma
 )
 AS
 	DELETE FROM {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
-	WHERE QueueID = @queueId
+	WHERE QueueId = @queueId
 GO
 
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetQueuedEmails]', N'P') IS NOT NULL
@@ -666,7 +666,8 @@ IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetQueuedEmails]
 GO
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetQueuedEmails]
 AS
-	SELECT PortalId, RecipientList, Subject, Body FROM {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
+	SELECT QueueId, PortalId, RecipientList, Subject, Body 
+	FROM {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
 GO
 
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentType]', N'P') IS NOT NULL
