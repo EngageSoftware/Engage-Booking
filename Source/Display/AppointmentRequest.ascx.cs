@@ -199,7 +199,7 @@ namespace Engage.Dnn.Booking
             
             int? regionId;
             int selectedRegionId;
-            if (int.TryParse(this.RegionDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out selectedRegionId)){
+            if (int.TryParse(this.RegionDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out selectedRegionId))
             {
                 regionId = selectedRegionId;
             }
