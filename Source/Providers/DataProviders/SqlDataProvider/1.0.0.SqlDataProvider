@@ -77,6 +77,7 @@ CREATE TABLE {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
 	RecipientList ntext NOT NULL,
 	Subject nvarchar(998) NOT NULL,
 	Body ntext NOT NULL,
+	Attachment ntext NULL,
 	CreationDate datetime NOT NULL DEFAULT GETDATE()
 	)
 END
@@ -648,11 +649,12 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spQueueEmail]
    @portalId int,
    @recipientList ntext,
    @subject	nvarchar(998),
-   @body ntext
+   @body ntext,
+   @attachment ntext
 )  
 AS  
-	INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue] (PortalId, RecipientList, Subject, Body)
-	VALUES (@portalId, @recipientList, @subject, @body)
+	INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue] (PortalId, RecipientList, Subject, Body, Attachment)
+	VALUES (@portalId, @recipientList, @subject, @body, @attachment)
 GO
 
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spClearQueuedEmail]', N'P') IS NOT NULL
@@ -672,7 +674,7 @@ IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetQueuedEmails]
 GO
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetQueuedEmails]
 AS
-	SELECT QueueId, PortalId, RecipientList, Subject, Body 
+	SELECT QueueId, PortalId, RecipientList, Subject, Body, Attachment 
 	FROM {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
 GO
 

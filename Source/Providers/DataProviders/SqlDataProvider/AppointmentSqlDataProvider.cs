@@ -271,14 +271,16 @@ namespace Engage.Dnn.Booking
         /// <param name="toList">The comma-or-semicolon-delimited list of email address(es) to which the email should be sent.</param>
         /// <param name="subject">The subject.</param>
         /// <param name="body">The HTML body.</param>
-        public static void QueueEmail(int portalId, string toList, string subject, string body)
+        /// <param name="attachment">The attachment.</param>
+        public static void QueueEmail(int portalId, string toList, string subject, string body, string attachment)
         {
             SqlDataProvider.Instance.ExecuteNonQuery(
                 "QueueEmail",
                 Engage.Utility.CreateIntegerParam("@portalId", portalId),
                 Engage.Utility.CreateVarcharParam("@recipientList", toList),
                 Engage.Utility.CreateVarcharParam("@subject", subject),
-                Engage.Utility.CreateVarcharParam("@body", body));
+                Engage.Utility.CreateVarcharParam("@body", body),
+                Engage.Utility.CreateVarcharParam("@attachment", attachment));
         }
 
         /// <summary>

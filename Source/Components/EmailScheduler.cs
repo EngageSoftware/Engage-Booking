@@ -14,6 +14,7 @@ namespace Engage.Dnn.Booking
     using System;
     using System.Data;
     using System.Globalization;
+    using System.IO;
     using System.Net;
     using System.Net.Mail;
     using System.Text;
@@ -144,7 +145,9 @@ namespace Engage.Dnn.Booking
                 {
                     if (!string.IsNullOrEmpty(myAtt))
                     {
-                        objMail.Attachments.Add(new Attachment(myAtt));
+                        ////objMail.Attachments.Add(new Attachment(myAtt));
+                        Stream attachmentStream = new MemoryStream(UTF8Encoding.Default.GetBytes(myAtt));
+                        objMail.Attachments.Add(new Attachment(attachmentStream, "Appointment.ics"));
                     }
                 }
 
@@ -277,7 +280,7 @@ namespace Engage.Dnn.Booking
                             MailFormat.Html,
                             Encoding.UTF8,
                             queuedEmails["Body"].ToString(),
-                            new string[] { },
+                            new string[] { queuedEmails["Attachment"].ToString() },
                             string.Empty,
                             string.Empty,
                             string.Empty,

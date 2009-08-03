@@ -35,7 +35,8 @@ namespace Engage.Dnn.Booking
             QueueEmail(
                     appointment.RequestorEmail,
                     GetLocalizedFormattedText("AcceptanceSubject.Format", appointment),
-                    GetLocalizedFormattedText("AcceptanceBody.Format", appointment));
+                    GetLocalizedFormattedText("AcceptanceBody.Format", appointment),
+                    appointment.ToICal());
         }
 
         /// <summary>
@@ -51,7 +52,8 @@ namespace Engage.Dnn.Booking
             QueueEmail(
                 appointment.RequestorEmail, 
                 GetLocalizedFormattedText("DeclineSubject.Format", appointment), 
-                body);
+                body,
+                string.Empty);
         }
 
         /// <summary>
@@ -68,7 +70,8 @@ namespace Engage.Dnn.Booking
             QueueEmail(
                 toEmailAddresses,
                 GetLocalizedFormattedText("NewRequestSubject.Format", appointment),
-                GetLocalizedFormattedText("NewRequestBody.Format", appointment, approvalUrl, declineUrl, loginUrl));
+                GetLocalizedFormattedText("NewRequestBody.Format", appointment, approvalUrl, declineUrl, loginUrl),
+                appointment.ToICal());
         }
 
         /// <summary>
@@ -77,9 +80,10 @@ namespace Engage.Dnn.Booking
         /// <param name="toList">The comma-or-semicolon-delimited list of email address(es) to which the email should be sent.</param>
         /// <param name="subject">The subject.</param>
         /// <param name="body">The HTML body.</param>
-        private static void QueueEmail(string toList, string subject, string body)
+        /// <param name="attachment">The attachment.</param>
+        private static void QueueEmail(string toList, string subject, string body, string attachment)
         {
-            AppointmentSqlDataProvider.QueueEmail(PortalController.GetCurrentPortalSettings().PortalId, toList, subject, body);
+            AppointmentSqlDataProvider.QueueEmail(PortalController.GetCurrentPortalSettings().PortalId, toList, subject, body, attachment);
         }
 
         /// <summary>
