@@ -38,13 +38,13 @@
                 <li class="street">
                     <asp:Label CssClass="street-label" runat="server" ResourceKey="StreetLabel" AssociatedControlId="StreetTextBox" />
                     <asp:TextBox ID="StreetTextBox" CssClass="street-box long" runat="server" />
-                    <asp:TextBox ID="RoomTextBox" CssClass="room-box small inline-label inline-label-gray" runat="server" />
+                    <asp:TextBox ID="RoomTextBox" CssClass="room-box small inline-label default-inline-value" runat="server" />
                 </li>
                 <li class="city">
                     <asp:Label CssClass="city-label" runat="server" ResourceKey="CityLabel" AssociatedControlId="CityTextBox" />
                     <asp:TextBox ID="CityTextBox" CssClass="city-box long" runat="server" />
-                    <asp:DropDownList ID="RegionDropDownList" runat="server" CssClass="state-list short inline-label inline-label-gray"></asp:DropDownList>
-                    <asp:TextBox ID="PostalCodeTextBox" CssClass="zip-box small inline-label inline-label-gray" runat="server" />
+                    <asp:DropDownList ID="RegionDropDownList" runat="server" CssClass="state-list short inline-label default-inline-value"></asp:DropDownList>
+                    <asp:TextBox ID="PostalCodeTextBox" CssClass="zip-box small inline-label default-inline-value" runat="server" />
                 </li>
                 <li class="nearest">
                     <asp:Label CssClass="nearest-label" runat="server" ResourceKey="NearestLabel" AssociatedControlId="AdditionalAddressInfoTextBox" />
