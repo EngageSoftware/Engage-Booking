@@ -56,6 +56,7 @@
 		.small{width:10%;}
 		.required-label{float:left;color:#f00;font-weight:bold;padding-left:2px;}
 			.note .required-label{float:none;}
+		.default-inline-value {color:#999;}
 		.approval-request{width:720px;}
 		.approval-request h2.Head{font-size:20px;padding:0;margin-bottom:5px;}
 		.approval-request .NormalTextBox{font-size:12px;}
