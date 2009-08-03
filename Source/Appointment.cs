@@ -642,6 +642,10 @@ namespace Engage.Dnn.Booking
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the offset from UTC (in minutes) of the time zone in which the appointment takes place.
+        /// </summary>
+        /// <value>The offset from UTC (in minutes).</value>
         [XmlElement(Order = 39)]
         public TimeSpan TimeZoneOffset
         {
@@ -649,7 +653,11 @@ namespace Engage.Dnn.Booking
             set;
         }
 
-        [XmlElement(Order = 40)]
+        /// <summary>
+        /// Gets the full address.
+        /// </summary>
+        /// <value>The full address.</value>
+        [XmlIgnore]
         public string FullAddress
         {
             get
@@ -929,6 +937,15 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Creates an iCal representation of this appointment.
+        /// </summary>
+        /// <returns>An iCal representation of this appointment</returns>
+        public string ToICal()
+        {
+            return ICalUtil.Export(this.Description, this.FullAddress, this, this.TimeZoneOffset);
+        }
+
+        /// <summary>
         /// Fills an Appointment with the data in the specified <paramref name="appointmentRecord"/>.
         /// </summary>
         /// <param name="appointmentRecord">A pre-initialized data record that represents an <see cref="Appointment"/> instance.</param>
@@ -1002,15 +1019,6 @@ namespace Engage.Dnn.Booking
                     throw new DBException("Result set was expected", "InsertAppointment");
                 }
             }
-        }
-
-        /// <summary>
-        /// Creates an iCal representation of this appointment.
-        /// </summary>
-        /// <returns>An iCal representation of this appointment</returns>
-        public string ToICal()
-        {
-            return ICalUtil.Export(this.Description, this.FullAddress, this, this.TimeZoneOffset);
         }
 
         /// <summary>

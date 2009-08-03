@@ -1,6 +1,6 @@
 ﻿// <copyright file="ICalUtil.cs" company="Engage Software">
-// Engage.Events - http://www.engagemodules.com
-// Copyright (c) 2004-2008
+// Engage: Booking
+// Copyright (c) 2004-2009
 // by Engage Software ( http://www.engagesoftware.com )
 // </copyright>
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
@@ -14,7 +14,6 @@ namespace Engage.Dnn.Booking
     using System;
     using System.Globalization;
     using System.Text;
-    using Telerik.Web.UI;
 
     /// <summary>
     /// Utilities for creating iCalendar files
@@ -120,26 +119,6 @@ namespace Engage.Dnn.Booking
         private static string FormatDate(DateTime date)
         {
             return date.ToString(DateFormat, CultureInfo.InvariantCulture);
-        }
-
-        /// <summary>
-        /// Converts the recurrence rule from client time to UTC.
-        /// </summary>
-        /// <param name="rrule">The recurrence rule.</param>
-        /// <param name="offset">The time zone offset.</param>
-        private static void ConvertRecurrenceRuleToUtc(RecurrenceRule rrule, TimeSpan offset)
-        {
-            rrule.Range.Start = ClientToUtc(rrule.Range.Start, offset);
-
-            if (rrule.Range.RecursUntil < DateTime.MaxValue)
-            {
-                rrule.Range.RecursUntil = ClientToUtc(rrule.Range.RecursUntil, offset);
-            }
-
-            for (int i = 0; i < rrule.Exceptions.Count; i++)
-            {
-                rrule.Exceptions[i] = ClientToUtc(rrule.Exceptions[i], offset);
-            }
         }
     }
 }

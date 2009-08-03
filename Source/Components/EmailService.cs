@@ -11,15 +11,11 @@
 
 namespace Engage.Dnn.Booking
 {
-    using System;
     using System.Globalization;
-    using System.Text;
     using DotNetNuke.Common;
-    using DotNetNuke.Entities.Host;
     using DotNetNuke.Entities.Portals;
     using DotNetNuke.Entities.Users;
     using DotNetNuke.Services.Localization;
-    using DotNetNuke.Services.Mail;
 
     /// <summary>
     /// Helps sending emails
