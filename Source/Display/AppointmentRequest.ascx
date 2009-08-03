@@ -227,14 +227,14 @@
             }).focus(function() {
                 var $this = $(this);
                 if ($this.val() === $this.data('original-text')) {
-                    $this.val('')
-                    $this.removeClass('inline-label-gray');
+                    $this.val('');
+                    $this.removeClass('default-inline-value');
                 }
             }).blur(function() {
                 var $this = $(this);
                 if (!$this.val() || $this.val() === $this.data('original-text')) {
                     $this.val($this.data('original-text'));
-                    $this.addClass('inline-label-gray');
+                    $this.addClass('default-inline-value');
                 }
             });
         });

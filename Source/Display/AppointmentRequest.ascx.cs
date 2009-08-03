@@ -196,7 +196,18 @@ namespace Engage.Dnn.Booking
         private void Insert()
         {
             int appointmentTypeId = int.Parse(this.AppointmentTypeDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
-            int regionId = int.Parse(this.RegionDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+            
+            int? regionId;
+            int selectedRegionId;
+            if (int.TryParse(this.RegionDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out selectedRegionId)){
+            {
+                regionId = selectedRegionId;
+            }
+            else
+            {
+                regionId = null;
+            }
+
             int totalNumberOfParticipants; 
             if (!int.TryParse(this.TotalNumberParticipantsTextBox.Text, NumberStyles.Integer, CultureInfo.CurrentCulture, out totalNumberOfParticipants))
             {
@@ -214,6 +225,18 @@ namespace Engage.Dnn.Booking
             if (this.InDaylightTimeCheckBox.Checked)
             {
                 timeZoneOffset = timeZoneOffset.Add(new TimeSpan(1, 0, 0));
+            }
+
+            string roomText = string.Empty;
+            if (this.RoomTextBox.Text != Localization.GetString("RoomDefaultText.Text", this.LocalResourceFile))
+            {
+                roomText = this.RoomTextBox.Text;
+            }
+
+            string postalCodeText = string.Empty;
+            if (this.PostalCodeTextBox.Text != Localization.GetString("PostalCodeDefaultText.Text", this.LocalResourceFile))
+            {
+                postalCodeText = this.PostalCodeTextBox.Text;
             }
 
             Appointment appointment = Appointment.Create(
@@ -297,7 +320,7 @@ namespace Engage.Dnn.Booking
             this.RegionDropDownList.DataValueField = "EntryId";
             this.RegionDropDownList.DataSource = new ListController().GetListEntryInfoCollection("Region");
             this.RegionDropDownList.DataBind();
-            this.RegionDropDownList.Items.Insert(0, new ListItem(Localization.GetString("StateDefaultText.Text", this.LocalResourceFile), "-1"));
+            this.RegionDropDownList.Items.Insert(0, new ListItem(Localization.GetString("StateDefaultText.Text", this.LocalResourceFile), string.Empty));
 
             this.AppointmentTypeDropDownList.DataSource = AppointmentTypeCollection.Load();
             this.AppointmentTypeDropDownList.DataTextField = "Name";

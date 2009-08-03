@@ -53,7 +53,7 @@
                             tooltip = toolTipManager.createToolTip(this);
 
                             var timeSlot = $find(radSchedulerId).get_activeModel().getTimeSlotFromDomElement(this);
-                            tooltip.set_content("<a href='" + String.format(newAppointmentUrl, formatDateUrlParameter(timeSlot.get_startTime()), formatDateUrlParameter(timeSlot.get_endTime())) + "'><%=ClientAPI.GetSafeJSString(Localize("Request Appointment.Text")) %></a>");
+                            tooltip.set_content("<a class='new-request-tooltip' href='" + String.format(newAppointmentUrl, formatDateUrlParameter(timeSlot.get_startTime()), formatDateUrlParameter(timeSlot.get_endTime())) + "'><%=ClientAPI.GetSafeJSString(Localize("Request Appointment.Text")) %></a>");
                         }
 
                         tooltip.show();
