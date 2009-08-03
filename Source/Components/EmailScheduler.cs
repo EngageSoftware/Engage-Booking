@@ -58,7 +58,7 @@ namespace Engage.Dnn.Booking
         /// <param name="bodyFormat">The format of <paramref name="body"/>.</param>
         /// <param name="bodyEncoding">The encoding of <paramref name="body"/>.</param>
         /// <param name="body">The body of the email message.</param>
-        /// <param name="attachment">A list of the filename to attach to this email message.</param>
+        /// <param name="attachment">A list of the text to include with this email message as an attachment named "Appointment.ics".</param>
         /// <param name="smtpServer">The SMTP server to use to send the email, if not the server defined in the Host Settings of the website.</param>
         /// <param name="smtpAuthentication">The SMTP authentication type to use to send the email, if not the type defined in the Host Settings of the website.</param>
         /// <param name="smtpUserName">The SMTP username to use to send the email, if not the username defined in the Host Settings of the website.</param>
@@ -146,8 +146,10 @@ namespace Engage.Dnn.Booking
                     if (!string.IsNullOrEmpty(myAtt))
                     {
                         ////objMail.Attachments.Add(new Attachment(myAtt));
-                        Stream attachmentStream = new MemoryStream(UTF8Encoding.Default.GetBytes(myAtt));
-                        objMail.Attachments.Add(new Attachment(attachmentStream, "Appointment.ics"));
+                        using (var attachmentStream = new MemoryStream(Encoding.Default.GetBytes(myAtt)))
+                        {
+                            objMail.Attachments.Add(new Attachment(attachmentStream, "Appointment.ics"));
+                        }
                     }
                 }
 
