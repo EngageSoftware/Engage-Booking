@@ -135,7 +135,7 @@
                     <asp:Label CssClass="total-number-label" runat="server" ResourceKey="TotalNumberLabel" AssociatedControlId="TotalNumberParticipantsTextBox" />
                     <asp:TextBox ID="TotalNumberParticipantsTextBox" CssClass="total-number-box short" runat="server" />
                     <asp:CompareValidator runat="server" ControlToValidate="TotalNumberParticipantsTextBox" ResourceKey="TotalNumberOfParticipantsFormatValidator" Operator="DataTypeCheck" Type="Integer" Display="None" EnableClientScript="false" />
-                    <asp:CompareValidator runat="server" ControlToValidate="TotalNumberParticipantsTextBox" ControlToCompare="NumberOfSpecialParticipantsTextBox" ResourceKey="TotalNumberOfParticipantsCompareValidator.Text" Operator="GreaterThanEqual" Display="None" EnableClientScript="false" />
+                    <asp:CompareValidator runat="server" ControlToValidate="TotalNumberParticipantsTextBox" ControlToCompare="NumberOfSpecialParticipantsTextBox" ResourceKey="TotalNumberOfParticipantsCompareValidator.Text" Operator="LessThanEqual" Type="Integer" Display="None" EnableClientScript="false" />
                 </li>
                 <li class="gender">
                     <asp:Label CssClass="gender-label" runat="server" ResourceKey="GenderLabel" AssociatedControlId="GenderDropDownList" />
@@ -223,7 +223,8 @@
         $(function() {
             $('.inline-label').each(function() {
                 var $this = $(this);
-                $this.data('original-text', $this.val());
+                $this.addClass('default-inline-value')
+					.data('original-text', $this.val());
             }).focus(function() {
                 var $this = $(this);
                 if ($this.val() === $this.data('original-text')) {
