@@ -414,4 +414,13 @@
   <data name="True.Text" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="PostalCodeDefaultText.Text" xml:space="preserve">
+    <value>ZIP</value>
+  </data>
+  <data name="RoomDefaultText.Text" xml:space="preserve">
+    <value>Room/Suite</value>
+  </data>
+  <data name="StateDefaultText.Text" xml:space="preserve">
+    <value>State</value>
+  </data>
 </root>

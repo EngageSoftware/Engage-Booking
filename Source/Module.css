@@ -189,3 +189,5 @@
 		.startdate, .enddate, .exportbutton{width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.startdate-label, .enddate-label, .export-button{float:left;width:20%;}
 			.startdate-picker, .enddate-picker, .header-checkbox{float:left;margin:0 2%}
+
+.inline-label-gray{color:gray}

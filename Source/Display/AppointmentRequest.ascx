@@ -38,13 +38,13 @@
                 <li class="street">
                     <asp:Label CssClass="street-label" runat="server" ResourceKey="StreetLabel" AssociatedControlId="StreetTextBox" />
                     <asp:TextBox ID="StreetTextBox" CssClass="street-box long" runat="server" />
-                    <asp:TextBox ID="RoomTextBox" CssClass="room-box small" runat="server" />
+                    <asp:TextBox ID="RoomTextBox" CssClass="room-box small inline-label inline-label-gray" runat="server" />
                 </li>
                 <li class="city">
                     <asp:Label CssClass="city-label" runat="server" ResourceKey="CityLabel" AssociatedControlId="CityTextBox" />
                     <asp:TextBox ID="CityTextBox" CssClass="city-box long" runat="server" />
-                    <asp:DropDownList ID="RegionDropDownList" runat="server" CssClass="state-list short"></asp:DropDownList>
-                    <asp:TextBox ID="PostalCodeTextBox" CssClass="zip-box small" runat="server" />
+                    <asp:DropDownList ID="RegionDropDownList" runat="server" CssClass="state-list short inline-label inline-label-gray"></asp:DropDownList>
+                    <asp:TextBox ID="PostalCodeTextBox" CssClass="zip-box small inline-label inline-label-gray" runat="server" />
                 </li>
                 <li class="nearest">
                     <asp:Label CssClass="nearest-label" runat="server" ResourceKey="NearestLabel" AssociatedControlId="AdditionalAddressInfoTextBox" />
@@ -218,4 +218,25 @@
             EndDateTimePicker.set_selectedDate(new Date(eventArgs.get_newDate().getTime() + selectedDateSpan));
         }
     }
+
+    (function($) {
+        $(function() {
+            $('.inline-label').each(function() {
+                var $this = $(this);
+                $this.data('original-text', $this.val());
+            }).focus(function() {
+                var $this = $(this);
+                if ($this.val() === $this.data('original-text')) {
+                    $this.val('')
+                    $this.removeClass('inline-label-gray');
+                }
+            }).blur(function() {
+                var $this = $(this);
+                if (!$this.val() || $this.val() === $this.data('original-text')) {
+                    $this.val($this.data('original-text'));
+                    $this.addClass('inline-label-gray');
+                }
+            });
+        });
+    })(jQuery);
 </script>

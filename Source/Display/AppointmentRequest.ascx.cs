@@ -92,6 +92,8 @@ namespace Engage.Dnn.Booking
         {
             try
             {
+                this.AddJQueryReference();
+
                 if (!this.IsPostBack)
                 {
                     this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime") ?? GetNextDuration();
@@ -281,7 +283,7 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Fills the list controls on the form.
+        /// Sets up the controls on the form.
         /// </summary>
         private void SetupControl()
         {
@@ -295,6 +297,7 @@ namespace Engage.Dnn.Booking
             this.RegionDropDownList.DataValueField = "EntryId";
             this.RegionDropDownList.DataSource = new ListController().GetListEntryInfoCollection("Region");
             this.RegionDropDownList.DataBind();
+            this.RegionDropDownList.Items.Insert(0, new ListItem(Localization.GetString("StateDefaultText.Text", this.LocalResourceFile), "-1"));
 
             this.AppointmentTypeDropDownList.DataSource = AppointmentTypeCollection.Load();
             this.AppointmentTypeDropDownList.DataTextField = "Name";
@@ -325,6 +328,9 @@ namespace Engage.Dnn.Booking
                     this.TimeZoneDropDownList,
                     CultureInfo.CurrentCulture.Name,
                     ((int)Dnn.Utility.GetUserTimeZoneOffset(this.UserInfo, this.PortalSettings).TotalMinutes).ToString(CultureInfo.InvariantCulture));
+
+            this.RoomTextBox.Text = Localization.GetString("RoomDefaultText.Text", this.LocalResourceFile);
+            this.PostalCodeTextBox.Text = Localization.GetString("PostalCodeDefaultText.Text", this.LocalResourceFile);
         }
 
         /////// <summary>
