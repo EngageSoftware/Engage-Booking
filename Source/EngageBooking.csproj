@@ -280,8 +280,6 @@
     <Content Include="Navigation\App_LocalResources\GlobalNavigation.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Images\bt_create_account.gif" />
-    <Content Include="Images\bt_login.gif" />
     <Content Include="Images\approve.gif" />
     <Content Include="Images\back.gif" />
     <Content Include="Images\cancel.gif" />
@@ -307,11 +305,7 @@
     <Content Include="Display\AppointmentCalendar.ascx" />
     <Content Include="Images\errorSmallIcon.png" />
     <Content Include="Images\greenBody.gif" />
-    <Content Include="Images\greenBt.gif" />
-    <Content Include="Images\greenTop.gif" />
     <Content Include="Images\redBody.gif" />
-    <Content Include="Images\redBt.gif" />
-    <Content Include="Images\redTop.gif" />
     <Content Include="Images\successSmallIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -348,7 +342,6 @@
     <Content Include="Images\info.png" />
     <Content Include="Images\not_attending_icon.gif" />
     <Content Include="Images\no_response_icon.gif" />
-    <Content Include="Images\recurring_icon.gif" />
     <Content Include="Images\rsRecurrence.gif" />
     <Content Include="Images\fancy_closebox.png" />
     <Content Include="Images\fancy_left.gif" />
@@ -412,8 +405,11 @@
     <Content Include="Display\AppointmentDetails.ascx" />
     <Content Include="Display\DirectApproval.ascx" />
     <Content Include="Display\ExportData.ascx" />
+    <Content Include="Images\add.gif" />
     <Content Include="Images\decline.gif" />
+    <Content Include="Images\export.gif" />
     <Content Include="Images\request-appt-background.png" />
+    <Content Include="Images\subhead-hr.gif" />
     <Content Include="References\Engage.Dnn.Framework.XML" />
     <Content Include="References\Engage.Framework.XML" />
     <Content Include="References\Telerik.Web.UI.XML" />
