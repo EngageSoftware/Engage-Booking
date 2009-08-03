@@ -1,25 +1,20 @@
-/* calendar display page */
-.appointments-calendar li { list-style-type: none; }
-
-.appointments-calendar { position:relative; } /*.appointments-calendar is position:relative to serve as a base for .NewAppointmentTooltip's position:absolute*/
-.NewAppointmentTooltip {background: Transparent url(images/request-appt-background.png) no-repeat; width:150px; height:63px; position:fixed; display:none; padding-top:1em; text-align:center; z-index:1000;}
-
-.RadScheduler_Telerik div.rsHeader p { width:110px; }
-.RadScheduler .rsWrap {margin-bottom: 2px;}
-.RadScheduler .rsMonthView .rsWrap {height: 18px !important; width: 100%; overflow: hidden; white-space:nowrap;}
+﻿/* calendar display page */
+.appointments-calendar li {list-style-type:none;}
+.appointments-calendar {position:relative;} /*.appointments-calendar is position:relative to serve as a base for .NewAppointmentTooltip's position:absolute*/
+.NewAppointmentTooltip {background:transparent url(images/request-appt-background.png) no-repeat; width:150px; height:63px; position:fixed; display:none; padding-top:1em; text-align:center; z-index:1000;}
+.RadScheduler_Telerik div.rsHeader p {width:110px; }
+.RadScheduler .rsWrap {margin-bottom:2px;}
+.RadScheduler .rsMonthView .rsWrap {height:18px !important;width:100%;overflow:hidden;white-space:nowrap;}
 .RadScheduler .rsAptContent{padding-left: 2px;}
 .RadScheduler .rsCell{padding: 0 2px !important;}
-
 /* global navigation */
 .GlobalNavigation{text-align:left;}
 .booking-nav{text-align: left;}
 	.booking-nav a img{padding: 0 6px 0 0;}
 	.FooterButtons {padding-top: 3%; }
-		
 /*=======================================================
 		2. Settings
 ========================================================*/
-
 .booking-setting label, .booking-setting .Help{float:left;width: 49%;}
 .booking-setting br /*dnn label renders a br tag*/ {	display: none;}
 .booking-setting input, .booking-setting select, .booking-setting .NumericTextBoxWrapper{float:right;width:49%;}
@@ -27,8 +22,6 @@
 .booking-setting .NumericTextBoxWrapper div, .booking-setting .NumericTextBoxWrapper div table{text-align: right;width: 5em !important;}
 .booking-setting .NumericTextBoxWrapper td.spinImgCell  a.spinbutton{text-align: left;}
 .booking-setting{clear:both;padding: 0 0 2em;}
-
-				
 /*========================================================
 		3. Validation
 ========================================================*/
@@ -40,35 +33,15 @@
 .mmText{margin: 0; padding: 0;}
 .mmText > p{margin-top: 4px; font-weight: bold; color: #000;}
 .mmBt{height: 5px; background-color:transparent; background-repeat: no-repeat; background-attachment:scroll; background-position:left top;}
-
 /*========================= Error On Page ===============================*/
-
-/*.ErrorTop{background-image:url(images/redTop.gif);}
-.ErrorBody {background-image:url(images/redBody.gif);}
-.ErrorBt{background-image:url(images/redBt.gif);} */
-
 .ErrorBody {background: #fde0e0; border: 2px #ff0000 solid;}
 .ErrorBody .ErrorIcon{background:url(images/errorSmallIcon.png) no-repeat;}
-
 /*========================= Success ===============================*/
-
-/*.SuccessTop{background-image:url(images/greenTop.gif);}
-.SuccessBody {background-image:url(images/greenBody.gif);}
-.SuccessBt{background-image:url(images/greenBt.gif);}*/
-
 .SuccessBody {background:#f2fff3; border: 2px #5cd800 solid;}
 .SuccessBody .SuccessIcon{background:url(images/successSmallIcon.png) no-repeat;}
-
-/*========================= Warning ===============================*/
-
-/*.WarningTop{background-image:url(images/blueTop.gif);}
-.WarningBody {background-image:url(images/blueBody.gif);}
-.WarningBt{background-image:url(images/blueBt.gif);}*/
-
 /*========================= Information ===============================*/
 .InformationBody {background:#e5f8ff; border: 2px #288abc solid;}
 .InformationBody .InformationIcon{background-image:url(images/info.png);}
-
 /*========================= Approval Request Form ===============================*/
 .RequestAppointmentSuccessMessage {padding-left: 10%; }
 .sb-request-form{}
@@ -76,66 +49,134 @@
     .sb-request-form fieldset{}
     	.sb-request-form legend{}
     	.sb-request-form p{}
-		
 		.full{width:45%;}
-		.long{width:35%;}
+		.long{width:30%;}
 		.medium{width:30%;}
-		.short{width:22%;}
+		.short{width:20%;}
 		.small{width:10%;}
-		
-		.required-label{float:left;color:#f00;}
+		.required-label{float:left;color:#f00;font-weight:bold;padding-left:2px;}
 			.note .required-label{float:none;}
-		.approval-request h4{font-size:16px;color:#39c;}
-		.approval-request ol li{list-style-type:none;}
-		
-	/*.customfields-fieldset{display:none;}*/
-		
+		.approval-request{width:720px;}
+		.approval-request h2.Head{font-size:20px;padding:0;margin-bottom:5px;}
+		.approval-request .NormalTextBox{font-size:12px;}
+			.alt-phone input.NormalTextBox{margin-left:25px;}
+		.approval-request fieldset{border:none;padding:0;margin:0;border-top:1px #c8e1ef solid;}
+			.approval-request fieldset.sub-item{}
+			.approval-request fieldset.addr-legend legend span, .approval-request fieldset.onsite-legend legend span{font-size:12px;color:#6395cd;font-weight:bold;margin:0;margin-left:175px;display:block;padding-right:15px;}
+		.approval-request legend{padding:0;}
+			.approval-request legend.SubHead{font-size:14px;color:#6e5112;font-weight:bold;padding-right:15px;}
+				.approval-request p.note{border-top:1px #ccc solid;padding-top:20px;margin-top:0;}
+		.approval-request ol{margin:0;padding:20px 0 10px;}
+		.approval-request ol li{list-style-type:none;margin:0 0 8px 0;padding:0;}
+		.approval-request label{width:160px;text-align:right;}	
+		.new-request-tooltip{background: url(Images/add.gif) no-repeat left;padding-left:25px;display:block;margin:10px;}
+		.RequestAppointmentLink{background: url(Images/add.gif) no-repeat left;padding-left:25px;display:block;margin:10px 0;}
 /*----- Interpreting Event  -----*/	
-	.interpreting-form{background:#fafafa;padding:15px;}
+.ar-wrap{background:#f5f5f5;padding:15px 20px;margin-bottom:15px;border-bottom:1px #dcdcdc solid;border-right:1px #dcdcdc solid;}
+	.interpreting-form{padding:15px 10px;}
 		.event-type, .title, .description, .notes {width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.event-type-label, .title-label, .description-label, .considerations-label{width:20%;float:left;}
+				label.event-type-label{width:150px;}
+				label.title-label{width:50px;}
+				input.title-box{margin-left:15px;}
 			.event-type-box, .description-box, .notes-box{float:left;margin:0 2%}			
-		
-	.interpreting-form-b{background:#fafafa;padding:15px;}
+	.interpreting-form-b{padding:5px;}
 		.street, .city, .state, .zip, .nearest {width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.street-label, .city-label, .nearest-label{float:left;width:20%;}
 			.street-box, .room-box, .city-box, .state-list, .zip-box, .nearest-box{float:left;margin:0 2%}
 			.state-list{width:18%;}
-		
-	.interpreting-form-c{background:#fafafa;padding:15px;}
+	.interpreting-form-c{padding:5px;}
 		.phone {width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.phone-label{float:left;width:20%;}
 			.phone-box{float:left;margin:0 2%}
-			
 /*----- Person Requesting Interpreting Services -----*/	
-	.requesting-form{background:#fafafa;padding:15px;}
+	.requesting-form{padding:15px 10px;}
+		.requesting-form label{width:150px;}
 		.full-name, .phone, .email {width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.full-name-label, .phone-label, .alt-phone-label, .email-label{float:left;width:20%;}
 			.full-name-box, .phone-box, .alt-phone-box, .email-box{float:left;margin:0 2%}
-			.alt-phone-box{margin:0 2% 0 4%;}
-			
+			.alt-phone-box{margin:0 2% 0 3%;}
 /*----- Date of Assignment -----*/	
-	.date-assignment-form{background:#fafafa;padding:15px;}
-		.start, .at-time, .end, .timezone{width:100%;overflow:hidden;padding:6px 0;clear:both;}
-			.start-label, .at-time-label, .end-label, .timezone-label{float:left;width:20%;}
-			.start-box, .at-time-box, .end-box, .timezone-dropdown, .timezone-checkbox{float:left;margin:0 2%}
-		.timezone_display{float:left; width:70%;}
-			
+	.date-assignment-form{padding:15px 10px;}
+		.date-assignment-form label{width:150px;}
+		.date-assignment-form div{margin-left:2%;}
+		.start, .at-time, .end{width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.start-label, .at-time-label, .end-label{float:left;width:20%;}
+			.start-box, .at-time-box, .end-box{float:left;margin:0 2%}
+		.date-assignment-form .timezone-label{float:left;}
+		.timezone_display{float:left;width:50%;padding-left:10px;}
 /*----- Participants  -----*/	
-	.participants-form{background:#fafafa;padding:15px;}
-		.number-special, .total-number, .gender, .presenter, .instructions{width:100%;overflow:hidden;padding:6px 0;clear:both;}
+	.participants-form{padding:15px 10px;}
+		.number-special, .total-number, .gender, .presenter, .instructions{overflow:hidden;padding:6px 0;clear:both;margin:0;}
 			.number-special-label, .total-number-label, .gender-label, .presenter-label, .instructions-label{float:left;width:20%;}
 			.number-special-box, .total-number-box, .gender-list, .presenter-box, .instructions-box{float:left;margin:0 2%}
-			
+				label.presenter-label {width:165px;}
+				.gender .presenter-box{}
 /*----- Custom Fields -----*/
-	.customfields-form{background:#fafafa;padding:15px;}
+	.customfields-form{padding:15px 10px;}
+		.customfield1, .customfield2, .customfield3, .customfield4, .customfield5, .customfield6, .customfield7, .customfield8, .customfield9, .customfield10{width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.customfield1-label, .customfield2-label, .customfield3-label, .customfield4-label, .customfield5-label, .customfield6-label, .customfield7-label, .customfield8-label, .customfield9-label, .customfield10-label{float:left;width:20%;}
+			.customfield1-box, .customfield2-box, .customfield3-box, .customfield4-box, .customfield5-box, .customfield6-box, .customfield7-box, .customfield8-box, .customfield9-box, .customfield10-box{float:left;margin:0 2%}
+/*----- Submit Button -----*/	
+	.submit{}
+		.send-button{}
+/*----- Appointment Details -----*/
+.appointment-details{width:720px;}
+	.appointment-details label{width:160px;}
+	.appointment-details fieldset{border:none;padding:0;margin:0;border-top:1px #c8e1ef solid;}
+		.appointment-details fieldset.sub-item{}
+		.appointment-details fieldset.addr-legend legend span, .appointment-details fieldset.onsite-legend legend span{font-size:12px;color:#6395cd;font-weight:bold;margin:0;margin-left:175px;display:block;padding-right:15px;}
+	.appointment-details legend{padding:0;}
+		.appointment-details legend.SubHead{font-size:14px;color:#6e5112;font-weight:bold;padding-right:15px;}
+			.appointment-details p.note{border-top:1px #ccc solid;padding-top:20px;margin-top:0;}
+	.appointment-details ol{margin:0;padding:20px 0 10px;}
+	.appointment-details ol li{list-style-type:none;margin:0 0 8px 0;padding:0;}
+	.appointment-details label{width:160px;text-align:right;font-weight:bold;}
+	.appointment-details .interpreting-form{padding:15px 10px;background:#f5f5f5;margin-bottom:15px;border-bottom:1px #dcdcdc solid;border-right:1px #dcdcdc solid;}
+		.appointment-details .event-type, .appointment-details .title, .appointment-details .description, .notes {width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.appointment-details .event-type-label, .appointment-details .title-label, .appointment-details .description-label, .appointment-details .considerations-label{width:150px;float:left;}
+				.appointment-details label.event-type-label{width:150px;}
+				.appointment-details label.title-label{width:50px;}
+				.appointment-details span.title-box{margin-left:15px;}
+			.event-type-box, .description-box, .notes-box{float:left;margin:0 2%}			
+	.appointment-details .interpreting-form-b{padding:5px;background:#f5f5f5;margin-bottom:15px;border-bottom:1px #dcdcdc solid;border-right:1px #dcdcdc solid;}
+		.street, .city, .state, .zip, .nearest {width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.street-label, .city-label, .nearest-label{float:left;width:20%;}
+			.street-box, .room-box, .city-box, .state-list, .zip-box, .nearest-box{float:left;margin:0 2%}
+			.state-list{width:18%;}
+	.appointment-details .interpreting-form-c{padding:5px;background:#f5f5f5;margin-bottom:15px;border-bottom:1px #dcdcdc solid;border-right:1px #dcdcdc solid;}
+		.phone {width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.phone-label{float:left;width:20%;}
+			.phone-box{float:left;margin:0 2%}
+/*----- Person Requesting Interpreting Services -----*/	
+	.appointment-details .requesting-form{padding:15px 10px;background:#f5f5f5;margin-bottom:15px;border-bottom:1px #dcdcdc solid;border-right:1px #dcdcdc solid;}
+		.requesting-form label{width:150px;}
+		.full-name, .phone, .email {width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.full-name-label, .phone-label, .alt-phone-label, .email-label{float:left;width:20%;}
+			.full-name-box, .phone-box, .alt-phone-box, .email-box{float:left;margin:0 2%}
+			.alt-phone-box{margin:0 2% 0 3%;}
+/*----- Date of Assignment -----*/	
+	.appointment-details .date-assignment-form{padding:15px 10px;background:#f5f5f5;margin-bottom:15px;border-bottom:1px #dcdcdc solid;border-right:1px #dcdcdc solid;}
+		.date-assignment-form label{width:150px;}
+		.date-assignment-form div{margin-left:2%;}
+		.start, .at-time, .end{width:100%;overflow:hidden;padding:6px 0;clear:both;}
+		.appointment-details .start span, .appointment-details .end span{padding-left:15px;}
+			.start-label, .at-time-label, .end-label{float:left;width:20%;}
+			.start-box, .at-time-box, .end-box{float:left;margin:0 2%}
+		.timezone_display{float:left; width:70%;}
+/*----- Participants  -----*/	
+	.appointment-details .participants-form{padding:15px 10px;background:#f5f5f5;margin-bottom:15px;border-bottom:1px #dcdcdc solid;border-right:1px #dcdcdc solid;}
+		.number-special, .total-number, .gender, .presenter, .instructions{overflow:hidden;padding:6px 0;clear:both;margin:0;}
+			.number-special-label, .total-number-label, .gender-label, .presenter-label, .instructions-label{float:left;width:20%;}
+			.number-special-box, .total-number-box, .gender-list, .presenter-box, .instructions-box{float:left;margin:0 2%}
+				label.presenter-label {width:165px;}
+				.gender .presenter-box{}
+/*----- Custom Fields -----*/
+	.appointment-details .customfields-form{padding:15px 10px;background:#f5f5f5;margin-bottom:15px;border-bottom:1px #dcdcdc solid;border-right:1px #dcdcdc solid;}
 		.customfield1, .customfield2, .customfield3, .customfield4, .customfield5, .customfield6, .customfield7, .customfield8, .customfield9, .customfield10{width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.customfield1-label, .customfield2-label, .customfield3-label, .customfield4-label, .customfield5-label, .customfield6-label, .customfield7-label, .customfield8-label, .customfield9-label, .customfield10-label{float:left;width:20%;}
 			.customfield1-box, .customfield2-box, .customfield3-box, .customfield4-box, .customfield5-box, .customfield6-box, .customfield7-box, .customfield8-box, .customfield9-box, .customfield10-box{float:left;margin:0 2%}
 
-/*----- Submit Button -----*/	
-	.submit{}
-		.send-button{}
 /*==============================================================================
 	Decline Screen
 ==============================================================================*/
@@ -152,26 +193,20 @@
 	Approval Request Form 
 ==============================================================================*/
 .approval-decline-reasons{padding:10px 0;}
-
 .bulk-selection{padding:10px;text-align:right;width:95%;margin:0 auto;}
-	.approval-accept-link {padding-left:20px;background: url(Images/attending_icon.gif) no-repeat left center;}
-	.approval-decline-link {padding-left:20px;background: url(Images/decline.gif) no-repeat left center;}
-
+	.approval-accept-link {padding-left:20px;background: url(Images/attending_icon.gif) no-repeat left;}
+		a.approval-accept-link{padding-right:20px;}
+	.approval-decline-link {padding-left:20px;background: url(Images/decline.gif) no-repeat left;}
 .approval{width:95%;margin:0 auto;}
 .approval tr{border:solid 1px #ccc;}
 .approval .alternate{background:#f3fbff;padding:5px;}
-	.approval td{padding:5px;}
-
+	.approval td{padding:5px 10px;}
 .approval th{color:#6e5112;font-size:13px;padding:10px;}
-.approval a{color:#0187e5;}
-	.approval a:hover{color:#0187e5;text-decoration:underline;}
-
 .approval-paging{width:95%;margin:0 auto;padding:10px 0;}
 	.approval a.CommandButton:link, .approval a.CommandButton:visited {color:#0187e5;text-decoration:none;border:solid 1px #0187e5;padding:1px 3px;font-weight:normal;}
 	.approval a.CommandButton:link:hover, .approval a.CommandButton:visited:hover{color:#999;text-decoration:none;border:solid 1px #ccc;}
 	.approval a.CommandButton:visited {color:#0187e5;text-decoration:none;font-weight:normal;}
 	.approval .NormalDisabled{color:#999 !important;text-decoration:none;border:solid 1px #ccc;padding:1px 3px;}
-
 .approval fieldset{border:none;border:none;border-top:1px #cce5f3 solid;margin-top:10px; }
 .datetime, .name, .phone, .total, .names{width:100%;clear:both;padding:6px 0;}
 	.approval-detail-label, .approval-detail-value-label{width:25%;float:left;font-weight:bold;text-align:right;}
@@ -181,13 +216,16 @@
 	.approval legend{color:#6e5112;padding:0 10px;font-weight:bold;font-size:14px;}
 	.total .approval-detail-label, .names .approval-detail-label, .total .approval-detail-value, .names .approval-detail-value{width:45%;}
 	.total .approval-detail-label, .names .approval-detail-label{text-align:right;}
-	
 /*==============================================================================
 	Export Data Form 
 ==============================================================================*/
-	.exportdata-form{background:#fafafa;padding:15px;}
+	.exportdata-form{padding:15px;}
 		.startdate, .enddate, .exportbutton{width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.startdate-label, .enddate-label, .export-button{float:left;width:20%;}
 			.startdate-picker, .enddate-picker, .header-checkbox{float:left;margin:0 2%}
-
-.default-inline-value{color:gray}
+	td.rtWrapperContent{background:#f1f1f1 !important;}
+	.calendar-tooltip{padding:10px 15px 20px;overflow:hidden;}
+		.calendar-tooltip span.title{display:block;font-weight:bold;font-size:13px;padding-left:70px;padding-bottom:10px;width:190px;}
+		.calendar-tooltip span.label{display:block;width:60px;float:left;text-align:right;font-weight:bold;padding-bottom:6px;}
+		.calendar-tooltip span.value{display:block;width:180px;float:left;padding-left:10px;padding-bottom:6px;}
+		.calendar-tooltip a{display:block;padding-left:70px;}

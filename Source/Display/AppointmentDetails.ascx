@@ -1,9 +1,9 @@
 <%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.AppointmentDetails" CodeBehind="AppointmentDetails.ascx.cs" %>
 <div class="appointment-details Normal">
-    <fieldset>
-        <legend><%=Localize("Service Request Form")%></legend>
+    <h2 class="Head"><%=Localize("Service Request Form")%></h2>
+    <div class="ar-wrap">
         <fieldset>
-            <legend><%=Localize("Interpreting Event")%></legend>
+            <legend class="SubHead"><%=Localize("Interpreting Event")%></legend>
             <ol class="interpreting-form">
                 <li class="event-type">
                     <asp:Label CssClass="event-type-label" ResourceKey="EventTypeLabel" runat="server" AssociatedControlId="AppointmentTypeLabel" />
@@ -12,7 +12,7 @@
                     <asp:Label CssClass="title-label" runat="server" ResourceKey="TitleLabel" AssociatedControlId="TitleLabel" />
                     <asp:Label ID="TitleLabel" CssClass="title-box short" runat="server" />
                 </li>
-
+    
                 <li class="description">
                     <asp:Label CssClass="description-label" runat="server" ResourceKey="DescriptionLabel" AssociatedControlId="DescriptionLabel" />
                     <asp:Label ID="DescriptionLabel" CssClass="description-box full" runat="server"/>
@@ -22,56 +22,58 @@
                     <asp:Label ID="NotesLabel" CssClass="notes-box full" runat="server"/>
                 </li>
             </ol>
-            
-            <h4><asp:Label ResourceKey="AddressLabel" runat="server" /></h4>
-            
-            <ol class="interpreting-form-b">
-                <li class="street">
-                    <asp:Label CssClass="street-label" runat="server" ResourceKey="StreetLabel" AssociatedControlId="StreetLabel" />
-                    <asp:Label ID="StreetLabel" CssClass="street-box long" runat="server" />
-                    <asp:Label ID="RoomLabel" CssClass="room-box small" runat="server" />
-                </li>
-                <li class="city">
-                    <asp:Label CssClass="city-label" runat="server" ResourceKey="CityLabel" AssociatedControlId="CityLabel" />
-                    <asp:Label ID="CityLabel" CssClass="city-box long" runat="server" />
-                    <asp:Label ID="RegionLabel" runat="server" CssClass="state-list short"/>
-                    <asp:Label ID="PostalCodeLabel" CssClass="zip-box small" runat="server" />
-                </li>
-                <li class="nearest">
-                    <asp:Label CssClass="nearest-label" runat="server" ResourceKey="NearestLabel" AssociatedControlId="AdditionalAddressInfoLabel" />
-                    <asp:Label ID="AdditionalAddressInfoLabel" CssClass="nearest-box long" runat="server" />
-                </li>
-            </ol>
-            
-            <h4><asp:Label ResourceKey="OnSiteContactLabel" runat="server" /></h4>
-            
-            <ol class="interpreting-form-c">
-                <li class="street">
-                    <asp:Label CssClass="street-label" runat="server" ResourceKey="StreetLabel" AssociatedControlId="OnsiteStreetLabel" />
-                    <asp:Label ID="OnsiteStreetLabel" CssClass="street-box long" runat="server" />
-                </li>
-                <li class="phone">
-                    <asp:Label CssClass="phone-label" runat="server" ResourceKey="PhoneLabel" AssociatedControlId="OnsitePhoneLabel" />
-                    <asp:Label ID="OnsitePhoneLabel" CssClass="phone-box long" runat="server" />
-                </li>
-            </ol>
+            <fieldset class="addr-legend">
+                <legend><asp:Label ResourceKey="AddressLabel" runat="server" /></legend>
+                <ol class="interpreting-form-b">
+                    <li class="street">
+                        <asp:Label CssClass="street-label" runat="server" ResourceKey="StreetLabel" AssociatedControlId="StreetLabel" />
+                        <asp:Label ID="StreetLabel" CssClass="street-box long" runat="server" />
+                        <asp:Label ID="RoomLabel" CssClass="room-box small" runat="server" />
+                    </li>
+                    <li class="city">
+                        <asp:Label CssClass="city-label" runat="server" ResourceKey="CityLabel" AssociatedControlId="CityLabel" />
+                        <asp:Label ID="CityLabel" CssClass="city-box long" runat="server" />
+                        <asp:Label ID="RegionLabel" runat="server" CssClass="state-list short"/>
+                        <asp:Label ID="PostalCodeLabel" CssClass="zip-box small" runat="server" />
+                    </li>
+                    <li class="nearest">
+                        <asp:Label CssClass="nearest-label" runat="server" ResourceKey="NearestLabel" AssociatedControlId="AdditionalAddressInfoLabel" />
+                        <asp:Label ID="AdditionalAddressInfoLabel" CssClass="nearest-box long" runat="server" />
+                    </li>
+                </ol>
+			</fieldset>            
+            <fieldset class="onsite-legend">
+                <legend><asp:Label ResourceKey="OnSiteContactLabel" runat="server" /></legend>
+                <ol class="interpreting-form-c">
+                    <li class="street">
+                        <asp:Label CssClass="street-label" runat="server" ResourceKey="StreetLabel" AssociatedControlId="OnsiteStreetLabel" />
+                        <asp:Label ID="OnsiteStreetLabel" CssClass="street-box long" runat="server" />
+                    </li>
+                    <li class="phone">
+                        <asp:Label CssClass="phone-label" runat="server" ResourceKey="PhoneLabel" AssociatedControlId="OnsitePhoneLabel" />
+                        <asp:Label ID="OnsitePhoneLabel" CssClass="phone-box long" runat="server" />
+                    </li>
+                </ol>
+			</fieldset>
         </fieldset>
+	</div>
+    <div class="ar-wrap">        
         <fieldset>
-            <legend><asp:Label ResourceKey="InterpretingServicesLabel.Text" runat="server" /></legend>
+            <legend class="SubHead"><asp:Label ResourceKey="InterpretingServicesLabel.Text" runat="server" /></legend>
             <ol class="requesting-form">
                 <li class="full-name">
                     <asp:Label CssClass="full-name-label" runat="server" ResourceKey="FullNameLabel.Text" AssociatedControlId="RequestorNameLabel" />
                     <asp:Label ID="RequestorNameLabel" CssClass="full-name-box long" runat="server" />
                 </li>
                 <li class="phone">
-                    <asp:Label ID="RequestorPhoneTypeLabel" runat="server"/>
                     <asp:Label CssClass="phone-label" runat="server" ResourceKey="RequestorPhoneLabel.Text" AssociatedControlId="RequestorPhoneLabel" />
                     <asp:Label ID="RequestorPhoneLabel" CssClass="phone-box long" runat="server" />
+                    <asp:Label ID="RequestorPhoneTypeLabel" runat="server"/>                    
                 </li>
                 <li class="alt-phone">
-                    <asp:Label ID="RequestorAltPhoneTypeLabel" runat="server"/>
                     <asp:Label CssClass="alt-phone-label" runat="server" ResourceKey="AltPhoneLabel" AssociatedControlId="RequestorAltPhoneLabel" />
                     <asp:Label ID="RequestorAltPhoneLabel" CssClass="alt-phone-box long" runat="server" />
+                    <asp:Label ID="RequestorAltPhoneTypeLabel" runat="server"/>
                 </li>
                 <li class="email">
                     <asp:Label CssClass="email-label" runat="server" ResourceKey="EmailAddressLabel" AssociatedControlId="RequestorEmailLabel" />
@@ -79,8 +81,10 @@
                 </li>
             </ol>
         </fieldset>
+	</div>
+    <div class="ar-wrap">        
         <fieldset>
-            <legend><asp:Label ResourceKey="AssignmentDateLabel.Text" runat="server" /></legend>
+            <legend class="SubHead"><asp:Label ResourceKey="AssignmentDateLabel.Text" runat="server" /></legend>
             <ol class="date-assignment-form">
                 <li class="start">
                     <asp:Label CssClass="start-label" runat="server" ResourceKey="StartLabel" AssociatedControlId="StartDateTimeLabel" />
@@ -92,19 +96,20 @@
                 </li>
             </ol>
         </fieldset>
+	</div>
+    <div class="ar-wrap">        
         <fieldset>
-            <legend><asp:Label ResourceKey="ParticipantsLabel.Text" runat="server" /></legend>
+            <legend class="SubHead"><asp:Label ResourceKey="ParticipantsLabel.Text" runat="server" /></legend>
             <ol class="participants-form">
                 <li class="number-special">
                     <asp:Label CssClass="number-special-label" runat="server" ResourceKey="NumberSpecialLabel" AssociatedControlId="NumberOfSpecialParticipantsLabel" />
                     <asp:Label ID="NumberOfSpecialParticipantsLabel" CssClass="number-special-box short" runat="server" />
-                    
                     <asp:Label CssClass="total-number-label" runat="server" ResourceKey="TotalNumberLabel" AssociatedControlId="TotalNumberParticipantsLabel" />
                     <asp:Label ID="TotalNumberParticipantsLabel" CssClass="total-number-box short" runat="server" />
                 </li>
                 <li class="gender">
                     <asp:Label CssClass="gender-label" runat="server" ResourceKey="GenderLabel" AssociatedControlId="GenderLabel" />
-                    <asp:Label ID="GenderLabel" runat="server" CssClass="gender-list short" runat="server"/>
+                    <asp:Label ID="GenderLabel" runat="server" CssClass="gender-list short" runat="server" />
                     <asp:Label CssClass="presenter-label" runat="server" ResourceKey="PresenterLabel" AssociatedControlId="PresenterLabel" />
                     <asp:Label ID="PresenterLabel" CssClass="presenter-box short" runat="server"/>
                 </li>
@@ -114,8 +119,10 @@
                 </li>
             </ol>
         </fieldset>
+	</div>
+    <div class="ar-wrap">        
         <fieldset class="customfields-fieldset">
-            <legend><asp:Label ResourceKey="CustomFieldsLabel.Text" runat="server" /></legend>
+            <legend class="SubHead"><asp:Label ResourceKey="CustomFieldsLabel.Text" runat="server" /></legend>
             <ol class="customfields-form">
                 <li class="customfield1">
                     <asp:Label CssClass="customfield1-label" runat="server" ResourceKey="CustomField1Label.Text" AssociatedControlId="CustomField1Label" />
@@ -159,5 +166,5 @@
                 </li>
             </ol>
         </fieldset>
-    </fieldset>
+	</div>        
 </div>
