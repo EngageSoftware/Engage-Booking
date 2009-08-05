@@ -407,6 +407,7 @@
     <Content Include="Display\DirectApproval.ascx" />
     <Content Include="Display\ExportData.ascx" />
     <Content Include="Images\add.gif" />
+    <Content Include="Images\create_new.gif" />
     <Content Include="Images\decline.gif" />
     <Content Include="Images\export.gif" />
     <Content Include="Images\request-appt-background.png" />

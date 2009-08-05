@@ -57,19 +57,19 @@
 		.required-label{float:left;color:#f00;font-weight:bold;padding-left:2px;}
 			.note .required-label{float:none;}
 		.default-inline-value {color:#999;}
-		.approval-request{width:720px;}
-		.approval-request h2.Head{font-size:20px;padding:0;margin-bottom:5px;}
-		.approval-request .NormalTextBox{font-size:12px;}
+		.booking-request{width:720px;}
+		.booking-request h2.Head{font-size:20px;padding:0;margin-bottom:5px;}
+		.booking-request .NormalTextBox{font-size:12px;}
 			.alt-phone input.NormalTextBox{margin-left:25px;}
-		.approval-request fieldset{border:none;padding:0;margin:0;border-top:1px #c8e1ef solid;}
-			.approval-request fieldset.sub-item{}
-			.approval-request fieldset.addr-legend legend span, .approval-request fieldset.onsite-legend legend span{font-size:12px;color:#6395cd;font-weight:bold;margin:0;margin-left:175px;display:block;padding-right:15px;}
-		.approval-request legend{padding:0;}
-			.approval-request legend.SubHead{font-size:14px;color:#6e5112;font-weight:bold;padding-right:15px;}
-				.approval-request p.note{border-top:1px #ccc solid;padding-top:20px;margin-top:0;}
-		.approval-request ol{margin:0;padding:20px 0 10px;}
-		.approval-request ol li{list-style-type:none;margin:0 0 8px 0;padding:0;}
-		.approval-request label{width:160px;text-align:right;}	
+		.booking-request fieldset{border:none;padding:0;margin:0;border-top:1px #c8e1ef solid;}
+			.booking-request fieldset.sub-item{}
+			.booking-request fieldset.addr-legend legend span, .booking-request fieldset.onsite-legend legend span{font-size:12px;color:#6395cd;font-weight:bold;margin:0;margin-left:175px;display:block;padding-right:15px;}
+		.booking-request legend{padding:0;}
+			.booking-request legend.SubHead{font-size:14px;color:#6e5112;font-weight:bold;padding-right:15px;}
+				.booking-request p.note{border-top:1px #ccc solid;padding-top:20px;margin-top:0;}
+		.booking-request ol{margin:0;padding:20px 0 10px;}
+		.booking-request ol li{list-style-type:none;margin:0 0 8px 0;padding:0;}
+		.booking-request label{width:160px;text-align:right;}	
 		.new-request-tooltip{background: url(Images/add.gif) no-repeat left;padding-left:25px;display:block;margin:10px;}
 		.RequestAppointmentLink{background: url(Images/add.gif) no-repeat left;padding-left:25px;display:block;margin:10px 0;}
 /*----- Interpreting Event  -----*/	

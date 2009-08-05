@@ -23,6 +23,15 @@ namespace Engage.Dnn.Booking {
         protected global::Engage.Dnn.Booking.ModuleMessage SuccessModuleMessage;
         
         /// <summary>
+        /// AppointmentRequestPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel AppointmentRequestPanel;
+        
+        /// <summary>
         /// AppointmentTypeDropDownList control.
         /// </summary>
         /// <remarks>
@@ -158,15 +167,6 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox RequestorNameTextBox;
         
         /// <summary>
-        /// RequestorPhoneTypeDropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList RequestorPhoneTypeDropDownList;
-        
-        /// <summary>
         /// RequestorPhoneTextBox control.
         /// </summary>
         /// <remarks>
@@ -176,13 +176,13 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.TextBox RequestorPhoneTextBox;
         
         /// <summary>
-        /// RequestorAltPhoneTypeDropDownList control.
+        /// RequestorPhoneTypeDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList RequestorAltPhoneTypeDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList RequestorPhoneTypeDropDownList;
         
         /// <summary>
         /// RequestorAltPhoneTextBox control.
@@ -192,6 +192,15 @@ namespace Engage.Dnn.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox RequestorAltPhoneTextBox;
+        
+        /// <summary>
+        /// RequestorAltPhoneTypeDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList RequestorAltPhoneTypeDropDownList;
         
         /// <summary>
         /// RequestorEmailTextBox control.
@@ -392,6 +401,24 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.CustomValidator UniqueTimeslotValidator;
         
         /// <summary>
+        /// FooterButtonsMultiview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView FooterButtonsMultiview;
+        
+        /// <summary>
+        /// SaveView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View SaveView;
+        
+        /// <summary>
         /// SaveAppointmentButton control.
         /// </summary>
         /// <remarks>
@@ -417,5 +444,32 @@ namespace Engage.Dnn.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton SaveAndCreateNewAppointmentButton;
+        
+        /// <summary>
+        /// SuccessView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View SuccessView;
+        
+        /// <summary>
+        /// HomeLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HomeLink;
+        
+        /// <summary>
+        /// CreateNewAppointmentButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink CreateNewAppointmentButton;
     }
 }

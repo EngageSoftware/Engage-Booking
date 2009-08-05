@@ -2,8 +2,8 @@
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <%@ Register TagPrefix="engage" TagName="ModuleMessage" Src="../Controls/ModuleMessage.ascx" %>
 <%@ Register TagPrefix="engage" Namespace="Engage.Controls" Assembly="Engage.Framework" %>
-<engage:ModuleMessage runat="server" ID="SuccessModuleMessage" MessageType="Success" TextResourceKey="AddEventSuccess" CssClass="RequestAppointmentSuccessMessage" />
-<div class="approval-request Normal">
+<engage:ModuleMessage runat="server" ID="SuccessModuleMessage" MessageType="Success" TextResourceKey="AddEventSuccess" CssClass="RequestAppointmentSuccessMessage" Visible="false" />
+<asp:Panel ID="AppointmentRequestPanel" runat="server" class="booking-request Normal">
     <h2 class="Head"><%=Localize("Service Request Form")%></h2>
     <p class="note Normal">
         <%=Localize("RequiredLabelStart.Text") %><asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><%=Localize("RequiredLabelEnd.Text") %>
@@ -207,13 +207,21 @@
             </ol>
         </fieldset>
 	</div>
-</div>
+</asp:Panel>
 <engage:ValidationSummary runat="server" CssClass="NormalRed" />
 <asp:CustomValidator ID="UniqueTimeslotValidator" runat="server" Display="None" ResourceKey="UniqueTimeslotValidator.Text" />
 <div class="AdminButtons FooterButtons">
-    <asp:ImageButton ID="SaveAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save.gif" />
-    <asp:HyperLink ID="CancelAppointmentLink" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/cancel_go_home.gif" />
-    <asp:ImageButton ID="SaveAndCreateNewAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save_create_new.gif" />
+    <asp:MultiView ID="FooterButtonsMultiview" runat="server" ActiveViewIndex="0">
+        <asp:View ID="SaveView" runat="server">
+            <asp:ImageButton ID="SaveAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save.gif" />
+            <asp:HyperLink ID="CancelAppointmentLink" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/cancel_go_home.gif" />
+            <asp:ImageButton ID="SaveAndCreateNewAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save_create_new.gif" />
+        </asp:View>
+        <asp:View ID="SuccessView" runat="server">
+            <asp:HyperLink ID="HomeLink" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/home.gif" />
+            <asp:HyperLink ID="CreateNewAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/createnew.gif" />
+        </asp:View>
+    </asp:MultiView>
 </div>
 
 <script type="text/javascript">

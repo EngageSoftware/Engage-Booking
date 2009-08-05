@@ -14,6 +14,7 @@ namespace Engage.Dnn.Booking
     using System;
     using System.ComponentModel;
     using System.Globalization;
+    using DotNetNuke.Common;
     using DotNetNuke.Entities.Modules;
     using DotNetNuke.Security.Permissions;
     using DotNetNuke.Services.Exceptions;
@@ -70,7 +71,7 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void SetupLinks()
         {
-            this.HomeLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.Home);
+            this.HomeLink.NavigateUrl = Globals.NavigateURL();
             this.SettingsLink.NavigateUrl = this.EditUrl("ModuleId", this.ModuleId.ToString(CultureInfo.InvariantCulture), "Module");
             this.AddAnEventLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.AppointmentRequest);
             this.ExportLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.ExportData);

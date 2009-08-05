@@ -109,7 +109,6 @@ namespace Engage.Dnn.Booking
                 }
 
                 this.SetButtonLinks();
-                this.SuccessModuleMessage.Visible = false;
             }
             catch (Exception exc)
             {
@@ -179,6 +178,8 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void DisplayFinalSuccess()
         {
+            this.FooterButtonsMultiview.SetActiveView(this.SuccessView);
+            this.AppointmentRequestPanel.Visible = false;
             this.SuccessModuleMessage.Visible = true;
         }
 
@@ -187,7 +188,8 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void SetButtonLinks()
         {
-            this.CancelAppointmentLink.NavigateUrl = Globals.NavigateURL();
+            this.HomeLink.NavigateUrl = this.CancelAppointmentLink.NavigateUrl = Globals.NavigateURL();
+            this.CreateNewAppointmentButton.NavigateUrl = this.NewAppintmentUrl;
         }
 
         /// <summary>
