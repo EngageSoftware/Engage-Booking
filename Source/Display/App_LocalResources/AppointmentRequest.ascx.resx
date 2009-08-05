@@ -118,16 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddEventSuccess.Text" xml:space="preserve">
-    <value>Your event request has been successfully submitted!</value>
+    <value>Your appointment request has been successfully submitted!</value>
   </data>
   <data name="AddNewEvent.Text" xml:space="preserve">
     <value>Add a New Event</value>
   </data>
   <data name="AddressLabel.Text" xml:space="preserve">
     <value>Address</value>
-  </data>
-  <data name="AllowRegistrationsLabel.Text" xml:space="preserve">
-    <value>Allow Event Registrations</value>
   </data>
   <data name="AltPhoneLabel.Text" xml:space="preserve">
     <value>Alternate Phone</value>
@@ -136,7 +133,7 @@
     <value>Service Request Form</value>
   </data>
   <data name="AssignmentDateLabel.Text" xml:space="preserve">
-    <value>Date of Assignment</value>
+    <value>Date of Appointment</value>
   </data>
   <data name="Business.Text" xml:space="preserve">
     <value>Business</value>
@@ -151,7 +148,7 @@
     <value>City</value>
   </data>
   <data name="Community Event.Text" xml:space="preserve">
-    <value>Community Event</value>
+    <value>Community</value>
   </data>
   <data name="ConsiderationsLabel.Text" xml:space="preserve">
     <value>Special Considerations</value>
@@ -199,22 +196,22 @@
     <value>Default Message</value>
   </data>
   <data name="DescriptionLabel.Text" xml:space="preserve">
-    <value>Description of Event</value>
+    <value>Description of Appointment</value>
   </data>
   <data name="EditEvent.Text" xml:space="preserve">
-    <value>Edit an Event</value>
+    <value>Edit an Appointment</value>
   </data>
   <data name="EditEventSuccess.Text" xml:space="preserve">
-    <value>Your event has been successfully updated!</value>
+    <value>Your appointment has been successfully updated!</value>
   </data>
   <data name="Educational.Text" xml:space="preserve">
     <value>Educational</value>
   </data>
   <data name="EndDateCompareValidator.Text" xml:space="preserve">
-    <value>Your event cannot end before it begins</value>
+    <value>Your appointment cannot end before it begins</value>
   </data>
   <data name="EndDateTimePickerRequired.Text" xml:space="preserve">
-    <value>You must specify when your event ends</value>
+    <value>You must specify when your appointment ends</value>
   </data>
   <data name="EndLabel.Text" xml:space="preserve">
     <value>End</value>
@@ -223,7 +220,7 @@
     <value>Description</value>
   </data>
   <data name="EventDescriptionTextEditorRequired.Text" xml:space="preserve">
-    <value>You must supply a description of your event</value>
+    <value>You must supply a description of your appointment</value>
   </data>
   <data name="EventEndDateLabel.Text" xml:space="preserve">
     <value>Ends</value>
@@ -232,10 +229,10 @@
     <value>Where</value>
   </data>
   <data name="EventLocationTextBoxRequired.Text" xml:space="preserve">
-    <value>You must supply where your event is taking place</value>
+    <value>You must supply where your appointment is taking place</value>
   </data>
   <data name="EventLocationWaterMark.Text" xml:space="preserve">
-    <value>Please enter the event location</value>
+    <value>Please enter the appointment location</value>
   </data>
   <data name="EventOverviewLabel.Text" xml:space="preserve">
     <value>Overview</value>
@@ -244,28 +241,28 @@
     <value>Begins</value>
   </data>
   <data name="EventTimeZoneCheckBox.Text" xml:space="preserve">
-    <value>This event occurs during &lt;a href="http://aa.usno.navy.mil/faq/docs/daylight_time.php" target="_blank"&gt;Daylight Saving Time&lt;/a&gt;</value>
+    <value>This appointment occurs during &lt;a href="http://aa.usno.navy.mil/faq/docs/daylight_time.php" target="_blank"&gt;Daylight Saving Time&lt;/a&gt;</value>
   </data>
   <data name="EventTimeZoneLabel.Text" xml:space="preserve">
     <value>Time Zone</value>
   </data>
   <data name="EventTitleLabel.Text" xml:space="preserve">
-    <value>Event Title</value>
+    <value>Appointment Title</value>
   </data>
   <data name="EventTitleRangeValidator.Text" xml:space="preserve">
-    <value>The event title must be no longer than 250 characters</value>
+    <value>The appointment title must be no longer than 250 characters</value>
   </data>
   <data name="EventTitleTextBoxRequired.Text" xml:space="preserve">
-    <value>You must supply a title for your event</value>
+    <value>You must supply a title for your appointment</value>
   </data>
   <data name="EventTitleWaterMark.Text" xml:space="preserve">
-    <value>Please enter the event title</value>
+    <value>Please enter the appointment title</value>
   </data>
   <data name="EventTypeLabel.Text" xml:space="preserve">
-    <value>Type of Event</value>
+    <value>Type of Appointment</value>
   </data>
   <data name="FeaturedEventLabel.Text" xml:space="preserve">
-    <value>Featured Event</value>
+    <value>Featured Appointment</value>
   </data>
   <data name="Fed or State Govt.Text" xml:space="preserve">
     <value>Federal or State Government</value>
@@ -277,10 +274,10 @@
     <value>Special Instructions</value>
   </data>
   <data name="Interpreting Event.Text" xml:space="preserve">
-    <value>Interpreting Event</value>
+    <value>Appointment Details</value>
   </data>
   <data name="InterpretingServicesLabel.Text" xml:space="preserve">
-    <value>Person Requesting Interpreting Services</value>
+    <value>Person Requesting Appointment</value>
   </data>
   <data name="InvalidRecurrence.Text" xml:space="preserve">
     <value>The selected recurrence pattern is invalid.  Please make sure all fields are filled in correctly.</value>
@@ -298,10 +295,10 @@
     <value>Musical</value>
   </data>
   <data name="NearestLabel.Text" xml:space="preserve">
-    <value>If DC/MD/VA, nearest Metro and nearest cross street</value>
+    <value>Nearest cross street</value>
   </data>
   <data name="NumberSpecialLabel.Text" xml:space="preserve">
-    <value>Number of Deaf Participants</value>
+    <value>Number of Confirmed Participants</value>
   </data>
   <data name="OnSiteContactLabel.Text" xml:space="preserve">
     <value>On-site Contact</value>
@@ -316,13 +313,13 @@
     <value>Phone</value>
   </data>
   <data name="PresenterLabel.Text" xml:space="preserve">
-    <value>Deaf Presenter</value>
+    <value>Professional Presenter</value>
   </data>
   <data name="Psychiatric.Text" xml:space="preserve">
     <value>Psychiatric</value>
   </data>
   <data name="RecurringEventLabel.Text" xml:space="preserve">
-    <value>Recurring Event</value>
+    <value>Recurring Appointment</value>
   </data>
   <data name="Registration Options:.Text" xml:space="preserve">
     <value>Registration Options:</value>
@@ -346,10 +343,10 @@
     <value>Seminar</value>
   </data>
   <data name="Service Request Form.Text" xml:space="preserve">
-    <value>Service Request Form</value>
+    <value>Appointment Request</value>
   </data>
   <data name="StartDateTimePickerRequired.Text" xml:space="preserve">
-    <value>You must specify when your event begins</value>
+    <value>You must specify when your appointment begins</value>
   </data>
   <data name="StartLabel.Text" xml:space="preserve">
     <value>Start</value>
@@ -367,7 +364,7 @@
     <value>The time that you have requested is unavailable.  Please refer to the calendar to find an available time.</value>
   </data>
   <data name="TotalNumberLabel.Text" xml:space="preserve">
-    <value>Total Number of Participants</value>
+    <value>Maximum Number of Participants</value>
   </data>
   <data name="EmailAddressLabel.Text" xml:space="preserve">
     <value>Email Address</value>
@@ -403,10 +400,10 @@
     <value>No</value>
   </data>
   <data name="NumberOfSpecialParticipantsFormatValidator.Text" xml:space="preserve">
-    <value>The number of deaf participants must be a whole number</value>
+    <value>The number of confirmed participants must be a whole number</value>
   </data>
   <data name="TotalNumberOfParticipantsCompareValidator.Text" xml:space="preserve">
-    <value>The total number of participants must be at least as many as the number of deaf participants</value>
+    <value>The maximum number of participants must be at least as many as the number of confirmed participants</value>
   </data>
   <data name="TotalNumberOfParticipantsFormatValidator.Text" xml:space="preserve">
     <value>The total number of participants must be a whole number</value>
