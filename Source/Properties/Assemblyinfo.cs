@@ -25,9 +25,7 @@ using System.Web.UI;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-[assembly: AssemblyVersion("01.00.00.*")]
-[assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("")]
-[assembly: AssemblyKeyName("")]
+[assembly: AssemblyVersion("01.01.00.*")]
+[assembly: AssemblyFileVersion("01.01.00.00")]
 
 [assembly: WebResource("Engage.Dnn.Booking.JavaScript.SelectAllPlugin.js", "text/javascript")]

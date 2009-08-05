@@ -27,6 +27,10 @@
               <name>1.0.0.SqlDataProvider</name>
               <version>1.0.0</version>
             </script>
+            <script type="Install">
+              <name>1.1.0.SqlDataProvider</name>
+              <version>1.1.0</version>
+            </script>
             <script type="UnInstall">
               <name>Uninstall.SqlDataProvider</name>
               <version>REPLACED BY NANT</version>
@@ -77,15 +81,15 @@
             </assembly>
             <assembly>
               <name>Engage.Framework.dll</name>
-              <version>3.1.0</version>
+              <version>3.1.1</version>
             </assembly>
             <assembly>
               <name>Engage.Dnn.Framework.dll</name>
-              <version>3.1.0</version>
+              <version>3.1.1</version>
             </assembly>
             <assembly>
               <name>Telerik.Web.UI.dll</name>
-              <version>2008.2.826</version>
+              <version>2009.1.527</version>
             </assembly>
           </assemblies>
         </component>

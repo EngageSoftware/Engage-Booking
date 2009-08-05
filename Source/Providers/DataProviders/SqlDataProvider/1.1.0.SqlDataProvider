@@ -1,0 +1,23 @@
+﻿IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spCanCreateAppointmentAt]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spCanCreateAppointmentAt]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spCanCreateAppointmentAt]
+(  
+	@moduleId int,
+    @start datetime,
+    @end datetime
+)  
+AS  
+BEGIN  
+
+SELECT CASE WHEN COUNT(*) > 0 THEN CAST(0 AS bit) ELSE CAST(1 AS bit) END
+FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+WHERE ModuleId = @moduleId
+  AND IsAccepted = 1
+  AND (@start = StartDateTime 
+      OR  @end = EndDateTime
+      OR (@start > StartDateTime AND @start < EndDateTime)
+      OR (@end > StartDateTime AND @end < EndDateTime)
+      OR (@start < StartDateTime AND @end > EndDateTime))  
+END  
+GO

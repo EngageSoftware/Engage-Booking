@@ -377,6 +377,7 @@
     <Content Include="Images\choose_display.gif" />
     <None Include="EngageBooking.5.dnn" />
     <None Include="EngageBooking.Build" />
+    <None Include="Providers\DataProviders\SqlDataProvider\1.1.0.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
@@ -421,10 +422,8 @@
     <Content Include="Display\App_LocalResources\ExportData.ascx.resx">
     </Content>
     <Content Include="Display\App_LocalResources\AppointmentDetails.ascx.resx" />
+    <Content Include="ReleaseNotes_1.1.0.htm" />
     <EmbeddedResource Include="JavaScript\SelectAllPlugin.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Util\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v8.0\WebApplications\Microsoft.WebApplication.targets" Condition="'$(Solutions.VSVersion)' == '8.0'" />

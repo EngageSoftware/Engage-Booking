@@ -6,8 +6,20 @@ IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]',
 	DROP TABLE {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]
 GO
 
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]', N'U') IS NOT NULL
+	DROP TABLE {databaseOwner}[{objectQualifier}EngageBooking_EmailQueue]
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAllAppointments]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAllAppointments]
+GO
+
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments]', N'P') IS NOT NULL
 	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointments]
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentsByDateRange]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentsByDateRange]
 GO
 
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spDeleteAppointment]', N'P') IS NOT NULL
@@ -26,6 +38,38 @@ IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointment]'
 	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointment]
 GO
 
-IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_GetAppointmentTypes]', N'P') IS NOT NULL
-	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_GetAppointmentTypes]
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentTypes]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentTypes]
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spDeclineAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spDeclineAppointment]
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spCanCreateAppointmentAt]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spCanCreateAppointmentAt]
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointment]
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spApproveByKey]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spApproveByKey]
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spQueueEmail]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spQueueEmail]
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spClearQueuedEmail]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spClearQueuedEmail]
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetQueuedEmails]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetQueuedEmails]
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentType]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentType]
 GO
