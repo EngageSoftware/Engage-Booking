@@ -31,12 +31,15 @@ namespace Engage.Dnn.Booking
         private const int DefaultDurationInMinutes = 30;
 
         /// <summary>
-        /// Gets the URL to navigate to in order to add a new <see cref="Appointment"/>.
+        /// Gets a value indicating whether to show a message that the appointment was successfully submitted.
         /// </summary>
-        /// <value>The URL to navigate to in order to add a new <see cref="Appointment"/></value>
-        private string NewAppintmentUrl
+        /// <value><c>true</c> if the success message should be shown; otherwise, <c>false</c>.</value>
+        private bool ShowSuccessMessage
         {
-            get { return this.BuildLinkUrl(this.ModuleId, ControlKey.AppointmentRequest); }
+            get
+            {
+                return "1".Equals(this.Request.QueryString["success"], StringComparison.Ordinal);
+            }
         }
 
         /// <summary>
@@ -96,6 +99,7 @@ namespace Engage.Dnn.Booking
 
                 if (!this.IsPostBack)
                 {
+                    this.SuccessModuleMessage.Visible = this.ShowSuccessMessage;
                     this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime") ?? GetNextDuration();
                     this.EndDateTimePicker.SelectedDate = this.GetDateFromQueryString("endTime") ?? this.StartDateTimePicker.SelectedDate.Value.AddMinutes(DefaultDurationInMinutes);
 
@@ -128,7 +132,7 @@ namespace Engage.Dnn.Booking
                 if (this.Page.IsValid)
                 {
                     this.Save();
-                    this.Response.Redirect(this.NewAppintmentUrl, true);
+                    this.Response.Redirect(this.BuildLinkUrl(this.ModuleId, ControlKey.AppointmentRequest, "success=1"), true);
                 }
             }
             catch (Exception exc)
@@ -189,7 +193,7 @@ namespace Engage.Dnn.Booking
         private void SetButtonLinks()
         {
             this.HomeLink.NavigateUrl = this.CancelAppointmentLink.NavigateUrl = Globals.NavigateURL();
-            this.CreateNewAppointmentButton.NavigateUrl = this.NewAppintmentUrl;
+            this.CreateNewAppointmentButton.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.AppointmentRequest);
         }
 
         /// <summary>
