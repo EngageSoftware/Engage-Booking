@@ -43,8 +43,11 @@ namespace Engage.Dnn.Booking
         {
             ((ScriptManager)AJAX.ScriptManagerControl(this.Page)).RegisterPostBackControl(this.ExportButton);
 
-            this.StartDatePicker.SelectedDate = DateTime.Today;
-            this.EndDatePicker.SelectedDate = DateTime.Today.AddDays(15);
+            if (!this.IsPostBack)
+            {
+                this.StartDatePicker.SelectedDate = DateTime.Today;
+                this.EndDatePicker.SelectedDate = DateTime.Today.AddDays(15);
+            }
 
             this.StartDatePicker.Skin = this.EndDatePicker.Skin = ModuleSettings.CalendarSkin.GetValueAsStringFor(this);
         }
@@ -56,7 +59,7 @@ namespace Engage.Dnn.Booking
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void ExportButton_Click(object sender, EventArgs e)
         {
-            var appointmentsTable = AppointmentSqlDataProvider.GetAppointmentsByDateRange(this.ModuleId, this.StartDatePicker.SelectedDate, this.EndDatePicker.SelectedDate);
+            var appointmentsTable = AppointmentSqlDataProvider.GetAppointmentsByDateRange(this.ModuleId, this.StartDatePicker.SelectedDate.Value, this.EndDatePicker.SelectedDate.Value);
             SendContentToClient(this.Response, "text/csv", CsvWriter.WriteToString(appointmentsTable, this.HeaderRowCheckBox.Checked, false), this.GetFileName());
         }
 
@@ -66,7 +69,7 @@ namespace Engage.Dnn.Booking
         /// <returns>The filename with the current ISO 8601 date appended.</returns>
         private string GetFileName()
         {
-            return string.Format(CultureInfo.CurrentCulture, Localization.GetString("BaseFileName.Text", this.LocalResourceFile), DateTime.Today, this.StartDatePicker.SelectedDate, this.EndDatePicker.SelectedDate);
+            return string.Format(CultureInfo.CurrentCulture, Localization.GetString("BaseFileName.Text", this.LocalResourceFile), DateTime.Today, this.StartDatePicker.SelectedDate.Value, this.EndDatePicker.SelectedDate.Value);
         }
     }
 }
