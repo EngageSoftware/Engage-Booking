@@ -8,7 +8,7 @@
     <p class="note Normal">
         <%=Localize("RequiredLabelStart.Text") %><asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" /><%=Localize("RequiredLabelEnd.Text") %>
     </p>
-	<div class="ar-wrap">    
+	<div class="ar-wrap details-wrap">    
         <fieldset>
             <legend class="SubHead"><%=Localize("Interpreting Event")%></legend>
             <ol class="interpreting-form">
@@ -31,7 +31,7 @@
                 </li>
             </ol>
             <fieldset class="addr-legend">
-                <legend><asp:Label ID="Label1" ResourceKey="AddressLabel" runat="server" /></legend>
+                <legend><asp:Label ResourceKey="AddressLabel" runat="server" /></legend>
                 <ol class="interpreting-form-b">
                     <li class="street">
                         <asp:Label CssClass="street-label" runat="server" ResourceKey="StreetLabel" AssociatedControlId="StreetTextBox" />
@@ -65,7 +65,7 @@
 			</fieldset>
         </fieldset>
     </div>
-	<div class="ar-wrap">
+	<div class="ar-wrap requesting-wrap">
         <fieldset>
             <legend class="SubHead"><asp:Label ResourceKey="InterpretingServicesLabel.Text" runat="server" /></legend>
             <ol class="requesting-form">
@@ -97,7 +97,7 @@
             </ol>
         </fieldset>
 	</div>
-	<div class="ar-wrap">
+	<div class="ar-wrap date-assignment-wrap">
         <fieldset>
             <legend class="SubHead"><asp:Label ResourceKey="AssignmentDateLabel.Text" runat="server" /></legend>
             <ol class="date-assignment-form">
@@ -133,7 +133,7 @@
             </ol>
         </fieldset>
 	</div>
-	<div class="ar-wrap">
+	<div class="ar-wrap participants-wrap">
         <fieldset>
             <legend class="SubHead"><asp:Label ResourceKey="ParticipantsLabel.Text" runat="server" /></legend>
             <ol class="participants-form">
@@ -160,7 +160,7 @@
             </ol>
         </fieldset>
 	</div>        
-	<div class="ar-wrap">
+	<div class="ar-wrap customfields-wrap">
         <fieldset class="customfields-fieldset">
             <legend class="SubHead"><asp:Label ResourceKey="CustomFieldsLabel.Text" runat="server" /></legend>
             <ol class="customfields-form">

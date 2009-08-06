@@ -1,7 +1,7 @@
 <%@ Control Language="c#" AutoEventWireup="false" Inherits="Engage.Dnn.Booking.AppointmentDetails" CodeBehind="AppointmentDetails.ascx.cs" %>
 <div class="appointment-details Normal">
     <h2 class="Head"><%=Localize("Service Request Form")%></h2>
-    <div class="ar-wrap">
+    <div class="ar-wrap details-wrap">
         <fieldset>
             <legend class="SubHead"><%=Localize("Interpreting Event")%></legend>
             <ol class="interpreting-form">
@@ -57,7 +57,7 @@
 			</fieldset>
         </fieldset>
 	</div>
-    <div class="ar-wrap">        
+    <div class="ar-wrap requesting-wrap">        
         <fieldset>
             <legend class="SubHead"><asp:Label ResourceKey="InterpretingServicesLabel.Text" runat="server" /></legend>
             <ol class="requesting-form">
@@ -82,7 +82,7 @@
             </ol>
         </fieldset>
 	</div>
-    <div class="ar-wrap">        
+    <div class="ar-wrap date-assignment-wrap">        
         <fieldset>
             <legend class="SubHead"><asp:Label ResourceKey="AssignmentDateLabel.Text" runat="server" /></legend>
             <ol class="date-assignment-form">
@@ -97,7 +97,7 @@
             </ol>
         </fieldset>
 	</div>
-    <div class="ar-wrap">        
+    <div class="ar-wrap participants-wrap">        
         <fieldset>
             <legend class="SubHead"><asp:Label ResourceKey="ParticipantsLabel.Text" runat="server" /></legend>
             <ol class="participants-form">
@@ -120,7 +120,7 @@
             </ol>
         </fieldset>
 	</div>
-    <div class="ar-wrap">        
+    <div class="ar-wrap customfields-wrap">        
         <fieldset class="customfields-fieldset">
             <legend class="SubHead"><asp:Label ResourceKey="CustomFieldsLabel.Text" runat="server" /></legend>
             <ol class="customfields-form">

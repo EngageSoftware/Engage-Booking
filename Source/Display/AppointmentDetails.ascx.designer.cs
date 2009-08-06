@@ -131,15 +131,6 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.Label RequestorNameLabel;
         
         /// <summary>
-        /// RequestorPhoneTypeLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label RequestorPhoneTypeLabel;
-        
-        /// <summary>
         /// RequestorPhoneLabel control.
         /// </summary>
         /// <remarks>
@@ -149,13 +140,13 @@ namespace Engage.Dnn.Booking {
         protected global::System.Web.UI.WebControls.Label RequestorPhoneLabel;
         
         /// <summary>
-        /// RequestorAltPhoneTypeLabel control.
+        /// RequestorPhoneTypeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label RequestorAltPhoneTypeLabel;
+        protected global::System.Web.UI.WebControls.Label RequestorPhoneTypeLabel;
         
         /// <summary>
         /// RequestorAltPhoneLabel control.
@@ -165,6 +156,15 @@ namespace Engage.Dnn.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label RequestorAltPhoneLabel;
+        
+        /// <summary>
+        /// RequestorAltPhoneTypeLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RequestorAltPhoneTypeLabel;
         
         /// <summary>
         /// RequestorEmailLabel control.
