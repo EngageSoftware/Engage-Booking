@@ -73,3 +73,8 @@ GO
 IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentType]', N'P') IS NOT NULL
 	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentType]
 GO
+
+DELETE {databaseOwner}[{objectQualifier}Schedule]
+WHERE TypeFullName = 'Engage.Dnn.Booking.EmailScheduler, EngageBooking'
+GO
+
