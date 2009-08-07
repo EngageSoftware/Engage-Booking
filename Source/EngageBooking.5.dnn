@@ -72,6 +72,15 @@
               </moduleDefinition>
             </moduleDefinitions>
           </desktopModule>
+          <eventMessage>
+            <processorType>DotNetNuke.Entities.Modules.EventMessageProcessor, DotNetNuke</processorType>
+            <processorCommand>UpgradeModule</processorCommand>
+            <attributes>
+              <businessControllerClass>Engage.Dnn.Booking.FeaturesController</businessControllerClass>
+              <desktopModuleID>[DESKTOPMODULEID]</desktopModuleID>
+              <upgradeVersionsList>1.0.0,1.1.0</upgradeVersionsList>
+            </attributes>
+          </eventMessage>
         </component>
         <component type="Assembly">
           <assemblies>
