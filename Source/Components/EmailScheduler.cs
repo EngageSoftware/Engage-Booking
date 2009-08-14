@@ -119,144 +119,155 @@ namespace Engage.Dnn.Booking
             }
 
             // translate semi-colon delimiters to commas as ASP.NET 2.0 does not support semi-colons
-            MailMessage objMail = null;
-            try
+            using (MailMessage objMail = new MailMessage(from, to.Replace(";", ",")))
             {
-                objMail = new MailMessage(from, to.Replace(";", ","));
-                if (!string.IsNullOrEmpty(cc))
-                {
-                    objMail.CC.Add(cc.Replace(";", ","));
-                }
-
-                if (!string.IsNullOrEmpty(bcc))
-                {
-                    objMail.Bcc.Add(bcc.Replace(";", ","));
-                }
-
-                if (!string.IsNullOrEmpty(replyTo))
-                {
-                    objMail.ReplyTo = new MailAddress(replyTo);
-                }
-
-                objMail.Priority = (System.Net.Mail.MailPriority)priority;
-                objMail.IsBodyHtml = bodyFormat == MailFormat.Html;
-
-                foreach (string myAtt in attachment)
-                {
-                    if (!string.IsNullOrEmpty(myAtt))
-                    {
-                        ////objMail.Attachments.Add(new Attachment(myAtt));
-                        using (var attachmentStream = new MemoryStream(Encoding.Default.GetBytes(myAtt)))
-                        {
-                            objMail.Attachments.Add(new Attachment(attachmentStream, "Appointment.ics"));
-                        }
-                    }
-                }
-
-                // message
-                objMail.SubjectEncoding = bodyEncoding;
-                objMail.Subject = HtmlUtils.StripWhiteSpace(subject, true);
-                objMail.BodyEncoding = bodyEncoding;
-
-                objMail.Body = body;
-
-                // added support for multipart html messages - removed in this modified version
-                // add text part as alternate view - removed in this modified version
-                ////var PlainView = AlternateView.CreateAlternateViewFromString(ConvertToText(body), null, "text/plain");
-                ////objMail.AlternateViews.Add(PlainView);
-
-                // if body contains html, add html part
-                ////if (IsHTMLMail(body))
-                ////{
-                ////    var HTMLView = AlternateView.CreateAlternateViewFromString(body, null, "text/html");
-                ////    objMail.AlternateViews.Add(HTMLView);
-                ////}
-            }
-            catch (Exception objException)
-            {
-                // Problem creating Mail Object
-                returnMessage = to + ": " + objException.Message;
-                Exceptions.LogException(objException);
-            }
-
-            if (objMail != null)
-            {
-                // external SMTP server alternate port
-                int smtpPort = Null.NullInteger;
-                int portPos = smtpServer.IndexOf(":", StringComparison.Ordinal);
-                if (portPos > -1)
-                {
-                    smtpPort = int.Parse(smtpServer.Substring(portPos + 1, smtpServer.Length - portPos - 1), CultureInfo.InvariantCulture);
-                    smtpServer = smtpServer.Substring(0, portPos);
-                }
-
-                var smtpClient = new SmtpClient();
-
+                MemoryStream attachmentStream = null;
                 try
                 {
-                    if (!string.IsNullOrEmpty(smtpServer))
+                    try
                     {
-                        smtpClient.Host = smtpServer;
-                        if (smtpPort > Null.NullInteger)
+                        if (!string.IsNullOrEmpty(cc))
                         {
-                            smtpClient.Port = smtpPort;
+                            objMail.CC.Add(cc.Replace(";", ","));
                         }
 
-                        switch (smtpAuthentication)
+                        if (!string.IsNullOrEmpty(bcc))
                         {
-                            // basic
-                            case "1":
-                                if (!string.IsNullOrEmpty(smtpUserName) && !string.IsNullOrEmpty(smtpPassword))
-                                {
-                                    smtpClient.UseDefaultCredentials = false;
-                                    smtpClient.Credentials = new NetworkCredential(smtpUserName, smtpPassword);
-                                }
-
-                                break;
-
-                            // NTLM
-                            case "2":
-                                smtpClient.UseDefaultCredentials = true;
-                                break;
+                            objMail.Bcc.Add(bcc.Replace(";", ","));
                         }
-                    }
 
-                    smtpClient.EnableSsl = smtpEnableSsl;
+                        if (!string.IsNullOrEmpty(replyTo))
+                        {
+                            objMail.ReplyTo = new MailAddress(replyTo);
+                        }
 
-                    smtpClient.Send(objMail);
-                    returnMessage = string.Empty;
-                }
-                catch (SmtpFailedRecipientException exc)
-                {
-                    returnMessage = string.Format(CultureInfo.CurrentCulture, Localization.GetString("FailedRecipient"), exc.FailedRecipient);
-                    Exceptions.LogException(exc);
-                }
-                catch (SmtpException exc)
-                {
-                    returnMessage = Localization.GetString("SMTPConfigurationProblem");
-                    Exceptions.LogException(exc);
-                }
-                catch (Exception objException)
-                {
-                    // mail configuration problem
-                    if (objException.InnerException != null)
-                    {
-                        returnMessage = string.Concat(objException.Message, Environment.NewLine, objException.InnerException.Message);
-                        Exceptions.LogException(objException.InnerException);
+                        objMail.Priority = (System.Net.Mail.MailPriority)priority;
+                        objMail.IsBodyHtml = bodyFormat == MailFormat.Html;
+
+                        foreach (string myAtt in attachment)
+                        {
+                            if (!string.IsNullOrEmpty(myAtt))
+                            {
+                                ////objMail.Attachments.Add(new Attachment(myAtt));
+                                attachmentStream = new MemoryStream(Encoding.Default.GetBytes(myAtt));
+                                objMail.Attachments.Add(new Attachment(attachmentStream, "Appointment.ics"));
+                            }
+                        }
+
+                        // message
+                        objMail.SubjectEncoding = bodyEncoding;
+                        objMail.Subject = HtmlUtils.StripWhiteSpace(subject, true);
+                        objMail.BodyEncoding = bodyEncoding;
+
+                        objMail.Body = body;
+
+                        // added support for multipart html messages - removed in this modified version
+                        // add text part as alternate view - removed in this modified version
+                        ////var PlainView = AlternateView.CreateAlternateViewFromString(ConvertToText(body), null, "text/plain");
+                        ////objMail.AlternateViews.Add(PlainView);
+
+                        // if body contains html, add html part
+                        ////if (IsHTMLMail(body))
+                        ////{
+                        ////    var HTMLView = AlternateView.CreateAlternateViewFromString(body, null, "text/html");
+                        ////    objMail.AlternateViews.Add(HTMLView);
+                        ////}
                     }
-                    else
+                    catch (Exception objException)
                     {
-                        returnMessage = objException.Message;
+                        // Problem creating Mail Object
+                        returnMessage = to + ": " + objException.Message;
                         Exceptions.LogException(objException);
                     }
-                }
-                finally
-                {
-                    objMail.Dispose();
-                }
-            }
 
-            return returnMessage;
+                    if (objMail != null)
+                    {
+                        // external SMTP server alternate port
+                        int smtpPort = Null.NullInteger;
+                        int portPos = smtpServer.IndexOf(":", StringComparison.Ordinal);
+                        if (portPos > -1)
+                        {
+                            smtpPort = int.Parse(smtpServer.Substring(portPos + 1, smtpServer.Length - portPos - 1), CultureInfo.InvariantCulture);
+                            smtpServer = smtpServer.Substring(0, portPos);
+                        }
+
+                        var smtpClient = new SmtpClient();
+
+                        try
+                        {
+                            if (!string.IsNullOrEmpty(smtpServer))
+                            {
+                                smtpClient.Host = smtpServer;
+                                if (smtpPort > Null.NullInteger)
+                                {
+                                    smtpClient.Port = smtpPort;
+                                }
+
+                                switch (smtpAuthentication)
+                                {
+                                    // basic
+                                    case "1":
+                                        if (!string.IsNullOrEmpty(smtpUserName) && !string.IsNullOrEmpty(smtpPassword))
+                                        {
+                                            smtpClient.UseDefaultCredentials = false;
+                                            smtpClient.Credentials = new NetworkCredential(smtpUserName, smtpPassword);
+                                        }
+
+                                        break;
+
+                                    // NTLM
+                                    case "2":
+                                        smtpClient.UseDefaultCredentials = true;
+                                        break;
+                                }
+                            }
+
+                            smtpClient.EnableSsl = smtpEnableSsl;
+
+                            smtpClient.Send(objMail);
+                            returnMessage = string.Empty;
+                        }
+                        catch (SmtpFailedRecipientException exc)
+                        {
+                            returnMessage = string.Format(CultureInfo.CurrentCulture, Localization.GetString("FailedRecipient"), exc.FailedRecipient);
+                            Exceptions.LogException(exc);
+                        }
+                        catch (SmtpException exc)
+                        {
+                            returnMessage = Localization.GetString("SMTPConfigurationProblem");
+                            Exceptions.LogException(exc);
+                        }
+                        catch (Exception objException)
+                        {
+                            // mail configuration problem
+                            if (objException.InnerException != null)
+                            {
+                                returnMessage = string.Concat(objException.Message, Environment.NewLine, objException.InnerException.Message);
+                                Exceptions.LogException(objException.InnerException);
+                            }
+                            else
+                            {
+                                returnMessage = objException.Message;
+                                Exceptions.LogException(objException);
+                            }
+                        }
+                        finally
+                        {
+                            if (attachmentStream != null)
+                            {
+                                attachmentStream.Dispose();
+                            }
+                        }
+                    }
+                }
+                catch(Exception objException)
+                {
+                    returnMessage = objException.Message;
+                    Exceptions.LogException(objException);
+                }
+
+                return returnMessage;
+            }
         }
 
         /// <summary>
