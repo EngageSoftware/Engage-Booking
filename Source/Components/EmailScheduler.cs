@@ -260,7 +260,7 @@ namespace Engage.Dnn.Booking
                         }
                     }
                 }
-                catch(Exception objException)
+                catch (Exception objException)
                 {
                     returnMessage = objException.Message;
                     Exceptions.LogException(objException);
