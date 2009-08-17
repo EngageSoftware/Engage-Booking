@@ -1,4 +1,6 @@
-﻿/* calendar display page */
+﻿.booking ol li{list-style-type:none;margin:0 0 8px 0;padding:0;}
+
+/* calendar display page */
 .appointments-calendar li {list-style-type:none;}
 .appointments-calendar {position:relative;} /*.appointments-calendar is position:relative to serve as a base for .NewAppointmentTooltip's position:absolute*/
 .NewAppointmentTooltip {background:transparent url(images/request-appt-background.png) no-repeat; width:150px; height:63px; position:fixed; display:none; padding-top:1em; text-align:center; z-index:1000;}
@@ -68,7 +70,6 @@
 			.booking-request legend.SubHead{font-size:14px;color:#6e5112;font-weight:bold;padding-right:15px;}
 				.booking-request p.note{border-top:1px #ccc solid;padding-top:20px;margin-top:0;}
 		.booking-request ol{margin:0;padding:20px 0 10px;}
-		.booking-request ol li{list-style-type:none;margin:0 0 8px 0;padding:0;}
 		.booking-request label{width:160px;text-align:right;}	
 		.new-request-tooltip{background: url(Images/add.gif) no-repeat left;padding-left:25px;display:block;margin:10px;}
 		.RequestAppointmentLink{background: url(Images/add.gif) no-repeat left;padding-left:25px;display:block;margin:10px 0;}
@@ -133,7 +134,6 @@
 		.appointment-details legend.SubHead{font-size:14px;color:#6e5112;font-weight:bold;padding-right:15px;}
 			.appointment-details p.note{border-top:1px #ccc solid;padding-top:20px;margin-top:0;}
 	.appointment-details ol{margin:0;padding:20px 0 10px;}
-	.appointment-details ol li{list-style-type:none;margin:0 0 8px 0;padding:0;}
 	.appointment-details label{width:160px;text-align:right;font-weight:bold;}
 	.appointment-details .interpreting-form{padding:15px 10px;background:#f5f5f5;margin-bottom:15px;border-bottom:1px #dcdcdc solid;border-right:1px #dcdcdc solid;}
 		.appointment-details .event-type, .appointment-details .title, .appointment-details .description, .notes {width:100%;overflow:hidden;padding:6px 0;clear:both;}
