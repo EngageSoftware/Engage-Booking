@@ -3,14 +3,14 @@
 <div class="exportdata">
     <ol class="exportdata-form">
         <li class="startdate">
-            <asp:Label ID="Label1" ResourceKey="StartDatePickerLabel" CssClass="startdate-label" runat="server" />
+            <asp:Label ResourceKey="StartDatePickerLabel" CssClass="startdate-label" runat="server" />
             <telerik:RadDatePicker ID="StartDatePicker" ResourceKey="StartDatePicker" CssClass="startdate-picker" runat="server" />
         </li>
         <li class="enddate">
-            <asp:Label ID="Label2" ResourceKey="EndDatePickerLabel" CssClass="enddate-label" runat="server" />
+            <asp:Label ResourceKey="EndDatePickerLabel" CssClass="enddate-label" runat="server" />
             <telerik:RadDatePicker ID="EndDatePicker" ResourceKey="EndDatePicker" CssClass="enddate-picker" runat="server" />
         </li>
-        <li class="exportbutton"
+        <li class="exportbutton">
             <asp:Button ID="ExportButton" ResourceKey="ExportDataButton" CssClass="export-button" runat="server" />
             <asp:CheckBox ID="HeaderRowCheckBox" ResourceKey="HeaderRowCheckBox" CssClass="header-checkbox" runat="server" Checked="true" />
         </li>
