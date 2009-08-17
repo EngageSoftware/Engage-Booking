@@ -146,7 +146,7 @@ namespace Engage.Dnn.Booking
                     Localization.GetString(localizationKey, Utility.LocalSharedResourceFile),
                     appointment.Title,
                     appointment.Description,
-                    null, ////appointment.AppointmentType,
+                    appointment.AppointmentType.Name,
                     appointment.Notes,
                     appointment.Address1,
                     appointment.Address2,
