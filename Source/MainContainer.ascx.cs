@@ -155,7 +155,7 @@ namespace Engage.Dnn.Booking
                 PortalModuleBase mb = (PortalModuleBase)this.LoadControl(controlToLoad.ControlPath);
                 mb.ModuleConfiguration = this.ModuleConfiguration;
                 mb.ID = Path.GetFileNameWithoutExtension(controlToLoad.ControlPath);
-                this.SubControlPanel.Controls.Add(mb);
+                this.SubControlPlaceholder.Controls.Add(mb);
             }
             catch (Exception exc)
             {
