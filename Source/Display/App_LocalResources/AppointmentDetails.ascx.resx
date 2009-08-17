@@ -135,9 +135,6 @@
   <data name="AssignmentDateLabel.Text" xml:space="preserve">
     <value>Date of Appointment</value>
   </data>
-  <data name="Business.Text" xml:space="preserve">
-    <value>Business</value>
-  </data>
   <data name="Cancel.Alt" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -146,9 +143,6 @@
   </data>
   <data name="CityLabel.Text" xml:space="preserve">
     <value>City</value>
-  </data>
-  <data name="Community Event.Text" xml:space="preserve">
-    <value>Community</value>
   </data>
   <data name="ConsiderationsLabel.Text" xml:space="preserve">
     <value>Special Considerations</value>
@@ -203,9 +197,6 @@
   </data>
   <data name="EditEventSuccess.Text" xml:space="preserve">
     <value>Your appointment has been successfully updated!</value>
-  </data>
-  <data name="Educational.Text" xml:space="preserve">
-    <value>Educational</value>
   </data>
   <data name="EmailAddressLabel.Text" xml:space="preserve">
     <value>Email Address</value>
@@ -270,9 +261,6 @@
   <data name="FeaturedEventLabel.Text" xml:space="preserve">
     <value>Featured Appointment</value>
   </data>
-  <data name="Fed or State Govt.Text" xml:space="preserve">
-    <value>Federal or State Government</value>
-  </data>
   <data name="FullNameLabel.Text" xml:space="preserve">
     <value>Full Name</value>
   </data>
@@ -297,15 +285,6 @@
   <data name="LimitRegistrationsLabel.Text" xml:space="preserve">
     <value>Set a Registration Cap</value>
   </data>
-  <data name="Local Govt.Text" xml:space="preserve">
-    <value>Local Government</value>
-  </data>
-  <data name="Medical.Text" xml:space="preserve">
-    <value>Medical</value>
-  </data>
-  <data name="Musical.Text" xml:space="preserve">
-    <value>Musical</value>
-  </data>
   <data name="NearestLabel.Text" xml:space="preserve">
     <value>Nearest cross street</value>
   </data>
@@ -317,9 +296,6 @@
   </data>
   <data name="OnSiteContactLabel.Text" xml:space="preserve">
     <value>On-site Contact</value>
-  </data>
-  <data name="Other.Text" xml:space="preserve">
-    <value>Other</value>
   </data>
   <data name="ParticipantsLabel.Text" xml:space="preserve">
     <value>Participants</value>
@@ -333,9 +309,6 @@
   <data name="PresenterLabel.Text" xml:space="preserve">
     <value>Professional Presenter</value>
   </data>
-  <data name="Psychiatric.Text" xml:space="preserve">
-    <value>Psychiatric</value>
-  </data>
   <data name="RecurringEventLabel.Text" xml:space="preserve">
     <value>Recurring Appointment</value>
   </data>
@@ -344,9 +317,6 @@
   </data>
   <data name="RegistrationLimitLabel.Text" xml:space="preserve">
     <value>Maximum Number of Registrants</value>
-  </data>
-  <data name="Religious.Text" xml:space="preserve">
-    <value>Religious</value>
   </data>
   <data name="RequestorEmailFormatValidator.Text" xml:space="preserve">
     <value>Email Address is in an invalid format</value>
@@ -378,9 +348,6 @@
   <data name="SaveAndCreateNew.Alt" xml:space="preserve">
     <value>Save and Create New</value>
   </data>
-  <data name="Seminar.Text" xml:space="preserve">
-    <value>Seminar</value>
-  </data>
   <data name="Service Request Form.Text" xml:space="preserve">
     <value>Appointment Request</value>
   </data>
@@ -395,9 +362,6 @@
   </data>
   <data name="StreetLabel.Text" xml:space="preserve">
     <value>Street</value>
-  </data>
-  <data name="Theatrical.Text" xml:space="preserve">
-    <value>Theatrical</value>
   </data>
   <data name="TitleLabel.Text" xml:space="preserve">
     <value>Title</value>

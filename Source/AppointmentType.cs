@@ -11,8 +11,8 @@
 
 namespace Engage.Dnn.Booking
 {
-    using System;
     using System.Data;
+    using DotNetNuke.Services.Localization;
 
     /// <summary>
     /// The type of an <see cref="Appointment"/>
@@ -23,11 +23,11 @@ namespace Engage.Dnn.Booking
         /// Initializes a new instance of the <see cref="AppointmentType"/> class.
         /// </summary>
         /// <param name="id">The ID of this instance.</param>
-        /// <param name="name">The name of this type.</param>
-        private AppointmentType(int id, string name)
+        /// <param name="resourceKeyName">The name of the resource key for the name of this type.</param>
+        private AppointmentType(int id, string resourceKeyName)
         {
             this.Id = id;
-            this.Name = name;
+            this.ResourceKeyName = resourceKeyName;
         }
 
         /// <summary>
@@ -41,13 +41,25 @@ namespace Engage.Dnn.Booking
         }
         
         /// <summary>
-        /// Gets the name of the type
+        /// Gets the name of the resource key in which is store the name of this type (i.e. the invariant name of the type that is stored in the database).
         /// </summary>
-        /// <value>The name of the type.</value>
-        public string Name
+        /// <value>The name of the resource key for this type.</value>
+        public string ResourceKeyName
         {
             get;
             private set;
+        }
+
+        /// <summary>
+        /// Gets the localized name of this type.
+        /// </summary>
+        /// <value>The localized name.</value>
+        public string Name
+        {
+            get
+            {
+                return Localization.GetString(this.ResourceKeyName, Utility.LocalSharedResourceFile);
+            }
         }
 
         /// <summary>

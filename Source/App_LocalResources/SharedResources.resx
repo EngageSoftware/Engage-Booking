@@ -178,6 +178,12 @@
   <data name="AllUsers.Text" xml:space="preserve">
     <value>All Users</value>
   </data>
+  <data name="Business.Text" xml:space="preserve">
+    <value>Business</value>
+  </data>
+  <data name="Community Event.Text" xml:space="preserve">
+    <value>Community</value>
+  </data>
   <data name="Date Picker Cancel.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -280,17 +286,32 @@
 {23} = current user's display name
 {24} = portal name</comment>
   </data>
+  <data name="Educational.Text" xml:space="preserve">
+    <value>Educational</value>
+  </data>
   <data name="Fax.Text" xml:space="preserve">
     <value>Fax</value>
+  </data>
+  <data name="Fed or State Govt.Text" xml:space="preserve">
+    <value>Federal or State Government</value>
   </data>
   <data name="Female.Text" xml:space="preserve">
     <value>Female</value>
   </data>
+  <data name="Local Govt.Text" xml:space="preserve">
+    <value>Local Government</value>
+  </data>
   <data name="Male.Text" xml:space="preserve">
     <value>Male</value>
   </data>
+  <data name="Medical.Text" xml:space="preserve">
+    <value>Medical</value>
+  </data>
   <data name="MixedGroup.Text" xml:space="preserve">
     <value>Mixed Group</value>
+  </data>
+  <data name="Musical.Text" xml:space="preserve">
+    <value>Musical</value>
   </data>
   <data name="NewRequestBody.Format" xml:space="preserve">
     <value>&lt;p&gt;A new appointment request titled &lt;em&gt;{0}&lt;/em&gt; has been made at {24}.&lt;/p&gt;
@@ -362,6 +383,21 @@
   </data>
   <data name="None.Text" xml:space="preserve">
     <value>None</value>
+  </data>
+  <data name="Other.Text" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Psychiatric.Text" xml:space="preserve">
+    <value>Psychiatric</value>
+  </data>
+  <data name="Religious.Text" xml:space="preserve">
+    <value>Religious</value>
+  </data>
+  <data name="Seminar.Text" xml:space="preserve">
+    <value>Seminar</value>
+  </data>
+  <data name="Theatrical.Text" xml:space="preserve">
+    <value>Theatrical</value>
   </data>
   <data name="Time Picker ToolTip.Text" xml:space="preserve">
     <value>Open the time view popup.</value>

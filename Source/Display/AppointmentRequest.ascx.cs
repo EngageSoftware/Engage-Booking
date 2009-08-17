@@ -332,21 +332,20 @@ namespace Engage.Dnn.Booking
             this.AppointmentTypeDropDownList.DataTextField = "Name";
             this.AppointmentTypeDropDownList.DataValueField = "Id";
             this.AppointmentTypeDropDownList.DataBind();
-            Dnn.Utility.LocalizeListControl(this.AppointmentTypeDropDownList, this.LocalResourceFile);
 
             this.RequestorPhoneTypeDropDownList.DataSource = Enum.GetNames(typeof(PhoneType));
             this.RequestorPhoneTypeDropDownList.DataBind();
             this.RequestorPhoneTypeDropDownList.Items.Remove(PhoneType.None.ToString());
-            Dnn.Utility.LocalizeListControl(this.RequestorPhoneTypeDropDownList, Utility.LocalSharedResourceFile);
+            Dnn.Utility.LocalizeListControl(this.RequestorPhoneTypeDropDownList, this.LocalSharedResourceFile);
 
             this.RequestorAltPhoneTypeDropDownList.DataSource = Enum.GetNames(typeof(PhoneType));
             this.RequestorAltPhoneTypeDropDownList.DataBind();
             this.RequestorAltPhoneTypeDropDownList.SelectedValue = PhoneType.None.ToString();
-            Dnn.Utility.LocalizeListControl(this.RequestorAltPhoneTypeDropDownList, Utility.LocalSharedResourceFile);
+            Dnn.Utility.LocalizeListControl(this.RequestorAltPhoneTypeDropDownList, this.LocalSharedResourceFile);
 
             this.GenderDropDownList.DataSource = Enum.GetNames(typeof(GroupGender));
             this.GenderDropDownList.DataBind();
-            Dnn.Utility.LocalizeListControl(this.GenderDropDownList, Utility.LocalSharedResourceFile);
+            Dnn.Utility.LocalizeListControl(this.GenderDropDownList, this.LocalSharedResourceFile);
 
             this.PresenterDropDownList.Items.Clear();
             this.PresenterDropDownList.Items.Add(new ListItem(Localization.GetString(true.ToString(CultureInfo.InvariantCulture), this.LocalResourceFile), true.ToString(CultureInfo.InvariantCulture)));
