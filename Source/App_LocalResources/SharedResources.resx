@@ -142,8 +142,18 @@
 {20} = appointment.ParticipantGender
 {21} = appointment.ParticipantFlag
 {22} = appointment.ParticipantInstructions
-{23} = current user's display name
-{24} = portal name</comment>
+{23} = appointment.CustomField1
+{24} = appointment.CustomField2
+{25} = appointment.CustomField3
+{26} = appointment.CustomField4
+{27} = appointment.CustomField5
+{28} = appointment.CustomField6
+{29} = appointment.CustomField7
+{30} = appointment.CustomField8
+{31} = appointment.CustomField9
+{32} = appointment.CustomField10
+{33} = current user's display name
+{34} = portal name</comment>
   </data>
   <data name="AcceptanceSubject.Format" xml:space="preserve">
     <value>Your appointment request at {24} has been accepted!</value>
@@ -170,8 +180,18 @@
 {20} = appointment.ParticipantGender
 {21} = appointment.ParticipantFlag
 {22} = appointment.ParticipantInstructions
-{23} = current user's display name
-{24} = portal name</comment>
+{23} = appointment.CustomField1
+{24} = appointment.CustomField2
+{25} = appointment.CustomField3
+{26} = appointment.CustomField4
+{27} = appointment.CustomField5
+{28} = appointment.CustomField6
+{29} = appointment.CustomField7
+{30} = appointment.CustomField8
+{31} = appointment.CustomField9
+{32} = appointment.CustomField10
+{33} = current user's display name
+{34} = portal name</comment>
   </data>
   <data name="AllUsers.Text" xml:space="preserve">
     <value>All Users</value>
@@ -219,8 +239,18 @@
 {20} = appointment.ParticipantGender
 {21} = appointment.ParticipantFlag
 {22} = appointment.ParticipantInstructions
-{23} = current user's display name
-{24} = portal name</comment>
+{23} = appointment.CustomField1
+{24} = appointment.CustomField2
+{25} = appointment.CustomField3
+{26} = appointment.CustomField4
+{27} = appointment.CustomField5
+{28} = appointment.CustomField6
+{29} = appointment.CustomField7
+{30} = appointment.CustomField8
+{31} = appointment.CustomField9
+{32} = appointment.CustomField10
+{33} = current user's display name
+{34} = portal name</comment>
   </data>
   <data name="DeclineBodyWithReason.Format" xml:space="preserve">
     <value>&lt;p&gt;Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was declined by {23}.&lt;/p&gt;
@@ -249,9 +279,19 @@
 {20} = appointment.ParticipantGender
 {21} = appointment.ParticipantFlag
 {22} = appointment.ParticipantInstructions
-{23} = current user's display name
-{24} = portal name
-{25} = decline reason</comment>
+{23} = appointment.CustomField1
+{24} = appointment.CustomField2
+{25} = appointment.CustomField3
+{26} = appointment.CustomField4
+{27} = appointment.CustomField5
+{28} = appointment.CustomField6
+{29} = appointment.CustomField7
+{30} = appointment.CustomField8
+{31} = appointment.CustomField9
+{32} = appointment.CustomField10
+{33} = current user's display name
+{34} = portal name
+{35} = decline reason</comment>
   </data>
   <data name="DeclineSubject.Format" xml:space="preserve">
     <value>Your appointment request at {24} has been declined</value>
@@ -278,8 +318,18 @@
 {20} = appointment.ParticipantGender
 {21} = appointment.ParticipantFlag
 {22} = appointment.ParticipantInstructions
-{23} = current user's display name
-{24} = portal name</comment>
+{23} = appointment.CustomField1
+{24} = appointment.CustomField2
+{25} = appointment.CustomField3
+{26} = appointment.CustomField4
+{27} = appointment.CustomField5
+{28} = appointment.CustomField6
+{29} = appointment.CustomField7
+{30} = appointment.CustomField8
+{31} = appointment.CustomField9
+{32} = appointment.CustomField10
+{33} = current user's display name
+{34} = portal name</comment>
   </data>
   <data name="Educational.Text" xml:space="preserve">
     <value>Educational</value>
@@ -346,12 +396,22 @@
 {20} = appointment.ParticipantGender
 {21} = appointment.ParticipantFlag
 {22} = appointment.ParticipantInstructions
-{23} = current user's display name
-{24} = portal name
-{25} = nothing
-{26} = URL to approve the appointment request
-{27} = URL to decline the appointment request
-{28} = URL to log into approval control</comment>
+{23} = appointment.CustomField1
+{24} = appointment.CustomField2
+{25} = appointment.CustomField3
+{26} = appointment.CustomField4
+{27} = appointment.CustomField5
+{28} = appointment.CustomField6
+{29} = appointment.CustomField7
+{30} = appointment.CustomField8
+{31} = appointment.CustomField9
+{32} = appointment.CustomField10
+{33} = current user's display name
+{34} = portal name
+{35} = nothing
+{36} = URL to approve the appointment request
+{37} = URL to decline the appointment request
+{38} = URL to log into approval control</comment>
   </data>
   <data name="NewRequestSubject.Format" xml:space="preserve">
     <value>There has been a new appointment request at {24}</value>
@@ -365,7 +425,6 @@
 {7} = appointment.Region
 {8} = appointment.ContactStreet
 {9} = appointment.ContactPhone
-
 {10} = appointment.RequestorName
 {11} = appointment.RequestorPhoneType
 {12} = appointment.RequestorPhone
@@ -379,8 +438,18 @@
 {20} = appointment.ParticipantGender
 {21} = appointment.ParticipantFlag
 {22} = appointment.ParticipantInstructions
-{23} = current user's display name
-{24} = portal name</comment>
+{23} = appointment.CustomField1
+{24} = appointment.CustomField2
+{25} = appointment.CustomField3
+{26} = appointment.CustomField4
+{27} = appointment.CustomField5
+{28} = appointment.CustomField6
+{29} = appointment.CustomField7
+{30} = appointment.CustomField8
+{31} = appointment.CustomField9
+{32} = appointment.CustomField10
+{33} = current user's display name
+{34} = portal name</comment>
   </data>
   <data name="None.Text" xml:space="preserve">
     <value>None</value>
