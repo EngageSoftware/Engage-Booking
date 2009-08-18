@@ -145,7 +145,7 @@
                     <asp:Label CssClass="total-number-label" runat="server" ResourceKey="TotalNumberLabel" AssociatedControlId="TotalNumberParticipantsTextBox" />
                     <asp:TextBox ID="TotalNumberParticipantsTextBox" CssClass="total-number-box short NormalTextBox" runat="server" />
                     <asp:CompareValidator runat="server" ControlToValidate="TotalNumberParticipantsTextBox" ResourceKey="TotalNumberOfParticipantsFormatValidator" Operator="DataTypeCheck" Type="Integer" Display="None" EnableClientScript="false" />
-                    <asp:CompareValidator runat="server" ControlToValidate="TotalNumberParticipantsTextBox" ControlToCompare="NumberOfSpecialParticipantsTextBox" ResourceKey="TotalNumberOfParticipantsCompareValidator.Text" Operator="LessThanEqual" Type="Integer" Display="None" EnableClientScript="false" />
+                    <asp:CompareValidator runat="server" ControlToValidate="TotalNumberParticipantsTextBox" ControlToCompare="NumberOfSpecialParticipantsTextBox" ResourceKey="TotalNumberOfParticipantsCompareValidator.Text" Operator="GreaterThanEqual" Type="Integer" Display="None" EnableClientScript="false" />
                 </li>
                 <li class="gender">
                     <asp:Label CssClass="gender-label" runat="server" ResourceKey="GenderLabel" AssociatedControlId="GenderDropDownList" />
