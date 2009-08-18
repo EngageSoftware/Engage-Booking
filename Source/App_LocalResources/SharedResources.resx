@@ -361,11 +361,11 @@
   <data name="NewRequestBody.Format" xml:space="preserve">
     <value>&lt;p&gt;A new appointment request has been made at {24}.&lt;/p&gt;
 &lt;ul&gt;
-    &lt;li&gt;&lt;span style="font-weight:bold:"&gt;Type&lt;/span&gt;: {2}&lt;/li&gt;
-    &lt;li&gt;&lt;span style="font-weight:bold:"&gt;Title&lt;/span&gt;: {0}&lt;/li&gt;
-    &lt;li&gt;&lt;span style="font-weight:bold:"&gt;Requestor&lt;/span&gt;: {10}&lt;/li&gt;
-    &lt;li&gt;&lt;span style="font-weight:bold:"&gt;Begins&lt;/span&gt;: {16:g}&lt;/li&gt;
-    &lt;li&gt;&lt;span style="font-weight:bold:"&gt;Ends&lt;/span&gt;: {17:g}&lt;/li&gt;
+    &lt;li&gt;&lt;span style="font-weight:bold;"&gt;Type&lt;/span&gt;: {2}&lt;/li&gt;
+    &lt;li&gt;&lt;span style="font-weight:bold;"&gt;Title&lt;/span&gt;: {0}&lt;/li&gt;
+    &lt;li&gt;&lt;span style="font-weight:bold;"&gt;Requestor&lt;/span&gt;: {10}&lt;/li&gt;
+    &lt;li&gt;&lt;span style="font-weight:bold;"&gt;Begins&lt;/span&gt;: {16:g}&lt;/li&gt;
+    &lt;li&gt;&lt;span style="font-weight:bold;"&gt;Ends&lt;/span&gt;: {17:g}&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;You can: &lt;/p&gt;
 &lt;ul&gt;
