@@ -71,7 +71,7 @@ namespace Engage.Dnn.Booking
             this.RegionLabel.Text = appointment.RegionName;
             this.PostalCodeLabel.Text = appointment.PostalCode;
             this.AdditionalAddressInfoLabel.Text = appointment.AdditionalAddressInfo;
-            this.OnsiteStreetLabel.Text = appointment.ContactStreet;
+            this.OnsiteNameLabel.Text = appointment.ContactStreet;
             this.OnsitePhoneLabel.Text = appointment.ContactPhone;
             this.RequestorNameLabel.Text = appointment.RequestorName;
             this.RequestorPhoneTypeLabel.Text = Localization.GetString(appointment.RequestorPhoneType.ToString(), Utility.LocalSharedResourceFile);

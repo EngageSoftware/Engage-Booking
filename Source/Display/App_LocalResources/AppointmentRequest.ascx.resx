@@ -384,4 +384,7 @@
   <data name="StateDefaultText.Text" xml:space="preserve">
     <value>State</value>
   </data>
+  <data name="StreetLabel.Text" xml:space="preserve">
+    <value>Street</value>
+  </data>
 </root>

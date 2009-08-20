@@ -297,6 +297,9 @@
   <data name="OnSiteContactLabel.Text" xml:space="preserve">
     <value>On-site Contact</value>
   </data>
+  <data name="OnsiteNameLabel.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="ParticipantsLabel.Text" xml:space="preserve">
     <value>Participants</value>
   </data>
