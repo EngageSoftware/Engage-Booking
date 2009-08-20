@@ -83,9 +83,9 @@
 				input.title-box{margin-left:15px;}
 			.event-type-box, .description-box, .notes-box{float:left;margin:0 2%}			
 	.interpreting-form-b{padding:5px;}
-		.street, .city, .state, .zip, .nearest {width:100%;overflow:hidden;padding:6px 0;clear:both;}
-			.street-label, .city-label, .nearest-label{float:left;width:20%;}
-			.street-box, .room-box, .city-box, .state-list, .zip-box, .nearest-box{float:left;margin:0 2%}
+		.street, .city, .state, .zip, .nearest, .onsite-name {width:100%;overflow:hidden;padding:6px 0;clear:both;}
+			.street-label, .city-label, .nearest-label, .onsite-name-label {float:left;width:20%;}
+			.street-box, .room-box, .city-box, .state-list, .zip-box, .nearest-box, .onsite-name-box{float:left;margin:0 2%}
 			.state-list{width:18%;}
 	.interpreting-form-c{padding:5px;}
 		.phone {width:100%;overflow:hidden;padding:6px 0;clear:both;}

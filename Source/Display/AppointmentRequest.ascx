@@ -53,9 +53,9 @@
             <fieldset class="onsite-legend">
                 <legend><asp:Label ResourceKey="OnSiteContactLabel" runat="server" /></legend>
                 <ol class="interpreting-form-c">
-                    <li class="street">
-                        <asp:Label CssClass="street-label" runat="server" ResourceKey="StreetLabel" AssociatedControlId="OnsiteStreetTextBox" />
-                        <asp:TextBox ID="OnsiteStreetTextBox" CssClass="street-box long NormalTextBox" runat="server" />
+                    <li class="onsite-name">
+                        <asp:Label CssClass="onsite-name-label" runat="server" ResourceKey="NameLabel" AssociatedControlId="OnsiteNameTextBox" />
+                        <asp:TextBox ID="OnsiteNameTextBox" CssClass="onsite-name-box long NormalTextBox" runat="server" />
                     </li>
                     <li class="phone">
                         <asp:Label CssClass="phone-label" runat="server" ResourceKey="PhoneLabel" AssociatedControlId="OnsitePhoneTextBox" />

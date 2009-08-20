@@ -258,7 +258,7 @@ namespace Engage.Dnn.Booking
                     postalCodeText,
                     this.OnsitePhoneTextBox.Text,
                     this.AdditionalAddressInfoTextBox.Text,
-                    this.OnsiteStreetTextBox.Text,
+                    this.OnsiteNameTextBox.Text,
                     this.OnsitePhoneTextBox.Text,
                     this.RequestorNameTextBox.Text,
                     Utility.ConvertToEnum(this.RequestorPhoneTypeDropDownList.SelectedValue, PhoneType.Voice),

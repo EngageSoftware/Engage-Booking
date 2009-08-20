@@ -318,8 +318,8 @@
   <data name="StartLabel.Text" xml:space="preserve">
     <value>Start</value>
   </data>
-  <data name="StreetLabel.Text" xml:space="preserve">
-    <value>Street</value>
+  <data name="NameLabel.Text" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="TitleLabel.Text" xml:space="preserve">
     <value>Title</value>

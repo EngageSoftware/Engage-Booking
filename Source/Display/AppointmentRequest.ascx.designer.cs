@@ -128,7 +128,7 @@ namespace Engage.Dnn.Booking {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox OnsiteStreetTextBox;
+        protected global::System.Web.UI.WebControls.TextBox OnsiteNameTextBox;
         
         /// <summary>
         /// OnsitePhoneTextBox control.
