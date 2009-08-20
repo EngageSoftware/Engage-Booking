@@ -67,9 +67,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>True</Private>
+    <Reference Include="system.web.extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -414,6 +413,7 @@
     <Content Include="Images\subhead-hr.gif" />
     <Content Include="References\Engage.Dnn.Framework.XML" />
     <Content Include="References\Engage.Framework.XML" />
+    <Content Include="References\system.web.extensions.dll" />
     <Content Include="References\Telerik.Web.UI.XML" />
     <Content Include="Display\App_LocalResources\AppointmentToolTip.ascx.resx">
     </Content>
