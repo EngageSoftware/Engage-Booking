@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AcceptanceBody.Format" xml:space="preserve">
-    <value>&lt;p&gt;Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was accepted by {23}.&lt;/p&gt;</value>
+    <value>&lt;p&gt;Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was accepted by {33}.&lt;/p&gt;</value>
     <comment>{0} = appointment.Title
 {1} = appointment.Description
 {2} = appointment.AppointmentType
@@ -156,7 +156,7 @@
 {34} = portal name</comment>
   </data>
   <data name="AcceptanceSubject.Format" xml:space="preserve">
-    <value>Your appointment request at {24} has been accepted!</value>
+    <value>Your appointment request at {34} has been accepted!</value>
     <comment>{0} = appointment.Title
 {1} = appointment.Description
 {2} = appointment.AppointmentType
@@ -215,7 +215,7 @@
     <value>Open the calendar popup.</value>
   </data>
   <data name="DeclineBody.Format" xml:space="preserve">
-    <value>&lt;p&gt;Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was declined by {23}.&lt;/p&gt;</value>
+    <value>&lt;p&gt;Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was declined by {33}.&lt;/p&gt;</value>
     <comment>{0} = appointment.Title
 {1} = appointment.Description
 {2} = appointment.AppointmentType
@@ -253,9 +253,9 @@
 {34} = portal name</comment>
   </data>
   <data name="DeclineBodyWithReason.Format" xml:space="preserve">
-    <value>&lt;p&gt;Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was declined by {23}.&lt;/p&gt;
+    <value>&lt;p&gt;Your appointment &lt;em&gt;{0}&lt;/em&gt; ({16:g} - {17:g}) was declined by {33}.&lt;/p&gt;
 &lt;p&gt;The reason provided for declining the appointment is as follows: &lt;/p&gt;
-&lt;p&gt;{25}&lt;/p&gt;</value>
+&lt;p&gt;{35}&lt;/p&gt;</value>
     <comment>{0} = appointment.Title
 {1} = appointment.Description
 {2} = appointment.AppointmentType
@@ -294,7 +294,7 @@
 {35} = decline reason</comment>
   </data>
   <data name="DeclineSubject.Format" xml:space="preserve">
-    <value>Your appointment request at {24} has been declined</value>
+    <value>Your appointment request at {34} has been declined</value>
     <comment>{0} = appointment.Title
 {1} = appointment.Description
 {2} = appointment.AppointmentType
@@ -359,7 +359,7 @@
     <value>Musical</value>
   </data>
   <data name="NewRequestBody.Format" xml:space="preserve">
-    <value>&lt;p&gt;A new appointment request has been made at {24}.&lt;/p&gt;
+    <value>&lt;p&gt;A new appointment request has been made at {34}.&lt;/p&gt;
 &lt;ul&gt;
     &lt;li&gt;&lt;span style="font-weight:bold;"&gt;Type&lt;/span&gt;: {2}&lt;/li&gt;
     &lt;li&gt;&lt;span style="font-weight:bold;"&gt;Title&lt;/span&gt;: {0}&lt;/li&gt;
@@ -369,9 +369,9 @@
 &lt;/ul&gt;
 &lt;p&gt;You can: &lt;/p&gt;
 &lt;ul&gt;
-    &lt;li&gt;&lt;a href="{26}"&gt;Accept this Appointment Request&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="{27}"&gt;Decline this Appointment Request (without providing a reason)&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="{28}"&gt;Login to {24}&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="{36}"&gt;Accept this Appointment Request&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="{37}"&gt;Decline this Appointment Request (without providing a reason)&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="{38}"&gt;Login to {34}&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</value>
     <comment>{0} = appointment.Title
 {1} = appointment.Description
@@ -414,7 +414,7 @@
 {38} = URL to log into approval control</comment>
   </data>
   <data name="NewRequestSubject.Format" xml:space="preserve">
-    <value>There has been a new appointment request at {24}</value>
+    <value>There has been a new appointment request at {34}</value>
     <comment>{0} = appointment.Title
 {1} = appointment.Description
 {2} = appointment.AppointmentType
