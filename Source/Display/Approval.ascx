@@ -32,13 +32,14 @@
                 }
             </script>
         	<div class="bulk-selection">
+        	    <h4>Pending Approvals</h4>
                 <asp:LinkButton ID="AcceptAppointmentsButton" runat="server" CssClass="approval-accept-link" ResourceKey="Accept Selected Items" />
                 <asp:LinkButton ID="DeclineAppointmentsButton" runat="server" CssClass="approval-decline-link" ResourceKey="Decline Selected Items" />
             </div>
-            <asp:GridView ID="AppointmentsGrid" runat="server" GridLines="None" AutoGenerateColumns="false"
-                CssClass="approval-grid" AlternatingRowStyle-CssClass="alternate">
+            
+            <asp:GridView ID="AppointmentsGrid" runat="server" GridLines="None" BorderWidth="0" BorderStyle="None" AutoGenerateColumns="false" CssClass="approval-grid" AlternatingRowStyle-CssClass="alternate">
                 <EmptyDataTemplate>
-                    <div class="approval-empty"><%=Localize("All Approved.Text") %></div>
+                    <div class="approval-empty help-txt"><%=Localize("All Approved.Text") %></div>
                 </EmptyDataTemplate>
                 <Columns>
                     <asp:TemplateField>
@@ -77,7 +78,7 @@
             <asp:Repeater ID="DeclineReasonRepeater" runat="server">
                 <HeaderTemplate>
                     <div class="approval-decline-reasons">
-                        <asp:Label runat="server" ResourceKey="Reason for Decline" CssClass="approval-decline-instructions" />
+                        <asp:Label runat="server" ResourceKey="Reason for Decline" CssClass="approval-decline-instructions help-txt" />
                 </HeaderTemplate>
                 <ItemTemplate>
                         <div class="approval-decline-reason">
