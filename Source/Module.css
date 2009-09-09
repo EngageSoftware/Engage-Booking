@@ -82,9 +82,6 @@
 	.interpreting-form{padding:15px 10px;}
 		.event-type, .title, .description, .notes {width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.event-type-label, .title-label, .description-label, .considerations-label{width:20%;float:left;}
-				label.event-type-label{width:150px;}
-				label.title-label{width:50px;}
-				input.title-box{margin-left:15px;}
 			.event-type-box, .description-box, .notes-box{float:left;margin:0 2%}			
 	.interpreting-form-b{padding:5px;}
 		.street, .city, .state, .zip, .nearest, .onsite-name {width:100%;overflow:hidden;padding:6px 0;clear:both;}
@@ -124,7 +121,7 @@
 			.customfield1-label, .customfield2-label, .customfield3-label, .customfield4-label, .customfield5-label, .customfield6-label, .customfield7-label, .customfield8-label, .customfield9-label, .customfield10-label{float:left;width:20%;}
 			.customfield1-box, .customfield2-box, .customfield3-box, .customfield4-box, .customfield5-box, .customfield6-box, .customfield7-box, .customfield8-box, .customfield9-box, .customfield10-box{float:left;margin:0 2%}
 /*-------- Hide fields that aren't general purpose ------*/
-	.addr-legend, .onsite-legend, .customfields-wrap, .participants-wrap{display:none;}
+	.addr-legend, .onsite-legend, .customfields-wrap, .participants-wrap, .event-type{display:none;}
 /*----- Submit Button -----*/	
 	.submit{}
 		.send-button{}
@@ -142,10 +139,7 @@
 	.appointment-details .interpreting-form{padding:15px 10px;background:#f5f5f5;margin-bottom:15px;border-bottom:1px #dcdcdc solid;border-right:1px #dcdcdc solid;}
 		.appointment-details .event-type, .appointment-details .title, .appointment-details .description, .notes {width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.appointment-details .event-type-label, .appointment-details .title-label, .appointment-details .description-label, .appointment-details .considerations-label{width:150px;float:left;}
-				.appointment-details label.event-type-label{width:150px;}
-				.appointment-details label.title-label{width:50px;}
-				.appointment-details span.title-box{margin-left:15px;}
-			.event-type-box, .description-box, .notes-box{float:left;margin:0 2%}			
+			.event-type-box, .title-box, .description-box, .notes-box{float:left;margin:0 2%}			
 	.appointment-details .interpreting-form-b{padding:5px;background:#f5f5f5;margin-bottom:15px;border-bottom:1px #dcdcdc solid;border-right:1px #dcdcdc solid;}
 		.street, .city, .state, .zip, .nearest {width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.street-label, .city-label, .nearest-label{float:left;width:20%;}

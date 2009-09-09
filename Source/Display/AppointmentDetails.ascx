@@ -5,12 +5,15 @@
         <fieldset>
             <legend class="SubHead"><%=Localize("Interpreting Event")%></legend>
             <ol class="interpreting-form">
-                <li class="event-type">
-                    <asp:Label CssClass="event-type-label" ResourceKey="EventTypeLabel" runat="server" AssociatedControlId="AppointmentTypeLabel" />
-                    <asp:Label ID="AppointmentTypeLabel" CssClass="event-type-box short" runat="server" />
-                    
-                    <asp:Label CssClass="title-label" runat="server" ResourceKey="TitleLabel" AssociatedControlId="TitleLabel" />
-                    <asp:Label ID="TitleLabel" CssClass="title-box short" runat="server" />
+                <li>
+                    <div class="event-type">
+                        <asp:Label CssClass="event-type-label" ResourceKey="EventTypeLabel" runat="server" AssociatedControlId="AppointmentTypeLabel" />
+                        <asp:Label ID="AppointmentTypeLabel" CssClass="event-type-box short" runat="server" />
+                    </div>
+                    <div class="title">
+                        <asp:Label CssClass="title-label" runat="server" ResourceKey="TitleLabel" AssociatedControlId="TitleLabel" />
+                        <asp:Label ID="TitleLabel" CssClass="title-box short" runat="server" />
+                    </div>
                 </li>
     
                 <li class="description">

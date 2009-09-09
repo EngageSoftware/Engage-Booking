@@ -12,14 +12,18 @@
         <fieldset>
             <legend class="SubHead"><%=Localize("Interpreting Event")%></legend>
             <ol class="interpreting-form">
-                <li class="event-type">
-                    <asp:Label CssClass="event-type-label" ResourceKey="EventTypeLabel" runat="server" AssociatedControlId="AppointmentTypeDropDownList" />
-                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" />
-                    <asp:DropDownList ID="AppointmentTypeDropDownList" CssClass="event-type-box short" runat="server" />
-                    <asp:Label CssClass="title-label" runat="server" ResourceKey="TitleLabel" AssociatedControlId="TitleTextBox" />
-                    <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" />
-                    <asp:TextBox ID="TitleTextBox" CssClass="title-box short NormalTextBox" runat="server" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="TitleTextBox" ResourceKey="TitleRequiredValidator" Display="None" EnableClientScript="false" />
+                <li>
+                    <div class="event-type">
+                        <asp:Label CssClass="event-type-label" ResourceKey="EventTypeLabel" runat="server" AssociatedControlId="AppointmentTypeDropDownList" />
+                        <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" />
+                        <asp:DropDownList ID="AppointmentTypeDropDownList" CssClass="event-type-box short" runat="server" />
+                    </div>
+                    <div class="title">
+                        <asp:Label CssClass="title-label" runat="server" ResourceKey="TitleLabel" AssociatedControlId="TitleTextBox" />
+                        <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" />
+                        <asp:TextBox ID="TitleTextBox" CssClass="title-box short NormalTextBox" runat="server" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="TitleTextBox" ResourceKey="TitleRequiredValidator" Display="None" EnableClientScript="false" />
+                    </div>
                 </li>
                 <li class="description">
                     <asp:Label CssClass="description-label" runat="server" ResourceKey="DescriptionLabel" AssociatedControlId="DescriptionTextBox" />
