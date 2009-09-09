@@ -100,6 +100,22 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Gets a value indicating whether the currently logged-in user can request appointments.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance the currently logged-in user can submit appointment requests; otherwise, <c>false</c>.
+        /// </value>
+        protected bool CanRequestAppointments
+        {
+            get
+            {
+                return this.UserInfo.IsInRole(ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this)) 
+                    || this.UserInfo.IsSuperUser
+                    || this.UserInfo.IsInRole(this.PortalSettings.AdministratorRoleName);
+            }
+        }
+
+        /// <summary>
         /// Sends a file to the client to download.
         /// </summary>
         /// <param name="response">The response to use to send the content.</param>

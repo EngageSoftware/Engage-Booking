@@ -82,7 +82,7 @@ namespace Engage.Dnn.Booking
                     this.AppointmentsCalendar.SelectedView = this.IsEditable ? SchedulerViewType.DayView : SchedulerViewType.MonthView;
                 }
 
-                if (this.UserInfo.IsInRole(ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this)))
+                if (this.CanRequestAppointments)
                 {
                     this.NewRequestToolTipManager.Visible = true;
                     this.RequestAppointmentLink.Visible = true;

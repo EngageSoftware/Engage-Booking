@@ -73,7 +73,7 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void KickOutUnauthorizedUsers()
         {
-            if (!this.UserInfo.IsInRole(ModuleSettings.AppointmentRequestsRole.GetValueAsStringFor(this)))
+            if (!this.CanRequestAppointments)
             {
                 if (Engage.Utility.IsLoggedIn)
                 {
