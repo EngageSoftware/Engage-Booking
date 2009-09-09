@@ -132,6 +132,9 @@
   <data name="All Approved.Text" xml:space="preserve">
     <value>There are no more appointments to approve</value>
   </data>
+  <data name="ApprovalHeading.Text" xml:space="preserve">
+    <value>Pending Appointments</value>
+  </data>
   <data name="CancelDeclineButton.Text" xml:space="preserve">
     <value>Cancel Decline</value>
   </data>

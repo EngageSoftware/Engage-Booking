@@ -32,7 +32,7 @@
                 }
             </script>
         	<div class="bulk-selection">
-        	    <h4>Pending Approvals</h4>
+        	    <h4><%=Localize("ApprovalHeading.Text")%></h4>
                 <asp:LinkButton ID="AcceptAppointmentsButton" runat="server" CssClass="approval-accept-link" ResourceKey="Accept Selected Items" />
                 <asp:LinkButton ID="DeclineAppointmentsButton" runat="server" CssClass="approval-decline-link" ResourceKey="Decline Selected Items" />
             </div>
