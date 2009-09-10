@@ -21,7 +21,7 @@
                     <div class="title">
                         <asp:Label CssClass="title-label" runat="server" ResourceKey="TitleLabel" AssociatedControlId="TitleTextBox" />
                         <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" />
-                        <asp:TextBox ID="TitleTextBox" CssClass="title-box short NormalTextBox" runat="server" />
+                        <asp:TextBox ID="TitleTextBox" CssClass="title-box full NormalTextBox" runat="server" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="TitleTextBox" ResourceKey="TitleRequiredValidator" Display="None" EnableClientScript="false" />
                     </div>
                 </li>

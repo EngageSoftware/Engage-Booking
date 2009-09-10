@@ -71,6 +71,7 @@
 				.booking-request p.note{border-top:1px #ccc solid;padding-top:20px;margin-top:0;}
 		.booking-request ol{margin:0;padding:20px 0 10px;}
 		.booking-request label{width:160px;text-align:right;}	
+			.booking-request label.title-label{width:153px;}
 		.new-request-tooltip{background: url(Images/add.gif) no-repeat left;padding-left:25px;display:block;margin:10px;}
 		.RequestAppointmentLink{background: url(Images/add.gif) no-repeat left;padding-left:25px;display:block;margin:10px 0;}
 
@@ -108,6 +109,7 @@
 			.start-box, .at-time-box, .end-box{float:left;margin:0 2%}
 		.date-assignment-form .timezone-label{float:left;}
 		.timezone_display{float:left;width:50%;padding-left:10px;}
+			.date-assignment-form .timezone_display div{margin:0;}
 /*----- Participants  -----*/	
 	.participants-form{padding:15px 10px;}
 		.number-special, .total-number, .gender, .presenter, .instructions{overflow:hidden;padding:6px 0;clear:both;margin:0;}
@@ -152,6 +154,7 @@
 /*----- Person Requesting Interpreting Services -----*/	
 	.appointment-details .requesting-form{padding:15px 10px;background:#f5f5f5;margin-bottom:15px;border-bottom:1px #dcdcdc solid;border-right:1px #dcdcdc solid;}
 		.requesting-form label{width:150px;}
+			.requesting-form label.alt-phone-label{width:145px;}
 		.full-name, .phone, .email {width:100%;overflow:hidden;padding:6px 0;clear:both;}
 			.full-name-label, .phone-label, .alt-phone-label, .email-label{float:left;width:20%;}
 			.full-name-box, .phone-box, .alt-phone-box, .email-box{float:left;margin:0 2%}
