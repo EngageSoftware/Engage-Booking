@@ -1,16 +1,16 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="Engage: Booking" type="Module" version="REPLACED BY NANT">
+    <package name="Engage: Booking" type="Module" version="1.1.0">
       <friendlyName>Engage: Booking</friendlyName>
       <description>The DotNetNuke Booking module by Engage Software (www.EngageSoftware.com)</description>
       <owner>
         <name>Engage Software</name>
         <organization>Engage Software</organization>
-        <url><![CDATA[<a href="http://www.engagesoftware.com/">http://www.engagesoftware.com/</a>]]></url>
-        <email><![CDATA[<a href="mailto:support@engagemodules.com">support@engagemodules.com</a>]]></email>
+        <url>http://www.engagesoftware.com/</url>
+        <email>support@engagemodules.com</email>
       </owner>
-      <license src="REPLACED BY NANT"/>
-      <releaseNotes src="REPLACED BY NANT" />
+      <license src="License/EULA-Standard.htm"/>
+      <releaseNotes src="ReleaseNotes_1.1.0.htm" />
       <components>
         <component type="ResourceFile">
           <resourceFiles>
@@ -33,7 +33,7 @@
             </script>
             <script type="UnInstall">
               <name>Uninstall.SqlDataProvider</name>
-              <version>REPLACED BY NANT</version>
+              <version latestVersion="latestVersion">1.1.0</version>
             </script>
           </scripts>
         </component>
@@ -86,7 +86,7 @@
           <assemblies>
             <assembly>
               <name>EngageBooking.dll</name>
-              <version>REPLACED BY NANT</version>
+              <version latestVersion="latestVersion">1.1.0</version>
             </assembly>
             <assembly>
               <name>Engage.Framework.dll</name>

@@ -6,7 +6,7 @@
       <foldername>EngageBooking</foldername>
       <modulename>Engage: Booking</modulename>
       <description>The DotNetNuke Booking module by Engage Software (www.EngageSoftware.com)</description>
-      <version>REPLACED BY NANT</version>
+      <version latestVersion="latestVersion">1.1.0</version>
       <businesscontrollerclass>Engage.Dnn.Booking.FeaturesController</businesscontrollerclass>
       <resourcefile>Resources.zip</resourcefile>
       <modules>
