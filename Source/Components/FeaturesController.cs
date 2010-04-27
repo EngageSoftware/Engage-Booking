@@ -11,15 +11,27 @@
 
 namespace Engage.Dnn.Booking
 {
+#if TRIAL
+    using System;
+#endif
+    using System.Diagnostics.CodeAnalysis;
+
     using DotNetNuke.Entities.Modules;
     using DotNetNuke.Services.Scheduling;
     
     /// <summary>
     /// Controls which DNN features are available for this module.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated through reflection by DNN")]
+    [SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated through reflection by DNN")]
     internal class FeaturesController : IUpgradeable
     {
+#if TRIAL
+        /// <summary>
+        /// The license key for this module
+        /// </summary>
+        public static readonly Guid ModuleLicenseKey = new Guid("6F0F38B4-65CB-469D-B2FF-02C640CA5580");        
+#endif
+
         /// <summary>
         /// Upgrades the module.
         /// </summary>

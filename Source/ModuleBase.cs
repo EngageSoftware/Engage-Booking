@@ -19,6 +19,9 @@ namespace Engage.Dnn.Booking
     using System.Web.UI;
     using DotNetNuke.Services.Localization;
     using DotNetNuke.UI.WebControls;
+#if TRIAL
+    using Engage.Licensing;
+#endif
 
     /// <summary>
     /// This class extends the framework version in order for developers to add on any specific methods/behavior.
@@ -238,6 +241,10 @@ namespace Engage.Dnn.Booking
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected override void OnInit(EventArgs e)
         {
+#if TRIAL
+            this.LicenseProvider = new TrialLicenseProvider(FeaturesController.ModuleLicenseKey);
+#endif
+
             base.OnInit(e);
             this.LocalResourceFile = this.AppRelativeTemplateSourceDirectory + Localization.LocalResourceDirectory + "/" + Path.GetFileNameWithoutExtension(this.TemplateControl.AppRelativeVirtualPath);
         }
