@@ -403,7 +403,6 @@
     <None Include="EngageBooking.5.dnn" />
     <None Include="EngageBooking.Build" />
     <None Include="Providers\DataProviders\SqlDataProvider\1.1.0.SqlDataProvider" />
-    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
