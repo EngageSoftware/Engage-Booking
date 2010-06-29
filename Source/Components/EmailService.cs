@@ -16,6 +16,7 @@ namespace Engage.Dnn.Booking
     using DotNetNuke.Entities.Portals;
     using DotNetNuke.Entities.Users;
     using DotNetNuke.Services.Localization;
+    using System;
 
     /// <summary>
     /// Helps sending emails
@@ -79,6 +80,18 @@ namespace Engage.Dnn.Booking
         /// <param name="attachment">The attachment.</param>
         private static void QueueEmail(string toList, string subject, string body, string attachment)
         {
+            if (string.IsNullOrEmpty(toList))
+            {
+                if (toList == null)
+                {
+                    throw new ArgumentNullException("toList", "toList must have a value");
+                }
+                else
+                {
+                    throw new ArgumentException("toList must have a value", "toList");
+                }
+            }
+
             AppointmentSqlDataProvider.QueueEmail(PortalController.GetCurrentPortalSettings().PortalId, toList, subject, body, attachment);
         }
 

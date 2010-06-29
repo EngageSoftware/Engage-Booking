@@ -288,12 +288,16 @@ namespace Engage.Dnn.Booking
 
             appointment.Save(this.UserId);
 
-            EmailService.SendNewRequestEmail(
-                    appointment,
-                    ModuleSettings.NotificationEmailAddresses.GetValueAsStringFor(this),
-                    this.BuildLinkUrl(this.ModuleId, ControlKey.DirectApproval, "actionKey=" + appointment.AcceptKey),
-                    this.BuildLinkUrl(this.ModuleId, ControlKey.DirectApproval, "actionKey=" + appointment.DeclineKey),
-                    this.BuildLinkUrl(this.ModuleId, ControlKey.Approval));
+            var notificationEmailAddresses = ModuleSettings.NotificationEmailAddresses.GetValueAsStringFor(this);
+            if (!string.IsNullOrEmpty(notificationEmailAddresses))
+            {
+                EmailService.SendNewRequestEmail(
+                        appointment,
+                        notificationEmailAddresses,
+                        this.BuildLinkUrl(this.ModuleId, ControlKey.DirectApproval, "actionKey=" + appointment.AcceptKey),
+                        this.BuildLinkUrl(this.ModuleId, ControlKey.DirectApproval, "actionKey=" + appointment.DeclineKey),
+                        this.BuildLinkUrl(this.ModuleId, ControlKey.Approval));
+            }
         }
 
         /// <summary>

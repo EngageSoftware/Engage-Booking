@@ -235,9 +235,12 @@
     <Compile Include="Components\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="EngageBooking.4.dnn" />
+    <None Include="EngageBooking.4.dnn">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Migrated rules for EngageBooking.ruleset" />
     <None Include="Providers\DataProviders\SqlDataProvider\1.0.0.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\1.2.0.SqlDataProvider" />
     <None Include="Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
@@ -400,7 +403,9 @@
     <Content Include="Images\add-apntmnt-disabled.gif" />
     <Content Include="Images\add-apntmnt.gif" />
     <Content Include="Images\choose_display.gif" />
-    <None Include="EngageBooking.5.dnn" />
+    <None Include="EngageBooking.5.dnn">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="EngageBooking.Build" />
     <None Include="Providers\DataProviders\SqlDataProvider\1.1.0.SqlDataProvider" />
   </ItemGroup>
