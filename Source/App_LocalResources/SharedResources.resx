@@ -331,6 +331,9 @@
 {33} = current user's display name
 {34} = portal name</comment>
   </data>
+  <data name="Default Email Body Display Name.Text" xml:space="preserve">
+    <value>the site administrator</value>
+  </data>
   <data name="Educational.Text" xml:space="preserve">
     <value>Educational</value>
   </data>

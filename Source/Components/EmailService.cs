@@ -17,6 +17,7 @@ namespace Engage.Dnn.Booking
     using DotNetNuke.Entities.Users;
     using DotNetNuke.Services.Localization;
     using System;
+    using DotNetNuke.Common.Utilities;
 
     /// <summary>
     /// Helps sending emails
@@ -190,12 +191,28 @@ namespace Engage.Dnn.Booking
                     appointment.Custom8,
                     appointment.Custom9,
                     appointment.Custom10,
-                    UserController.GetCurrentUserInfo().DisplayName,
+                    GetCurrentUserDisplayName(),
                     Globals.GetPortalSettings().PortalName,
                     declineReason,
                     approvalUrl,
                     declineUrl,
                     loginUrl);
+        }
+
+        /// <summary>
+        /// Gets the display name of the current user or defaults to localized text from the shared resources file if the current user is anonymous. 
+        /// (Such as when the appointment is approved via email.)
+        /// </summary>
+        /// <returns>The current display name or a default display name</returns>
+        private static string GetCurrentUserDisplayName()
+        {
+            var currentUser = UserController.GetCurrentUserInfo();
+            if (!Null.IsNull(currentUser.UserID)) 
+            {
+                return currentUser.DisplayName;
+            }
+
+            return Localization.GetString("Default Email Body Display Name", Utility.LocalSharedResourceFile);
         }
     }
 }
