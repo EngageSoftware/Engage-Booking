@@ -53,7 +53,10 @@ namespace Engage.Dnn.Booking
             base.OnInit(e);
             this.Load += this.Page_Load;
             this.SaveAppointmentButton.Click += this.SaveAppointmentButton_OnClick;
+            this.CancelAppointmentButton.Click += this.CancelAppointmentButton_OnClick;
             this.SaveAndCreateNewAppointmentButton.Click += this.SaveAndCreateNewAppointmentButton_OnClick;
+            this.HomeButton.Click += this.HomeButton_OnClick;
+            this.CreateNewAppointmentButton.Click += this.CreateNewAppointmentButton_OnClick;
             this.UniqueTimeslotValidator.ServerValidate += this.UniqueTimeslotValidator_ServerValidate;
         }
 
@@ -111,8 +114,6 @@ namespace Engage.Dnn.Booking
 
                     this.SetupControl();
                 }
-
-                this.SetButtonLinks();
             }
             catch (Exception exc)
             {
@@ -163,6 +164,36 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Handles the OnClick event of the CancelAppointmentButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void CancelAppointmentButton_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect(Globals.NavigateURL());
+        }
+
+        /// <summary>
+        /// Handles the OnClick event of the HomeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void HomeButton_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect(Globals.NavigateURL());
+        }
+
+        /// <summary>
+        /// Handles the OnClick event of the CreateNewAppointmentButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void CreateNewAppointmentButton_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect(this.BuildLinkUrl(this.ModuleId, ControlKey.AppointmentRequest));
+        }
+
+        /// <summary>
         /// Handles the <see cref="CustomValidator.ServerValidate"/> event of the <see cref="UniqueTimeslotValidator"/> control.
         /// </summary>
         /// <param name="source">The source of the event.</param>
@@ -185,15 +216,6 @@ namespace Engage.Dnn.Booking
             this.FooterButtonsMultiview.SetActiveView(this.SuccessView);
             this.AppointmentRequestPanel.Visible = false;
             this.SuccessModuleMessage.Visible = true;
-        }
-
-        /// <summary>
-        /// Sets the <c>NavigateUrl</c> property for the button links.
-        /// </summary>
-        private void SetButtonLinks()
-        {
-            this.HomeLink.NavigateUrl = this.CancelAppointmentLink.NavigateUrl = Globals.NavigateURL();
-            this.CreateNewAppointmentButton.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.AppointmentRequest);
         }
 
         /// <summary>

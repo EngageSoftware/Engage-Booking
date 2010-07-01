@@ -387,4 +387,19 @@
   <data name="StreetLabel.Text" xml:space="preserve">
     <value>Street</value>
   </data>
+  <data name="Cancel &amp; Go Home.Text" xml:space="preserve">
+    <value>Cancel &amp; Go Home</value>
+  </data>
+  <data name="Create New.Text" xml:space="preserve">
+    <value>Create New</value>
+  </data>
+  <data name="Home.Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Save &amp; Create New.Text" xml:space="preserve">
+    <value>Save &amp; Create New</value>
+  </data>
+  <data name="Save.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

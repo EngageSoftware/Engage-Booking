@@ -217,13 +217,13 @@
 <div class="AdminButtons FooterButtons">
     <asp:MultiView ID="FooterButtonsMultiview" runat="server" ActiveViewIndex="0">
         <asp:View ID="SaveView" runat="server">
-            <asp:ImageButton ID="SaveAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save.gif" />
-            <asp:HyperLink ID="CancelAppointmentLink" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/cancel_go_home.gif" />
-            <asp:ImageButton ID="SaveAndCreateNewAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/save_create_new.gif" />
+            <asp:Button ID="SaveAppointmentButton" runat="server" CssClass="CommandButton primary-btn" ResourceKey="Save.Text" />
+            <asp:Button ID="CancelAppointmentButton" runat="server" CssClass="CommandButton secondary-btn" ResourceKey="Cancel & Go Home.Text" />
+            <asp:Button ID="SaveAndCreateNewAppointmentButton" runat="server" CssClass="CommandButton primary-btn" ResourceKey="Save & Create New.Text" />
         </asp:View>
         <asp:View ID="SuccessView" runat="server">
-            <asp:HyperLink ID="HomeLink" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/home.gif" />
-            <asp:HyperLink ID="CreateNewAppointmentButton" runat="server" CssClass="Normal" ImageUrl="~/DesktopModules/EngageBooking/Images/createnew.gif" />
+            <asp:Button ID="HomeButton" runat="server" CssClass="CommandButton primary-btn" ResourceKey="Home.Text" />
+            <asp:Button ID="CreateNewAppointmentButton" runat="server" CssClass="CommandButton primary-btn" ResourceKey="Create New.Text" />
         </asp:View>
     </asp:MultiView>
 </div>
