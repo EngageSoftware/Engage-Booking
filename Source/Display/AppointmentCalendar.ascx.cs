@@ -199,6 +199,9 @@ namespace Engage.Dnn.Booking
         private void LocalizeCalendar()
         {
             this.AppointmentsCalendar.Culture = CultureInfo.CurrentCulture;
+
+            this.AppointmentsCalendar.HoursPanelTimeFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern;
+
             this.AppointmentsCalendar.FirstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
             this.AppointmentsCalendar.LastDayOfWeek = GetPreviousDayOfWeek(CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek);
 

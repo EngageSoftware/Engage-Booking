@@ -81,7 +81,7 @@
     <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <telerik:radscheduler id="AppointmentsCalendar" runat="server" CssClass="booking-calendar" ReadOnly="True" 
-                TimelineView-UserSelectable="False" OverflowBehavior="Expand" ShowAllDayRow="False" NumberOfHoveredRows="1" />
+                TimelineView-UserSelectable="False" OverflowBehavior="Expand" ShowAllDayRow="False" NumberOfHoveredRows="1"/>
             <telerik:radtooltipmanager runat="server" id="AppointmentToolTipManager" width="300" height="150"
                 animation="None" position="BottomRight" HideEvent="LeaveTooltip" text="Loading..." AutoTooltipify="false" />
             <telerik:radtooltipmanager runat="server" id="NewRequestToolTipManager" width="150" height="75"
