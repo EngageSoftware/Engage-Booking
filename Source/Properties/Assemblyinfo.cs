@@ -1,6 +1,6 @@
 // <copyright file="Assemblyinfo.cs" company="Engage Software">
 // Engage: Booking
-// Copyright (c) 2004-2009
+// Copyright (c) 2004-2010
 // by Engage Software ( http://www.engagesoftware.com )
 // </copyright>
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
@@ -19,13 +19,13 @@ using System.Web.UI;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Engage Software, Inc.")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("2009 Engage Software Inc.")]
+[assembly: AssemblyCopyright("2010 Engage Software Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-[assembly: AssemblyVersion("01.01.00.*")]
-[assembly: AssemblyFileVersion("01.01.00.00")]
+[assembly: AssemblyVersion("01.02.00.*")]
+[assembly: AssemblyFileVersion("01.02.00.00")]
 
 [assembly: WebResource("Engage.Dnn.Booking.JavaScript.SelectAllPlugin.js", "text/javascript")]

@@ -244,6 +244,7 @@
     <None Include="Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ReleaseNotes_1.2.0.htm" />
     <Content Include="Images\dn.gif" />
     <Content Include="Images\lt.gif" />
     <Content Include="Images\rt.gif" />
