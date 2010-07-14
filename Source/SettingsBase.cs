@@ -31,16 +31,6 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Gets localized text for the given resource key using this control's <see cref="DotNetNuke.Entities.Modules.PortalModuleBase.LocalResourceFile"/>.
-        /// </summary>
-        /// <param name="resourceKey">The resource key.</param>
-        /// <returns>Localized text for the given resource key</returns>
-        protected string Localize(string resourceKey)
-        {
-            return Localization.GetString(resourceKey, this.LocalResourceFile);
-        }
-
-        /// <summary>
         /// Raises the <see cref="Control.Init"/> event.
         /// </summary>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>

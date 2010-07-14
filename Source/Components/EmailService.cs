@@ -11,14 +11,14 @@
 
 namespace Engage.Dnn.Booking
 {
+    using System;
     using System.Globalization;
     using DotNetNuke.Common;
+    using DotNetNuke.Common.Utilities;
     using DotNetNuke.Entities.Portals;
     using DotNetNuke.Entities.Users;
     using DotNetNuke.Services.Localization;
-    using System;
-    using DotNetNuke.Common.Utilities;
-
+    
     /// <summary>
     /// Helps sending emails
     /// </summary>
@@ -30,6 +30,11 @@ namespace Engage.Dnn.Booking
         /// <param name="appointment">The appointment which was approved.</param>
         public static void SendAcceptanceEmail(Appointment appointment)
         {
+            if (appointment == null)
+            {
+                throw new ArgumentNullException("appointment", "appointment must not be null");
+            }
+
             QueueEmail(
                     appointment.RequestorEmail,
                     GetLocalizedFormattedText("AcceptanceSubject.Format", appointment),
@@ -44,6 +49,11 @@ namespace Engage.Dnn.Booking
         /// <param name="declineReason">The reason for declining the appointment, or <c>null</c>.</param>
         public static void SendDeclineEmail(Appointment appointment, string declineReason)
         {
+            if (appointment == null)
+            {
+                throw new ArgumentNullException("appointment", "appointment must not be null");
+            }
+
             string body = string.IsNullOrEmpty(declineReason) || string.IsNullOrEmpty(declineReason.Trim())
                                   ? GetLocalizedFormattedText("DeclineBody.Format", appointment)
                                   : GetLocalizedFormattedText("DeclineBodyWithReason.Format", appointment, declineReason);
@@ -65,6 +75,11 @@ namespace Engage.Dnn.Booking
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "login", Justification = "No Thanks")]
         public static void SendNewRequestEmail(Appointment appointment, string toEmailAddresses, string approvalUrl, string declineUrl, string loginUrl)
         {
+            if (appointment == null)
+            {
+                throw new ArgumentNullException("appointment", "appointment must not be null");
+            }
+
             QueueEmail(
                 toEmailAddresses,
                 GetLocalizedFormattedText("NewRequestSubject.Format", appointment),

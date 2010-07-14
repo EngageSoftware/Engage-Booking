@@ -63,6 +63,11 @@ namespace Engage.Dnn.Booking
         /// <param name="dateTimePicker">The <see cref="RadDateTimePicker"/> to localize the text for.</param>
         public static void LocalizeDateTimePicker(RadDateTimePicker dateTimePicker)
         {
+            if (dateTimePicker == null)
+            {
+                throw new ArgumentNullException("dateTimePicker", "dateTimePicker must not be null");
+            }
+
             dateTimePicker.TimeView.HeaderText = Localization.GetString("Time Picker", LocalSharedResourceFile);
             dateTimePicker.TimePopupButton.ToolTip = Localization.GetString("Time Picker ToolTip", LocalSharedResourceFile);
             dateTimePicker.DatePopupButton.ToolTip = Localization.GetString("Date Picker ToolTip", LocalSharedResourceFile);

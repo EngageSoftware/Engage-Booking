@@ -220,6 +220,11 @@ namespace Engage.Dnn.Booking
         /// <returns>An <see cref="IDataReader"/> with a result set containing the fields set by the insert (AppointmentId, AcceptKey, and DeclineKey)</returns>
         public static IDataReader InsertAppointment(Appointment appointment, int revisingUserId)
         {
+            if (appointment == null)
+            {
+                throw new ArgumentNullException("appointment", "appointment must not be null");
+            }
+
             return SqlDataProvider.Instance.ExecuteReader(
                     "InsertAppointment",
                     Engage.Utility.CreateIntegerParam("@appointmentTypeId", appointment.AppointmentTypeId),
@@ -290,6 +295,11 @@ namespace Engage.Dnn.Booking
         /// <param name="revisingUserId">The ID of the user making this update.</param>
         public static void UpdateAppointment(Appointment appointment, int revisingUserId)
         {
+            if (appointment == null)
+            {
+                throw new ArgumentNullException("appointment", "appointment must not be null");
+            }
+
             SqlDataProvider.Instance.ExecuteNonQuery(
                     "UpdateAppointment",
                     Engage.Utility.CreateIntegerParam("@appointmentId", appointment.AppointmentId),

@@ -13,6 +13,7 @@ namespace Engage.Dnn.Booking
 {
     using System;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
     using System.Net;
@@ -58,7 +59,7 @@ namespace Engage.Dnn.Booking
         /// <param name="bodyFormat">The format of <paramref name="body"/>.</param>
         /// <param name="bodyEncoding">The encoding of <paramref name="body"/>.</param>
         /// <param name="body">The body of the email message.</param>
-        /// <param name="attachment">A list of the text to include with this email message as an attachment named "Appointment.ics".</param>
+        /// <param name="attachments">A list of the text to include with this email message as an attachment named "Appointment.ics".</param>
         /// <param name="smtpServer">The SMTP server to use to send the email, if not the server defined in the Host Settings of the website.</param>
         /// <param name="smtpAuthentication">The SMTP authentication type to use to send the email, if not the type defined in the Host Settings of the website.</param>
         /// <param name="smtpUserName">The SMTP username to use to send the email, if not the username defined in the Host Settings of the website.</param>
@@ -76,47 +77,30 @@ namespace Engage.Dnn.Booking
                 MailFormat bodyFormat,
                 Encoding bodyEncoding,
                 string body,
-                string[] attachment,
+                string[] attachments,
                 string smtpServer,
                 string smtpAuthentication,
                 string smtpUserName,
                 string smtpPassword,
                 bool smtpEnableSsl)
         {
+            if (to == null)
+            {
+                throw new ArgumentNullException("to", "to must not be null");
+            }
+
+            if (attachments == null)
+            {
+                throw new ArgumentNullException("attachments", "attachments must not be null");
+            }
+
             var returnMessage = string.Empty;
 
             // SMTP server configuration
-            if (string.IsNullOrEmpty(smtpServer))
-            {
-                if (!string.IsNullOrEmpty((string)Globals.HostSettings["SMTPServer"]))
-                {
-                    smtpServer = (string)Globals.HostSettings["SMTPServer"];
-                }
-            }
-
-            if (string.IsNullOrEmpty(smtpAuthentication))
-            {
-                if (!string.IsNullOrEmpty((string)Globals.HostSettings["SMTPAuthentication"]))
-                {
-                    smtpAuthentication = (string)Globals.HostSettings["SMTPAuthentication"];
-                }
-            }
-
-            if (string.IsNullOrEmpty(smtpUserName))
-            {
-                if (!string.IsNullOrEmpty((string)Globals.HostSettings["SMTPUsername"]))
-                {
-                    smtpUserName = (string)Globals.HostSettings["SMTPUsername"];
-                }
-            }
-
-            if (string.IsNullOrEmpty(smtpPassword))
-            {
-                if (!string.IsNullOrEmpty((string)Globals.HostSettings["SMTPPassword"]))
-                {
-                    smtpPassword = (string)Globals.HostSettings["SMTPPassword"];
-                }
-            }
+            smtpServer = GetValueOrHostSetting(smtpServer, "SMTPServer");
+            smtpAuthentication = GetValueOrHostSetting(smtpAuthentication, "SMTPAuthentication");
+            smtpUserName = GetValueOrHostSetting(smtpUserName, "SMTPUsername");
+            smtpPassword = GetValueOrHostSetting(smtpPassword, "SMTPPassword");
 
             // translate semi-colon delimiters to commas as ASP.NET 2.0 does not support semi-colons
             using (MailMessage objMail = new MailMessage(from, to.Replace(";", ",")))
@@ -144,12 +128,12 @@ namespace Engage.Dnn.Booking
                         objMail.Priority = (System.Net.Mail.MailPriority)priority;
                         objMail.IsBodyHtml = bodyFormat == MailFormat.Html;
 
-                        foreach (string myAtt in attachment)
+                        foreach (string attachment in attachments)
                         {
-                            if (!string.IsNullOrEmpty(myAtt))
+                            if (!string.IsNullOrEmpty(attachment))
                             {
                                 ////objMail.Attachments.Add(new Attachment(myAtt));
-                                attachmentStream = new MemoryStream(Encoding.Default.GetBytes(myAtt));
+                                attachmentStream = new MemoryStream(Encoding.Default.GetBytes(attachment));
                                 objMail.Attachments.Add(new Attachment(attachmentStream, "Appointment.ics"));
                             }
                         }
@@ -180,83 +164,73 @@ namespace Engage.Dnn.Booking
                         Exceptions.LogException(objException);
                     }
 
-                    if (objMail != null)
+                    // external SMTP server alternate port
+                    int smtpPort = Null.NullInteger;
+                    int portPos = smtpServer.IndexOf(":", StringComparison.Ordinal);
+                    if (portPos > -1)
                     {
-                        // external SMTP server alternate port
-                        int smtpPort = Null.NullInteger;
-                        int portPos = smtpServer.IndexOf(":", StringComparison.Ordinal);
-                        if (portPos > -1)
-                        {
-                            smtpPort = int.Parse(smtpServer.Substring(portPos + 1, smtpServer.Length - portPos - 1), CultureInfo.InvariantCulture);
-                            smtpServer = smtpServer.Substring(0, portPos);
-                        }
+                        smtpPort = int.Parse(smtpServer.Substring(portPos + 1, smtpServer.Length - portPos - 1), CultureInfo.InvariantCulture);
+                        smtpServer = smtpServer.Substring(0, portPos);
+                    }
 
-                        var smtpClient = new SmtpClient();
+                    var smtpClient = new SmtpClient();
 
-                        try
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(smtpServer))
                         {
-                            if (!string.IsNullOrEmpty(smtpServer))
+                            smtpClient.Host = smtpServer;
+                            if (smtpPort > Null.NullInteger)
                             {
-                                smtpClient.Host = smtpServer;
-                                if (smtpPort > Null.NullInteger)
-                                {
-                                    smtpClient.Port = smtpPort;
-                                }
+                                smtpClient.Port = smtpPort;
+                            }
 
-                                switch (smtpAuthentication)
-                                {
+                            switch (smtpAuthentication)
+                            {
                                     // basic
-                                    case "1":
-                                        if (!string.IsNullOrEmpty(smtpUserName) && !string.IsNullOrEmpty(smtpPassword))
-                                        {
-                                            smtpClient.UseDefaultCredentials = false;
-                                            smtpClient.Credentials = new NetworkCredential(smtpUserName, smtpPassword);
-                                        }
+                                case "1":
+                                    if (!string.IsNullOrEmpty(smtpUserName) && !string.IsNullOrEmpty(smtpPassword))
+                                    {
+                                        smtpClient.UseDefaultCredentials = false;
+                                        smtpClient.Credentials = new NetworkCredential(smtpUserName, smtpPassword);
+                                    }
 
-                                        break;
+                                    break;
 
                                     // NTLM
-                                    case "2":
-                                        smtpClient.UseDefaultCredentials = true;
-                                        break;
-                                }
+                                case "2":
+                                    smtpClient.UseDefaultCredentials = true;
+                                    break;
                             }
+                        }
 
-                            smtpClient.EnableSsl = smtpEnableSsl;
+                        smtpClient.EnableSsl = smtpEnableSsl;
 
-                            smtpClient.Send(objMail);
-                            returnMessage = string.Empty;
-                        }
-                        catch (SmtpFailedRecipientException exc)
+                        smtpClient.Send(objMail);
+                        returnMessage = string.Empty;
+                    }
+                    catch (SmtpFailedRecipientException exc)
+                    {
+                        returnMessage = string.Format(CultureInfo.CurrentCulture, Localization.GetString("FailedRecipient"), exc.FailedRecipient);
+                        Exceptions.LogException(exc);
+                    }
+                    catch (SmtpException exc)
+                    {
+                        returnMessage = Localization.GetString("SMTPConfigurationProblem");
+                        Exceptions.LogException(exc);
+                    }
+                    catch (Exception objException)
+                    {
+                        // mail configuration problem
+                        if (objException.InnerException != null)
                         {
-                            returnMessage = string.Format(CultureInfo.CurrentCulture, Localization.GetString("FailedRecipient"), exc.FailedRecipient);
-                            Exceptions.LogException(exc);
+                            returnMessage = string.Concat(objException.Message, Environment.NewLine, objException.InnerException.Message);
+                            Exceptions.LogException(objException.InnerException);
                         }
-                        catch (SmtpException exc)
+                        else
                         {
-                            returnMessage = Localization.GetString("SMTPConfigurationProblem");
-                            Exceptions.LogException(exc);
-                        }
-                        catch (Exception objException)
-                        {
-                            // mail configuration problem
-                            if (objException.InnerException != null)
-                            {
-                                returnMessage = string.Concat(objException.Message, Environment.NewLine, objException.InnerException.Message);
-                                Exceptions.LogException(objException.InnerException);
-                            }
-                            else
-                            {
-                                returnMessage = objException.Message;
-                                Exceptions.LogException(objException);
-                            }
-                        }
-                        finally
-                        {
-                            if (attachmentStream != null)
-                            {
-                                attachmentStream.Dispose();
-                            }
+                            returnMessage = objException.Message;
+                            Exceptions.LogException(objException);
                         }
                     }
                 }
@@ -264,6 +238,13 @@ namespace Engage.Dnn.Booking
                 {
                     returnMessage = objException.Message;
                     Exceptions.LogException(objException);
+                }
+                finally
+                {
+                    if (attachmentStream != null)
+                    {
+                        attachmentStream.Dispose();
+                    }
                 }
 
                 return returnMessage;
@@ -321,6 +302,22 @@ namespace Engage.Dnn.Booking
                 this.ScheduleHistoryItem.AddLogNote("Email Scheduler failed with the following error message: <br/>" + exc.Message + "<br />");
                 this.Errored(ref exc);
             }
+        }
+
+        /// <summary>
+        /// Gets the value or host setting for the SMTP server configuration.
+        /// </summary>
+        /// <param name="settingValue">The setting value.</param>
+        /// <param name="settingName">Name of the setting.</param>
+        /// <returns>The setting value</returns>
+        private static string GetValueOrHostSetting(string settingValue, string settingName)
+        {
+            if (string.IsNullOrEmpty(settingValue) && !string.IsNullOrEmpty((string)Globals.HostSettings[settingName]))
+            {
+                settingValue = (string)Globals.HostSettings[settingName];
+            }
+
+            return settingValue;
         }
     }
 }

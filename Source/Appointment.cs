@@ -25,7 +25,7 @@ namespace Engage.Dnn.Booking
     /// An event, with a title, description, location, and start and end date.
     /// </summary>
     [XmlRoot(ElementName = "appointment", IsNullable = false)]
-    public class Appointment : IEditableObject, INotifyPropertyChanged
+    public class Appointment : IEditableObject
     {
         /// <summary>
         /// Prevents a default instance of the <see cref="Appointment"/> class from being created.
@@ -48,10 +48,10 @@ namespace Engage.Dnn.Booking
         /// <param name="notes">The notes.</param>
         /// <param name="address1">The address1.</param>
         /// <param name="address2">The address2.</param>
-        /// <param name="city">The city.</param>
+        /// <param name="city">The city of the appointment.</param>
         /// <param name="regionId">The region id.</param>
         /// <param name="postalCode">The postal code.</param>
-        /// <param name="phone">The phone.</param>
+        /// <param name="phone">The phone number.</param>
         /// <param name="additionalAddressInfo">The additional address info.</param>
         /// <param name="contactStreet">The contact street.</param>
         /// <param name="contactPhone">The contact phone.</param>
@@ -163,15 +163,6 @@ namespace Engage.Dnn.Booking
             this.Custom10 = custom10;
             this.IsAccepted = isAccepted;
         }
-
-        #region INotifyPropertyChanged Members
-
-        /// <summary>
-        /// Occurs when a property value changes.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
 
         /// <summary>
         /// Gets the id of this Appointment.
@@ -730,10 +721,10 @@ namespace Engage.Dnn.Booking
         /// <param name="notes">The notes.</param>
         /// <param name="address1">The address1.</param>
         /// <param name="address2">The address2.</param>
-        /// <param name="city">The city.</param>
+        /// <param name="city">The city of the appointment.</param>
         /// <param name="regionId">The region id.</param>
         /// <param name="postalCode">The postal code.</param>
-        /// <param name="phone">The phone.</param>
+        /// <param name="phone">The phone number.</param>
         /// <param name="additionalAddressInfo">The additional address info.</param>
         /// <param name="contactStreet">The contact street.</param>
         /// <param name="contactPhone">The contact phone.</param>

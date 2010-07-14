@@ -11,6 +11,7 @@
 
 namespace Engage.Dnn.Booking
 {
+    using System;
     using System.Data;
     using System.Globalization;
     using System.IO;
@@ -32,9 +33,11 @@ namespace Engage.Dnn.Booking
         /// <returns>The CSV-formatted output generated from a specified <see cref="DataTable"/>.</returns>
         public static string WriteToString(DataTable table, bool header, bool quoteAll)
         {
-            StringWriter writer = new StringWriter(CultureInfo.InvariantCulture);
-            WriteToStream(writer, table, header, quoteAll);
-            return writer.ToString();
+            using (var writer = new StringWriter(CultureInfo.InvariantCulture))
+            {
+                WriteToStream(writer, table, header, quoteAll);
+                return writer.ToString();
+            }
         }
 
         /// <summary>
@@ -46,6 +49,16 @@ namespace Engage.Dnn.Booking
         /// <param name="quoteAll">if set to <c>true</c> enclose all cells/fields in quotes.</param>
         public static void WriteToStream(TextWriter stream, DataTable table, bool header, bool quoteAll)
         {
+            if (stream == null)
+            {
+                throw new ArgumentNullException("stream", "stream must not be null");
+            }
+
+            if (table == null)
+            {
+                throw new ArgumentNullException("table", "table must not be null");
+            }
+
             if (header)
             {
                 for (int i = 0; i < table.Columns.Count; i++)

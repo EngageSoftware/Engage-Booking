@@ -127,6 +127,11 @@ namespace Engage.Dnn.Booking
         /// <param name="fileName">The name of the file.</param>
         protected static void SendContentToClient(HttpResponse response, string contentType, string content, string fileName)
         {
+            if (response == null)
+            {
+                throw new ArgumentNullException("response", "response must not be null");
+            }
+
             response.Clear();
 
             response.Buffer = true;
@@ -151,6 +156,16 @@ namespace Engage.Dnn.Booking
         /// </returns>
         protected static string GenerateQueryStringParameters(HttpRequest request, params string[] queryStringKeys)
         {
+            if (request == null)
+            {
+                throw new ArgumentNullException("request", "request must not be null");
+            }
+
+            if (queryStringKeys == null)
+            {
+                throw new ArgumentNullException("queryStringKeys", "queryStringKeys must not be null");
+            }
+
             StringBuilder queryString = new StringBuilder(64);
             foreach (string key in queryStringKeys)
             {
@@ -218,21 +233,16 @@ namespace Engage.Dnn.Booking
         /// <param name="queryStringKeys">The QueryString keys which should be persisted when the paging links are clicked.</param>
         protected void SetupPagingControl(PagingControl pagingControl, int totalRecords, params string[] queryStringKeys)
         {
+            if (pagingControl == null)
+            {
+                throw new ArgumentNullException("pagingControl", "pagingControl must not be null");
+            }
+
             pagingControl.Visible = totalRecords != 0;
             pagingControl.TotalRecords = totalRecords;
             pagingControl.CurrentPage = this.CurrentPageIndex;
             pagingControl.TabID = this.TabId;
             pagingControl.QuerystringParams = GenerateQueryStringParameters(this.Request, queryStringKeys);
-        }
-
-        /// <summary>
-        /// Gets localized text for the given resource key using this control's <see cref="DotNetNuke.Entities.Modules.PortalModuleBase.LocalResourceFile"/>.
-        /// </summary>
-        /// <param name="resourceKey">The resource key.</param>
-        /// <returns>Localized text for the given resource key</returns>
-        protected string Localize(string resourceKey)
-        {
-            return Localization.GetString(resourceKey, this.LocalResourceFile);
         }
 
         /// <summary>
