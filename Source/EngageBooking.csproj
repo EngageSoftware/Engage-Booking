@@ -253,6 +253,7 @@
     <Content Include="References\Framework\Engage.Dnn.Framework.dll" />
     <Content Include="References\Framework\Engage.Events.dll" />
     <Content Include="References\Framework\Engage.Framework.dll" />
+    <Content Include="References\Telerik.Web.Design.dll" />
     <Content Include="ReleaseNotes_1.2.0.htm" />
     <Content Include="Images\dn.gif" />
     <Content Include="Images\lt.gif" />
@@ -450,7 +451,6 @@
     <Content Include="Images\export.gif" />
     <Content Include="Images\request-appt-background.png" />
     <Content Include="Images\subhead-hr.gif" />
-    <Content Include="References\system.web.extensions.dll" />
     <Content Include="References\Telerik.Web.UI.XML" />
     <Content Include="Display\App_LocalResources\AppointmentToolTip.ascx.resx">
     </Content>
