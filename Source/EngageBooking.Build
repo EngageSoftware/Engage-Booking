@@ -231,27 +231,27 @@
   </target>
   <target name="get-dependency-source" description="Gets the latest source packages for the Engage Framework dependencies for this module">
     <property name="buildDirectory" value="_0.0"/>
-    <property name="buildPath" value="\\etg19\qa\Engage\Engage 3.0\Builds\"/>
-    <foreach item="Folder" in="${buildPath}" property="foldername" if="${file::exists(buildPath)}">
-      <echo message="${foldername}"/>
+    <property name="buildPath" value="\\etg19b\qa\Engage\Engage 3.0\Builds\"/>
+    <foreach item="Folder" in="${buildPath}" property="foldername" failonerror="false">
       <property name="buildDirectory" value="${foldername}" if="${build-directory::is-greater-than(foldername, buildDirectory) and file::exists(path::combine(foldername, 'Release\Engage.Framework_Source.zip'))}"/>
     </foreach>
-    <echo message="Can't find dependency source from the build directory." if="${buildDirectory == '_0.0'}"/>
 
-    <property name="dependencyPackageDirectory" value="${packageDirectory}/temp/dependencies"/>
-    <copy todir="${dependencyPackageDirectory}">
-      <fileset basedir="${path::combine(buildDirectory, 'Release\')}">
-        <patternset refid="dependencySourcePackages"/>
-      </fileset>
-    </copy>
+    <if test="${buildDirectory != '_0.0'}">
+      <property name="dependencyPackageDirectory" value="${packageDirectory}/temp/dependencies"/>
+      <copy todir="${dependencyPackageDirectory}">
+        <fileset basedir="${path::combine(buildDirectory, 'Release\')}">
+          <patternset refid="dependencySourcePackages"/>
+        </fileset>
+      </copy>
     
-    <call target="get-project-specific-dependencies"/>
+      <call target="get-project-specific-dependencies"/>
 
-    <zip zipfile="${packageDirectory}/${dependencySourcePackageFileNameTemplate}.zip" ziplevel="${zipLevel}">
-      <fileset basedir="${packageDirectory}/temp/dependencies">
-        <include name="**/*"/>
-      </fileset>
-    </zip>
+      <zip zipfile="${packageDirectory}/${dependencySourcePackageFileNameTemplate}.zip" ziplevel="${zipLevel}">
+        <fileset basedir="${packageDirectory}/temp/dependencies">
+          <include name="**/*"/>
+        </fileset>
+      </zip>
+    </if>
   </target>
   <target name="combine-source" description="Combines the Install and Source packages with the same license into one .zip file">
     <property name="packageType" value="Install"/>
