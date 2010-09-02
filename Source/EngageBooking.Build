@@ -231,7 +231,7 @@
   </target>
   <target name="get-dependency-source" description="Gets the latest source packages for the Engage Framework dependencies for this module">
     <property name="buildDirectory" value="_0.0"/>
-    <property name="buildPath" value="\\etg19b\qa\Engage\Engage 3.0\Builds\"/>
+    <property name="buildPath" value="\\etg19\qa\Engage\Engage 3.0\Builds\"/>
     <foreach item="Folder" in="${buildPath}" property="foldername" failonerror="false">
       <property name="buildDirectory" value="${foldername}" if="${build-directory::is-greater-than(foldername, buildDirectory) and file::exists(path::combine(foldername, 'Release\Engage.Framework_Source.zip'))}"/>
     </foreach>
