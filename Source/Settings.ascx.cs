@@ -12,8 +12,10 @@
 namespace Engage.Dnn.Booking
 {
     using System;
+    using System.Web.UI;
     using System.Web.UI.WebControls;
     using DotNetNuke.Common;
+
     using DotNetNuke.Security.Roles;
     using DotNetNuke.Services.Exceptions;
     using DotNetNuke.Services.Localization;
@@ -57,6 +59,12 @@ namespace Engage.Dnn.Booking
                     Booking.ModuleSettings.AppointmentsPerPage.Set(this, (int)this.RecordsPerPageTextBox.Value.Value);
                     Booking.ModuleSettings.NotificationEmailAddresses.Set(this, this.NotificationEmailsListTextBox.Text);
 
+                    var defaultAppointmentDuration = new TimeSpan(
+                        (int)this.DefaultAppointmentDurationHoursTextBox.Value.Value,
+                        (int)this.DefaultAppointmentDurationMinutesTextBox.Value.Value,
+                        0);
+                    Booking.ModuleSettings.DefaultAppointmentDuration.Set(this, defaultAppointmentDuration.TotalMinutes);
+
                     if (this.AppointmentsPerDayTextBox.Value.HasValue)
                     {
                         Booking.ModuleSettings.AppointmentsToDisplayPerDay.Set(this, (int)this.AppointmentsPerDayTextBox.Value.Value);
@@ -70,6 +78,28 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Raises the <see cref="Control.Init"/> event.
+        /// </summary>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+
+            this.DefaultAppointmentDurationValidator.ServerValidate += this.DefaultAppointmentDurationValidatator_ServerValidate;
+        }
+
+        /// <summary>
+        /// Validates that the default appointment duration has a value.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="args">The <see cref="ServerValidateEventArgs"/> instance containing the event data.</param>
+        private void DefaultAppointmentDurationValidatator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = this.DefaultAppointmentDurationHoursTextBox.Value > 0 || 
+                           this.DefaultAppointmentDurationMinutesTextBox.Value > 0;
+        }
+
+        /// <summary>
         /// Sets the options.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1302:DoNotHardcodeLocaleSpecificStrings", MessageId = "All Users", Justification = "'All Users' (glbRoleAllUsersName) does not refer to the system folder")]
@@ -79,7 +109,7 @@ namespace Engage.Dnn.Booking
             this.SkinDropDownList.DataBind();
             Dnn.Utility.LocalizeListControl(this.SkinDropDownList, this.LocalResourceFile);
 
-            ListItem li = this.SkinDropDownList.Items.FindByValue(Booking.ModuleSettings.CalendarSkin.GetValueAsStringFor(this));
+            var li = this.SkinDropDownList.Items.FindByValue(Booking.ModuleSettings.CalendarSkin.GetValueAsStringFor(this));
             if (li != null)
             {
                 li.Selected = true;
@@ -98,6 +128,10 @@ namespace Engage.Dnn.Booking
             this.AppointmentsPerDayTextBox.Value = Booking.ModuleSettings.AppointmentsToDisplayPerDay.GetValueAsInt32For(this).Value;
             this.RecordsPerPageTextBox.Value = Booking.ModuleSettings.AppointmentsPerPage.GetValueAsInt32For(this).Value;
             this.NotificationEmailsListTextBox.Text = Booking.ModuleSettings.NotificationEmailAddresses.GetValueAsStringFor(this);
+
+            var defaultAppointmentDuration = new TimeSpan(0, Booking.ModuleSettings.DefaultAppointmentDuration.GetValueAsInt32For(this).Value, 0);
+            this.DefaultAppointmentDurationHoursTextBox.Value = defaultAppointmentDuration.Hours;
+            this.DefaultAppointmentDurationMinutesTextBox.Value = defaultAppointmentDuration.Minutes;
         }
     }
 }

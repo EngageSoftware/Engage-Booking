@@ -26,11 +26,6 @@ namespace Engage.Dnn.Booking
     public partial class AppointmentRequest : ModuleBase
     {
         /// <summary>
-        /// The default duration of an appointment in minutes
-        /// </summary>
-        private const int DefaultDurationInMinutes = 30;
-
-        /// <summary>
         /// Gets a value indicating whether to show a message that the appointment was successfully submitted.
         /// </summary>
         /// <value><c>true</c> if the success message should be shown; otherwise, <c>false</c>.</value>
@@ -64,10 +59,21 @@ namespace Engage.Dnn.Booking
         /// Gets the next time that is a full duration (currently half hour) from now (i.e. if the time is currently 4:13, returns 4:30).
         /// </summary>
         /// <returns>The next full duration from <see cref="DateTime.Now"/></returns>
-        private static DateTime GetNextDuration()
+        private DateTime GetNextDuration()
         {
             var now = DateTime.Now;
-            return now.Subtract(now.TimeOfDay).AddHours(now.Hour).AddMinutes(now.Minute + DefaultDurationInMinutes - (now.Minute % DefaultDurationInMinutes));
+            return now.Date
+                      .AddHours(now.Hour)
+                      .AddMinutes(now.Minute + this.GetDefaultAppointmentDuration() - (now.Minute % this.GetDefaultAppointmentDuration()));
+        }
+
+        /// <summary>
+        /// Gets the default duration of the appointment.
+        /// </summary>
+        /// <returns>The <see cref="ModuleSettings.DefaultAppointmentDuration"/> containing the duration length or the default value if the setting is equal to 0.</returns>
+        private int GetDefaultAppointmentDuration()
+        {
+            return ModuleSettings.DefaultAppointmentDuration.GetValueAsInt32For(this).Value;
         }
 
         /// <summary>
@@ -104,7 +110,7 @@ namespace Engage.Dnn.Booking
                 {
                     this.SuccessModuleMessage.Visible = this.ShowSuccessMessage;
                     this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime") ?? GetNextDuration();
-                    this.EndDateTimePicker.SelectedDate = this.GetDateFromQueryString("endTime") ?? this.StartDateTimePicker.SelectedDate.Value.AddMinutes(DefaultDurationInMinutes);
+                    this.EndDateTimePicker.SelectedDate = this.GetDateFromQueryString("endTime") ?? this.StartDateTimePicker.SelectedDate.Value.AddMinutes(this.GetDefaultAppointmentDuration());
 
                     if (this.UserInfo.UserID > 0)
                     {

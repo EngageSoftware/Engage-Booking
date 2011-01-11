@@ -141,6 +141,21 @@
   <data name="Default.Text" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="DefaultAppointmentDurationLabel.Help" xml:space="preserve">
+    <value>Specify the default appointment length in hours and minutes.</value>
+  </data>
+  <data name="DefaultAppointmentDurationLabel.Text" xml:space="preserve">
+    <value>Default Appointment Duration</value>
+  </data>
+  <data name="DefaultAppointmentDurationValidator.Text" xml:space="preserve">
+    <value>Default Appointment Duration is required (i.e. Hours or Minutes must have a value)</value>
+  </data>
+  <data name="DefaultAppointmentHoursLabel.Text" xml:space="preserve">
+    <value>Hours&amp;nbsp;&amp;nbsp;</value>
+  </data>
+  <data name="DefaultAppointmentMinutesLabel.Text" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
   <data name="Forest.Text" xml:space="preserve">
     <value>Forest</value>
   </data>
