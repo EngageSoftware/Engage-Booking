@@ -65,6 +65,18 @@ namespace Engage.Dnn.Booking
                         0);
                     Booking.ModuleSettings.DefaultAppointmentDuration.Set(this, defaultAppointmentDuration.TotalMinutes);
 
+                    var minimumAppointmentDuration = new TimeSpan(
+                        (int)this.MinimumAppointmentDurationHoursTextBox.Value.Value,
+                        (int)this.MinimumAppointmentDurationMinutesTextBox.Value.Value,
+                        0);
+                    Booking.ModuleSettings.MinimumAppointmentDuration.Set(this, minimumAppointmentDuration.TotalMinutes);
+
+                    var maximumAppointmentDuration = new TimeSpan(
+                        (int)this.MaximumAppointmentDurationHoursTextBox.Value.Value,
+                        (int)this.MaximumAppointmentDurationMinutesTextBox.Value.Value,
+                        0);
+                    Booking.ModuleSettings.MaximumAppointmentDuration.Set(this, maximumAppointmentDuration.TotalMinutes);
+
                     if (this.AppointmentsPerDayTextBox.Value.HasValue)
                     {
                         Booking.ModuleSettings.AppointmentsToDisplayPerDay.Set(this, (int)this.AppointmentsPerDayTextBox.Value.Value);
@@ -86,6 +98,60 @@ namespace Engage.Dnn.Booking
             base.OnInit(e);
 
             this.DefaultAppointmentDurationValidator.ServerValidate += this.DefaultAppointmentDurationValidatator_ServerValidate;
+            this.MinimumAppointmentDurationValidator.ServerValidate += this.MinimumAppointmentDurationValidator_ServerValidate;
+            this.MaximumAppointmentDurationValidator.ServerValidate += this.MaximumAppointmentDurationValidator_ServerValidate;
+            this.DurationCompareValidator.ServerValidate += this.DurationCompareValidator_ServerValidate;
+        }
+
+        /// <summary>
+        /// Determines whether either value is non-null and greater than zero.
+        /// </summary>
+        /// <param name="value1">The first value.</param>
+        /// <param name="value2">The second value.</param>
+        /// <returns><c>true</c> if either <paramref name="value1"/> or <paramref name="value2"/> has a positive value; otherwise <c>false</c></returns>
+        private static bool EitherHasValue(double? value1, double? value2)
+        {
+            return value1 > 0 || value2 > 0;
+        }
+
+        /// <summary>
+        /// Validates that the maximum and minimum values are respectively greater and less then one another.
+        /// </summary>
+        /// <param name="source">The source of the event.</param>
+        /// <param name="args">The <see cref="ServerValidateEventArgs"/> instance containing the event data.</param>
+        private void DurationCompareValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            var minDuration =
+                new TimeSpan(
+                    (int)this.MinimumAppointmentDurationHoursTextBox.Value.Value, (int)this.MinimumAppointmentDurationMinutesTextBox.Value.Value, 0).
+                    TotalMinutes;
+
+            var maxDuration =
+                new TimeSpan(
+                    (int)this.MaximumAppointmentDurationHoursTextBox.Value.Value, (int)this.MaximumAppointmentDurationMinutesTextBox.Value.Value, 0).
+                    TotalMinutes;
+
+            args.IsValid = minDuration <= maxDuration;
+        }
+
+        /// <summary>
+        /// Validates that the maximum appointment length has a value.
+        /// </summary>
+        /// <param name="source">The source of the event.</param>
+        /// <param name="args">The <see cref="ServerValidateEventArgs"/> instance containing the event data.</param>
+        private void MaximumAppointmentDurationValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = EitherHasValue(this.MaximumAppointmentDurationHoursTextBox.Value, this.MaximumAppointmentDurationMinutesTextBox.Value);
+        }
+
+        /// <summary>
+        /// Validates that the minimum appointment length has a value.
+        /// </summary>
+        /// <param name="source">The source of the event.</param>
+        /// <param name="args">The <see cref="ServerValidateEventArgs"/> instance containing the event data.</param>
+        private void MinimumAppointmentDurationValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = EitherHasValue(this.MinimumAppointmentDurationHoursTextBox.Value, this.MinimumAppointmentDurationMinutesTextBox.Value);
         }
 
         /// <summary>
@@ -95,8 +161,7 @@ namespace Engage.Dnn.Booking
         /// <param name="args">The <see cref="ServerValidateEventArgs"/> instance containing the event data.</param>
         private void DefaultAppointmentDurationValidatator_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = this.DefaultAppointmentDurationHoursTextBox.Value > 0 || 
-                           this.DefaultAppointmentDurationMinutesTextBox.Value > 0;
+            args.IsValid = EitherHasValue(this.DefaultAppointmentDurationHoursTextBox.Value, this.DefaultAppointmentDurationMinutesTextBox.Value);
         }
 
         /// <summary>
@@ -129,9 +194,17 @@ namespace Engage.Dnn.Booking
             this.RecordsPerPageTextBox.Value = Booking.ModuleSettings.AppointmentsPerPage.GetValueAsInt32For(this).Value;
             this.NotificationEmailsListTextBox.Text = Booking.ModuleSettings.NotificationEmailAddresses.GetValueAsStringFor(this);
 
-            var defaultAppointmentDuration = new TimeSpan(0, Booking.ModuleSettings.DefaultAppointmentDuration.GetValueAsInt32For(this).Value, 0);
+            var defaultAppointmentDuration = TimeSpan.FromMinutes(Booking.ModuleSettings.DefaultAppointmentDuration.GetValueAsInt32For(this).Value);
             this.DefaultAppointmentDurationHoursTextBox.Value = defaultAppointmentDuration.Hours;
             this.DefaultAppointmentDurationMinutesTextBox.Value = defaultAppointmentDuration.Minutes;
+
+            var minimumAppointmentDuration = TimeSpan.FromMinutes(Booking.ModuleSettings.MinimumAppointmentDuration.GetValueAsInt32For(this).Value);
+            this.MinimumAppointmentDurationHoursTextBox.Value = minimumAppointmentDuration.Hours;
+            this.MinimumAppointmentDurationMinutesTextBox.Value = minimumAppointmentDuration.Minutes;
+
+            var maximumAppointmentDuration = TimeSpan.FromMinutes(Booking.ModuleSettings.MaximumAppointmentDuration.GetValueAsInt32For(this).Value);
+            this.MaximumAppointmentDurationHoursTextBox.Value = maximumAppointmentDuration.Hours;
+            this.MaximumAppointmentDurationMinutesTextBox.Value = maximumAppointmentDuration.Minutes;
         }
     }
 }

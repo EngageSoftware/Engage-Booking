@@ -402,4 +402,7 @@
   <data name="Save.Text" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="DurationValidator.Text" xml:space="preserve">
+    <value>Your appointment length must be between {0:#}:{1:00} and {2:#}:{3:00}.</value>
+  </data>
 </root>

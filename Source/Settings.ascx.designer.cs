@@ -92,5 +92,68 @@ namespace Engage.Dnn.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CustomValidator DefaultAppointmentDurationValidator;
+        
+        /// <summary>
+        /// MinimumAppointmentDurationHoursTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadNumericTextBox MinimumAppointmentDurationHoursTextBox;
+        
+        /// <summary>
+        /// MinimumAppointmentDurationMinutesTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadNumericTextBox MinimumAppointmentDurationMinutesTextBox;
+        
+        /// <summary>
+        /// MinimumAppointmentDurationValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator MinimumAppointmentDurationValidator;
+        
+        /// <summary>
+        /// MaximumAppointmentDurationHoursTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadNumericTextBox MaximumAppointmentDurationHoursTextBox;
+        
+        /// <summary>
+        /// MaximumAppointmentDurationMinutesTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadNumericTextBox MaximumAppointmentDurationMinutesTextBox;
+        
+        /// <summary>
+        /// MaximumAppointmentDurationValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator MaximumAppointmentDurationValidator;
+        
+        /// <summary>
+        /// DurationCompareValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator DurationCompareValidator;
     }
 }

@@ -110,7 +110,6 @@
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" />
                     <telerik:RadDateTimePicker runat="server" ID="StartDateTimePicker">
                         <Calendar ShowRowHeaders="false" />
-                        <DateInput InvalidStyleDuration="100" />
                         <ClientEvents OnDateSelected="StartDateTimePicker_DateSelected" />
                     </telerik:RadDateTimePicker>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="StartDateTimePicker" ResourceKey="StartDateTimePickerRequired" Display="None" EnableClientScript="false" />
@@ -120,10 +119,10 @@
                     <asp:Label runat="server" ResourceKey="Required Label" CssClass="required-label" />
                     <telerik:RadDateTimePicker runat="server" ID="EndDateTimePicker">
                         <Calendar ShowRowHeaders="false" />
-                        <DateInput InvalidStyleDuration="100" />
                     </telerik:RadDateTimePicker>
                     <asp:CompareValidator runat="server" Display="None" EnableClientScript="false" ControlToCompare="StartDateTimePicker" ControlToValidate="EndDateTimePicker" ResourceKey="EndDateCompareValidator" Operator="GreaterThan" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="EndDateTimePicker" ResourceKey="EndDateTimePickerRequired" Display="None" EnableClientScript="false" />
+                    <asp:CustomValidator ID="DurationValidator" runat="server" CssClass="NormalRed" Display="None" />
                 </li>
                 <li class="timezone">
                     <asp:Label runat="server" ResourceKey="EventTimeZoneLabel" CssClass="timezone-label" AssociatedControlID="TimeZoneDropDownList" />

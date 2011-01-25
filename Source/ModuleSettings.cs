@@ -54,5 +54,17 @@ namespace Engage.Dnn.Booking
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
         public static readonly Setting<int> DefaultAppointmentDuration = new Setting<int>("DefaultAppointmentDuration", SettingScope.TabModule, 30);
+
+        /// <summary>
+        /// The minimum appointment duration a user can request in minutes
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
+        public static readonly Setting<int> MinimumAppointmentDuration = new Setting<int>("MinimumAppointmentDuration", SettingScope.TabModule, 5);
+
+        /// <summary>
+        /// The maximum appointment duration a user can request in minutes
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
+        public static readonly Setting<int> MaximumAppointmentDuration = new Setting<int>("MaximumAppointmentDuration", SettingScope.TabModule, 24 * 60);
     }
 }

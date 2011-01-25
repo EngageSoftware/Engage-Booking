@@ -53,6 +53,29 @@ namespace Engage.Dnn.Booking
             this.HomeButton.Click += this.HomeButton_OnClick;
             this.CreateNewAppointmentButton.Click += this.CreateNewAppointmentButton_OnClick;
             this.UniqueTimeslotValidator.ServerValidate += this.UniqueTimeslotValidator_ServerValidate;
+            this.DurationValidator.ServerValidate += this.DurationValidator_ServerValidate;
+        }
+
+        /// <summary>
+        /// Validates that the time requested by the user is greater than or equal to the minimum or less than or equal to the maximum allowed.
+        /// </summary>
+        /// <param name="source">The source of the event.</param>
+        /// <param name="args">The <see cref="System.Web.UI.WebControls.ServerValidateEventArgs"/> instance containing the event data.</param>
+        private void DurationValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            var minimumDuration = TimeSpan.FromMinutes(ModuleSettings.MinimumAppointmentDuration.GetValueAsInt32For(this).Value);
+            var maximumDuration = TimeSpan.FromMinutes(ModuleSettings.MaximumAppointmentDuration.GetValueAsInt32For(this).Value);
+            var totalDuration = this.EndDateTimePicker.SelectedDate.Value.Subtract(this.StartDateTimePicker.SelectedDate.Value);
+
+            this.DurationValidator.ErrorMessage = string.Format(
+                CultureInfo.CurrentCulture,
+                Localization.GetString("DurationValidator", this.LocalResourceFile),
+                minimumDuration.TotalHours,
+                minimumDuration.Minutes,
+                maximumDuration.TotalHours,
+                maximumDuration.Minutes);
+
+            args.IsValid = totalDuration >= minimumDuration && totalDuration <= maximumDuration;
         }
 
         /// <summary>
@@ -109,7 +132,7 @@ namespace Engage.Dnn.Booking
                 if (!this.IsPostBack)
                 {
                     this.SuccessModuleMessage.Visible = this.ShowSuccessMessage;
-                    this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime") ?? GetNextDuration();
+                    this.StartDateTimePicker.SelectedDate = this.GetDateFromQueryString("startTime") ?? this.GetNextDuration();
                     this.EndDateTimePicker.SelectedDate = this.GetDateFromQueryString("endTime") ?? this.StartDateTimePicker.SelectedDate.Value.AddMinutes(this.GetDefaultAppointmentDuration());
 
                     if (this.UserInfo.UserID > 0)
@@ -229,7 +252,7 @@ namespace Engage.Dnn.Booking
         /// </summary>
         private void Insert()
         {
-            int appointmentTypeId = int.Parse(this.AppointmentTypeDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+            var appointmentTypeId = int.Parse(this.AppointmentTypeDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
             
             int? regionId;
             int selectedRegionId;
@@ -254,20 +277,20 @@ namespace Engage.Dnn.Booking
                 numberOfSpecialParticipants = 0;
             }
 
-            int timeZoneOffsetMinutes = int.Parse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
-            TimeSpan timeZoneOffset = new TimeSpan(0, timeZoneOffsetMinutes, 0);
+            var timeZoneOffsetMinutes = int.Parse(this.TimeZoneDropDownList.SelectedValue, NumberStyles.Integer, CultureInfo.InvariantCulture);
+            var timeZoneOffset = new TimeSpan(0, timeZoneOffsetMinutes, 0);
             if (this.InDaylightTimeCheckBox.Checked)
             {
                 timeZoneOffset = timeZoneOffset.Add(new TimeSpan(1, 0, 0));
             }
 
-            string roomText = string.Empty;
+            var roomText = string.Empty;
             if (this.RoomTextBox.Text != Localization.GetString("RoomDefaultText.Text", this.LocalResourceFile))
             {
                 roomText = this.RoomTextBox.Text;
             }
 
-            string postalCodeText = string.Empty;
+            var postalCodeText = string.Empty;
             if (this.PostalCodeTextBox.Text != Localization.GetString("PostalCodeDefaultText.Text", this.LocalResourceFile))
             {
                 postalCodeText = this.PostalCodeTextBox.Text;

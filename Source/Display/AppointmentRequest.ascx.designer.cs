@@ -229,6 +229,15 @@ namespace Engage.Dnn.Booking {
         protected global::Telerik.Web.UI.RadDateTimePicker EndDateTimePicker;
         
         /// <summary>
+        /// DurationValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator DurationValidator;
+        
+        /// <summary>
         /// TimeZoneDropDownList control.
         /// </summary>
         /// <remarks>

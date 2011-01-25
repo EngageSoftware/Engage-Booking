@@ -57,7 +57,37 @@
             </div>
             <asp:CustomValidator ID="DefaultAppointmentDurationValidator" runat="server" ResourceKey="DefaultAppointmentDurationValidator" CssClass="NormalRed" Display="None" />
         </div>
+        <div class="booking-setting">
+            <dnn:label runat="server" controlname="MinimumAppointmentDuration" ResourceKey="MinimumAppointmentDurationLabel" CssClass="SubHead"/>
+            <div class="NumericTextBoxWrapper">
+                <telerik:radnumerictextbox ID="MinimumAppointmentDurationHoursTextBox" runat="server" MaxLength="3" MinValue="0" MaxValue="200" ShowSpinButtons="True"> 
+                    <NumberFormat AllowRounding="True" DecimalDigits="0"/>
+                </telerik:radnumerictextbox>
+                <asp:Label runat="server" ResourceKey="MinimumAppointmentHoursLabel" AssociatedControlID="MinimumAppointmentDurationHoursTextBox" />
 
+                <telerik:radnumerictextbox ID="MinimumAppointmentDurationMinutesTextBox" runat="server" MinValue="0" MaxValue="59" ShowSpinButtons="True"> 
+                    <NumberFormat AllowRounding="True" DecimalDigits="0"/>
+                </telerik:radnumerictextbox>
+                <asp:Label runat="server" ResourceKey="MinimumAppointmentMinutesLabel" AssociatedControlID="MinimumAppointmentDurationMinutesTextBox" />
+            </div>
+            <asp:CustomValidator ID="MinimumAppointmentDurationValidator" runat="server" ResourceKey="MinimumAppointmentDurationValidator" CssClass="NormalRed" Display="None" />
+        </div>
+        <div class="booking-setting">
+            <dnn:label runat="server" controlname="MaximumAppointmentDuration" ResourceKey="MaximumAppointmentDurationLabel" CssClass="SubHead"/>
+            <div class="NumericTextBoxWrapper">
+                <telerik:radnumerictextbox id="MaximumAppointmentDurationHoursTextBox" runat="server" maxlength="3" minvalue="0" maxvalue="200" showspinbuttons="True"> 
+                    <NumberFormat AllowRounding="True" DecimalDigits="0"/>
+                </telerik:radnumerictextbox>
+                <asp:Label runat="server" ResourceKey="MaximumAppointmentHoursLabel" AssociatedControlID="MaximumAppointmentDurationHoursTextBox" />
+
+                <telerik:radnumerictextbox id="MaximumAppointmentDurationMinutesTextBox" runat="server" minvalue="0" maxvalue="59" showspinbuttons="True"> 
+                    <NumberFormat AllowRounding="True" DecimalDigits="0"/>
+                </telerik:radnumerictextbox>
+                <asp:Label runat="server" ResourceKey="MaximumAppointmentMinutesLabel" AssociatedControlID="MaximumAppointmentDurationMinutesTextBox" />
+            </div>
+            <asp:CustomValidator ID="MaximumAppointmentDurationValidator" runat="server" ResourceKey="MaximumAppointmentDurationValidator" CssClass="NormalRed" Display="None" />
+            <asp:CustomValidator ID="DurationCompareValidator" runat="server" ResourceKey="DurationCompareValidator" Display="None" />
+        </div>
         <asp:ValidationSummary runat="server" ShowMessageBox="false" ShowSummary="true" CssClass="NormalRed" />
     </ContentTemplate>
 </asp:UpdatePanel>

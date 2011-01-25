@@ -18,8 +18,8 @@
 		2. Settings
 ========================================================*/
 .booking-setting label, .booking-setting .Help{float:left;width: 49%;}
-.booking-setting .NumericTextBoxWrapper label{float:none; width:auto;}
-.booking-setting br /*dnn label renders a br tag*/ {	display: none;}
+.booking-setting .NumericTextBoxWrapper label{float:none; width:auto;padding-right:0.5em;}
+.booking-setting br /*dnn label renders a br tag*/ {display: none;}
 .booking-setting input, .booking-setting select, .booking-setting .NumericTextBoxWrapper{float:right;width:49%;}
 .booking-setting .NumericTextBoxWrapper{text-align: center;}
 .booking-setting .NumericTextBoxWrapper div, .booking-setting .NumericTextBoxWrapper div table{text-align: right;width: 5em !important;}

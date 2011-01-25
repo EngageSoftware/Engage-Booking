@@ -156,11 +156,50 @@
   <data name="DefaultAppointmentMinutesLabel.Text" xml:space="preserve">
     <value>Minutes</value>
   </data>
+  <data name="DurationCompareValidator.Text" xml:space="preserve">
+    <value>Maximum appointment duration cannot be less than minimum appointment duration.</value>
+  </data>
   <data name="Forest.Text" xml:space="preserve">
     <value>Forest</value>
   </data>
   <data name="Hay.Text" xml:space="preserve">
     <value>Hay</value>
+  </data>
+  <data name="MaximumAppointmentDurationLabel.Help" xml:space="preserve">
+    <value>The longest appointment length that a user is allowed to request.</value>
+  </data>
+  <data name="MaximumAppointmentDurationLabel.Text" xml:space="preserve">
+    <value>Maximum Appointment Duration</value>
+  </data>
+  <data name="MaximumAppointmentDurationValidator.Text" xml:space="preserve">
+    <value>Maximum appointment duration is required. (Hours or minutes)</value>
+  </data>
+  <data name="MaximumAppointmentHoursLabel.Text" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="MaximumAppointmentMinutesLabel.Text" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="MinimumAppointmentDuration.Help" xml:space="preserve">
+    <value>The shortest appointment length that a user is allowed to request.</value>
+  </data>
+  <data name="MinimumAppointmentDuration.Text" xml:space="preserve">
+    <value>Minimum Appointment Duration</value>
+  </data>
+  <data name="MinimumAppointmentDurationLabel.Help" xml:space="preserve">
+    <value>The minimum appointment duration that a user may request.</value>
+  </data>
+  <data name="MinimumAppointmentDurationLabel.Text" xml:space="preserve">
+    <value>Minimum Appointment Duration</value>
+  </data>
+  <data name="MinimumAppointmentDurationValidator.Text" xml:space="preserve">
+    <value>Minimum appointment duration is required. (Hours or minutes)</value>
+  </data>
+  <data name="MinimumAppointmentHoursLabel.Text" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="MinimumAppointmentMinutesLabel.Text" xml:space="preserve">
+    <value>Minutes</value>
   </data>
   <data name="NotificationEmailsListLabel.Help" xml:space="preserve">
     <value>A comma-delimited list of the email addresses which should receive a notification email when a new appointment request is submitted through this module.</value>
