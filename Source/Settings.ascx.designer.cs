@@ -155,5 +155,23 @@ namespace Engage.Dnn.Booking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CustomValidator DurationCompareValidator;
+        
+        /// <summary>
+        /// MaximumConcurrentAppointmentsTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadNumericTextBox MaximumConcurrentAppointmentsTextBox;
+        
+        /// <summary>
+        /// MaximumConcurrentAppointmentsValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator MaximumConcurrentAppointmentsValidator;
     }
 }

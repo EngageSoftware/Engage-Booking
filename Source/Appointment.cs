@@ -12,9 +12,11 @@
 namespace Engage.Dnn.Booking
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
     using System.Diagnostics;
+    using System.Linq;
     using System.Xml.Serialization;
     using Data;
     using DotNetNuke.Common;
@@ -703,12 +705,22 @@ namespace Engage.Dnn.Booking
         /// <param name="moduleId">The ID of the module in which the appointment is to be created.</param>
         /// <param name="start">The start of the new <see cref="Appointment"/>.</param>
         /// <param name="end">The end of the new <see cref="Appointment"/>.</param>
+        /// <param name="max">The maximum appointments allowed for the specified time range</param>
         /// <returns>
         /// <c>true</c> if an <see cref="Appointment"/> can be created at the specified <paramref name="start"/> time until the specified <paramref name="end"/> time; otherwise, <c>false</c>.
         /// </returns>
-        public static bool CanCreateAt(int moduleId, DateTime start, DateTime end)
+        public static bool CanCreateAt(int moduleId, DateTime start, DateTime end, int? max)
         {
-            return AppointmentSqlDataProvider.CanCreateAppointmentAt(moduleId, start, end);
+            var appointments = AppointmentSqlDataProvider.GetConcurrentAppointments(moduleId, start, end);
+            var appointmentsInRange = new List<Appointment>(max ?? 10);
+
+            while (appointments.Read())
+            {
+                appointmentsInRange.Add(Fill(appointments));
+            }
+
+            var uniqueStartTimes = appointmentsInRange.Select(apt => apt.StartDateTime).Distinct();
+            return uniqueStartTimes.All(time => max > appointmentsInRange.Count(apt => time >= apt.StartDateTime && time < apt.EndDateTime));
         }
 
         /// <summary>
@@ -896,10 +908,9 @@ namespace Engage.Dnn.Booking
         /// Accepts this <see cref="Appointment"/>.
         /// </summary>
         /// <param name="revisingUserId">The ID of the user accepting the <see cref="Appointment"/>.</param>
-        /// <returns>Whether this appointment could be accepted</returns>
-        public bool Accept(int revisingUserId)
+        public void Accept(int revisingUserId)
         {
-            return AppointmentSqlDataProvider.AcceptAppointment(this.AppointmentId, revisingUserId);
+            AppointmentSqlDataProvider.AcceptAppointment(this.AppointmentId, revisingUserId);
         }
 
         /// <summary>

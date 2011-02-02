@@ -234,7 +234,11 @@ namespace Engage.Dnn.Booking
                 return;
             }
 
-            args.IsValid = Appointment.CanCreateAt(this.ModuleId, this.StartDateTimePicker.SelectedDate.Value, this.EndDateTimePicker.SelectedDate.Value);
+            args.IsValid = Appointment.CanCreateAt(
+                this.ModuleId,
+                this.StartDateTimePicker.SelectedDate.Value,
+                this.EndDateTimePicker.SelectedDate.Value, 
+                ModuleSettings.MaximumConcurrentAppointments.GetValueAsInt32For(this).Value);
         }
 
         /// <summary>

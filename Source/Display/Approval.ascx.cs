@@ -188,7 +188,7 @@ namespace Engage.Dnn.Booking
                 var appointment = Appointment.Load(appointmentId);
                 if (appointment != null)
                 {
-                    if (appointment.Accept(this.UserId))
+                    if (this.TryAcceptAppointment(this.UserId, appointment))
                     {
                         EmailService.SendAcceptanceEmail(appointment);
                         acceptedAppointments.Add(appointment);
@@ -213,6 +213,27 @@ namespace Engage.Dnn.Booking
             }
 
             this.BindData(true);
+        }
+
+        /// <summary>
+        /// Attempts to accept the appointment
+        /// </summary>
+        /// <param name="revisingUserId">The revising user's id.</param>
+        /// <param name="apt">The appointment to accept.</param>
+        /// <returns><c>true</c> if an <see cref="Appointment"/> can be accepted. Else, <c>false</c>.</returns>
+        private bool TryAcceptAppointment(int revisingUserId, Appointment apt)
+        {
+            var canCreate = Appointment.CanCreateAt(
+                this.ModuleId, apt.StartDateTime, apt.EndDateTime, ModuleSettings.MaximumConcurrentAppointments.GetValueAsInt32For(this).Value);
+
+            if (!canCreate)
+
+            {
+                return false;
+            }
+
+            apt.Accept(revisingUserId);
+            return true;
         }
 
         /// <summary>
@@ -270,7 +291,7 @@ namespace Engage.Dnn.Booking
             var appointment = Appointment.Load(appointmentId);
             if (appointment != null)
             {
-                if (appointment.Accept(this.UserId))
+                if (this.TryAcceptAppointment(this.UserId, appointment))
                 {
                     EmailService.SendAcceptanceEmail(appointment);
                     return true;

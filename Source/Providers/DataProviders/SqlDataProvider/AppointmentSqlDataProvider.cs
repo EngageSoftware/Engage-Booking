@@ -25,10 +25,9 @@ namespace Engage.Dnn.Booking
         /// </summary>
         /// <param name="appointmentId">The ID of the <see cref="Appointment"/> to accept or decline.</param>
         /// <param name="revisingUserId">The ID of the user setting the acceptance the <see cref="Appointment"/>.</param>
-        /// <returns>Whether the appointment could be successfully accepted</returns>
-        public static bool AcceptAppointment(int appointmentId, int revisingUserId)
+        public static void AcceptAppointment(int appointmentId, int revisingUserId)
         {
-            return (bool)SqlDataProvider.Instance.ExecuteScalar(
+            SqlDataProvider.Instance.ExecuteScalar(
                 "AcceptAppointment",
                 Engage.Utility.CreateIntegerParam("@appointmentId", appointmentId),
                 Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
@@ -42,24 +41,6 @@ namespace Engage.Dnn.Booking
         public static IDataReader ApproveByKey(Guid actionKey)
         {
             return SqlDataProvider.Instance.ExecuteReader("ApproveByKey", Engage.Utility.CreateGuidParam("@actionKey", actionKey));
-        }
-
-        /// <summary>
-        /// Determines whether an <see cref="Appointment"/> can be created at the specified <paramref name="start"/> time until the specified <paramref name="end"/> time.
-        /// </summary>
-        /// <param name="moduleId">The ID of the module in which the appointment is to be created.</param>
-        /// <param name="start">The start of the new <see cref="Appointment"/>.</param>
-        /// <param name="end">The end of the new <see cref="Appointment"/>.</param>
-        /// <returns>
-        /// <c>true</c> if an <see cref="Appointment"/> can be created at the specified <paramref name="start"/> time until the specified <paramref name="end"/> time; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool CanCreateAppointmentAt(int? moduleId, DateTime start, DateTime end)
-        {
-            return (bool)SqlDataProvider.Instance.ExecuteScalar(
-                "CanCreateAppointmentAt",
-                Engage.Utility.CreateIntegerParam("@moduleId", moduleId),
-                Engage.Utility.CreateDateTimeParam("@start", start),
-                Engage.Utility.CreateDateTimeParam("@end", end));
         }
 
         /// <summary>
@@ -176,6 +157,22 @@ namespace Engage.Dnn.Booking
                     Engage.Utility.CreateIntegerParam("@moduleId", moduleId),
                     Engage.Utility.CreateDateTimeParam("@startDateTime", startDateTime),
                     Engage.Utility.CreateDateTimeParam("@endDateTime", endDateTime));
+        }
+
+        /// <summary>
+        /// Gets the concurrent appointments.
+        /// </summary>
+        /// <param name="moduleId">The module id.</param>
+        /// <param name="startDateTime">The start date time.</param>
+        /// <param name="endDateTime">The end date time.</param>
+        /// <returns>An <see cref="IDataReader"/> with the appointment records.</returns>
+        public static IDataReader GetConcurrentAppointments(int moduleId, DateTime? startDateTime, DateTime? endDateTime)
+        {
+            return SqlDataProvider.Instance.ExecuteReader(
+                "GetConcurrentAppointments",
+                Engage.Utility.CreateIntegerParam("@moduleID", moduleId),
+                Engage.Utility.CreateDateTimeParam("@start", startDateTime),
+                Engage.Utility.CreateDateTimeParam("@end", endDateTime));
         }
 
         /// <summary>

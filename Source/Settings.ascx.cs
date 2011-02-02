@@ -77,6 +77,8 @@ namespace Engage.Dnn.Booking
                         0);
                     Booking.ModuleSettings.MaximumAppointmentDuration.Set(this, maximumAppointmentDuration.TotalMinutes);
 
+                    Booking.ModuleSettings.MaximumConcurrentAppointments.Set(this, this.MaximumConcurrentAppointmentsTextBox.Value.Value);
+
                     if (this.AppointmentsPerDayTextBox.Value.HasValue)
                     {
                         Booking.ModuleSettings.AppointmentsToDisplayPerDay.Set(this, (int)this.AppointmentsPerDayTextBox.Value.Value);
@@ -101,6 +103,17 @@ namespace Engage.Dnn.Booking
             this.MinimumAppointmentDurationValidator.ServerValidate += this.MinimumAppointmentDurationValidator_ServerValidate;
             this.MaximumAppointmentDurationValidator.ServerValidate += this.MaximumAppointmentDurationValidator_ServerValidate;
             this.DurationCompareValidator.ServerValidate += this.DurationCompareValidator_ServerValidate;
+            this.MaximumConcurrentAppointmentsValidator.ServerValidate += this.MaximumConcurrentAppointmentsValidator_ServerValidate;
+        }
+
+        /// <summary>
+        /// Handles the ServerValidate event of the MaximumConcurrentAppointmentsValidator control.
+        /// </summary>
+        /// <param name="source">The source of the event.</param>
+        /// <param name="args">The <see cref="System.Web.UI.WebControls.ServerValidateEventArgs"/> instance containing the event data.</param>
+        private void MaximumConcurrentAppointmentsValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = this.MaximumConcurrentAppointmentsTextBox.Value > 0;
         }
 
         /// <summary>
@@ -205,6 +218,8 @@ namespace Engage.Dnn.Booking
             var maximumAppointmentDuration = TimeSpan.FromMinutes(Booking.ModuleSettings.MaximumAppointmentDuration.GetValueAsInt32For(this).Value);
             this.MaximumAppointmentDurationHoursTextBox.Value = maximumAppointmentDuration.Hours;
             this.MaximumAppointmentDurationMinutesTextBox.Value = maximumAppointmentDuration.Minutes;
+
+            this.MaximumConcurrentAppointmentsTextBox.Value = Booking.ModuleSettings.MaximumConcurrentAppointments.GetValueAsInt32For(this).Value;
         }
     }
 }

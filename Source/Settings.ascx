@@ -88,6 +88,15 @@
             <asp:CustomValidator ID="MaximumAppointmentDurationValidator" runat="server" ResourceKey="MaximumAppointmentDurationValidator" CssClass="NormalRed" Display="None" />
             <asp:CustomValidator ID="DurationCompareValidator" runat="server" ResourceKey="DurationCompareValidator" Display="None" />
         </div>
+        <div class="booking-setting">
+             <dnn:label runat="server" controlname="MaximumConcurrentAppointments" ResourceKey="MaximumConcurrentAppointmentsLabel" CssClass="SubHead"/>
+             <div class="NumericTextBoxWrapper">
+                <telerik:radnumerictextbox id="MaximumConcurrentAppointmentsTextBox" runat="server" minvalue="0" maxvalue="999" showspinbuttons="True">
+                    <NumberFormat AllowRounding="True" DecimalDigits="0"/>
+                </telerik:radnumerictextbox>
+             </div>
+             <asp:CustomValidator ID="MaximumConcurrentAppointmentsValidator" runat="server" ResourceKey="MaximumConcurrentAppointmentsValidator" CssClass="NormalRed" Display="None" />
+        </div>
         <asp:ValidationSummary runat="server" ShowMessageBox="false" ShowSummary="true" CssClass="NormalRed" />
     </ContentTemplate>
 </asp:UpdatePanel>

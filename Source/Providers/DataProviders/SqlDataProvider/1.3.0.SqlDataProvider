@@ -1,0 +1,41 @@
+﻿IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spCanCreateAppointmentAt]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spCanCreateAppointmentAt]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetConcurrentAppointments]
+(  
+	@moduleId int,
+    @start datetime,
+    @end datetime,
+)  
+AS  
+BEGIN  
+
+SELECT * FROM dbo.[EngageBooking_Appointment]
+WHERE ModuleId = @moduleId
+  AND IsAccepted = 1
+  AND (@start = StartDateTime 
+      OR  @end = EndDateTime
+      OR (@start > StartDateTime AND @start < EndDateTime)
+      OR (@end > StartDateTime AND @end < EndDateTime)
+      OR (@start < StartDateTime AND @end > EndDateTime))  
+END  
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointment]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointment]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointment]
+(  
+   @appointmentId int,  
+   @revisingUser int,
+   @returnSuccessBit bit = 1
+)  
+AS  
+BEGIN
+
+	UPDATE dbo.[EngageBooking_Appointment]  
+	SET IsAccepted = 1,  
+	 RevisingUser = @revisingUser,  
+	 RevisionDate = GETDATE()  
+	WHERE AppointmentId = @appointmentId  
+END

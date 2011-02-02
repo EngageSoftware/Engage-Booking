@@ -180,6 +180,15 @@
   <data name="MaximumAppointmentMinutesLabel.Text" xml:space="preserve">
     <value>Minutes</value>
   </data>
+  <data name="MaximumConcurrentAppointmentsLabel.Help" xml:space="preserve">
+    <value>The maximum amount of appointments allowed for each time slot.</value>
+  </data>
+  <data name="MaximumConcurrentAppointmentsLabel.Text" xml:space="preserve">
+    <value>Maximum Number of Appointments per Time Slot</value>
+  </data>
+  <data name="MaximumConcurrentAppointmentsValidator.Text" xml:space="preserve">
+    <value>You must specify a maximum number of concurrent appointments allowed for a timeslot.</value>
+  </data>
   <data name="MinimumAppointmentDuration.Help" xml:space="preserve">
     <value>The shortest appointment length that a user is allowed to request.</value>
   </data>

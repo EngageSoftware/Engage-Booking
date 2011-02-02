@@ -66,5 +66,11 @@ namespace Engage.Dnn.Booking
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
         public static readonly Setting<int> MaximumAppointmentDuration = new Setting<int>("MaximumAppointmentDuration", SettingScope.TabModule, 24 * 60);
+
+        /// <summary>
+        /// The maximum number of concurrent appointments per time slot
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Setting<T> is immutable")]
+        public static readonly Setting<int> MaximumConcurrentAppointments = new Setting<int>("MaximumConcurrentAppointments", SettingScope.TabModule, 10);
     }
 }
