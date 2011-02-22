@@ -97,6 +97,10 @@
                     <asp:Label CssClass="end-label" runat="server" ResourceKey="EndLabel" AssociatedControlId="EndDateTimeLabel" />
                     <asp:Label runat="server" ID="EndDateTimeLabel"/>
                 </li>
+                <li class="timezone">
+                    <asp:Label CssClass="timezone-label" runat="server" ResourceKey="TimezoneLabel" AssociatedControlID="TimeZoneLabel" />
+                    <asp:Label runat="server" ID="TimeZoneLabel" />
+                </li>
             </ol>
         </fieldset>
 	</div>

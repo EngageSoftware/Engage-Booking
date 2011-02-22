@@ -366,6 +366,9 @@
   <data name="StreetLabel.Text" xml:space="preserve">
     <value>Street</value>
   </data>
+  <data name="TimezoneLabel.Text" xml:space="preserve">
+    <value>Time Zone</value>
+  </data>
   <data name="TitleLabel.Text" xml:space="preserve">
     <value>Title</value>
   </data>

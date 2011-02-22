@@ -13,6 +13,7 @@ namespace Engage.Dnn.Booking
 {
     using System;
     using System.Globalization;
+
     using DotNetNuke.Services.Exceptions;
     using DotNetNuke.Services.Localization;
 
@@ -81,6 +82,7 @@ namespace Engage.Dnn.Booking
             this.RequestorEmailLabel.Text = appointment.RequestorEmail;
             this.StartDateTimeLabel.Text = appointment.StartDateTime.ToString("g", CultureInfo.CurrentCulture);
             this.EndDateTimeLabel.Text = appointment.EndDateTime.ToString("g", CultureInfo.CurrentCulture);
+            this.SetSelectedTimeZone(appointment.TimeZoneOffset);
             this.NumberOfSpecialParticipantsLabel.Text = appointment.NumberOfSpecialParticipants.ToString(CultureInfo.CurrentCulture);
             this.TotalNumberParticipantsLabel.Text = appointment.NumberOfParticipants.ToString(CultureInfo.CurrentCulture);
             this.GenderLabel.Text = Localization.GetString(appointment.ParticipantGender.ToString(), Utility.LocalSharedResourceFile);
@@ -96,6 +98,29 @@ namespace Engage.Dnn.Booking
             this.CustomField8Label.Text = appointment.Custom8;
             this.CustomField9Label.Text = appointment.Custom9;
             this.CustomField10Label.Text = appointment.Custom10;
+        }
+
+        /// <summary>
+        /// Sets the selected time zone.
+        /// </summary>
+        /// <param name="timeZoneOffset">The time zone offset.</param>
+        private void SetSelectedTimeZone(TimeSpan timeZoneOffset)
+        {
+            var timeZones = Localization.GetTimeZones(CultureInfo.CurrentCulture.Name);
+            if (timeZones.Count != 0)
+            {
+                timeZones = Localization.GetTimeZones(Localization.SystemLocale.ToLowerInvariant());
+            }
+
+            var selectedTimeZone = timeZoneOffset.TotalMinutes.ToString(CultureInfo.InvariantCulture);
+            foreach (var timeZoneName in timeZones.AllKeys)
+            {
+                if (timeZones[timeZoneName] == selectedTimeZone)
+                {
+                    this.TimeZoneLabel.Text = timeZoneName;
+                    break;
+                }
+            }
         }
     }
 }

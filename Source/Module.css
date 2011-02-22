@@ -1,4 +1,4 @@
-﻿.booking ol li{list-style-type:none;margin:0 0 8px 0;padding:0;}
+.booking ol li{list-style-type:none;margin:0 0 8px 0;padding:0;}
 
 /* calendar display page */
 .appointments-calendar li {list-style-type:none;}
@@ -165,7 +165,7 @@
 		.date-assignment-form label{width:150px;}
 		.date-assignment-form div{margin-left:2%;}
 		.start, .at-time, .end{width:100%;overflow:hidden;padding:6px 0;clear:both;}
-		.appointment-details .start span, .appointment-details .end span{padding-left:15px;}
+		.appointment-details .start span, .appointment-details .end span, .appointment-details .timezone span{padding-left:15px;}
 			.start-label, .at-time-label, .end-label{float:left;width:20%;}
 			.start-box, .at-time-box, .end-box{float:left;margin:0 2%}
 		.timezone_display{float:left; width:70%;}
