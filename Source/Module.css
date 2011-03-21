@@ -237,3 +237,35 @@
 		.calendar-tooltip span.label{display:block;width:60px;float:left;text-align:right;font-weight:bold;padding-bottom:6px;}
 		.calendar-tooltip span.value{display:block;width:180px;float:left;padding-left:10px;padding-bottom:6px;}
 		.calendar-tooltip a{display:block;padding-left:70px;}
+
+/*========================= Global Nav =====================================*/
+.GlobalNavigation .RadMenu_Engage{width:100% !important;}
+    .GlobalNavigation .RadMenu_Engage .rmRootGroup{border:1px solid #dddddd;background:url("Images/radmenu-bg.png") repeat-x #e7e7e7;width:100%;}
+        .GlobalNavigation .RadMenu_Engage .rmRootGroup .rmLink{color:#60605f;display:block; padding:6px 9px 6px 44px;height:19px;}
+        .GlobalNavigation .RadMenu_Engage .rmRootGroup .rmLink:hover{color:#d4730c;cursor:pointer;display:block;text-decoration:none;border-right: 1px solid #aaa9a9;border-left:1px solid #aaa9a9;background-color:#dcdbdb;padding:6px 8px 6px 43px;}
+        .GlobalNavigation .RadMenu_Engage .rmRootGroup .rmFocused{color:#60605f;cursor:pointer;display:block;text-decoration:none;background-color:#dcdbdb;}
+            .GlobalNavigation .RadMenu_Engage .rmRootGroup .rmText{padding:0 7px 1px 0;}
+
+    .GlobalNavigation .RadMenu_Engage .rmLevel1{background:#f8f8f8;border-right:1px solid #efefef;border-bottom:1px solid #efefef;border-left:1px solid #efefef;}
+        .GlobalNavigation .RadMenu_Engage .rmLevel1 .rmLink{border-right: 1px solid #ccc; border-left:1px solid #ccc;padding:5px 10px;}
+        .GlobalNavigation .RadMenu_Engage .rmLevel1 .rmLink:hover{padding:5px 10px;}
+        .GlobalNavigation .RadMenu_Engage .rmLevel1 .rmLast .rmLink{border-bottom:1px solid #ccc;}
+            .GlobalNavigation .RadMenu_Engage .rmLevel1 .rmText{padding: 0;}
+
+    .GlobalNavigation .RadMenu_Engage .rmLink{background:url("Images/icon-canvas.png") no-repeat;}
+        .GlobalNavigation .RadMenu_Engage .rmLevel1 .rmLink{background:none;}
+        
+        .GlobalNavigation .RadMenu_Engage #HomeItem{background-position:10px -73px;}
+        .GlobalNavigation .RadMenu_Engage #HomeItem:hover{background-position:8px -104px;}
+
+        .GlobalNavigation .RadMenu_Engage #AddEventItem{background-position:9px -4px;}
+        .GlobalNavigation .RadMenu_Engage #AddEventItem:hover{background-position:8px -39px;}
+
+        .GlobalNavigation .RadMenu_Engage #ManageItem{background-position:9px -139px;}
+        .GlobalNavigation .RadMenu_Engage #ManageItem:hover{background-position:8px -139px;}
+
+        .GlobalNavigation .RadMenu_Engage #SettingsItem{background-position:10px -210px;}
+        .GlobalNavigation .RadMenu_Engage #SettingsItem:hover{background-position:9px -210px;}
+
+        .GlobalNavigation .RadMenu_Engage #ManageItem, .GlobalNavigation .RadMenu_Engage #SettingsItem{cursor:default;}
+        .GlobalNavigation .RadMenu_Engage #ManageItem:hover, .GlobalNavigation .RadMenu_Engage #SettingsItem:hover{color:#60605f;}

@@ -57,7 +57,9 @@ namespace Engage.Dnn.Booking
             try
             {
                 this.SetupLinks();
+                this.LocalizeMenu();
                 this.SetVisibility();
+                this.SetCurrentlySelectedMenu();
                 ////this.SetDisabledImages();
             }
             catch (Exception exc)
@@ -67,14 +69,51 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
+        /// Highlights the path of the menu item for the current page.
+        /// </summary>
+        private void SetCurrentlySelectedMenu()
+        {
+            var controlKey = this.GetCurrentControlKey();
+            var currentItem = this.NavigationMenu.FindItemByValue(controlKey);
+            if (!string.IsNullOrEmpty(controlKey) && currentItem != null)
+            {
+                // Highlight the current item and his parents
+                currentItem.HighlightPath();
+            }
+            else
+            {
+                this.NavigationMenu.Items[0].HighlightPath();
+            }
+        }
+
+        /// <summary>
+        /// Localizes the menu items. It localizes the universe!
+        /// </summary>
+        private void LocalizeMenu()
+        {
+            this.HomeItem.Text = this.Localize("Home");
+            this.AddEventItem.Text = this.Localize("Add Appointment");
+            this.ExportDataItem.Text = this.Localize("Export");
+            this.SettingsItem.Text = this.Localize("Settings");
+            this.ModuleSettingsItem.Text = this.Localize("Module Settings");
+            ////this.ManageCategoriesItem.Text = this.Localize("Categories");
+            this.ManageItem.Text = this.Localize("Manage");
+        }
+
+        /// <summary>
         /// Sets up the URLs for each of the links.
         /// </summary>
         private void SetupLinks()
         {
-            this.HomeLink.NavigateUrl = Globals.NavigateURL();
-            this.SettingsLink.NavigateUrl = this.EditUrl("ModuleId", this.ModuleId.ToString(CultureInfo.InvariantCulture), "Module");
-            this.AddAnEventLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.AppointmentRequest);
-            this.ExportLink.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.ExportData);
+            this.HomeItem.NavigateUrl = Globals.NavigateURL();
+
+            this.AddEventItem.Value = "AppointmentRequest";
+            this.AddEventItem.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.AppointmentRequest);
+
+            this.ExportDataItem.Value = "ExportData";
+            this.ExportDataItem.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.ExportData);
+            
+            this.ModuleSettingsItem.NavigateUrl = this.EditUrl("ModuleId", this.ModuleId.ToString(CultureInfo.InvariantCulture), "Module");
         }
 
         /// <summary>
@@ -83,7 +122,7 @@ namespace Engage.Dnn.Booking
         private void SetVisibility()
         {
             this.Visible = this.IsAdmin;
-            this.SettingsLink.Visible = TabPermissionController.HasTabPermission("EDIT");
+            this.ModuleSettingsItem.Visible = TabPermissionController.HasTabPermission("EDIT");
         }
     }
 }

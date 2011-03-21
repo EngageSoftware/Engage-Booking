@@ -251,6 +251,10 @@
     <None Include="Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\icon-canvas.png" />
+    <Content Include="Images\radmenu-bg.png" />
+    <Content Include="Images\radmenu-hover_active-bg.png" />
+    <Content Include="Images\rmVSprite.png" />
     <Content Include="References\Framework\Engage.Dnn.Framework.dll" />
     <Content Include="References\Framework\Engage.Events.dll" />
     <Content Include="References\Framework\Engage.Framework.dll" />
