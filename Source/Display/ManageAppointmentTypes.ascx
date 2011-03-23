@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="ManageAppointmentTypes.ascx.cs" Inherits="Engage.Dnn.Booking.ManageAppointmentTypes" %>
+﻿<%@ Control Language="C#" AutoEventWireup="True" CodeBehind="ManageAppointmentTypes.ascx.cs" Inherits="Engage.Dnn.Booking.ManageAppointmentTypes" %>
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <%@ Register TagPrefix="engage" Namespace="Engage.Controls" Assembly="Engage.Framework" %>
 <%@ Register TagPrefix="engage" TagName="ModuleMessage" Src="../Controls/ModuleMessage.ascx" %>
