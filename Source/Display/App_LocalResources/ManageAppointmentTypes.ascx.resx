@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,25 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add Appointment.Text" xml:space="preserve">
-    <value>Add Appointment</value>
+  <data name="AddAppointmentType.Text" xml:space="preserve">
+    <value>Add a new appointment type</value>
   </data>
-  <data name="Appointment Types.Text" xml:space="preserve">
-    <value>Manage Appointment Types</value>
+  <data name="AppointmentTypeInsertSuccess.Text" xml:space="preserve">
+    <value>The new appointment type has been successfully added!</value>
   </data>
-  <data name="Export.Text" xml:space="preserve">
-    <value>Export Data</value>
+  <data name="AppointmentTypeUpdateSuccess.Text" xml:space="preserve">
+    <value>The appointment type has been successfully updated!</value>
   </data>
-  <data name="Home.Text" xml:space="preserve">
-    <value>Home</value>
+  <data name="CreateAppointmentType.Text" xml:space="preserve">
+    <value>Create</value>
   </data>
-  <data name="Manage.Text" xml:space="preserve">
-    <value>Manage</value>
+  <data name="DeleteAppointmentType.Text" xml:space="preserve">
+    <value>Delete</value>
   </data>
-  <data name="Module Settings.Text" xml:space="preserve">
-    <value>Module Settings</value>
+  <data name="DeleteConfirmation.Text" xml:space="preserve">
+    <value>Are you sure that you want to permanently delete this appointment type?\nAll appointments of this type will be deleted.</value>
   </data>
-  <data name="Settings.Text" xml:space="preserve">
-    <value>Settings</value>
+  <data name="EditAppointmentType.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Name.Header" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameRequired.Text" xml:space="preserve">
+    <value>Please provide a name for the appointment type.</value>
+  </data>
+  <data name="NameUnique.Text" xml:space="preserve">
+    <value>Another appointment type is using this name.  Appointment type names must be unique.</value>
+  </data>
+  <data name="NoAppointmentTypes.Text" xml:space="preserve">
+    <value>No appointment types to display</value>
+  </data>
+  <data name="UpdateAppointmentType.Text" xml:space="preserve">
+    <value>Update</value>
   </data>
 </root>

@@ -13,6 +13,7 @@ namespace Engage.Dnn.Booking
 {
     using System;
     using System.Globalization;
+    using System.Linq;
     using System.Web;
     using System.Web.UI.WebControls;
     using DotNetNuke.Common;
@@ -387,7 +388,13 @@ namespace Engage.Dnn.Booking
             this.RegionDropDownList.DataBind();
             this.RegionDropDownList.Items.Insert(0, new ListItem(Localization.GetString("StateDefaultText.Text", this.LocalResourceFile), string.Empty));
 
-            this.AppointmentTypeDropDownList.DataSource = AppointmentTypeCollection.Load();
+            this.AppointmentTypeDropDownList.DataSource = from appointmentType in AppointmentTypeCollection.Load(this.ModuleId)
+                                                          select new 
+                                                          {
+                                                              appointmentType.Id,
+                                                              Name = Utility.GetLocalizedAppointmentTypeName(appointmentType.Name)
+                                                          };
+
             this.AppointmentTypeDropDownList.DataTextField = "Name";
             this.AppointmentTypeDropDownList.DataValueField = "Id";
             this.AppointmentTypeDropDownList.DataBind();

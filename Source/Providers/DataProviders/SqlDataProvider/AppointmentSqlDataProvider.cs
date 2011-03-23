@@ -176,27 +176,72 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Gets the appointment type with the given <paramref name="appointmentTypeId"/>.
+        /// Gets the appointment type with the given <paramref name="appointmentTypeId"/> and <paramref name="moduleId"/>.
         /// </summary>
         /// <param name="appointmentTypeId">The ID of the appointment type.</param>
+        /// <param name="moduleId">The module id.</param>
         /// <returns>An <see cref="AppointmentType"/> instance</returns>
-        public static IDataReader GetAppointmentType(int appointmentTypeId)
+        public static IDataReader GetAppointmentType(int appointmentTypeId, int moduleId)
         {
             return SqlDataProvider.Instance.ExecuteReader(
                 "GetAppointmentType",
-                Engage.Utility.CreateIntegerParam("@appointmentTypeId", appointmentTypeId));
+                Engage.Utility.CreateIntegerParam("@appointmentTypeId", appointmentTypeId),
+                Engage.Utility.CreateIntegerParam("@moduleId", moduleId));
         }
 
         /// <summary>
         /// Gets the appointment types.
         /// </summary>
+        /// <param name="moduleId">The module id.</param>
         /// <returns>
         /// An <see cref="IDataReader"/> with the list of appointment types for this module.
         /// </returns>
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Does not represent state")]
-        public static IDataReader GetAppointmentTypes()
+        public static IDataReader GetAppointmentTypes(int moduleId)
         {
-            return SqlDataProvider.Instance.ExecuteReader("GetAppointmentTypes");
+            return SqlDataProvider.Instance.ExecuteReader(
+                "GetAppointmentTypes", 
+                Engage.Utility.CreateIntegerParam("@moduleId", moduleId));
+        }
+
+        /// <summary>
+        /// Inserts an <paramref name="appointmentType"/> into SkyNet Central Repository (The database)
+        /// </summary>
+        /// <param name="appointmentType">The appointment type.</param>
+        /// <param name="revisingUserId">The revising user id.</param>
+        /// <param name="moduleId">The module id.</param>
+        public static void InsertAppointmentType(AppointmentType appointmentType, int revisingUserId, int moduleId)
+        {
+            SqlDataProvider.Instance.ExecuteNonQuery(
+                "InsertAppointmentType",
+                Engage.Utility.CreateTextParam("@name", appointmentType.Name),
+                Engage.Utility.CreateIntegerParam("@revisingUserId", revisingUserId),
+                Engage.Utility.CreateIntegerParam("@moduleId", moduleId));
+        }
+
+        /// <summary>
+        /// Updates the type of the appointment.
+        /// </summary>
+        /// <param name="appointmentType">Type of the appointment.</param>
+        /// <param name="revisingUserId">The revising user id.</param>
+        public static void UpdateAppointmentType(AppointmentType appointmentType, int revisingUserId)
+        {
+            SqlDataProvider.Instance.ExecuteNonQuery(
+                "UpdateAppointmentType", 
+                Engage.Utility.CreateIntegerParam("@appointmentTypeId", appointmentType.Id), 
+                Engage.Utility.CreateVarcharParam("@name", appointmentType.Name, 250), 
+                Engage.Utility.CreateIntegerParam("@revisingUser", revisingUserId));
+        }
+
+        /// <summary>
+        /// Deletes the type of the appointment.
+        /// </summary>
+        /// <param name="appointmentTypeId">The appointment type id.</param>
+        public static void DeleteAppointmentType(int appointmentTypeId)
+        {
+            SqlDataProvider.Instance.ExecuteNonQuery(
+                "DeleteAppointmentType",
+                Engage.Utility.CreateIntegerParam("@appointmentTypeId", appointmentTypeId));
         }
 
         /// <summary>

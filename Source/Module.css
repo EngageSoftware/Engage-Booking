@@ -124,7 +124,7 @@
 			.customfield1-label, .customfield2-label, .customfield3-label, .customfield4-label, .customfield5-label, .customfield6-label, .customfield7-label, .customfield8-label, .customfield9-label, .customfield10-label{float:left;width:20%;}
 			.customfield1-box, .customfield2-box, .customfield3-box, .customfield4-box, .customfield5-box, .customfield6-box, .customfield7-box, .customfield8-box, .customfield9-box, .customfield10-box{float:left;margin:0 2%}
 /*-------- Hide fields that aren't general purpose ------*/
-	.addr-legend, .onsite-legend, .customfields-wrap, .participants-wrap, .event-type{display:none;}
+	.addr-legend, .onsite-legend, .customfields-wrap, .participants-wrap {display:none;}
 /*----- Submit Button -----*/	
 	.submit{}
 		.send-button{}

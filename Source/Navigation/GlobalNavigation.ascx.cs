@@ -60,7 +60,6 @@ namespace Engage.Dnn.Booking
                 this.LocalizeMenu();
                 this.SetVisibility();
                 this.SetCurrentlySelectedMenu();
-                ////this.SetDisabledImages();
             }
             catch (Exception exc)
             {
@@ -96,7 +95,7 @@ namespace Engage.Dnn.Booking
             this.ExportDataItem.Text = this.Localize("Export");
             this.SettingsItem.Text = this.Localize("Settings");
             this.ModuleSettingsItem.Text = this.Localize("Module Settings");
-            ////this.ManageCategoriesItem.Text = this.Localize("Categories");
+            this.ManageAppointmentTypesItem.Text = this.Localize("Appointment Types");
             this.ManageItem.Text = this.Localize("Manage");
         }
 
@@ -112,7 +111,10 @@ namespace Engage.Dnn.Booking
 
             this.ExportDataItem.Value = "ExportData";
             this.ExportDataItem.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.ExportData);
-            
+
+            this.ManageAppointmentTypesItem.Value = "ManageAppointmentTypes";
+            this.ManageAppointmentTypesItem.NavigateUrl = this.BuildLinkUrl(this.ModuleId, ControlKey.ManageAppointmentTypes);
+
             this.ModuleSettingsItem.NavigateUrl = this.EditUrl("ModuleId", this.ModuleId.ToString(CultureInfo.InvariantCulture), "Module");
         }
 

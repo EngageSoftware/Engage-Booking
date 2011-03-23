@@ -58,6 +58,15 @@ namespace Engage.Dnn.Booking {
         protected global::Telerik.Web.UI.RadMenuItem ExportDataItem;
         
         /// <summary>
+        /// ManageAppointmentTypesItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadMenuItem ManageAppointmentTypesItem;
+        
+        /// <summary>
         /// SettingsItem control.
         /// </summary>
         /// <remarks>

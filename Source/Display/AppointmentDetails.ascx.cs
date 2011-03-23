@@ -62,7 +62,7 @@ namespace Engage.Dnn.Booking
         /// <param name="appointment">The appointment for which to display information.</param>
         private void FillAppointmentInformation(Appointment appointment)
         {
-            this.AppointmentTypeLabel.Text = appointment.AppointmentType.Name;
+            this.AppointmentTypeLabel.Text = Utility.GetLocalizedAppointmentTypeName(appointment.AppointmentType.Name);
             this.TitleLabel.Text = appointment.Title;
             this.DescriptionLabel.Text = appointment.Description;
             this.NotesLabel.Text = appointment.Notes;

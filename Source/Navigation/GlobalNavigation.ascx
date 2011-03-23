@@ -9,6 +9,7 @@
      <telerik:RadMenuITem ID="ManageItem" runat="server" OuterCssClass="eng-nav-manage" AccessKey="M">
        <Items>
          <telerik:RadMenuItem ID="ExportDataItem" runat="server" OuterCssClass="eng-nav-manage-categories" AccessKey="D" />
+         <telerik:RadMenuItem ID="ManageAppointmentTypesItem" runat="server" OuterCssClass="eng-nav-manage-categories" AccessKey="M" />
        </Items>
      </telerik:RadMenuITem>
      <telerik:RadMenuItem ID="SettingsItem" runat="server" OuterCssClass="eng-nav-settings" AccessKey="S">

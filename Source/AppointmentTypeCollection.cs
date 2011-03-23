@@ -35,12 +35,13 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// Loads all appointment types
         /// </summary>
+        /// <param name="moduleId"> The module Id. </param>
         /// <returns>
         /// A collection of appointment types.
         /// </returns>
-        internal static AppointmentTypeCollection Load()
+        internal static AppointmentTypeCollection Load(int moduleId)
         {
-            using (IDataReader reader = AppointmentSqlDataProvider.GetAppointmentTypes())
+            using (var reader = AppointmentSqlDataProvider.GetAppointmentTypes(moduleId))
             {
                 return FillAppointmentTypes(reader);
             }
@@ -55,7 +56,7 @@ namespace Engage.Dnn.Booking
         /// </returns>
         private static AppointmentTypeCollection FillAppointmentTypes(IDataReader reader)
         {
-            List<AppointmentType> appointmentTypes = new List<AppointmentType>();
+            var appointmentTypes = new List<AppointmentType>();
             while (reader.Read())
             {
                 appointmentTypes.Add(AppointmentType.Fill(reader));

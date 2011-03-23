@@ -44,6 +44,11 @@ namespace Engage.Dnn.Booking
         /// <summary>
         /// Displays the details of a specific appointment
         /// </summary>
-        AppointmentDetails
+        AppointmentDetails,
+
+        /// <summary>
+        /// Allows module administrators to modify appointment types (categories)
+        /// </summary>
+        ManageAppointmentTypes
     }
 }

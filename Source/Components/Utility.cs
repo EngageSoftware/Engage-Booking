@@ -40,7 +40,7 @@ namespace Engage.Dnn.Booking
         {
             get
             {
-                StringBuilder sb = new StringBuilder(128);
+                var sb = new StringBuilder(128);
                 sb.Append("/DesktopModules/");
                 sb.Append(Globals.GetDesktopModuleByName(DesktopModuleName).FolderName);
                 sb.Append("/");
@@ -107,6 +107,23 @@ namespace Engage.Dnn.Booking
             {
                 return defaultValue;
             }
+        }
+
+        /// <summary>
+        /// Gets the name of the localized appointment type.
+        /// </summary>
+        /// <param name="name">The appointment name.</param>
+        /// <returns>The localized value of the name.</returns>
+        public static string GetLocalizedAppointmentTypeName(string name)
+        {
+            var localizedName = Localization.GetString(name, LocalSharedResourceFile);
+#if DEBUG
+            if (!string.IsNullOrEmpty(localizedName) && localizedName.StartsWith("RESX:", StringComparison.OrdinalIgnoreCase))
+            {
+                return name;
+            }
+#endif
+            return !string.IsNullOrEmpty(localizedName) ? localizedName : name;
         }
     }
 }

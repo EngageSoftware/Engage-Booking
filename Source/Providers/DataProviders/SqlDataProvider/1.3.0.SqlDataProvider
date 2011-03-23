@@ -1,16 +1,20 @@
 ﻿IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spCanCreateAppointmentAt]', N'P') IS NOT NULL
 	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spCanCreateAppointmentAt]
 GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetConcurrentAppointments]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetConcurrentAppointments]
+GO
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetConcurrentAppointments]
 (  
 	@moduleId int,
     @start datetime,
-    @end datetime,
+    @end datetime
 )  
 AS  
 BEGIN  
 
-SELECT * FROM dbo.[EngageBooking_Appointment]
+SELECT * FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
 WHERE ModuleId = @moduleId
   AND IsAccepted = 1
   AND (@start = StartDateTime 
@@ -36,6 +40,93 @@ BEGIN
 	UPDATE dbo.[EngageBooking_Appointment]  
 	SET IsAccepted = 1,  
 	 RevisingUser = @revisingUser,  
-	 RevisionDate = GETDATE()  
+	 RevisionDate = GETUTCDATE()  
 	WHERE AppointmentId = @appointmentId  
 END
+
+GO
+BEGIN
+	IF NOT EXISTS
+	(
+		SELECT * 
+		FROM syscolumns
+		WHERE name = 'ModuleId' AND id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]', N'U')
+	)
+	BEGIN
+		ALTER TABLE {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType] ADD ModuleId int null
+	END
+END
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentTypes]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentTypes]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spGetAppointmentTypes]
+(
+	@moduleId int
+)
+AS
+BEGIN
+	BEGIN TRANSACTION 
+		 -- If no appointment types are found, copy the default types 
+		 -- (Default appointment types are rows with null module ID's)
+		IF NOT EXISTS( SELECT * FROM {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType] WHERE ModuleId = @moduleId)
+		BEGIN
+			INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType] (Name, RevisingUser, ModuleId)
+				SELECT Name, RevisingUser, @moduleId FROM {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType] WHERE ModuleId IS NULL
+		END
+	COMMIT TRANSACTION
+
+	SELECT * FROM {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType] WHERE ModuleId = @moduleId
+END
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spInsertAppointmentType]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spInsertAppointmentType]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spInsertAppointmentType]
+(
+	@name text,
+	@revisingUserId int,
+	@moduleId int
+)
+AS
+BEGIN
+	INSERT INTO {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]([Name],[RevisingUser],[ModuleId])
+	VALUES (@name, @revisingUserId, @moduleId)
+END
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spDeleteAppointmentType]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spDeleteAppointmentType]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spDeleteAppointmentType] 
+(
+	@appointmentTypeId int
+)
+AS
+BEGIN
+	DELETE FROM {databaseOwner}[{objectQualifier}EngageBooking_Appointment]
+	WHERE AppointmentTypeId = @appointmentTypeId
+
+    DELETE FROM {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]
+    WHERE AppointmentTypeId = @appointmentTypeId
+END
+GO
+
+IF OBJECT_ID(N'{databaseOwner}[{objectQualifier}EngageBooking_spUpdateAppointmentType]', N'P') IS NOT NULL
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spUpdateAppointmentType]
+GO
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spUpdateAppointmentType] 
+(
+	@appointmentTypeId int,
+	@name varchar(250),
+	@revisingUser int
+)
+AS
+BEGIN
+	UPDATE {databaseOwner}[{objectQualifier}EngageBooking_AppointmentType]
+	SET [Name] = @name, [RevisingUser] = @revisingUser, [RevisionDate] = GETUTCDATE()
+    WHERE AppointmentTypeId = @appointmentTypeId
+END
+GO

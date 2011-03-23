@@ -352,7 +352,7 @@ namespace Engage.Dnn.Booking
         {
             get
             {
-                return AppointmentType.Load(this.AppointmentTypeId);
+                return AppointmentType.Load(this.AppointmentTypeId, this.ModuleId);
             }
         }
 

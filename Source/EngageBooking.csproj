@@ -170,6 +170,13 @@
     <Compile Include="Display\ExportData.ascx.designer.cs">
       <DependentUpon>ExportData.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Display\ManageAppointmentTypes.ascx.cs">
+      <DependentUpon>ManageAppointmentTypes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Display\ManageAppointmentTypes.ascx.designer.cs">
+      <DependentUpon>ManageAppointmentTypes.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Settings.ascx.designer.cs">
       <DependentUpon>Settings.ascx</DependentUpon>
     </Compile>
@@ -255,6 +262,7 @@
     <Content Include="Images\radmenu-bg.png" />
     <Content Include="Images\radmenu-hover_active-bg.png" />
     <Content Include="Images\rmVSprite.png" />
+    <Content Include="Display\ManageAppointmentTypes.ascx" />
     <Content Include="References\Framework\Engage.Dnn.Framework.dll" />
     <Content Include="References\Framework\Engage.Events.dll" />
     <Content Include="References\Framework\Engage.Framework.dll" />
@@ -324,26 +332,7 @@
     <Content Include="Navigation\App_LocalResources\GlobalNavigation.ascx.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Images\approve.gif" />
-    <Content Include="Images\back.gif" />
-    <Content Include="Images\cancel.gif" />
-    <Content Include="Images\comments.gif" />
-    <Content Include="Images\createnew.gif" />
-    <Content Include="Images\CreateNewDisabled.gif" />
-    <Content Include="Images\delete.gif" />
-    <Content Include="Images\edit.gif" />
-    <Content Include="Images\enrollment.gif" />
-    <Content Include="Images\enrollment_disabled.gif" />
     <Content Include="Images\import.gif" />
-    <Content Include="Images\manage_events.gif" />
-    <Content Include="Images\manage_events_disabled.gif" />
-    <Content Include="Images\responses.gif" />
-    <Content Include="Images\responses_disabled.gif" />
-    <Content Include="Images\settings.gif" />
-    <Content Include="Images\settingsdisabled.gif" />
-    <Content Include="Images\submit.gif" />
-    <Content Include="Images\update.gif" />
-    <Content Include="Images\updatedisabled.gif" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Display\AppointmentCalendar.ascx" />
@@ -351,24 +340,6 @@
     <Content Include="Images\greenBody.gif" />
     <Content Include="Images\redBody.gif" />
     <Content Include="Images\successSmallIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\cancel_disabled.gif" />
-    <Content Include="Images\manage_RSVPs.gif" />
-    <Content Include="Images\manage_RSVPs_disabled.gif" />
-    <Content Include="Images\save.gif" />
-    <Content Include="Images\save_create_new.gif" />
-    <Content Include="Images\save_create_new_disabled.gif" />
-    <Content Include="Images\save_disabled.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\create_another_event.gif" />
-    <Content Include="Images\exit.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\cancel_go_home.gif" />
-    <Content Include="Images\home.gif" />
-    <Content Include="Images\home_disabled.gif" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controls\ModuleMessage.ascx" />
@@ -381,8 +352,6 @@
   <ItemGroup>
     <Content Include="Admin\LicenseError.ascx" />
     <Content Include="Images\attending_icon.gif" />
-    <Content Include="Images\export_to_csv.gif" />
-    <Content Include="Images\export_to_excel.gif" />
     <Content Include="Images\info.png" />
     <Content Include="Images\not_attending_icon.gif" />
     <Content Include="Images\no_response_icon.gif" />
@@ -414,9 +383,6 @@
     <Content Include="Display\AppointmentRequest.ascx" />
     <Content Include="Display\Approval.ascx" />
     <Content Include="Display\AppointmentToolTip.ascx" />
-    <Content Include="Images\add-apntmnt-disabled.gif" />
-    <Content Include="Images\add-apntmnt.gif" />
-    <Content Include="Images\choose_display.gif" />
     <None Include="EngageBooking.5.dnn">
       <SubType>Designer</SubType>
     </None>
@@ -453,7 +419,6 @@
     <Content Include="Images\add.gif" />
     <Content Include="Images\create_new.gif" />
     <Content Include="Images\decline.gif" />
-    <Content Include="Images\export.gif" />
     <Content Include="Images\request-appt-background.png" />
     <Content Include="Images\subhead-hr.gif" />
     <Content Include="References\Telerik.Web.UI.XML" />
@@ -466,6 +431,7 @@
     </Content>
     <Content Include="Display\App_LocalResources\AppointmentDetails.ascx.resx" />
     <Content Include="ReleaseNotes_1.1.0.htm" />
+    <Content Include="Display\App_LocalResources\ManageAppointmentTypes.ascx.resx" />
     <EmbeddedResource Include="JavaScript\SelectAllPlugin.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -107,16 +107,6 @@ namespace Engage.Dnn.Booking
         }
 
         /// <summary>
-        /// Handles the ServerValidate event of the MaximumConcurrentAppointmentsValidator control.
-        /// </summary>
-        /// <param name="source">The source of the event.</param>
-        /// <param name="args">The <see cref="System.Web.UI.WebControls.ServerValidateEventArgs"/> instance containing the event data.</param>
-        private void MaximumConcurrentAppointmentsValidator_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            args.IsValid = this.MaximumConcurrentAppointmentsTextBox.Value > 0;
-        }
-
-        /// <summary>
         /// Determines whether either value is non-null and greater than zero.
         /// </summary>
         /// <param name="value1">The first value.</param>
@@ -125,6 +115,16 @@ namespace Engage.Dnn.Booking
         private static bool EitherHasValue(double? value1, double? value2)
         {
             return value1 > 0 || value2 > 0;
+        }
+
+        /// <summary>
+        /// Handles the ServerValidate event of the MaximumConcurrentAppointmentsValidator control.
+        /// </summary>
+        /// <param name="source">The source of the event.</param>
+        /// <param name="args">The <see cref="System.Web.UI.WebControls.ServerValidateEventArgs"/> instance containing the event data.</param>
+        private void MaximumConcurrentAppointmentsValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = this.MaximumConcurrentAppointmentsTextBox.Value > 0;
         }
 
         /// <summary>

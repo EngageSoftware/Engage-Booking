@@ -101,7 +101,8 @@ namespace Engage.Dnn.Booking
                                { ControlKey.Approval, new SubControlInfo("Display/AppointmentCalendar.ascx", true) },
                                { ControlKey.DirectApproval, new SubControlInfo("Display/DirectApproval.ascx", false) },
                                { ControlKey.ExportData, new SubControlInfo("Display/ExportData.ascx", true) },
-                               { ControlKey.AppointmentDetails, new SubControlInfo("Display/AppointmentDetails.ascx", true) }
+                               { ControlKey.AppointmentDetails, new SubControlInfo("Display/AppointmentDetails.ascx", true) },
+                               { ControlKey.ManageAppointmentTypes, new SubControlInfo("Display/ManageAppointmentTypes.ascx", true) }
                        };
         }
 
@@ -152,7 +153,7 @@ namespace Engage.Dnn.Booking
         {
             try
             {
-                PortalModuleBase mb = (PortalModuleBase)this.LoadControl(controlToLoad.ControlPath);
+                var mb = (PortalModuleBase)this.LoadControl(controlToLoad.ControlPath);
                 mb.ModuleConfiguration = this.ModuleConfiguration;
                 mb.ID = Path.GetFileNameWithoutExtension(controlToLoad.ControlPath);
                 this.SubControlPlaceholder.Controls.Add(mb);
