@@ -258,6 +258,7 @@
     <None Include="Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ReleaseNotes_1.3.0.htm" />
     <Content Include="Images\icon-canvas.png" />
     <Content Include="Images\radmenu-bg.png" />
     <Content Include="Images\radmenu-hover_active-bg.png" />

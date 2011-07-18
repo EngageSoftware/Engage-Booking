@@ -19,13 +19,13 @@ using System.Web.UI;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Engage Software, Inc.")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("2010 Engage Software Inc.")]
+[assembly: AssemblyCopyright("2011 Engage Software Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-[assembly: AssemblyVersion("01.02.00.*")]
-[assembly: AssemblyFileVersion("01.02.00.00")]
+[assembly: AssemblyVersion("1.3.0.*")]
+[assembly: AssemblyFileVersion("1.3.0.0")]
 
 [assembly: WebResource("Engage.Dnn.Booking.JavaScript.SelectAllPlugin.js", "text/javascript")]
