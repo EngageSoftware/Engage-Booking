@@ -248,7 +248,7 @@
     <Compile Include="Components\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="EngageBooking.4.dnn">
+    <None Include="EngageBooking.dnn">
       <SubType>Designer</SubType>
     </None>
     <None Include="Migrated rules for EngageBooking.ruleset" />
@@ -385,7 +385,7 @@
     <Content Include="Display\AppointmentRequest.ascx" />
     <Content Include="Display\Approval.ascx" />
     <Content Include="Display\AppointmentToolTip.ascx" />
-    <None Include="EngageBooking.5.dnn">
+    <None Include="EngageBooking.dnn5">
       <SubType>Designer</SubType>
     </None>
     <None Include="EngageBooking.Build" />

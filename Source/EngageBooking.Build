@@ -118,8 +118,8 @@
         <include name="??.??.??.txt" />
         <include name="ReadMe.txt" />
         <include name="**/*.SqlDataProvider"/>
-        <include name="**/*.4.dnn"/>
-        <include name="**/*.5.dnn"/>
+        <include name="**/*.dnn"/>
+        <include name="**/*.dnn5"/>
       </fileset>
     </copy>
     <copy todir="${packageDirectory}/temp/package/bin" flatten="true">
@@ -142,21 +142,21 @@
       </fileset>
     </attrib>
 
-    <if test="${file::exists(packageDirectory + '/temp/package/Engage' + projectName + '.5.dnn')}">
-      <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.5.dnn" value="${releaseNotesFile}" xpath="dotnetnuke/packages/package/releaseNotes/@src"/>
-      <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.5.dnn" value="${projectVersion}" xpath="dotnetnuke/packages/package/@version"/>
-      <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.5.dnn" value="${projectVersion}" xpath="//*[@latestVersion='latestVersion']"/>
+    <if test="${file::exists(packageDirectory + '/temp/package/Engage' + projectName + '.dnn5')}">
+      <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.dnn5" value="${releaseNotesFile}" xpath="dotnetnuke/packages/package/releaseNotes/@src"/>
+      <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.dnn5" value="${projectVersion}" xpath="dotnetnuke/packages/package/@version"/>
+      <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.dnn5" value="${projectVersion}" xpath="//*[@latestVersion='latestVersion']"/>
             
       <foreach item="File" in="${packageDirectory}/temp/package/bin" property="assemblyFile">
         <call target="set-assemblyVersion"/>
-        <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.5.dnn" value="${assemblyVersion}" xpath="dotnetnuke/packages/package/components/component[@type='Assembly']/assemblies/assembly[name='${path::get-file-name(assemblyFile)}']/version"/>
+        <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.dnn5" value="${assemblyVersion}" xpath="dotnetnuke/packages/package/components/component[@type='Assembly']/assemblies/assembly[name='${path::get-file-name(assemblyFile)}']/version"/>
       </foreach>
 
-      <copy file="${packageDirectory}/temp/package/Engage${projectName}.5.dnn" tofile="${packageDirectory}/temp/package/Engage${projectName}.5.2.dnn"/>
-      <xmlstrip file="${packageDirectory}/temp/package/Engage${projectName}.5.2.dnn" xpath="dotnetnuke/packages/package/components/component[@type='Assembly']/assemblies/assembly[name='Telerik.Web.UI.dll']"/>
+      <copy file="${packageDirectory}/temp/package/Engage${projectName}.dnn5" tofile="${packageDirectory}/temp/package/Engage${projectName}.5.2.dnn5"/>
+      <xmlstrip file="${packageDirectory}/temp/package/Engage${projectName}.5.2.dnn5" xpath="dotnetnuke/packages/package/components/component[@type='Assembly']/assemblies/assembly[name='Telerik.Web.UI.dll']"/>
     </if>
-    <if test="${file::exists(packageDirectory + '/temp/package/Engage' + projectName + '.4.dnn')}">
-      <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.4.dnn" value="${projectVersion}" xpath="//*[@latestVersion='latestVersion']"/>
+    <if test="${file::exists(packageDirectory + '/temp/package/Engage' + projectName + '.dnn')}">
+      <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.dnn" value="${projectVersion}" xpath="//*[@latestVersion='latestVersion']"/>
     </if>
   </target>
   <target name="create-resources-zip" description="Creates the Resources.zip file for content (Install package) files">
@@ -193,12 +193,12 @@
       </fileset>
     </copy>
 
-    <if test="${file::exists(packageDirectory + '/temp/package/Engage' + projectName + '.5.dnn')}">
-      <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.5.dnn" value="${licenseFile}.htm" xpath="dotnetnuke/packages/package/license/@src"/>
+    <if test="${file::exists(packageDirectory + '/temp/package/Engage' + projectName + '.dnn5')}">
+      <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.dnn5" value="${licenseFile}.htm" xpath="dotnetnuke/packages/package/license/@src"/>
     </if>
 
-    <if test="${file::exists(packageDirectory + '/temp/package/Engage' + projectName + '.5.2.dnn')}">
-      <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.5.2.dnn" value="${licenseFile}.htm" xpath="dotnetnuke/packages/package/license/@src"/>
+    <if test="${file::exists(packageDirectory + '/temp/package/Engage' + projectName + '.5.2.dnn5')}">
+      <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.5.2.dnn5" value="${licenseFile}.htm" xpath="dotnetnuke/packages/package/license/@src"/>
     </if>
   </target>
   <target name="zip-package" description="Zips up the files in the temp/package directory, getting the correct manifest file and using the correct naming convention">
@@ -207,9 +207,9 @@
     <zip zipfile="${packageDirectory}/${packageFileNameTemplate}.zip">
       <fileset basedir="${packageDirectory}/temp/package">
         <include name="**/*"/>
-        <exclude name="**/*.4.dnn" if="${dnnVersion!='4'}"/>
-        <exclude name="**/*.5.dnn" if="${dnnVersion!='5'}"/>
-        <exclude name="**/*.5.2.dnn" if="${dnnVersion!='5.2'}"/>
+        <exclude name="**/*.dnn" if="${dnnVersion!='4'}"/>
+        <exclude name="**/*.dnn5" if="${dnnVersion!='5'}"/>
+        <exclude name="**/*.5.2.dnn5" if="${dnnVersion!='5.2'}"/>
         <exclude name="**/Telerik.Web.UI.dll" if="${dnnVersion=='5.2'}"/>
       </fileset>
     </zip>
