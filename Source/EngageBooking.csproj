@@ -258,6 +258,7 @@
     <None Include="Uninstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\booking-icon32.png" />
     <Content Include="ReleaseNotes_1.3.0.htm" />
     <Content Include="Images\icon-canvas.png" />
     <Content Include="Images\radmenu-bg.png" />
@@ -418,7 +419,6 @@
     <Content Include="Display\DirectApproval.ascx" />
     <Content Include="Display\ExportData.ascx" />
     <Content Include="Images\add.gif" />
-    <Content Include="Images\create_new.gif" />
     <Content Include="Images\decline.gif" />
     <Content Include="Images\request-appt-background.png" />
     <Content Include="Images\subhead-hr.gif" />
