@@ -259,6 +259,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\booking-icon32.png" />
+    <Content Include="Module.css">
+      <DependentUpon>Module.chirp.less</DependentUpon>
+    </Content>
+    <Content Include="Module.min.css">
+      <DependentUpon>Module.chirp.less</DependentUpon>
+    </Content>
     <Content Include="ReleaseNotes_1.3.0.htm" />
     <Content Include="Images\icon-canvas.png" />
     <Content Include="Images\radmenu-bg.png" />
@@ -283,7 +289,7 @@
     <Content Include="Licenses\EULA-Trial.txt" />
     <Content Include="MainContainer.ascx" />
     <Content Include="Settings.ascx" />
-    <Content Include="Module.css" />
+    <None Include="Module.chirp.less" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\EmptyStar.png" />
