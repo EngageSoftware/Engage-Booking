@@ -151,6 +151,12 @@
         <call target="set-assemblyVersion"/>
         <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.5.dnn" value="${assemblyVersion}" xpath="dotnetnuke/packages/package/components/component[@type='Assembly']/assemblies/assembly[name='${path::get-file-name(assemblyFile)}']/version"/>
       </foreach>
+      
+      <if test="${file::exists(referencesDirectory + '/DotNetNuke.dll')}">
+        <property name="assemblyFile" value="${referencesDirectory}/DotNetNuke.dll" />
+        <call target="set-assemblyVersion" />
+        <xmlpoke file="${packageDirectory}/temp/package/Engage${projectName}.5.dnn" value="${assemblyVersion}" xpath="dotnetnuke/packages/package/dependencies/dependency[@type='CoreVersion']"/>
+      </if>
 
       <copy file="${packageDirectory}/temp/package/Engage${projectName}.5.dnn" tofile="${packageDirectory}/temp/package/Engage${projectName}.5.2.dnn"/>
       <xmlstrip file="${packageDirectory}/temp/package/Engage${projectName}.5.2.dnn" xpath="dotnetnuke/packages/package/components/component[@type='Assembly']/assemblies/assembly[name='Telerik.Web.UI.dll']"/>

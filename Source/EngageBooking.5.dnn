@@ -12,6 +12,9 @@
       </owner>
       <license src="License/EULA-Standard.htm"/>
       <releaseNotes src="ReleaseNotes_1.1.0.htm" />
+      <dependencies>
+        <dependency type="CoreVersion">5.0.0</dependency>
+      </dependencies>
       <components>
         <component type="ResourceFile">
           <resourceFiles>
