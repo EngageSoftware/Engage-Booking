@@ -126,6 +126,9 @@
   <data name="AppointmentTypeUpdateSuccess.Text" xml:space="preserve">
     <value>The appointment type has been successfully updated!</value>
   </data>
+  <data name="CancelEdit.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="CreateAppointmentType.Text" xml:space="preserve">
     <value>Create</value>
   </data>
