@@ -460,10 +460,8 @@
       <include name="System.dll" />
     </references>
     <imports>
-      <import namespace="System"/>
       <import namespace="System.Diagnostics"/>
       <import namespace="System.Globalization"/>
-      <import namespace="System.Text.RegularExpressions"/>
     </imports>
     <code>
       <![CDATA[
