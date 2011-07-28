@@ -185,8 +185,7 @@ namespace Engage.Dnn.Booking
         {
             return SqlDataProvider.Instance.ExecuteReader(
                 "GetAppointmentType",
-                Engage.Utility.CreateIntegerParam("@appointmentTypeId", appointmentTypeId),
-                Engage.Utility.CreateIntegerParam("@moduleId", moduleId));
+                Engage.Utility.CreateIntegerParam("@appointmentTypeId", appointmentTypeId));
         }
 
         /// <summary>
