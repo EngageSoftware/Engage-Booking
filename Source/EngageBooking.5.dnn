@@ -3,7 +3,7 @@
     <package name="Engage: Booking" type="Module" version="1.1.0">
       <friendlyName>Engage: Booking</friendlyName>
       <description>The DotNetNuke Booking module by Engage Software (www.EngageSoftware.com)</description>
-      <iconFile>/DesktopModules/EngageBooking/Images/booking-icon32.png</iconFile>
+      <iconFile>DesktopModules/EngageBooking/Images/booking-icon32.png</iconFile>
       <owner>
         <name>Engage Software</name>
         <organization>Engage Software</organization>
