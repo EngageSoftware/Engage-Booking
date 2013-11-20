@@ -252,7 +252,6 @@
     <Content Include="Module.min.css">
       <DependentUpon>Module.chirp.less</DependentUpon>
     </Content>
-    <Content Include="ReleaseNotes_1.3.0.htm" />
     <Content Include="Images\icon-canvas.png" />
     <Content Include="Images\radmenu-bg.png" />
     <Content Include="Images\radmenu-hover_active-bg.png" />
@@ -262,7 +261,6 @@
     <Content Include="References\Framework\Engage.Events.dll" />
     <Content Include="References\Framework\Engage.Framework.dll" />
     <Content Include="References\Telerik.Web.Design.dll" />
-    <Content Include="ReleaseNotes_1.2.0.htm" />
     <Content Include="Images\dn.gif" />
     <Content Include="Images\lt.gif" />
     <Content Include="Images\rt.gif" />
@@ -271,6 +269,9 @@
     <Content Include="Images\up.gif" />
     <Content Include="Licenses\EULA-Free.txt" />
     <Content Include="MainContainer.ascx" />
+    <Content Include="ReleaseNotes_01.01.00.htm" />
+    <Content Include="ReleaseNotes_01.02.00.htm" />
+    <Content Include="ReleaseNotes_01.03.00.htm" />
     <Content Include="Settings.ascx" />
     <None Include="Module.chirp.less" />
   </ItemGroup>
@@ -418,7 +419,6 @@
     <Content Include="Display\App_LocalResources\ExportData.ascx.resx">
     </Content>
     <Content Include="Display\App_LocalResources\AppointmentDetails.ascx.resx" />
-    <Content Include="ReleaseNotes_1.1.0.htm" />
     <Content Include="Display\App_LocalResources\ManageAppointmentTypes.ascx.resx" />
     <EmbeddedResource Include="JavaScript\SelectAllPlugin.js" />
   </ItemGroup>
