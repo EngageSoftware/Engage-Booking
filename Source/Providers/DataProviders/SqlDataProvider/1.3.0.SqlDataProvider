@@ -37,7 +37,7 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}EngageBooking_spAcceptAppointm
 AS  
 BEGIN
 
-	UPDATE dbo.[EngageBooking_Appointment]  
+	UPDATE {databaseOwner}[{objectQualifier}EngageBooking_Appointment]  
 	SET IsAccepted = 1,  
 	 RevisingUser = @revisingUser,  
 	 RevisionDate = GETUTCDATE()  
